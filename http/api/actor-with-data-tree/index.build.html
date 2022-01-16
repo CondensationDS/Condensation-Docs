@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<? title = 'Actor with data tree'; ?>
+<? title = 'Actor with document'; ?>
 
 <html lang="en">
 <head>
@@ -19,10 +19,10 @@
 	<div class="hscroll whiteBox" id="structure"></div>
 	<script src="../structureExplorer.js"></script>
 	<script>
-		structureExplorer.show('Actor with Data Tree').openField('key pair').openField('public key');
+		structureExplorer.show('Actor with Document').openField('key pair').openField('public key');
 	</script>
 
-	<p>A complete actor implementation suitable for most applications. It manages a data tree as private data and a list of actor group members, allows sending and receiving messages, and announces itself.</p>
+	<p>A complete actor implementation suitable for most applications. It manages a document as private data and a list of actor group members, allows sending and receiving messages, and announces itself.</p>
 
 	<h2 id="instance-creation">Creating an instance</h2>
 	<div class="hscroll wide api java"><pre>
@@ -30,26 +30,26 @@
 		Store storageStore = new FolderStore("local:", "file:///path/to/local/store");
 		Store messagingStore = Store.fromUrl("https://condensation.io");
 		long autoSaveDelay = 200;
-		ActorWithDataTree actor = new ActorWithDataTree(keyPair, storageStore, messagingStore, autoSaveDelay, new Delegate());
+		ActorWithDocument actor = new ActorWithDocument(keyPair, storageStore, messagingStore, autoSaveDelay, new Delegate());
 
-		class Delegate implements ActorWithDataTree.Delegate {
+		class Delegate implements ActorWithDocument.Delegate {
 			...
 		};
 	</pre></div>
 	<div class="hscroll wide api javascript"><pre>
-		var keyPair = cn.keyPairFromRecord(record);   // or cn.createKeyPair()
-		var storageStore = cn.storeFromUrl('https://condensation.io');
-		var messagingStore = cn.storeFromUrl('https://condensation.io');
+		var keyPair = cds.keyPairFromRecord(record);   // or cds.createKeyPair()
+		var storageStore = cds.storeFromUrl('https://condensation.io');
+		var messagingStore = cds.storeFromUrl('https://condensation.io');
 		var autoSaveDelay = 200;
-		var actor = new cn.ActorWithDataTree(keyPair, storageStore, messagingStore, entrustedAccounts, autoSaveDelay);
+		var actor = new cds.ActorWithDocument(keyPair, storageStore, messagingStore, entrustedAccounts, autoSaveDelay);
 
 		actor.onReceiveMessage = function() { ... };
 	</pre></div>
 	<div class="hscroll wide api perl"><pre>
-		my $keyPair = CN::KeyPair-&gt;fromRecord($record);   # or CN::KeyPair-&gt;generate()
-		my $storageStore = cn.storeFromUrl('file:///path/to/local/store');
-		my $messagingStore = cn.storeFromUrl('https://condensation.io');
-		my $actor = CN::ActorWithDataTree-&gt;new($keyPair, $storageStore, $messagingStore, $entrustedAccounts, Delegate-&gt;new);
+		my $keyPair = CDS::KeyPair-&gt;fromRecord($record);   # or CDS::KeyPair-&gt;generate()
+		my $storageStore = cds.storeFromUrl('file:///path/to/local/store');
+		my $messagingStore = cds.storeFromUrl('https://condensation.io');
+		my $actor = CDS::ActorWithDocument-&gt;new($keyPair, $storageStore, $messagingStore, $entrustedAccounts, Delegate-&gt;new);
 
 		package Delegate;
 
@@ -115,7 +115,7 @@
 		// Messaging store
 		a.store()
 
-		// Selector in the data tree
+		// Selector in the document
 		a.selector
 	</pre></div>
 	<div class="hscroll box javascript"><pre>
@@ -137,11 +137,11 @@
 	<p>Returns true if the actor belongs to this actor group, i.e. if there is an active or idle account with that hash.</p>
 
 	<h2 id="private-data">Private data</h2>
-	<p>Private data is stored as a data tree, and accessible through the <i>root</i> selector, e.g.:</p>
+	<p>Private data is stored as a document, and accessible through the <i>root</i> selector, e.g.:</p>
 	<div class="hscroll box java"><pre>Selector emailSelector = actor.root.child(BC.email);</pre></div>
 	<div class="hscroll box javascript"><pre>var emailSelector = actor.root.childAsText('email');</pre></div>
 	<div class="hscroll box perl"><pre>my $emailSelector = actor-&gt;root-&gt;child('email');</pre></div>
-	<p>See the <a href="/api/selector/">selector</a> documentation for details on how to read and modify data in a data tree.</p>
+	<p>See the <a href="/api/selector/">selector</a> documentation for details on how to read and modify data in a document.</p>
 
 	<div class="space"></div>
 	<div class="hscroll box java"><pre>actor.readPrivateData();</pre></div>
@@ -155,7 +155,7 @@
 	<div class="hscroll box javascript"><pre>actor.savePrivateData();</pre></div>
 	<div class="hscroll box perl"><pre>$actor-&gt;savePrivateData();</pre></div>
 	<p>Manually saves the private data if there are changes. This is not necessary when <a href="#instance-creation">auto-saving</a> is enabled.</p>
-	<p>Note that this only saves the main data tree. Sub data trees must be saved independently.</p>
+	<p>Note that this only saves the main document. Sub documents must be saved independently.</p>
 
 	<h2 id="synchronization">Synchronization</h2>
 	<p>Whenever the private data is saved, the actor sends (updates) a message to all active actors of the group.</p>
@@ -240,8 +240,8 @@
 	<p>When sending a message, the actor attaches the message content to the <i>/sent messages</i> subtree, and keeps it for a given amount of time.</p>
 	<p>To join a group, a new actor sends a message to an active actor of the group. The active actor then decides whether or not to accept and include the new actor. The application can define whether or not a </p>
 
-	<h2 id="accounts">Data tree</h2>
-	<p>The data tree managed by the actor has the following structure:</p>
+	<h2 id="accounts">Document</h2>
+	<p>The document managed by the actor has the following structure:</p>
 	<div class="hscroll box"><pre>root
   actor group
     94a683ee…5e    // hash and store

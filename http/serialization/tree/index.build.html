@@ -22,7 +22,7 @@
 	<p>Each node in that tree is an object, spanning its own subtree. The hash of a tree is simply the hash of its root object. Two trees with the same hash are <a href="/notes/hash-collisions/">almost certainly</a> equal.</p>
 	<p>An object can obviously be referenced from more than one object, and trees may share subtrees. This is particularly useful for versioned data:</p>
 	<div class="hscroll indent"><? svgFile('VersionedTree.svg') ?></div>
-	<!-- p>The <a href="/datatree/">data tree</a> implementation takes advantage of this.</p -->
+	<!-- p>The <a href="/document/">document</a> implementation takes advantage of this.</p -->
 
 	<h2 id="dag">Directed acyclic graphs</h2>
 	<p>When objects are referenced multiple times, the resulting structure is a directed acyclic graph (DAG). However, since objects are immutable, we can (conceptually) duplicate them, and draw a corresponding tree:</p>

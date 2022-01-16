@@ -36,21 +36,21 @@
 		Record record = new Record(bytes, hash);
 	</pre></div>
 	<div class="hscroll api javascript"><pre>
-		var record = new cn.Record();
-		var record = new cn.Record(bytes);
-		var record = new cn.Record(bytes, hash);
+		var record = new cds.Record();
+		var record = new cds.Record(bytes);
+		var record = new cds.Record(bytes, hash);
 	</pre></div>
 	<div class="hscroll api perl"><pre>
-		my $record = CN::Record-&gt;new;
-		my $record = CN::Record-&gt;new($bytes);
-		my $record = CN::Record-&gt;new($bytes, $hash);
+		my $record = CDS::Record-&gt;new;
+		my $record = CDS::Record-&gt;new($bytes);
+		my $record = CDS::Record-&gt;new($bytes, $hash);
 	</pre></div>
 	<p>Creates a record.</p>
 
 	<div class="space"></div>
 	<div class="hscroll api java"><pre>Record record = Record.from(object);</pre></div>
-	<div class="hscroll api javascript"><pre>var record = cn.recordFromObject(object);</pre></div>
-	<div class="hscroll api perl"><pre>my $record = CN::Record-&gt;fromObject($object);</pre></div>
+	<div class="hscroll api javascript"><pre>var record = cds.recordFromObject(object);</pre></div>
+	<div class="hscroll api perl"><pre>my $record = CDS::Record-&gt;fromObject($object);</pre></div>
 	<p>Parses an object. If the object is <i class="java javascript">null</i><i class="perl">undef</i>, or does not contain a valid record, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
 
 	<h2 id="construction">Record construction</h2>
@@ -232,12 +232,12 @@
 	<div class="hscroll wide api javascript"><pre>
 		var object = record.toObject();
 		var key = object.cryptInplace();
-		var hashAndKey = new cn.HashAndKey(object.calculateHash(), key);
+		var hashAndKey = new cds.HashAndKey(object.calculateHash(), key);
 	</pre></div>
 	<div class="hscroll wide api perl"><pre>
-		my $key = CN-&gt;randomKey;
+		my $key = CDS-&gt;randomKey;
 		my $object = $record-&gt;toObject-&gt;crypt($key);
-		my $hashAndKey = CN::HashAndKey-&gt;new($object-&gt;calculateHash, $key);
+		my $hashAndKey = CDS::HashAndKey-&gt;new($object-&gt;calculateHash, $key);
 	</pre></div>
 	<p>Serializes and encrypts a record, and prepares the hash and key of the resulting object.</p>
 

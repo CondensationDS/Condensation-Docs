@@ -26,7 +26,7 @@
 		<p>Dispatches requests to up to 256 account and object stores. These stores may reside on different servers.</p>
 
 		<h2 id="new">Instance creation</h2>
-		<div class="hscroll api perl"><pre>my $splitStore = CN::SplitStore-&gt;new($key);
+		<div class="hscroll api perl"><pre>my $splitStore = CDS::SplitStore-&gt;new($key);
 $splitStore-&gt;assignAccounts(0, 255, $store1);
 $splitStore-&gt;assignObjects(0, 127, $store2);
 $splitStore-&gt;assignObjects(128, 255, $store3);</pre></div>

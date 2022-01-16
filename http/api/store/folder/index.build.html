@@ -27,13 +27,13 @@
 
 		<h2 id="new">Instance creation</h2>
 		<div class="hscroll api java"><pre>FolderStore folderStore = FolderStore.forUrl(folder);</pre></div>
-		<div class="hscroll api perl"><pre>my $folderStore = CN::FolderStore-&gt;forUrl($url);</pre></div>
+		<div class="hscroll api perl"><pre>my $folderStore = CDS::FolderStore-&gt;forUrl($url);</pre></div>
 		<p>Instantiates a folder store for a <i>url</i> of the form:</p>
 		<div class="hscroll indent"><pre>file:///PATH/TO/STORE</pre></div>
 
 		<div class="space"></div>
 		<div class="hscroll api java"><pre>FolderStore folderStore = new FolderStore(folder);</pre></div>
-		<div class="hscroll api perl"><pre>my $folderStore = CN::FolderStore-&gt;new($folder);</pre></div>
+		<div class="hscroll api perl"><pre>my $folderStore = CDS::FolderStore-&gt;new($folder);</pre></div>
 		<p>Instantiates a folder store for a <i>folder</i> <span class="java">(<a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html" target="_blank">File</a> object)</span><span class="perl">(local filesystem path)</span>.</p>
 
 		<h2 id="store-access">Store behavior</h2>

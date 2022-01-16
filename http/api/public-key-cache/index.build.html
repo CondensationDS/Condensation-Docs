@@ -20,8 +20,8 @@
 
 	<h2>Instance creation</h2>
 	<div class="hscroll api java"><pre>PublicKeyCache publicKeyCache = new PublicKeyCache(1024);</pre></div>
-	<div class="hscroll api javascript"><pre>var publicKeyCache = new cn.PublicKeyCache(1024);</pre></div>
-	<div class="hscroll api perl"><pre>my $publicKeyCache = CN::PublicKeyCache-&gt;new(1024);</pre></div>
+	<div class="hscroll api javascript"><pre>var publicKeyCache = new cds.PublicKeyCache(1024);</pre></div>
+	<div class="hscroll api perl"><pre>my $publicKeyCache = CDS::PublicKeyCache-&gt;new(1024);</pre></div>
 	<p>Creates an empty cache with space for 1024 public keys.</p>
 
 	<h2>Cache access</h2>
@@ -38,8 +38,8 @@
 
 	<h2>Cleanup</h2>
 	<div class="hscroll api java"><pre>publicKeyCache.cleanup(10 * Duration.MINUTE);</pre></div>
-	<div class="hscroll api javascript"><pre>publicKeyCache.cleanup(10 * cn.MINUTE);</pre></div>
-	<div class="hscroll api perl"><pre>$publicKeyCache-&gt;cleanup(10 * CN-&gt;MINUTE);</pre></div>
+	<div class="hscroll api javascript"><pre>publicKeyCache.cleanup(10 * cds.MINUTE);</pre></div>
+	<div class="hscroll api perl"><pre>$publicKeyCache-&gt;cleanup(10 * CDS-&gt;MINUTE);</pre></div>
 	<p>Removes all entries from the cache that have not been accessed for more than 10 minutes.</p>
 </div>
 

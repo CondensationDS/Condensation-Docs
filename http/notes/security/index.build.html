@@ -57,7 +57,7 @@
 	<h3>Analyzing the structure and size of your object tree: yes</h3>
 	<p>References to other objects are not encrypted, since the server needs to be able to follow them during <a href="/stores/store/#garbage-collection">garbage collection</a>. Hence, an adversary can analyze the structure (not the content) of your object tree, or find out which parts have changed from one version to another.</p>
 	<p>Tree structure and object sizes may reveal some information about the content. A 4 MB object is more likely to be an photo than a plain text file, for example. That kind of information is far less critical than the content itself, however.</p>
-	<p>When storing multiple pieces of information inside the same object (such as <a href="/datatree/">data trees</a> do), it is far more difficult to guess the content, or changes thereof.</p>
+	<p>When storing multiple pieces of information inside the same object (such as <a href="/document/">documents</a> do), it is far more difficult to guess the content, or changes thereof.</p>
 	<p>To further increase data security (at the expense of some performance), consider adding random garbage data, re-encrypting unmodified objects, or storing all data one single object.</p>
 
 	<h3>Statistics about object access and sharing: yes</h3>

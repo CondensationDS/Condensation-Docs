@@ -26,14 +26,14 @@
 
 	<h2 id="new">Instance creation</h2>
 	<div class="hscroll api java"><pre>Hash hash = Hash.from(hexString);</pre></div>
-	<div class="hscroll api javascript"><pre>var hash = cn.hashFromHex(hexString);</pre></div>
-	<div class="hscroll api perl"><pre>my $hash = CN::Hash-&gt;fromHex($hexString);</pre></div>
+	<div class="hscroll api javascript"><pre>var hash = cds.hashFromHex(hexString);</pre></div>
+	<div class="hscroll api perl"><pre>my $hash = CDS::Hash-&gt;fromHex($hexString);</pre></div>
 	<p>Creates an instance representing a 64-digit hex string. This function returns <i class="java javascript">null</i><i class="perl">undef</i> if the string does not contain a valid hex sequence, or if the length does not match.</p>
 
 	<div class="space"></div>
 	<div class="hscroll api java"><pre>Hash hash = Hash.from(bytes);</pre></div>
-	<div class="hscroll api javascript"><pre>var hash = cn.hashFromBytes(bytes);</pre></div>
-	<div class="hscroll api perl"><pre>my $hash = CN::Hash-&gt;from($bytes);</pre></div>
+	<div class="hscroll api javascript"><pre>var hash = cds.hashFromBytes(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $hash = CDS::Hash-&gt;from($bytes);</pre></div>
 	<p>Creates an instance using the passed 32 bytes. This function returns <i class="java javascript">null</i><i class="perl">undef</i> if the length of <i>bytes</i> is not exactly 32.</p>
 
 	<h2>Calculating hashes</h2>
@@ -42,12 +42,12 @@
 		Hash hash = Hash.calculateFor(bytes.slice(offset, length));
 	</pre></div>
 	<div class="hscroll wide api javascript"><pre>
-		var hash = cn.hashForBytes(bytes);
-		var hash = cn.hashForBytes(cn.slice(bytes, offset, length));
+		var hash = cds.hashForBytes(bytes);
+		var hash = cds.hashForBytes(cds.slice(bytes, offset, length));
 	</pre></div>
 	<div class="hscroll wide api perl"><pre>
-		my $hash = CN::Hash-&gt;calculateFor($bytes);
-		my $hash = CN::Hash-&gt;calculateFor(substr($bytes, $offset, $length));
+		my $hash = CDS::Hash-&gt;calculateFor($bytes);
+		my $hash = CDS::Hash-&gt;calculateFor(substr($bytes, $offset, $length));
 	</pre></div>
 	<p>Calculates the SHA-256 hash of <i>bytes</i> (or a slice of it), and returns the corresponding hash instance.</p>
 

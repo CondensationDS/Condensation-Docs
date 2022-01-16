@@ -26,15 +26,15 @@
 
 	<h2 id="new">Instance creation</h2>
 	<div class="hscroll api java"><pre>CondensationObject object = CondensationObject.from(bytes);</pre></div>
-	<div class="hscroll api javascript"><pre>var object = cn.objectFromBytes(bytes);</pre></div>
-	<div class="hscroll api perl"><pre>my $object = CN::Object-&gt;fromBytes($bytes);</pre></div>
+	<div class="hscroll api javascript"><pre>var object = cds.objectFromBytes(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $object = CDS::Object-&gt;fromBytes($bytes);</pre></div>
 	<p>Parses the bytes, and returns an instance. If the bytes do not contain a valid Condensation object, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
 	<p>Note that the bytes are not copied. If you reuse the byte array, <a href="/api/bytes/#clone">clone it</a>.</p>
 
 	<div class="space"></div>
 	<div class="hscroll wide api java"><pre>CondensationObject object = CondensationObject.create(headerBytes, dataBytes);</pre></div>
-	<div class="hscroll wide api javascript"><pre>var object = cn.createObject(headerBytes, dataBytes);</pre></div>
-	<div class="hscroll wide api perl"><pre>my $object = CN::Object-&gt;create($headerBytes, $dataBytes);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var object = cds.createObject(headerBytes, dataBytes);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $object = CDS::Object-&gt;create($headerBytes, $dataBytes);</pre></div>
 	<p>Parses the header bytes, and returns an instance. If the header is not valid, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
 	<p>Note that header and data bytes are not copied. If you reuse the byte arrays, <a href="/api/bytes/#clone">clone them</a>.</p>
 
@@ -112,13 +112,13 @@
 		var object = record.toObject();
 		var key = object.encryptInPlace();
 		var hash = object.calculateHash();
-		var reference = new cn.Reference(hash, key);
+		var reference = new cds.Reference(hash, key);
 	</pre></div>
 	<div class="hscroll box perl"><pre>
-		my $key = CN-&gt;randomKey;
+		my $key = CDS-&gt;randomKey;
 		my $object = $record-&gt;toObject()-&gt;crypt($key);
 		my $hash = $object-&gt;calculateHash;
-		my $reference = CN::Reference-&gt;new($hash, $key);
+		my $reference = CDS::Reference-&gt;new($hash, $key);
 	</pre></div>
 	<p>Since record serialization always allocates new memory, the resulting object is fully owned, and can therefore be encrypted in-place on platforms that allow this.</p>
 
@@ -132,17 +132,17 @@
 	</pre></div>
 	<div class="hscroll wide box javascript"><pre>
 		var data = ...	// Uint8Array
-		var key = cn.randomKey();
-		var object = cn.createObject(cn.emptyHeader, data).crypt(key);
+		var key = cds.randomKey();
+		var object = cds.createObject(cds.emptyHeader, data).crypt(key);
 		var hash = object.calculateHash();
-		var reference = new cn.Reference(hash, key);
+		var reference = new cds.Reference(hash, key);
 	</pre></div>
 	<div class="hscroll wide box perl"><pre>
 		my $data = ...
-		my $key = CN-&gt;randomKey;
-		my $object = CN::Object-&gt;create(CN::Object-&gt;emptyHeader, $data)-&gt;crypt($key);
+		my $key = CDS-&gt;randomKey;
+		my $object = CDS::Object-&gt;create(CDS::Object-&gt;emptyHeader, $data)-&gt;crypt($key);
 		my $hash = $object-&gt;calculateHash;
-		my $reference = CN::Reference-&gt;new($hash, $key);
+		my $reference = CDS::Reference-&gt;new($hash, $key);
 	</pre></div>
 
 	<div class="java javascript">
@@ -156,10 +156,10 @@
 		</pre></div>
 		<div class="hscroll wide box javascript"><pre>
 			var data = ...	// Uint8Array
-			var object = cn.createObject(cn.emptyHeader, data);
+			var object = cds.createObject(cds.emptyHeader, data);
 			var key = object.encryptInPlace();
 			var hash = object.calculateHash();
-			var reference = new cn.Reference(hash, key);
+			var reference = new cds.Reference(hash, key);
 		</pre></div>
 		<p>Note that <i>data</i> will be modified by <a href="#crypt-in-place">encryptInPlace</a>.</p>
 	</div>

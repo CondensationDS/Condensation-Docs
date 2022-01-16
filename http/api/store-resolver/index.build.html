@@ -62,14 +62,14 @@
 		function myStoreFromUrl(url) {
 			// Use logging for our store
 			if (url == 'https://condensation.io')
-				return new cn.LogStore(new cn.HTTPStore(url, url));
+				return new cds.LogStore(new cds.HTTPStore(url, url));
 
 			// All other HTTP and HTTPS stores
 			if (url.match(/^(http|https):\/\//))
-				return new cn.HTTPStore(url, url);
+				return new cds.HTTPStore(url, url);
 
 			// No implementation available
-			return new cn.NoStore();
+			return new cds.NoStore();
 		}
 	</pre></div>
 	<div class="hscroll api perl wide"><pre>
@@ -81,26 +81,26 @@
 			my ($o, $url) = @_;
 
 			# Access our store on the local file system
-			return CN::FolderStore-&gt;new($url, '/media/store') if $url eq 'https://condensation.io';
+			return CDS::FolderStore-&gt;new($url, '/media/store') if $url eq 'https://condensation.io';
 
 			# All other HTTP and HTTPS stores
-			return CN::HTTPStore-&gt;new($url, $url) if $url =~ /^(http|https):\/\//;
+			return CDS::HTTPStore-&gt;new($url, $url) if $url =~ /^(http|https):\/\//;
 
 			# No implementation available
-			return CN::NoStore-&gt;new($url, $url);
+			return CDS::NoStore-&gt;new($url, $url);
 		}
 	</pre></div>
 	<p>Note that the URL (by convention the first argument) <b>must</b> be passed unmodified to the store, such that</p>
 	<div class="hscroll box java"><pre>store.url.equals(url)</pre></div>
 	<div class="hscroll box javascript"><pre>store.url == url</pre></div>
 	<div class="hscroll box perl"><pre>$store-&gt;url eq $url</pre></div>
-	<p>The store resolver must return a <a href="/api/store/no/" class="java">NoStore</a><a href="/api/store/no/" class="javascript">cn.NoStore</a><a href="/api/store/no/" class="perl">CN::NoStore</a> instance when no implementation is available.</p>
+	<p>The store resolver must return a <a href="/api/store/no/" class="java">NoStore</a><a href="/api/store/no/" class="javascript">cds.NoStore</a><a href="/api/store/no/" class="perl">CDS::NoStore</a> instance when no implementation is available.</p>
 
 	<h2 id="registering">Setting the default store resolver</h2>
 	<div class="hscroll api java"><pre>Condensation.storeResolver = new MyStoreResolver(...);</pre></div>
-	<div class="hscroll api javascript"><pre>cn.storeFromUrl = myStoreFromUrl;</pre></div>
-	<div class="hscroll api perl"><pre>$CN::storeResolver = MyStoreResolver-&gt;new(...);</pre></div>
-	<p>Sets the (project-wide) store resolver used when calling <a href="/api/store/#instance-creation" class="java">Store.fromUrl(url)</a><a href="/api/store/#instance-creation" class="javascript">cn.storeFromUrl(url)</a><a href="/api/store/#instance-creation" class="perl">CN::Store-&gt;fromUrl($url)</a>.</p>
+	<div class="hscroll api javascript"><pre>cds.storeFromUrl = myStoreFromUrl;</pre></div>
+	<div class="hscroll api perl"><pre>$CDS::storeResolver = MyStoreResolver-&gt;new(...);</pre></div>
+	<p>Sets the (project-wide) store resolver used when calling <a href="/api/store/#instance-creation" class="java">Store.fromUrl(url)</a><a href="/api/store/#instance-creation" class="javascript">cds.storeFromUrl(url)</a><a href="/api/store/#instance-creation" class="perl">CDS::Store-&gt;fromUrl($url)</a>.</p>
 	<p>The store resolver should be set when initializing Condensation. Changing the store resolver at a later time may yield undesired results. E.g., if the new store resolver uses a different implementation to handle HTTP stores, Store instances created before the change will still use the old implementation, while Store instances created after the change will use the new implementation.</p>
 </div>
 

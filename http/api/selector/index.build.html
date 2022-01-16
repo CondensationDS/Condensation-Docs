@@ -22,11 +22,11 @@
 		structureExplorer.show('Selector').openField('label');
 	</script>
 
-	<p>A reference to a data tree node.</p>
-	<p>Selectors are used to access data in a data tree:</p>
+	<p>A reference to a document node.</p>
+	<p>Selectors are used to access data in a document:</p>
 	<div class="hscroll box java wide"><pre>
 		// Get the settings selector
-		Selector settings = dataTree.root.child("settings");
+		Selector settings = document.root.child("settings");
 
 		// Write the settings
 		settings.child("enabled").setBoolean(true);
@@ -63,10 +63,10 @@
 	<p>Note that child labels are byte sequences. </p>
 
 	<h2 id="new">Navigation</h2>
-	<div class="hscroll api java"><pre>Selector rootSelector = dataTree.root;</pre></div>
-	<div class="hscroll api javascript"><pre>var rootSelector = dataTree.root</pre></div>
-	<div class="hscroll api perl"><pre>my $rootSelector = $dataTree-&gt;root</pre></div>
-	<p>The root node of a data tree.</p>
+	<div class="hscroll api java"><pre>Selector rootSelector = document.root;</pre></div>
+	<div class="hscroll api javascript"><pre>var rootSelector = document.root</pre></div>
+	<div class="hscroll api perl"><pre>my $rootSelector = $document-&gt;root</pre></div>
+	<p>The root node of a document.</p>
 
 	<div class="space"></div>
 	<div class="hscroll api java"><pre>
@@ -74,7 +74,7 @@
 		Selector settingsSelector = selector.child(settingsLabel);
 	</pre></div>
 	<div class="hscroll api javascript"><pre>
-		var settingsLabel = cn.bytesFromText('settings');
+		var settingsLabel = cds.bytesFromText('settings');
 		var settingsSelector = selector.child(settingsLabel);
 	</pre></div>
 	<div class="hscroll api perl"><pre>my $settingsSelector = $selector-&gt;child('settings');</pre></div>
@@ -158,7 +158,7 @@
 	<p>Returns the first value of the node in the requested format.</p>
 	<p>Empty nodes are treated as nodes with an empty byte sequence, which will translate into boolean false, number 0, or an empty text. Use <a href="#isSet">isSet</a> to check if the node is empty.</p>
 	<p>Signed integers are supported up to a size of 52 bits. Unsigned integers are discouraged, as they are easily confused with signed integers, which may lead to errors that go unnoticed for a long time.</p>
-	<p>Note that nodes and records do not store any data types. The application (implicitly or explicitly) defines the structure of a data tree, and the data type of each node. However, dynamic type information can &ndash; if needed &ndash; easily be stored as a record with two children: one holding the type, and one holding the data.</p>
+	<p>Note that nodes and records do not store any data types. The application (implicitly or explicitly) defines the structure of a document, and the data type of each node. However, dynamic type information can &ndash; if needed &ndash; easily be stored as a record with two children: one holding the type, and one holding the data.</p>
 	<p>If the node's record holds multiple values, the above functions only return the first value. The complete list of values can be retrieved by traversing the record's children, e.g.</p>
 	<div class="hscroll box java"><pre>
 		for (Record child: selector.record().children) {
@@ -205,8 +205,8 @@
 	<div class="hscroll api perl"><pre>$selector-&gt;clear();</pre></div>
 	<p>Clears the value. This is a shortcut for :</p>
 	<div class="hscroll box java"><pre>selector.set(new Record());</pre></div>
-	<div class="hscroll box javascript"><pre>selector.set(new cn.Record());</pre></div>
-	<div class="hscroll box perl"><pre>$selector-&gt;set(CN::Record-&gt;new);</pre></div>
+	<div class="hscroll box javascript"><pre>selector.set(new cds.Record());</pre></div>
+	<div class="hscroll box perl"><pre>$selector-&gt;set(CDS::Record-&gt;new);</pre></div>
 
 	<h2 id="query-metadata">Querying metadata</h2>
 	<div class="hscroll api java"><pre>Bytes label = selector.label;</pre></div>
@@ -218,7 +218,7 @@
 	<div class="hscroll api java"><pre>long revision = selector.revision();</pre></div>
 	<div class="hscroll api javascript"><pre>var revision = selector.revision();</pre></div>
 	<div class="hscroll api perl"><pre>my $revision = $selector-&gt;revision;</pre></div>
-	<p>Retrieves the node's revision. This is the timestamp of the last node modification. When merging two versions of the data tree, only the value with the larger revision value is kept.</p>
+	<p>Retrieves the node's revision. This is the timestamp of the last node modification. When merging two versions of the document, only the value with the larger revision value is kept.</p>
 
 	<h2 id="broom">Broom management</h2>
 	<div class="hscroll api java"><pre>long broom = selector.broom();</pre></div>

@@ -90,15 +90,15 @@ $o-&gt;publicKey
 $o-&gt;store
 $o-&gt;equals($that)
 
-CDS::ActorWithDataTree-&gt;new($keyPair, $storageStore, $messagingStore, $messagingStoreUrl, $publicKeyCache)
+CDS::ActorWithDocument-&gt;new($keyPair, $storageStore, $messagingStore, $messagingStoreUrl, $publicKeyCache)
 $o-&gt;actorGroupSelector
 $o-&gt;actorSelector
 $o-&gt;entrustedActorsSelector
 $o-&gt;groupDataSharer
-$o-&gt;groupDataTree
+$o-&gt;groupDocument
 $o-&gt;groupRoot
 $o-&gt;keyPair
-$o-&gt;localDataTree
+$o-&gt;localDocument
 $o-&gt;localRoot
 $o-&gt;messagingPrivateRoot
 $o-&gt;messagingStore
@@ -140,33 +140,7 @@ $o-&gt;new($store, $objects)
 $o-&gt;put($hash, $object, $keyPair)
 $o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
 
-CDS::DataTree-&gt;new($keyPair, $store)
-$o-&gt;dataChanged
-$o-&gt;hasPartsToMerge
-$o-&gt;keyPair
-$o-&gt;parts
-$o-&gt;prune
-$o-&gt;root
-$o-&gt;rootItem
-$o-&gt;unsaved
-$o-&gt;get($selector)
-$o-&gt;getOrCreate($selector)
-$o-&gt;merge($hashesAndKeys)
-$o-&gt;mergeNode($part, $selector, $record, $oldFormat)
-$o-&gt;read
-$o-&gt;save
-
-CDS::DataTree::Item-&gt;new($selector)
-$o-&gt;createSaveRecord
-$o-&gt;detachSaveRecord
-$o-&gt;forget
-$o-&gt;mergeValue($part, $revision, $record)
-$o-&gt;pruneTree
-$o-&gt;setPart($part)
-
-CDS::DataTree::Part-&gt;new
-
-CDS::DetachedDataTree-&gt;new($keyPair)
+CDS::DetachedDocument-&gt;new($keyPair)
 $o-&gt;savingDone($revision, $newPart, $obsoleteParts)
 
 CDS::DiscoverActorGroup-&gt;discover($builder, $keyPair, $delegate)
@@ -201,6 +175,32 @@ $o-&gt;discover
 $o-&gt;hasLinkToUs
 $o-&gt;merge($revision, $status)
 $o-&gt;readCards
+
+CDS::Document-&gt;new($keyPair, $store)
+$o-&gt;dataChanged
+$o-&gt;hasPartsToMerge
+$o-&gt;keyPair
+$o-&gt;parts
+$o-&gt;prune
+$o-&gt;root
+$o-&gt;rootItem
+$o-&gt;unsaved
+$o-&gt;get($selector)
+$o-&gt;getOrCreate($selector)
+$o-&gt;merge($hashesAndKeys)
+$o-&gt;mergeNode($part, $selector, $record, $oldFormat)
+$o-&gt;read
+$o-&gt;save
+
+CDS::Document::Item-&gt;new($selector)
+$o-&gt;createSaveRecord
+$o-&gt;detachSaveRecord
+$o-&gt;forget
+$o-&gt;mergeValue($part, $revision, $record)
+$o-&gt;pruneTree
+$o-&gt;setPart($part)
+
+CDS::Document::Part-&gt;new
 
 CDS::ErrorHandlingStore-&gt;new($store, $url, $errorHandler)
 $o-&gt;errorHandler
@@ -639,7 +639,7 @@ $o-&gt;writeUnsigned32($value)
 $o-&gt;writeUnsigned64($value)
 $o-&gt;writeUnsigned8($value)
 
-CDS::RootDataTree-&gt;new($privateRoot, $label)
+CDS::RootDocument-&gt;new($privateRoot, $label)
 $o-&gt;label
 $o-&gt;privateRoot
 $o-&gt;addDataTo($record)
@@ -647,11 +647,11 @@ $o-&gt;mergeData($record)
 $o-&gt;mergeExternalData($store, $record, $source)
 $o-&gt;savingDone($revision, $newPart, $obsoleteParts)
 
-CDS::Selector-&gt;root($dataTree)
+CDS::Selector-&gt;root($document)
 $o-&gt;booleanValue
 $o-&gt;bytesValue
 $o-&gt;clear
-$o-&gt;dataTree
+$o-&gt;document
 $o-&gt;hashAndKeyValue
 $o-&gt;hashValue
 $o-&gt;integerValue
@@ -734,7 +734,7 @@ $o-&gt;sender
 $o-&gt;senderStoreUrl
 $o-&gt;stillInUse
 
-CDS::SubDataTree-&gt;new($parentSelector)
+CDS::SubDocument-&gt;new($parentSelector)
 $o-&gt;parentSelector
 $o-&gt;partSelector($hashAndKey)
 $o-&gt;read

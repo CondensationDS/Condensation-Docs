@@ -26,13 +26,13 @@
 		<p>Accesses a <a href="/stores/folder/">folder store</a> over a SSH connection using SFTP.</p>
 
 		<h2 id="new">Instance creation</h2>
-		<div class="hscroll api perl"><pre>my $sftpStore = CN::SFTPStore-&gt;forUrl($url);</pre></div>
+		<div class="hscroll api perl"><pre>my $sftpStore = CDS::SFTPStore-&gt;forUrl($url);</pre></div>
 		<p>Instantiates a SFTP store for a <i>url</i> of the form:</p>
 		<div class="hscroll indent"><pre>sftp://HOST<span style="opacity: 0.3">:PORT</span>/PATH/TO/STORE</pre></div>
 		<p>The port is optional, and defaults to 22.</p>
 
 		<div class="space"></div>
-		<div class="hscroll api perl"><pre>my $sftpStore = CN::SFTPStore-&gt;new($endPoint, $folder);</pre></div>
+		<div class="hscroll api perl"><pre>my $sftpStore = CDS::SFTPStore-&gt;new($endPoint, $folder);</pre></div>
 		<p>Instantiates a SFTP store. <i>End point</i> is the hostname or IP address to connect to, and <i>folder</i> denotes the path to the store folder on that server.</p>
 
 		<h2 id="store-access">Store behavior</h2>

@@ -400,7 +400,7 @@ function initializePlatforms() {
 		if (symbol == 'rsaPrivateKey') return {type: 'RSAPrivateKey', perl: 'struct cnRSAPrivateKey (C code)'};
 		if (symbol == 'ImmutableStack') return {type: 'ImmutableStack&lt;T&gt;'};
 		if (symbol.match(/(^k|K)eyPair$/)) return {type: 'KeyPair', href: '/api/key-pair/'};
-		if (symbol.match(/(^a|A)ctorWithDataTree$/)) return {type: 'ActorWithDataTree', href: '/api/actor-with-data-tree/'};
+		if (symbol.match(/(^a|A)ctorWithDocument$/)) return {type: 'ActorWithDocument', href: '/api/actor-with-document/'};
 		if (symbol.match(/(^p|P)ublicKeys?$/)) return {type: 'PublicKey', href: '/api/public-key/'};
 		if (symbol.match(/(^p|P)ublicKeyCaches?$/)) return {type: 'PublicKeyCache', href: '/api/public-key-cache/'};
 		if (symbol.match(/(^r|R)ecords?$/)) return {type: 'Record', href: '/api/record/'};

@@ -26,13 +26,13 @@
 		<p>Accesses a <a href="/stores/folder/">folder store</a> over FTP.</p>
 
 		<h2 id="new">Instance creation</h2>
-		<div class="hscroll api perl"><pre>my $ftpStore = CN::FTPStore-&gt;forUrl($url);</pre></div>
+		<div class="hscroll api perl"><pre>my $ftpStore = CDS::FTPStore-&gt;forUrl($url);</pre></div>
 		<p>Instantiates a FTP store for a <i>url</i> of the form:</p>
 		<div class="hscroll indent"><pre>ftp://HOST<span style="opacity: 0.3">:PORT</span>/PATH/TO/STORE</pre></div>
 		<p>The port is optional, and defaults to 21.</p>
 
 		<div class="space"></div>
-		<div class="hscroll api perl"><pre>my $ftpStore = CN::FTPStore-&gt;new($endPoint, $folder);</pre></div>
+		<div class="hscroll api perl"><pre>my $ftpStore = CDS::FTPStore-&gt;new($endPoint, $folder);</pre></div>
 		<p>Instantiates a FTP store. <i>End point</i> is the hostname or IP address to connect to, and <i>folder</i> denotes the path to the store folder on that server.</p>
 
 		<h2 id="store-access">Store behavior</h2>

@@ -21,10 +21,10 @@
 
 		<h2 id="instance-creation">Usage example</h2>
 		<div class="hscroll wide api perl"><pre>
-			my $store = CN::FolderStore-&gt;new('/path/to/store');
-			my $server = CN::HTTPServer-&gt;new(80);
-			$server-&gt;addHandler(CN::HTTPServer::StoreHandler-&gt;new('/', $store));
-			$server-&gt;addHandler(CN::HTTPServer::IdentificationHandler-&gt;new('/'));
+			my $store = CDS::FolderStore-&gt;new('/path/to/store');
+			my $server = CDS::HTTPServer-&gt;new(80);
+			$server-&gt;addHandler(CDS::HTTPServer::StoreHandler-&gt;new('/', $store));
+			$server-&gt;addHandler(CDS::HTTPServer::IdentificationHandler-&gt;new('/'));
 			$server-&gt;run;
 		</pre></div>
 		<p>Creates and runs a HTTP store server.</p>
@@ -47,11 +47,11 @@
 		<p>The server can be configured to deliver static content. This is particularly useful to create small self-contained web apps.</p>
 
 		<div class="space"></div>
-		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CN::HTTPServer::StaticContentHandler-&gt;new('/path/to/content', $content, $contentType));</pre></div>
+		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CDS::HTTPServer::StaticContentHandler-&gt;new('/path/to/content', $content, $contentType));</pre></div>
 		<p>Upon accessing the specified path, delivers the content bytes with the given content type (e.g. <i>image/png</i>, or <i>text/html; charset=utf-8</i>) and response code <i>200 OK</i>. Only <i>GET</i> requests are processed.</p>
 
 		<div class="space"></div>
-		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CN::HTTPServer::StaticFilesHandler-&gt;new('/path/to/static', $rootFolder, $indexFilename));</pre></div>
+		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CDS::HTTPServer::StaticFilesHandler-&gt;new('/path/to/static', $rootFolder, $indexFilename));</pre></div>
 		<p>Upon accessing anything below the specified path, delivers the corresponding file from within <i>rootFolder</i>. If an <i>indexFilename</i> (e.g. <i>index.html</i>) is provided, folders are handled as follows:</p>
 		<ul>
 			<li><i>/path/to/folder</i> is redirected to <i>/path/to/folder/</i> with a 303 response code.</li>
@@ -59,7 +59,7 @@
 		</ul>
 		<p>Content types are inferred from the file extension. Additional content types may be specified as follows:</p>
 		<div class="hscroll wide api perl"><pre>
-			my $handler = CN::HTTPServer::StaticFilesHandler-&gt;new('/path/to/static', $folder, $indexFilename);
+			my $handler = CDS::HTTPServer::StaticFilesHandler-&gt;new('/path/to/static', $folder, $indexFilename);
 			$handler-&gt;setContentType('mp4', 'video/mp4');
 			$server-&gt;addHandler($handler);
 		</pre></div>
@@ -84,7 +84,7 @@
 		</ul>
 
 		<h2>Message gateway</h2>
-		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CN::HTTPServer::MessageGatewayHandler-&gt;new('/path', $keyPair, $recipient));</pre></div>
+		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CDS::HTTPServer::MessageGatewayHandler-&gt;new('/path', $keyPair, $recipient));</pre></div>
 		<p>Sends a Condensation message to <i>recipient</i> for each incoming request. The message is signed by the provided <i>key pair</i>, and contains a single record with:</p>
 		<ul>
 			<li>Time</li>
@@ -135,7 +135,7 @@
 		<p>The <i>request</i> instance provides information about the current request, as well as a few useful functions to produce a reply:</p>
 		<div class="hscroll wide api perl"><pre>
 			# Request properties
-			$request-&gt;server         # returns the CN::HTTPServer instance
+			$request-&gt;server         # returns the CDS::HTTPServer instance
 			$request-&gt;method         # returns the HTTP request method as uppercase string (e.g. GET)
 			$request-&gt;path           # returns the request path without the query string
 			$request-&gt;queryString    # returns the query string

@@ -20,8 +20,8 @@
 
 	<h2>Instance creation</h2>
 	<div class="hscroll wide api java"><pre>MessageBoxReader messageBoxReader = new MessageBoxReader(keyPair, accountWithKey);</pre></div>
-	<div class="hscroll wide api javascript"><pre>var messageBoxReader = new cn.MessageBoxReader(keyPair, accountWithKey);</pre></div>
-	<div class="hscroll wide api perl"><pre>my $messageBoxReader = CN::MessageBoxReader-&gt;new($keyPair, $accountWithKey, $delegate);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var messageBoxReader = new cds.MessageBoxReader(keyPair, accountWithKey);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $messageBoxReader = CDS::MessageBoxReader-&gt;new($keyPair, $accountWithKey, $delegate);</pre></div>
 	<p>Creates a message reader for reading messages addressed to the key pair.</p>
 	<p class="todo">Perl uses structural delegates, i.e. the delegate is defined when creating the structure. Since it is single-threaded, the program flow is defined by the control flow. The Java implementation uses operation delegates. The delegate is passed with an asynchronous operation (e.g. read). The control flow returns immediately, and the program logic flow continues in one or more of the delegate functions.</p>
 

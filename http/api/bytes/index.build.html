@@ -32,19 +32,19 @@ var bytes = new Uint8Array(arrayBuffer, offset, length);</pre></div>
 
 	<div class="space"></div>
 	<div class="hscroll api java"><pre>Bytes randomBytes = Condensation.randomBytes(16);</pre></div>
-	<div class="hscroll api javascript"><pre>var randomBytes = cn.randomBytes(16);</pre></div>
-	<div class="hscroll api perl"><pre>my $randomBytes = CN-&gt;randomBytes(16);</pre></div>
+	<div class="hscroll api javascript"><pre>var randomBytes = cds.randomBytes(16);</pre></div>
+	<div class="hscroll api perl"><pre>my $randomBytes = CDS-&gt;randomBytes(16);</pre></div>
 	<p>Creates a sequence of 16 random bytes.</p>
 
 	<div class="space"></div>
 	<div class="hscroll api java"><pre>Bytes randomBytes = Condensation.randomKey();</pre></div>
-	<div class="hscroll api javascript"><pre>var randomBytes = cn.randomKey();</pre></div>
-	<div class="hscroll api perl"><pre>my $randomBytes = CN-&gt;randomKey;</pre></div>
+	<div class="hscroll api javascript"><pre>var randomBytes = cds.randomKey();</pre></div>
+	<div class="hscroll api perl"><pre>my $randomBytes = CDS-&gt;randomKey;</pre></div>
 	<p>Creates a random AES key, i.e. a sequence of 32 random bytes.</p>
 
 	<h2 id="slice">Slicing</h2>
 	<div class="hscroll api java"><pre>Bytes slice = bytes.slice(10, 4);</pre></div>
-	<div class="hscroll api javascript"><pre>var slice = cn.slice(bytes, 10, 4);</pre></div>
+	<div class="hscroll api javascript"><pre>var slice = cds.slice(bytes, 10, 4);</pre></div>
 	<div class="hscroll api perl"><pre>my $slice = substr($bytes, 10, 4);</pre></div>
 	<p class="java javascript">Creates a slice of length 4 starting at byte 10. The slice points to the same byte buffer &ndash; the bytes are not copied.</p>
 	<p class="perl">Creates a slice of length 4 starting at byte 10.</p>
@@ -52,20 +52,20 @@ var bytes = new Uint8Array(arrayBuffer, offset, length);</pre></div>
 	<h2 id="concatenation">Concatenation</h2>
 	<div class="hscroll api java"><pre>Bytes concatenated = bytes1.concatenate(bytes2);
 Bytes concatenated = Bytes.concatenate(bytesIterable);</pre></div>
-	<div class="hscroll api javascript"><pre>var concatenated = cn.concatenate(bytes1, bytes2);</pre></div>
+	<div class="hscroll api javascript"><pre>var concatenated = cds.concatenate(bytes1, bytes2);</pre></div>
 	<div class="hscroll api perl"><pre>my $concatenated = $bytes1.$bytes2;</pre></div>
 	<p>Concatenates byte sequences by copying them.</p>
 
 	<h2 id="comparison">Comparison</h2>
 	<div class="hscroll api java"><pre>boolean result = bytes1.equals(bytes2);
 boolean result = Bytes.equals(bytes1, bytes2);</pre></div>
-	<div class="hscroll api javascript"><pre>var result = cn.equalBytes(bytes1, bytes2);</pre></div>
+	<div class="hscroll api javascript"><pre>var result = cds.equalBytes(bytes1, bytes2);</pre></div>
 	<div class="hscroll api perl"><pre>my $result = $bytes1 eq $bytes2;</pre></div>
 	<p>Returns true if the two bytes sequences are equal.</p>
 
 	<div class="space"></div>
 	<div class="hscroll api java"><pre>int result = bytes1.compareTo(bytes2);</pre></div>
-	<div class="hscroll api javascript"><pre>var result = cn.compareBytes(bytes1, bytes2);</pre></div>
+	<div class="hscroll api javascript"><pre>var result = cds.compareBytes(bytes1, bytes2);</pre></div>
 	<div class="hscroll api perl"><pre>my $result = $bytes1 cmp $bytes2;</pre></div>
 	<p>Compares the two byte sequences, and returns</p>
 	<table class="text">
@@ -102,23 +102,23 @@ boolean value = bytes.asBoolean();
 long value = bytes.asInteger();
 long value = bytes.asUnsigned();
 String text = bytes.asText();</pre></div>
-	<div class="hscroll api javascript"><pre>var bytes = cn.bytesFromBoolean(value);
-var bytes = cn.bytesFromInteger(value);
-var bytes = cn.bytesFromUnsigned(value);
-var bytes = cn.bytesFromText(text);
+	<div class="hscroll api javascript"><pre>var bytes = cds.bytesFromBoolean(value);
+var bytes = cds.bytesFromInteger(value);
+var bytes = cds.bytesFromUnsigned(value);
+var bytes = cds.bytesFromText(text);
 
-var value = cn.booleanFromBytes(bytes);
-var value = cn.integerFromBytes(bytes);
-var value = cn.unsignedFromBytes(bytes);
-var text = cn.textFromBytes(bytes);</pre></div>
-	<div class="hscroll api perl"><pre>my $bytes = CN-&gt;bytesFromBoolean($value);
-my $bytes = CN-&gt;bytesFromInteger($value);
-my $bytes = CN-&gt;bytesFromUnsigned($value);
+var value = cds.booleanFromBytes(bytes);
+var value = cds.integerFromBytes(bytes);
+var value = cds.unsignedFromBytes(bytes);
+var text = cds.textFromBytes(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $bytes = CDS-&gt;bytesFromBoolean($value);
+my $bytes = CDS-&gt;bytesFromInteger($value);
+my $bytes = CDS-&gt;bytesFromUnsigned($value);
 my $bytes = Encode::encode_utf8($text);
 
-my $value = CN-&gt;booleanFromBytes($bytes);
-my $value = CN-&gt;integerFromBytes($bytes);
-my $value = CN-&gt;unsignedFromBytes($bytes);
+my $value = CDS-&gt;booleanFromBytes($bytes);
+my $value = CDS-&gt;integerFromBytes($bytes);
+my $value = CDS-&gt;unsignedFromBytes($bytes);
 my $text = Encode::decode_utf8($bytes);</pre></div>
 	<p>Serializes or deserializes values of common data types. These functions are rarely used directly, but often indirectly when <a href="/api/record/">constructing or querying records</a>.</p>
 	<p><i>Boolean</i> values are serialized to an empty byte sequence (false) or a single byte 121 (true).</p>
@@ -130,8 +130,8 @@ my $text = Encode::decode_utf8($bytes);</pre></div>
 	<h2 id="hex">Hex representation</h2>
 	<div class="hscroll api java"><pre>Bytes bytes = Bytes.fromHex(hex);
 String hex = bytes.asHex();</pre></div>
-	<div class="hscroll api javascript"><pre>var bytes = cn.bytesFromHex(hex);
-var hex = cn.hexFromBytes(bytes);</pre></div>
+	<div class="hscroll api javascript"><pre>var bytes = cds.bytesFromHex(hex);
+var hex = cds.hexFromBytes(bytes);</pre></div>
 	<div class="hscroll api perl"><pre>my $bytes = pack('H*', $hex);
 my $hex = unpack('H*', $bytes);</pre></div>
 	<p>Converts from and to a hex encoded string.</p>

@@ -29,7 +29,7 @@
 	<div class="hscroll indent"><? svgFile('MessageTree.svg') ?></div>
 	<p>The envelope is then submitted to the recipient's message box, while the rest of the tree is uploaded onto a publicly accessible store of the sender:</p>
 	<div class="hscroll indent"><? svgFile('MessageSubmission.svg') ?></div>
-	<p>To prevent the message data from being <a href="/stores/store/#garbage-collection">garbage collected</a>, it is attached to the sender's private data for some time, e.g. through a <a href="/actor-with-data-tree/sent-list">sent list</a>.</p>
+	<p>To prevent the message data from being <a href="/stores/store/#garbage-collection">garbage collected</a>, it is attached to the sender's private data for some time, e.g. through a <a href="/actor-with-document/sent-list">sent list</a>.</p>
 
 	<h2 id="update-message">Updating a message</h2>
 	<p>The sender, or any recipient may remove a message from the message box. To share some data, for example, a sender may post a first message, and replace it whenever the data changes:</p>
@@ -42,7 +42,7 @@
 	<p>The actor then downloads the actual message object(s) from the sender's store, and <a href="/forward-moving-data/forward-moving/">merges</a> the received information into his private data. Once the private data has been saved, the message is removed from the message box.</p>
 
 	<h2 id="private-data">Private data</h2>
-	<p>An actor's private data is an encrypted tree of <a href="/forward-moving-data/forward-moving/">forward-moving data</a>, such as a <a href="/api/datatree/">data tree</a>, attached to the private box:</p>
+	<p>An actor's private data is an encrypted tree of <a href="/forward-moving-data/forward-moving/">forward-moving data</a>, such as a <a href="/api/document/">document</a>, attached to the private box:</p>
 	<div class="hscroll indent"><? svgFile('PrivateData.svg') ?></div>
 	<p>Sender and receiver on the envelope are the same.</p>
 	<p>To modify that data (e.g. while processing messages <b>U</b> and <b>V</b>), the actor merges (⊗) all information, constructs a new tree, and adds it to the private box:</p>
