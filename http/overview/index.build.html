@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<? title = 'Overview'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<? include('Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Condensation is a complete data system. It can</p>
+	<ul>
+		<li><b>store and retrieve</b> data like a database or a file system,</li>
+		<li><b>send</b> data to other users or devices like e-mail or messengers,</li>
+		<li>and <b>share and synchronize</b> data like cloud storage.</li>
+	</ul>
+
+	<p>Condensation is a distributed system, and does not need any central server. Actors (users, or their devices) are communicating directly with each other, or through a server accessible to both of them.</p>
+
+	<p>As opposed to cloud storage, Condensation is a <b>distributed</b> protocol, and does not need any central server.</p>
+	<b>end-to-end encrypted</b>
+
+	<p>Condensation thereby follows a distributed <a href="https://en.wikipedia.org/wiki/Actor_model">actor-message-passing</a> approach, and encrypts all data end-to-end.</p>
+
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

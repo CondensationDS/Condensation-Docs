@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<? title = 'Thin vs. fat box entries'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>A Condensation box entry is a hash that points to an envelope.</p>
+
+	<p>In theory, boxes could store envelopes (fat entries) instead of hashes pointing to envelopes (thin entries). This, however, would have the following disadvantages:</p>
+	<ul>
+		<li>Envelopes are typically between 1 and 20 KiB in size. Storing this amount of data is significantly more complex as compared to storing a (fixed-size) 32-byte hash.</li>
+		<li>A list request with a few hundred entries would amount to several MiB of data. Hence, a more complex box listing function (e.g. partial enumeration) would be necessary.</li>
+	</ul>
+
+	<p>Thin entries therefore simplify the store design. Since envelopes are immutable, they can be treated as regular objects.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

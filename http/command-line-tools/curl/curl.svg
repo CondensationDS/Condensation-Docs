@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="1320"
+   height="730"
+   version="1.1">
+  <defs>
+    <marker
+       id="arrow000000"
+       refX="0"
+       refY="0"
+       orient="auto"
+       style="overflow:visible">
+      <path
+         style="fill:#000000"
+         d="M -6,2.5 2,0 -6,-2.5 -5,0 Z" />
+    </marker>
+  </defs>
+  <g>
+    <rect
+       style="fill:#cccccc"
+       width="20"
+       height="50"
+       x="300"
+       y="580"
+       rx="4" />
+    <rect
+       rx="4"
+       y="80"
+       x="140"
+       height="630"
+       width="20"
+       style="fill:#999999" />
+    <rect
+       rx="4"
+       y="380"
+       x="360"
+       height="130"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <rect
+       style="fill:#cccccc"
+       width="20"
+       height="130"
+       x="220"
+       y="380"
+       rx="4" />
+    <rect
+       rx="4"
+       y="580"
+       x="700"
+       height="130"
+       width="20"
+       style="fill:#cccccc" />
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="30"
+       x="1120"
+       y="580"
+       rx="4">
+
+    </rect>
+    <rect
+       rx="4"
+       y="580"
+       x="980"
+       height="50"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 863,599.5 H 977" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="867"
+       y="596"
+       id="text5625"><tspan
+         id="tspan5629"
+         x="867"
+         y="596">of ACTOR</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="m 1003,599.5 h 114" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="1007"
+       y="596"
+       id="text5633"><tspan
+         id="tspan5637"
+         x="1007"
+         y="596">on STORE</tspan></text>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="130"
+       x="840"
+       y="580"
+       rx="4" />
+    <path
+       d="M 723,599.5 H 837"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5649"
+       y="596"
+       x="727"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3"
+       xml:space="preserve"><tspan
+         y="596"
+         x="727"
+         id="tspan5653">messages</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 723,619.5 H 837" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3"
+       x="727"
+       y="616"
+       id="text5657"><tspan
+         id="tspan5661"
+         x="727"
+         y="616">private</tspan></text>
+    <path
+       d="M 723,639.5 H 837"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5665"
+       y="636"
+       x="727"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3"
+       xml:space="preserve"><tspan
+         y="636"
+         x="727"
+         id="tspan5669">public</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 723,659.5 H 837" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000;"
+       x="727"
+       y="656"
+       id="text5675"><tspan
+         id="tspan5679"
+         x="727"
+         y="656">message box</tspan></text>
+    <path
+       d="M 723,679.5 H 837"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5683"
+       y="676"
+       x="727"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="676"
+         x="727"
+         id="tspan5687">private box</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 723,699.5 H 837" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="727"
+       y="696"
+       id="text5691"><tspan
+         id="tspan5695"
+         x="727"
+         y="696">public box</tspan></text>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="50"
+       x="620"
+       y="620"
+       rx="4" />
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="70"
+       x="440"
+       y="580"
+       rx="4" />
+    <rect
+       rx="4"
+       y="80"
+       x="420"
+       height="90"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <rect
+       style="fill:#999999;fill-opacity:1"
+       width="20"
+       height="70"
+       x="280"
+       y="80"
+       rx="4">
+
+    </rect>
+    <rect
+       rx="4"
+       y="80"
+       x="20"
+       height="30"
+       width="60"
+       style="fill:#cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       x="50"
+       y="100"
+       id="text4435"><tspan
+         id="tspan4437"
+         x="50"
+         y="100">cn</tspan></text>
+    <path
+       d="M 163,99.5 H 277"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text4449"
+       y="96"
+       x="167"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="96"
+         x="167"
+         id="tspan4451">get HASH</tspan></text>
+    <path
+       d="M 303,99.5 H 417"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text4471"
+       y="96"
+       x="307"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="96"
+         x="307"
+         id="tspan4473">from STORE</tspan></text>
+    <rect
+       style="fill:#cccccc"
+       width="60"
+       height="30"
+       x="20"
+       y="20"
+       rx="4" />
+    <text
+       id="text3024"
+       y="40"
+       x="50"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       xml:space="preserve"><tspan
+         y="40"
+         x="50"
+         id="tspan3026">help</tspan></text>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="30"
+       x="140"
+       y="20"
+       rx="4">
+
+    </rect>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="m 83,39.5 h 54" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="87"
+       y="36"
+       id="text3032"><tspan
+         id="tspan3036"
+         x="87"
+         y="36">curl</tspan></text>
+    <rect
+       rx="4"
+       y="200"
+       x="580"
+       height="30"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="50"
+       x="420"
+       y="200"
+       rx="4">
+
+    </rect>
+    <rect
+       rx="4"
+       y="200"
+       x="280"
+       height="50"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 163,219.5 H 277" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="167"
+       y="216"
+       id="text3048"><tspan
+         id="tspan3052"
+         x="167"
+         y="216">put FILE</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 303,219.5 H 417" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="307"
+       y="216"
+       id="text3056"><tspan
+         id="tspan3060"
+         x="307"
+         y="216">onto STORE</tspan></text>
+    <path
+       d="M 443,219.5 H 577"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3064"
+       y="216"
+       x="447"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="216"
+         x="447"
+         id="tspan3066">using KEYPAIR</tspan></text>
+    <rect
+       rx="4"
+       y="380"
+       x="640"
+       height="30"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="30"
+       x="500"
+       y="380"
+       rx="4">
+
+    </rect>
+    <path
+       d="M 383,399.5 H 497"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3078"
+       y="396"
+       x="387"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="396"
+         x="387"
+         id="tspan3082">of ACTOR</tspan></text>
+    <path
+       d="M 523,399.5 H 637"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3086"
+       y="396"
+       x="527"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="396"
+         x="527"
+         id="tspan3090">on STORE</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 243,399.5 H 357" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3"
+       x="247"
+       y="396"
+       id="text3118"><tspan
+         id="tspan3122"
+         x="247"
+         y="396">messages</tspan></text>
+    <path
+       d="M 243,419.5 H 357"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3126"
+       y="416"
+       x="247"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3"
+       xml:space="preserve"><tspan
+         y="416"
+         x="247"
+         id="tspan3130">private</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 243,439.5 H 357" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3"
+       x="247"
+       y="436"
+       id="text3134"><tspan
+         id="tspan3138"
+         x="247"
+         y="436">public</tspan></text>
+    <path
+       d="M 323,599.5 H 437"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3918"
+       y="596"
+       x="327"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="596"
+         x="327"
+         id="tspan3922">FILE</tspan></text>
+    <path
+       d="m 163,399.5 h 54"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3928"
+       y="396"
+       x="167"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="396"
+         x="167"
+         id="tspan3932">list</tspan></text>
+    <path
+       d="M 243,459.5 H 357"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3936"
+       y="456"
+       x="247"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000;"
+       xml:space="preserve"><tspan
+         y="456"
+         x="247"
+         id="tspan3940">message box</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 243,479.5 H 357" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="247"
+       y="476"
+       id="text3944"><tspan
+         id="tspan3948"
+         x="247"
+         y="476">private box</tspan></text>
+    <path
+       d="M 243,499.5 H 357"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text3952"
+       y="496"
+       x="247"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="496"
+         x="247"
+         id="tspan3956">public box</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 243,659.5 H 617" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="247"
+       y="656"
+       id="text3960"><tspan
+         id="tspan3964"
+         x="247"
+         y="656">remove HASH*</tspan></text>
+    <path
+       d="M 463,639.5 H 617"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5525"
+       y="636"
+       x="467"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="636"
+         x="467"
+         id="tspan5529">and remove HASH*</tspan></text>
+    <path
+       d="M 463,599.5 H 697"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5547"
+       y="596"
+       x="467"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="596"
+         x="467"
+         id="tspan5551">to</tspan></text>
+    <path
+       d="m 643,639.5 h 54"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5555"
+       y="636"
+       x="647"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="636"
+         x="647"
+         id="tspan5559">from</tspan></text>
+    <path
+       d="m 83,99.5 h 54"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5785"
+       y="96"
+       x="87"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="96"
+         x="87"
+         id="tspan5787">curl</tspan></text>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="30"
+       x="1280"
+       y="580"
+       rx="4">
+
+    </rect>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="m 1143,599.5 h 134" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="1147"
+       y="596"
+       id="text5795"><tspan
+         id="tspan5797"
+         x="1147"
+         y="596">using KEYPAIR</tspan></text>
+    <rect
+       rx="4"
+       y="580"
+       x="220"
+       height="130"
+       width="20"
+       style="fill:#cccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#arrow000000)"
+       d="m 163,599.5 h 54" />
+    <path
+       d="m 990.5,577 v -33.5 h -760 V 577"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#arrow000000)" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+       x="975"
+       y="540"
+       id="text6993"><desc
+         id="desc1036">push @$o:batches, $o:currentBatch;
+$o:currentBatch = {
+	addHashes =&gt; [],
+	addEnvelopes =&gt; [],
+	removeHashes =&gt; []
+	};</desc><tspan
+         id="tspan6997"
+         x="975"
+         y="540">and</tspan></text>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="30"
+       x="580"
+       y="280"
+       rx="4">
+
+    </rect>
+    <rect
+       rx="4"
+       y="280"
+       x="420"
+       height="70"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="50"
+       x="280"
+       y="280"
+       rx="4">
+
+    </rect>
+    <path
+       d="M 163,299.5 H 277"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text4365"
+       y="296"
+       x="167"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="296"
+         x="167"
+         id="tspan4369">book HASH</tspan></text>
+    <path
+       d="M 303,299.5 H 417"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text4373"
+       y="296"
+       x="307"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="296"
+         x="307"
+         id="tspan4377">on STORE</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 443,299.5 H 577" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="447"
+       y="296"
+       id="text4381"><tspan
+         id="tspan4385"
+         x="447"
+         y="296">using KEYPAIR</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 163,159.5 H 417" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="167"
+       y="156"
+       id="text4344"><desc
+         id="desc4346">$o:hash = $value-&gt;hash;
+$o:store = $value-&gt;cliStore;</desc><tspan
+         id="tspan4348"
+         x="167"
+         y="156">get OBJECT</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 323,619.5 H 437" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="327"
+       y="616"
+       id="text4352"><tspan
+         id="tspan4356"
+         x="327"
+         y="616">HASH</tspan></text>
+    <text
+       id="text4362"
+       y="596"
+       x="247"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="596"
+         x="247"
+         id="tspan4366">add</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="m 243,599.5 h 54" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#arrow000000)"
+       d="m 450.5,577 v -13.5 h -140 V 577" />
+    <rect
+       style="fill:#999999"
+       width="20"
+       height="30"
+       x="580"
+       y="80"
+       rx="4">
+
+    </rect>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 443,99.5 H 577" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="447"
+       y="96"
+       id="text1015"><tspan
+         id="tspan1013"
+         x="447"
+         y="96">using KEYPAIR</tspan></text>
+    <path
+       d="M 163,339.5 H 417"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text1023"
+       y="336"
+       x="167"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><desc
+         id="desc1019">$o:hash = $value-&gt;hash;
+$o:store = $value-&gt;cliStore;</desc><tspan
+         y="336"
+         x="167"
+         id="tspan1021">book OBJECT</tspan></text>
+    <rect
+       rx="4"
+       y="380"
+       x="800"
+       height="30"
+       width="20"
+       style="fill:#999999">
+
+    </rect>
+    <path
+       d="M 663,399.5 H 797"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text1041"
+       y="396"
+       x="667"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       xml:space="preserve"><tspan
+         y="396"
+         x="667"
+         id="tspan1039">using KEYPAIR</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 303,119.5 H 417" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#b3b3b3;"
+       x="307"
+       y="116"
+       id="text1032"><tspan
+         id="tspan1030"
+         x="307"
+         y="116">on STORE</tspan></text>
+    <path
+       d="M 863,619.5 H 977"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#arrow000000)" />
+    <path
+       d="M 303,139.5 H 417"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;marker-end:url(#arrow000000);stroke-miterlimit:4;stroke-dasharray:1,1;stroke-dashoffset:0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#arrow000000)"
+       d="M 303,239.5 H 417" />
+    <path
+       d="M 303,319.5 H 417"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#arrow000000)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="m 163,419.5 h 54" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';text-align:start;text-anchor:start;fill:#000000"
+       x="167"
+       y="416"
+       id="text1043"><tspan
+         id="tspan1041"
+         x="167"
+         y="416">watch</tspan></text>
+  </g>
+</svg>

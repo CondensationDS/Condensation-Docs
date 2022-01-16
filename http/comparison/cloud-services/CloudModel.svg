@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="522"
+   height="262"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="CloudModel.svg">
+  <defs
+     id="defs3876">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       >
+      <path
+         id="path3838"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;marker-start:none;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="42.53493"
+     inkscape:cy="-96.239167"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#6bc55f"
+       id="rect4105"
+       width="100"
+       height="60"
+       x="81"
+       y="41" />
+    <text
+       id="text4107"
+       y="69"
+       x="130"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:100%;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="69"
+         x="130"
+         id="tspan4109"
+         sodipodi:role="line">Plain</tspan><tspan
+         id="tspan4111"
+         y="87"
+         x="130"
+         sodipodi:role="line">content</tspan></text>
+    <rect
+       rx="10"
+       style="fill:none;stroke:#000000;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="rect4113"
+       width="180"
+       height="260"
+       x="341"
+       y="1" />
+    <rect
+       y="1"
+       x="1"
+       height="120"
+       width="260"
+       id="rect4123"
+       style="fill:none;stroke:#000000;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-miterlimit:4;stroke-width:2"
+       rx="10" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="130"
+       y="29"
+       id="text4125"><tspan
+         sodipodi:role="line"
+         x="130"
+         y="29"
+         id="tspan4127"
+         >User's device</tspan></text>
+    <rect
+       rx="10"
+       style="fill:none;stroke:#000000;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-miterlimit:4;stroke-width:2"
+       id="rect4129"
+       width="260"
+       height="120"
+       x="1"
+       y="141" />
+    <text
+       id="text4131"
+       y="169"
+       x="130"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         id="tspan4133"
+         y="169"
+         x="130"
+         sodipodi:role="line">Friend's device</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4135"
+       d="M 251,71.000017 H 351"
+       style="fill:none;marker-end:url(#Arrow1Mend);stroke:#000000;stroke-dasharray:none;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2" />
+    <text
+       id="text4137"
+       y="29"
+       x="430"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         id="tspan4139"
+         y="29"
+         x="430"
+         sodipodi:role="line">Server</tspan></text>
+    <text
+       transform="rotate(-90)"
+       id="text4143"
+       y="243"
+       x="-70"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#1b6bc5;font-family:'Source Sans Pro';font-size:15px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         id="tspan4145"
+         y="243"
+         x="-70"
+         sodipodi:role="line">encryption</tspan></text>
+    <rect
+       y="181"
+       x="81"
+       height="60"
+       width="100"
+       id="rect4163"
+       style="fill:#6bc55f" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:100%;text-align:center;text-anchor:middle"
+       x="130"
+       y="209"
+       id="text4165"><tspan
+         sodipodi:role="line"
+         id="tspan4167"
+         x="130"
+         y="209"
+         >Plain</tspan><tspan
+         sodipodi:role="line"
+         x="130"
+         y="227"
+         id="tspan4169"
+         >content</tspan></text>
+    <path
+       style="fill:none;marker-end:url(#Arrow1Mend);stroke:#000000;stroke-dasharray:none;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 352.5,211.00002 h -100"
+       id="path4179"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#1b6bc5;font-family:'Source Sans Pro';font-size:15px;text-align:center;text-anchor:middle"
+       x="-210"
+       y="243"
+       id="text4181"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-210"
+         y="243"
+         id="tspan4183"
+         >decryption</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#1b6bc5;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       x="436"
+       y="140"
+       id="text4189"><tspan
+         sodipodi:role="line"
+         x="436"
+         y="140"
+         id="tspan4191"
+         >indexing</tspan></text>
+    <rect
+       y="61"
+       x="381"
+       height="60"
+       width="100"
+       id="rect4193"
+       style="fill:#6bc55f" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:100%;text-align:center;text-anchor:middle"
+       x="430"
+       y="89"
+       id="text4195"><tspan
+         sodipodi:role="line"
+         id="tspan4197"
+         x="430"
+         y="89"
+         >Plain</tspan><tspan
+         sodipodi:role="line"
+         x="430"
+         y="107"
+         id="tspan4199"
+         >content</tspan></text>
+    <rect
+       style="fill:#6bc55f"
+       id="rect4201"
+       width="100"
+       height="60"
+       x="381"
+       y="161" />
+    <text
+       id="text4203"
+       y="189"
+       x="430"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:100%;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="189"
+         x="430"
+         id="tspan4205"
+         sodipodi:role="line">Plain</tspan><tspan
+         id="tspan4207"
+         y="207"
+         x="430"
+         sodipodi:role="line">index</tspan></text>
+    <path
+       style="fill:none;marker-end:url(#Arrow1Mend);stroke:#000000;stroke-dasharray:none;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 431,123.00002 v 34"
+       id="path4187"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       transform="rotate(-90)"
+       id="text4209"
+       y="363"
+       x="-70"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#1b6bc5;font-family:'Source Sans Pro';font-size:15px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         id="tspan4211"
+         y="363"
+         x="-70"
+         sodipodi:role="line">decryption</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#1b6bc5;font-family:'Source Sans Pro';font-size:15px;text-align:center;text-anchor:middle"
+       x="-210"
+       y="363"
+       id="text4213"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-210"
+         y="363"
+         id="tspan4215"
+         >encryption</tspan></text>
+    <path
+       style="fill:#e5473f"
+       d="m 287.57422,56.153337 -2.16992,9.761719 9.76172,2.169922 2.16992,-9.761719 z m 16.23828,1.830078 -4.33984,19.525391 19.52539,4.337891 4.33789,-19.523438 z m -24.23828,8.169922 -2.16992,9.761719 9.76172,2.169922 2.16992,-9.761719 z"
+       id="rect4235"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path885"
+       d="m 313.16602,225.8467 2.16992,-9.76172 -9.76172,-2.16992 -2.16992,9.76172 z m -16.23828,-1.83008 4.33984,-19.52539 -19.52539,-4.33789 -4.33789,19.52344 z m 24.23828,-8.16992 2.16992,-9.76172 -9.76172,-2.16992 -2.16992,9.76172 z"
+       style="fill:#e5473f"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

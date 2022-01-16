@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<? title = 'Store poisoning'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">mature</span></h1>
+
+	<p>An attacker may deliberately submit objects with a wrong hash to a store, in an attempt to poison the cache. If store accepts such objects, it will claim to have objects that it does not actually have.</p>
+
+	<h2>Preventing poisoning at the store</h2>
+	<p>Stores can avoid poisoning simply by checking the SHA-256 hash of each incoming object.</p>
+	<p>Alternatively, the store may defer this check until the first <i>has object</i> request, or until an object with the same hash is submitted.</p>
+
+	<h2>Preventing poisoning at the client</h2>
+	<p>If the client does not trust the store, it must avoid <i>has object</i> requests, and instead request the bytes of each object through a <i>get object</i> request, and verify the hash manually.</p>
+
+	<h2>Storage errors</h2>
+	<p>Conceptually, store poisoning is equivalent to data loss. In fact, errors in the underlying storage system may also result in objects with wrong hashes.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

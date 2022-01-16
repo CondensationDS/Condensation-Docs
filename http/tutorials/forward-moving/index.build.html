@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<? title = 'Forward-Moving Data Structures'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>to be re-read, mention semilattice theory, some or all of this should be integrated into the concepts page</p>
+
+	<p>You can store any kind of data on Condensation. However, to take advantage of distributed synchronization and sharing, your data must be forward mergeable. Every modification needs to move the state of the data forward (by building on top of it), and the modification must not create any merge conflicts.</p>
+
+	<h2>Example</h2>
+	<p>To illustrate forward mergeability, consider the following address book item, which has been written on device A, and then copied to device B:</p>
+	<p><? svgFile('Address1.svg') ?></p>
+	<p>Now, we hear that Francesco has moved to Pankow, a suburb of Berlin. We update this on the two devices before they get a chance to synchronize:</p>
+	<p><? svgFile('Address2.svg') ?></p>
+	<p>It turns out we were not very consistent with our update, and have created a merge conflict. Without any additional information, we are unable to decide which version to keep.</p>
+	<p>A straightforward solution is to store modification dates, and to keep the most recent (dominant) version of each key-value pair only:</p>
+	<p><? svgFile('Address3.svg') ?></p>
+	<p>We could as well have used other rules (merge semantics), but keeping the most recent version is often an appropriate strategy for real-world data.</p>
+	<p>Assume now that Francesco has moved again, but we don't know where. Hence, we update his address on device B by deleting the city:</p>
+	<p><? svgFile('Address4.svg') ?></p>
+	<p>If we merged the versions of the address now, we would simply add the deleted city on device B again.</p>
+	<p>The modification made on device B was actually regressive. Instead of building on top of the previous version, we removed something. To make a corresponding forward modification, we can keep the city, but set it to an empty value:</p>
+	<p><? svgFile('Address5.svg') ?></p>
+	<p>This time, the city will be removed on device A, which clearly holds older information.</p>
+	<p>With these two changes, we have created a forward mergeable data structure. Any two states of the data can now be merged without producing conflicts, and the state of the data always moves forward (or remains the same).</p>
+
+	<h2>Set union and top-N merge</h2>
+	<p>Forward mergeable data structures are most often based on two merge concepts: set union and top-N.</p>
+
+	<h3>Set union</h3>
+	<p>In the above example, the dictionary keys of the address book item are merged using set union. The keys are regarded as elements of a set, which are merged using set union. If two keys are the same, their values are merged.</p>
+
+	<h3>Top-N</h3>
+	<p>The dictionary values are merged using a most-recent rule, a special case of top-N merge. Top-N merge ranks the values to be merged according to a specified order, and keeps the top N values of that list.</p>
+	<p>Ideally, the ranking should be without ties, i.e., there should be a <a href="https://en.wikipedia.org/wiki/Total_order">total order</a> among the values. To establish this in the above example, one could compare the values alphabetically in case two modification dates are exactly the same.</p>
+	<p>If there are ties, all values with the same rank must be kept, even if this means keeping more than N values at times.</p>
+	<p>The rules on how many items to keep can obviously be more complex. For text documents, for instance, one may keep all versions that are less than 1 week old, but at least the 5 most recent version, plus all versions marked "important".</p>
+
+	<h2>Full history merge</h2>
+	<p class="todo">Mention that revision control systems such as <a href="https://git-scm.com">git</a> and <a href="https://subversion.apache.org/">Subversion</a> keep the history of all changes (commits).</p>
+	<p>In the address book example, we do not keep track of the history of changes, and we don't need to. Any two versions of the same address book item can be merged at any time without creating conflicts.</p>
+	<p>Some applications have more complex merge semantics, however. The balance of a bank account, for example, depends on the history of its transactions:</p>
+	<p><? svgFile('BankAccount1.svg') ?></p>
+	<p>Merging the balance directly is not possible. Instead, we need to merge the transactions (set union), and then recalculate the balance:</p>
+	<p><? svgFile('BankAccount2.svg') ?></p>
+	<p>Note that the data will continue to grow, as we cannot get rid of any transactions.</p>
+
+	<h3>History compression</h3>
+	<p>To compress part of the history, we can combine several transactions into one from time to time:</p>
+	<p><? svgFile('BankAccount3.svg') ?></p>
+	<p>We thereby do not actually delete old transactions, but mark them as deleted and remove their details. At the same time, we add a new transaction with the combined amount.</p>
+	<p>Assuming that each transaction has a modification date (which can be different from the transaction date), these changes are forward mergeable and don't break anything. Even if we hadn't merged changes from another device C when we combined the transactions, we can still to that at any time:</p>
+	<p><? svgFile('BankAccount4.svg') ?></p>
+
+	<h2>Broom merge</h2>
+	<p>In running or cycling competitions, a so-called <a href="https://en.wikipedia.org/wiki/Broom_wagon">broom wagon</a> is used to pick up stragglers who do not make it to the finish line. Behind the broom wagon, the road is supposed to be clear for regular traffic.</p>
+	<p>The transaction merged from device C could be considered such a straggler. Clearly, that transaction came in late, and if we consider the accounts for 2013 closed, we should refuse to merge it. This is exactly what broom merge does.</p>
+	<p>Broom merge keeps all transactions back to a broom date:</p>
+	<p><? svgFile('BankAccount5.svg') ?></p>
+	<p>Moving the broom requires updating its date and amount, and deleting all older transactions. Upon merging, only the newer of the two brooms is kept, and all transactions before that date are deleted:</p>
+	<p><? svgFile('BankAccount6.svg') ?></p>
+	<p>When merging C into A now, the potato transaction will simply be ignored by A, and deleted on C:</p>
+	<p><? svgFile('BankAccount7.svg') ?></p>
+	<p>Note that with the information at hand, it is impossible for A tell the difference between the account opening transaction (which had been merged before), and the potato transaction (which had not been merged).</p>
+	<p>Broom merge is a variation of top-N merge, in which items are kept only if they are newer than the broom. The broom itself has most-recent semantics (top-1) and can therefore only move forward. Hence, broom merge is a forward merge strategy.</p>
+	<p>Full history merge can be considered a special case of broom merge, in which the broom remains in the distant past.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

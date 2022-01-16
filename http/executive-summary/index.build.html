@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<? title = 'Executive Summary'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Condensation is a novel data system &ndash; a hybrid between a database system, a file system, and a messaging system. It offers functions to store and share data, and excels at data synchronization.</p>
+
+	<div class="hscroll center"><? svgFile('DataSystem.svg') ?></div>
+
+	<p>Data synchronization is essential in today's world. Sharing documents with friends, or editing them on different devices are just special forms of synchronization. And so are backup, data replication, and media streaming.</p>
+
+	<!-- <div class="hscroll center"><? svgFile('Synchronization1.svg') ?></div> -->
+
+	<h2>Potential applications</h2>
+	<ul>
+		<li>Web apps to edit, store, and share documents</li>
+		<li>Mobile phone apps with automatic storage and synchronization</li>
+		<li>Social-network-like systems, or apps with a social component</li>
+		<li>Secure messengers, or data sharing systems</li>
+		<li>Collaborative editing</li>
+		<li>On-demand audio / video streaming</li>
+		<li>Data replication or distribution systems</li>
+		<li>Backup systems</li>
+	</ul>
+
+	<h2>Technical overview</h2>
+
+	<p>Condensation relies on conflict-free merge functions to synchronize data. Originating in <a href="https://en.wikipedia.org/wiki/Semilattice">semilattice</a> theory, such functions can merge different versions of some data without user intervention. Synchronization always succeeds without conflicts, and retains transactions.</p>
+	<div class="hscroll center" style="margin-bottom:25px"><? svgFile('Semilattice.svg') ?></div>
+
+	<p>Data is stored as <a href="https://en.wikipedia.org/wiki/Merkle_tree">hash trees</a> of immutable objects. Change detection &ndash; the basis of efficient synchronization &ndash; requires logarithmic time only, and is therefore much faster than traditional file or database systems. Data sets with millions of entries can be compared and merged swiftly.</p>
+	<div class="hscroll center" style="margin-bottom:25px"><? svgFile('ChangeDetection.svg') ?></div>
+
+	<p>Condensation is <a href="https://en.wikipedia.org/wiki/Distributed_computing">distributed</a>. Data can be synchronized across devices whenever they are connected. Mobile devices may communicate through intermediate servers, but no central server is needed.</p>
+	<div class="hscroll center" style="margin-bottom:25px"><? svgFile('Distributed.svg') ?></div>
+
+	<p>All data is <a href="https://en.wikipedia.org/wiki/End-to-end_encryption">end-to-end encrypted</a> and signed using strong encryption algorithms (RSA, AES). Network and storage systems (and their administrators) only see encrypted data.</p>
+	<div class="hscroll center" style="margin-bottom:25px"><? svgFile('Encryption.svg') ?></div>
+
+	<p>The actual data can be stored on anything from a raw disk partition to a cloud storage service.</p>
+	<div class="hscroll center" style="margin-bottom:25px"><? svgFile('Storage.svg') ?></div>
+
+	<p>The Condensation library is trimmed to the essential functionality, and adds less than 10'000 lines of security-relevant code to your project.</p>
+
+	<h2>Availability</h2>
+	<p>Condensation libraries are available for:</p>
+	<ul>
+		<li>JavaScript, web development</li>
+		<li>Perl/C, Linux</li>
+		<li>Java, Android</li>
+	</ul>
+	<p>Libraries for other platforms are under development.</p>
+
+	<h2>License</h2>
+	<p>All source code is available under the <a href="https://opensource.org/licenses/MIT">MIT license</a>, and the <a href="https://condensation.io/">documentation</a> is published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.</p>
+
+	<h2>Contact</h2>
+	<p>Thomas Lochmatter, <a href="mailto:info@condensation.io">info@condensation.io</a></p>
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

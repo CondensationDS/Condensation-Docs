@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<? title = 'Store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2022, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>A Condensation store holds a set of immutable <a href="/serialization/object/">objects</a>, and a set of accounts with mutable boxes. It provides 5 functions to access the object store and the boxes.</p>
+	<div class="hscroll"><? svgFile('Store.svg') ?></div>
+
+	<h2 id="objects">Objects</h2>
+	<p>The object store keeps a set of hash &rarr; object pairs (usually structured as a hash table) and exposes 2 functions.</p>
+
+	<h3 id="get-object">Get object</h3>
+	<div class="hscroll center"><? svgFile('FunctionGetObject.svg') ?></div>
+	<p>Given a hash, this function returns the corresponding object, or a <i>not found</i> message.</p>
+
+	<h3 id="put-object">Put object</h3>
+	<div class="hscroll center"><? svgFile('FunctionPutObject.svg') ?></div>
+	<p>Stores an object. The object must exist when the function returns.</p>
+	<p>For efficiency, most protocols often offer an additional function to check for object existence prior to uploading its contents:</p>
+	<div class="hscroll center"><? svgFile('FunctionBookObject.svg') ?></div>
+
+	<h2 id="accounts">Accounts</h2>
+	<p>The account store keeps a set of accounts. An account is identified by the hash of the actor's public key object and consists of 3 boxes:</p>
+	<ul>
+		<li>public box</li>
+		<li>private box</li>
+		<li>message box</li>
+	</ul>
+	<p>A box stores a set of hashes, each of which points to an existing <a href="/actors/envelope/">envelope</a> object in the object store.</p>
+	<p>Public and private box typically hold a 1-2 hashes, while the message box may contain thousands of hashes.</p>
+	<p>The account store exposes 3 functions.</p>
+
+	<h3 id="list-box">List box</h3>
+	<div class="hscroll center"><? svgFile('FunctionListBox.svg') ?></div>
+	<p>Returns the set of hashes currently stored in the box. Each hash points to an envelope object. If the account or box does not exist, or has never been used before, an empty list is returned.</p>
+
+	<h3 id="add-hash">Add hash</h3>
+	<div class="hscroll center"><? svgFile('FunctionAddHash.svg') ?></div>
+	<p>Adds a hash to a box. The hash is added before the function returns, but a concurrent removal request may remove it before the function returns. A store may refuse to add the hash if the corresponding object does not exist, or is not an envelope.</p>
+
+	<h3 id="remove-hash">Remove hash</h3>
+	<div class="hscroll center"><? svgFile('FunctionRemoveHash.svg') ?></div>
+	<p>Removes a hash from a box. The function may return immediately, and defer the actual removal. An actor may only remove hashes from its own boxes, or envelopes that he sent.</p>
+
+	<h2 id="modification">Modifications</h2>
+	<p>Many stores offer a <a href="/stores/modifications/">modify operation</a> to put objects, add hashes, and remove hashes in a single request.</p>
+
+	<h2 id="access-rights">Access rights</h2>
+	<p>A public store should authenticate actors, and enforce the following access rights:</p>
+	<table class="text">
+		<tr>
+			<td style="width:130px"><i>get object</i></td>
+			<td colspan="2">everybody</td>
+		</tr>
+		<tr>
+			<td style="width:130px"><i>put object</i></td>
+			<td colspan="2">registered actors</td>
+		</tr>
+		<tr>
+			<td style="width:130px" rowspan="3"><i>list box</i></td>
+			<td>message box</td>
+			<td>any actor mentioned on the account's public card, or everybody¹</td>
+		</tr>
+		<tr>
+			<td>private box</td>
+			<td>any actor mentioned on the account's public card, or everybody¹</td>
+		</tr>
+		<tr>
+			<td>public box</td>
+			<td>everybody</td>
+		</tr>
+		<tr>
+			<td style="width:130px" rowspan="3"><i>add hash<br>or envelope</i></td>
+			<td>message box</td>
+			<td>everybody²</td>
+		</tr>
+		<tr>
+			<td>private box</td>
+			<td>authenticated actor</td>
+		</tr>
+		<tr>
+			<td>public box</td>
+			<td>authenticated actor</td>
+		</tr>
+		<tr>
+			<td style="width:130px"><i>remove hash</i></td>
+			<td colspan="2">any sender or recipient mentioned on the envelope, and any actor mentioned on the account's public card</td>
+		</tr>
+	</table>
+	<ol class="footnote">
+		<li>Granting access to everybody does not undermine data security, but unnecessarily leaks side information about the user's behavior.</li>
+		<li>For non-registered actors, the envelope size is usually limited to 16 KiB, and submissions may be rate-limited.</li>
+	</ol>
+
+	<h2 id="errors">Errors</h2>
+	<p>Any request may fail before or after its execution. Typical reasons for failure include:</p>
+	<ul>
+		<li><a href="/notes/storage-system-crashes/">Failing disks</a>, full disks, or other problem related to the underlying <i>storage system</i>.</li>
+		<li>Problems related to the <i>network</i>, resulting in intermittent or no connectivity.</li>
+		<li>Requests with <i>incomplete or invalid parameters</i>, such as objects larger than the supported size, dangling links on <a href="/notes/complete-vs-partial-stores/">complete stores</a>, or unsupported box labels. These usually point to errors in the application.</li>
+	</ul>
+
+	<h2 id="concurrency">Concurrency</h2>
+	<p>Concurrent requests may be executed (and completed) in any order.</p>
+	<p><i>Add</i> requests must behave atomically. If a <i>list</i> request sees the new object hash, all following <i>list</i> requests must see the hash as well, until it is removed.</p>
+	<p><i>Remove</i> requests provide no such guarantees. Hashes may disappear in any order, and even reappear sporadically.</p>
+
+	<h2 id="garbage-collection">Garbage collection</h2>
+	<p>At any time, a store may remove objects that are not referenced (directly or indirectly)</p>
+	<ul>
+		<li>through any box</li>
+		<li>a recently uploaded (or booked) object</li>
+	</ul>
+	<p>General-purpose stores should keep uploaded or booked objects with all their descendants for at least one hour. Stores for specific purposes may use shorter timeouts.</p>
+	<p>Stores are not obliged to carry out garbage collection in a regular fashion, or within a certain time.</p>
+
+	<h2>Additional functions</h2>
+	<p>The above functions are sufficient to run the Condensation protocol. A store implementation may offer additional functions, however, e.g. functions to create or remove accounts.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

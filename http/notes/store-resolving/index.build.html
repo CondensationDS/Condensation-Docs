@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<? title = 'Store resolving'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>When receiving a message or discovering an actor group, an actor needs to connect to the store of a possibly unknown and untrusted actor. This requires some caution.</p>
+
+	<h2>Message reception</h2>
+	<p>When receiving a message, the message envelope contains the URL of the sender's store, e.g.</p>
+	<div class="hscroll box"><pre>https://condensation.io</pre></div>
+	<p>To process the message, the receiver must connect to that store to retrieve the sender's <a href="/actors/key-pair/#public-key">public key</a> (to verify the envelope's signature), and the message content. This results in one or more <a href="/stores/store/#get-object">get</a> requests.</p>
+
+	<h2>Actor group discovery</h2>
+	<p>Similarly, members of the same actor group publish their stores on their <a href="/actors/public-card/">public cards</a>. To discover the group, an actor must connect to these stores, <a href="/stores/store/#list-box">list</a> their public box, and <a href="/stores/store/#get-object">get</a> their public cards and public keys.</p>
+
+	<h2>Security risks</h2>
+	<p>Get and list request will not cause any direct harm, since they do not modify the store. Careless implementations may however allow an attacker to use an actor as part of a greater attack. Two obvious examples are:</p>
+	<ul>
+		<li><i>DDOS attack:</i> By sending envelopes indicating a victim store, an attacker may flood that store with get or list requests, and utilize excessive bandwidth and power.</li>
+		<li><i>Side channel information:</i> The timing of get requests to internal IP addresses may reveal information about the architecture of the internal network.</li>
+	</ul>
+
+	<h2>Precautions</h2>
+	<p>An actor should take the following precautions:</p>
+	<ul>
+		<li>Accept only URLs of agreed-upon protocols (e.g. <i>http:</i> and <i>https:</i>), and reject all other URLs (e.g. <i>file:</i>).</li>
+		<li>Reject any URL that points to your internal network.</li>
+		<li>Do not try to "intelligently" resolve the situation or ask the user to provide a store URL. The sender is supposed to provide a valid URL. An invalid or inaccurate URL should always be considered malicious.</li>
+		<li>Do not reply to messages with obviously wrong stores.</li>
+		<li>Drop actor groups with obviously wrong stores.</li>
+	</ul>
+	<p>In addition, missing public keys or empty public boxes are a weak indicator for a maliciously indicated store. You may greylist the corresponding sender or actor, rate limit requests on the corresponding store, or log such incidents for manual investigation.</p>
+
+	<h2>User notifications</h2>
+	<p>Generally, envelopes or public cards pointing to invalid stores should be silently ignored, without notifying the user.</p>
+	<p>However, if the corresponding actor or actor group is known and trusted (e.g. a friend), the user should be notified so that the problem can be resolved.</p>
+
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

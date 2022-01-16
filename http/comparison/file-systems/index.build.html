@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<? title = 'Condensation vs. file systems'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft, add graphs from presentation slides</span></h1>
+
+	<p>Among the most prevalent data systems in use today are file systems, such as ext4, btrfs, NTFS, FAT32, or HFS+. While Condensation can be used for the same purpose (data storage), it differs in some key aspects from typical file systems.</p>
+
+	<h2>Immutable vs. mutable</h2>
+	<p>File systems are <i>mutable</i> data systems, i.e., directories, files, or parts thereof can be modified in-place.</p>
+	<p>Condensation is an <i>immutable</i> storage system. Once a piece of data is written, it can never be modified again. Any change results in a new piece of data, while existing data remains untouched.</p>
+	<p>Mutable data is simple and straightforward to use. If some piece of information changes, the corresponding file is modified by replacing the old content with the new content. Modifying several files as a single atomic operation (transaction) is substantially more difficult and error-prone, however, and replicating those changes atomically, or synchronizing them across several devices is even more difficult.</p>
+	<p>With immutable data, small modifications are a bit more difficult, but the rest is substantially easier. All operations are inherently atomic, and data synchronization or replication is very simple. In addition, the actual pieces of data (objects) can easily be spread across multiple disks.</p>
+
+	<h2>Data structures</h2>
+	<p>File systems are based on folders and files. Each files holds a byte sequence, serialized by the application.</p>
+	<p>At the lowest level, Condensation stores object trees. Each object holds a byte sequence, serialized by the application.</p>
+	<p>Most applications however use a higher-level data structure, such as <a href="/datatree/">data trees</a>, on top of Condensation.</p>
+
+	<h2>Access rights management</h2>
+	<p>File systems keep access rights as access control lists or owner/group/world bitmasks. Files of different users may be stored next to each other in the same folder. To share a file or folder, access is granted to multiple users.</p>
+	<p>Condensation uses encryption and message-passing instead. Each user keeps his own data, and encrypts it. Other users do not see this data. To share data, users send small messages to each other, containing a link to the data (object reference) and the corresponding encryption key.</p>
+
+	<h2>Storage and messaging</h2>
+	<p>While file systems are purely intended for storage, Condensation offers both storage and messaging.</p>
+
+	<h2>Summary</h2>
+	<table class="text">
+		<tr>
+			<th></th>
+			<th>Condensation</th>
+			<th>File system (typical)</th>
+		</tr>
+		<tr>
+			<td>Server-client protocol</td>
+			<td>get object, put object, list, add, remove</td>
+			<td>open, read, write, rename, mkdir, fcntl, ...</td>
+		</tr>
+		<tr>
+			<td>Backend</td>
+			<td>disk, partition, file system, database, network storage, cloud service</td>
+			<td>physical or virtual partition, network storage</td>
+		</tr>
+		<tr>
+			<td>Mutability</td>
+			<td>immutable</td>
+			<td>mutable</td>
+		</tr>
+		<tr>
+			<td>Main data structure</td>
+			<td>object tree</td>
+			<td>folders and files</td>
+		</tr>
+		<tr>
+			<td>Distributed</td>
+			<td>yes, by design</td>
+			<td>no</td>
+		</tr>
+		<tr>
+			<td>Storage</td>
+			<td>yes</td>
+			<td>yes</td>
+		</tr>
+		<tr>
+			<td>Messaging</td>
+			<td>yes</td>
+			<td>no</td>
+		</tr>
+		<tr>
+			<td>Transactions</td>
+			<td>inherent, as box updates are atomic</td>
+			<td>atomic <i>mv</i> (POSIX) or special transaction API, requires careful design</td>
+		</tr>
+		<tr>
+			<td>Replication (one-way)</td>
+			<td>inherent, efficient</td>
+			<td>good tools exist; limited efficiency</td>
+		</tr>
+		<tr>
+			<td>Synchronization (two-way)</td>
+			<td>fairly easy</td>
+			<td>difficult</td>
+		</tr>
+		<tr>
+			<td>Versioning</td>
+			<td>inherent, lightweight</td>
+			<td>difficult in general; some file systems offer snapshots</td>
+		</tr>
+	</table>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<? title = 'Storage system crashes'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>While data loss may be unavoidable in some cases, the structure of Condensation stores makes it fairly resilient to storage system crashes, even without explicit <a href="https://en.wikipedia.org/wiki/Transaction_log">journaling</a>.</p>
+
+	<h2>Partially written objects</h2>
+	<p>If the system crashes while an <a href="/stores/store/#put-object">object is being written</a>, the SHA-256 hash of this last, partially written object will <a href="/notes/hash-collisions/">almost certainly</a> be wrong. Hence, the object will be discarded.</p>
+
+	<h2>Partially added hashes</h2>
+	<p>If the system crashes while an <a href="/stores/store/#add-hash">envelope hash is being added</a>, the partially written hash will almost certainly be dangling, i.e. point to an object not available on the store. Such entries are invalid, and will be discarded.</p>
+
+	<h2>Partially removed hashes</h2>
+	<p>Similarly, if the system crashes while an <a href="/stores/store/#remove-hash">envelope hash is being removed</a>, the partially destroyed hash will almost certainly be dangling, and therefore be discarded.</p>
+
+	<h2>Transactions</h2>
+	<p>A <a href="/notes/transactions/">transaction</a> is carried out by writing new objects, adding the new hash, and removing all merged hashes. These operations are carried out in this order, and only if all previous operations have succeeded.</p>
+	<p>If the system crashes during such a transaction, the following outcomes are possible:</p>
+	<ul>
+		<li>Some object have been written, or partially written, but the new hash has not been added. The transaction is aborted, leaving the data in its current state. Unlinked objects will eventually be garbage collected.</li>
+		<li>All objects have been written, but the system crashes before the new hash is added. As above, the old state of the data remains on the store, and unused objects are garbage collected.</li>
+		<li>All objects have been written, and the new hash has been added, but the system crashes before removing the merged hashes. In this case, the new state exists alongside the old state, but <a href="/forward-merging/">merging</a> these two states results in the new state. The transaction succeeded.</li>
+	</ul>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<? title = 'Forward-moving data structures'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation concepts</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Technically, any type of data can be stored in a Condensation tree. However, conflict-free synchronization is possible only with forward-moving data structures, where data moves forward according to some defined order.</p>
+	<p>As an example, consider a document that is being modified. Each modification yields a new version of the document, but we only keep the most recent (newest) version:</p>
+	<div class="hscroll indent"><? svgFile('Example.svg') ?></div>
+	<p>That is a very simple forward-moving data structure. The modification date assigns an order to the documents, and within that order, we can only move forward.</p>
+	<p>Whenever we see different versions of the document, we simply pick the most recent version. Modifying the document yields a new version with a newer modification date, which automatically replaces the previous version. To revert to an old version of the document, we simply have to re-save the old version with a newer modification date.</p>
+	<p>Keeping just the most recent version of something yields a <a href="#maximum">maximum-merge</a> structure, which is a special case of a <a href="#union-forget">union-forget</a> structure.</p>
+
+	<h2 id="formal-definition">Formal definition</h2>
+	<p>A forward-moving data structure with a merge function ⊗ and a comparison function ≤ has the following properties:</p>
+	<ul>
+		<li>Commutativity: A ⊗ B = B ⊗ A</li>
+		<li>Associativity: (A ⊗ B) ⊗ C = A ⊗ (B ⊗ C)</li>
+		<li>Idempotency: A ⊗ A = A</li>
+		<li>Order: A ⊗ B = B <span style="margin: 0 10px">⇔</span> A ≤ B</li>
+	</ul>
+	<p>Commutativity ensures that two versions of the data can be merged in either way, while associativity says that different versions can be merged in any order. That's important in a distributed setting where no global total order is imposed.</p>
+	<p>Itempotency ensures that merging a version with itself does not change anything. This means that we can merge the same version as often as we want, and do not need to keep track of what has been merged, and what not:</p>
+	<div class="hscroll box"><pre>A ⊗ B ⊗ B ⊗ ... ⊗ B = A ⊗ B</pre></div>
+	<p>This also ensures that two versions with a common past are merged correctly:</p>
+	<div class="hscroll indent"><? svgFile('CommonPast.svg') ?></div>
+	<div class="hscroll box"><pre>D = B ⊗ C
+  = (A ⊗ ΔB) ⊗ (A ⊗ ΔC)
+  = A ⊗ A ⊗ ΔB ⊗ ΔC
+  = A ⊗ ΔB ⊗ ΔC</pre></div>
+	<p>The order ensures that merging is forward-moving with respect to the defined order, and can also be written as follows:</p>
+	<div class="hscroll box"><pre>A ⊗ B = C   ⇔   A ≤ C and B ≤ C</pre></div>
+
+	<h2 id="mathematical-background">Mathematical background</h2>
+	<p>Forward-mergeability is closely related to the mathematical concept of <a href="https://en.wikipedia.org/wiki/Semilattice">semilattices</a>. A forward-moving data structure forms a join-semilattice, and any version of the data is an element of the semilattice (set). Merging two versions corresponds to the join operation of the semilattice.</p>
+
+	<h2 id="maximum">Maximum</h2>
+	<p>Among the simplest forward-moving structures are numbers merged by taking their maximum:</p>
+	<div class="hscroll box"><pre>A = 3
+B = 15
+A ⊗ B = max(3, 15) = 15</pre></div>
+	<p>It is obvious that the result can never be smaller than any input value. Hence, merging never moves the state &mdash; here expressed as a number &mdash; backwards.</p>
+
+	<h2 id="boolean">Boolean OR</h2>
+	<p>Similarly, boolean values are forward-moving under the OR function and the order [○ false → ● true]:</p>
+	<table class="text">
+		<tr>
+			<td>A</td>
+			<td>○</td>
+			<td>●</td>
+			<td>○</td>
+			<td>●</td>
+		</tr>
+		<tr>
+			<td>B</td>
+			<td>○</td>
+			<td>○</td>
+			<td>●</td>
+			<td>●</td>
+		</tr>
+		<tr>
+			<th>A ⊗ B = A or B</th>
+			<th>○</th>
+			<th>●</th>
+			<th>●</th>
+			<th>●</th>
+		</tr>
+	</table>
+	<p>In fact, OR-merging can be mapped to maximum-merging by mapping false to the number 0, and true to 1.</p>
+	<p>Similarly, AND is forward-moving under the order [true → false].</p>
+	<p>XOR, however, is not forward-moving. It trivially violates idempotency:</p>
+	<div class="hscroll box"><pre>A ⊗ A = false ≠ A</pre></div>
+	<p>For the same reason, most mathematical operations (addition, subtraction, ...) are not forward-moving.</p>
+
+	<h2 id="set-union">Set union</h2>
+	<p>Sets are forward-moving under union and set size.</p>
+	<div class="hscroll box"><pre>A = {apple, banana}
+B = {banana, lemon}
+A ⊗ B = {apple, banana} ∪ {banana, lemon} = {apple, banana, lemon}</pre></div>
+	<p>When unioning sets, the result necessarily has at least as many elements as any input set. Thus, we can never move backwards to a set with fewer elements.</p>
+	<p>Versioning systems such as <a href="https://git-scm.com">git</a> use union-merge for the revisions: they keep them all.</p>
+
+	<h2>Maximum revisited</h2>
+	<p>Maximum-merge can be mapped to union-merge by putting all numbers into a set, and considering the highest number only:</p>
+	<div class="hscroll box"><pre>A = {3}
+B = {15}
+A ⊗ B = {3, <b>15</b>}
+C = {4, <b>17</b>}
+A ⊗ B ⊗ C = {3, 4, 15, <b>17</b>}</pre></div>
+	<p>This is conceptually equivalent, but not very efficient. The number 4, for instance, never makes any difference but is stored anyway. Nobody would notice if we "forgot" it. The end result &mdash; 17 &mdash; would still be the same.</p>
+
+	<h2 id="union-forget">Union-forget structures</h2>
+	<p>This leads to union-forget structures. Such structures are based on union-merge and a set of carefully crafted rules defining which values can be forgotten.</p>
+	<p>A more general version of maximum-merge is <i>top-N-merge</i>, which keeps the <em>N</em> highest values only. Top-3-merge would work as follows:</p>
+	<div class="hscroll box"><pre>A = {3, 5, 16}
+B = {8, 9, 15}
+A ⊗ B = {<span style="color:#ccc">3, 5, 8,</span> 9, 15, 16}</pre></div>
+	<p>Similarly, one can forget information more than a week older than the most recent date:</p>
+	<div class="hscroll box"><pre>A = {2018-02-19, 2018-02-24}
+B = {2018-02-16, 2018-02-22}
+A ⊗ B = {<span style="color:#ccc">2018-02-16,</span> 2018-02-19, 2018-02-22, 2018-02-24}</pre></div>
+	<p>In a practical application, each timestamp would carry some information along with it.</p>
+
+	<h2 id="broom-merge">Broom merge</h2>
+	<p>Broom merge is a combination of a union-merged data set with timestamps, and a maximum-merged timestamp (the broom). No data item can be older than (behind) the timestamp &ndash; a concept closely related to that of the <a href="https://en.wikipedia.org/wiki/Broom_wagon">broom wagon</a> used in cycling road races or other competitions.</p>
+	<p>Broom merge can be used to merge accounting data using a merge window, for example:</p>
+	<div class="hscroll box"><pre>
+2018-02-21 &rarr; +5
+2018-02-18 &rarr; -2
+2018-02-12 &rarr; +1
+<b>2018-02-11 &rarr; 229 (broom)</b></pre></div>
+	<p>The entry at the broom summarizes the history up to that point, while all transactions newer than the broom are stored individually.</p>
+	<p>Merging two versions keeps the newest broom, and all transactions equal or newer than that broom:</p>
+	<div class="hscroll box"><pre>
+2018-02-21 &rarr; +5
+2018-02-17 &rarr; -4
+2018-02-12 &rarr; +1
+2018-02-10 &rarr; +10
+<b>2018-02-08 &rarr; 219 (broom)</b></pre></div>
+	<p>Transactions older than the newest broom are assumed to be included in the entry at the broom. If that is not the case, these transactions are lost.</p>
+	<p>The broom window, i.e. the time until which individual transactions are kept, is a trade-off:</p>
+	<ul>
+		<li>Using a large window decreases the probability of losing unmerged transactions.</li>
+		<li>Using a small window saves storage space, and time to load the data.</li>
+	</ul>
+	<p>The ideal trade-off is application-dependent, but a window of about 2-4 months is often enough in practice. Devices not synchronized for more than 2 months have often been lost, or those changes have been forgotten about by the user.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

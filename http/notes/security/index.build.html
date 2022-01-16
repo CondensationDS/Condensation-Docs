@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<? title = 'Security model'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Condensation relies on 3 properties to keep data secure:</p>
+	<table style="border-spacing: 0; margin: 10px 0">
+	<tr>
+		<td style="background-color: #ebe7ad; border-radius: 3px; padding: 20px 20px; vertical-align: top; width: 255px">
+			<h3 style="margin-top: 0">End-to-end encryption</h3>
+			<p>In the Condensation data model, all data is encrypted and decrypted by the application that generates or modifies it. Network and storage providers only see encrypted data, and do not possess the key to decrypt it. Since <a href="https://en.wikipedia.org/wiki/Brute-force_attack">breaking encryption is hard</a> (and costly), Condensation data is safe even if the network and/or storage systems are compromised or untrustworthy.</p>
+		</td>
+		<td style="vertical-align: top; width: 10px"></td>
+		<td style="background-color: #ebe7ad; border-radius: 3px; padding: 20px 20px; vertical-align: top; width: 255px">
+			<h3 style="margin-top: 0">Data locality</h3>
+			<p>Condensation's flexible storage and synchronization scheme allows you to keep data as local as possible, e.g. in your country, your state, your neighborhood, or even your own office. By keeping the data path short, you not only reduce your own costs, but increase the costs for an attacker to access your (encrypted) data.</p>
+			<p>In addition, you can choose where your data resides.</p>
+		</td>
+	</tr>
+	</table>
+	<div style="background-color: #ebe7ad; border-radius: 3px; padding: 20px 20px">
+		<h3 style="margin-top: 0">Simplicity</h3>
+		<p>A fully operational Condensation system consists of barely 20'000 lines of code. Only 5'000 to 10'000 lines thereof are relevant to data security. Errors outside of this core code may have nasty effects, but will not compromise data security.</p>
+		<p>Such a small footprint reduces the probability of implementation errors, and facilitates code audit.</p>
+	</div>
+
+	<h2>Security boundary</h2>
+
+	<p>Here is a list of what adversaries (hackers, intelligence agencies, …) can do, and what they cannot do. Assume that a potential adversary has full control over the network, the Condensation server, and the storage system, but no control over your device (computer, smartphone, …).</p>
+
+	<h3>Reading your data: no</h3>
+	<p>Your data remains encrypted at all times, and only you have a copy of the private key necessary to decrypt it.</p>
+
+	<h3>Modifying your data: no</h3>
+	<p>Your data (in particular the root object) is signed with your private key, which only you know. You can check the integrity of the whole object tree easily and efficiently.</p>
+	<p>The adversary may forge your root hash, but cannot create a new root object (with the modified data) with a forged signature. Hence, the adversary can only switch you to an old version (which you have signed by yourself) of your data. You can prevent this type of attack by checking the last modification date of your root hash, by storing a copy of the root hash on your local device, or by memorizing some digits of the root hash.</p>
+
+	<h3>Deleting your data: yes</h3>
+	<p>Since the network and storage system is under control of the adversary, it may trivially delete your data or deny you access to it. This is not usually in the interest of the adversary, and can be thwarted easily by storing a local copy of all data.</p>
+
+	<h3>Recording encrypted objects: yes</h3>
+	<p>Trivially. This is basically what the storage provider does. Decrypting those objects without your private key would however require tremendous amounts of computational power and/or time.</p>
+
+	<h3>Analyzing the structure and size of your object tree: yes</h3>
+	<p>References to other objects are not encrypted, since the server needs to be able to follow them during <a href="/stores/store/#garbage-collection">garbage collection</a>. Hence, an adversary can analyze the structure (not the content) of your object tree, or find out which parts have changed from one version to another.</p>
+	<p>Tree structure and object sizes may reveal some information about the content. A 4 MB object is more likely to be an photo than a plain text file, for example. That kind of information is far less critical than the content itself, however.</p>
+	<p>When storing multiple pieces of information inside the same object (such as <a href="/datatree/">data trees</a> do), it is far more difficult to guess the content, or changes thereof.</p>
+	<p>To further increase data security (at the expense of some performance), consider adding random garbage data, re-encrypting unmodified objects, or storing all data one single object.</p>
+
+	<h3>Statistics about object access and sharing: yes</h3>
+	<p>Adversaries can collect statistics about the objects people are accessing on which devices, and find out if an object is shared between several users. If an adversary happens to guess which object contains your top secret letter, it will know with whom you are sharing it.</p>
+	<p>To alleviate this, you can encrypt a separate copy of the letter for each person you are sharing it with.</p>
+
+	<h2>Encrypted communication</h2>
+	<p>Condensation uses HTTP by default. Using HTTPS, VPN, SSH, or any other form of encrypted communication only makes sense if the Condensation store (server) is trusted, and the network is not. This may be the case if you are running your own Condensation store, but at a different location. This additional encryption mainly protects from box forgery, and reduces the amount of useful statistics that can be collected through wiretapping.</p>
+	<p>If your Condensation server is not trusted, encrypting the transmission does not add any significant benefits, as adversaries may run the attacks on the server infrastructure (i.e., between decryption and storage).</p>
+
+	<h2>Private key loss</h2>
+	<p>If the private key is lost (e.g., because of a broken device), all objects encrypted for this key only are lost, too. Nevertheless, the private key should not be backed up, as this drastically increases chances of revealing or exposing it. Instead, object trees should be encrypted for several keys rather than just one. This is the case, for example, if the user uses several devices.</p>
+
+	<h2>Private key revelation</h2>
+	<p>If the private key is revealed, all objects encrypted for it are compromised. All signatures that do not have a trustworthy timestamp have to be considered compromised, too.</p>
+	<p>The public key corresponding to the revealed private key should be marked as <i>revoked</i> on the identity box, or removed from there. (A public key not found with its owner any more is considered the same as a revealed key, and not trusted any more.) The user should then create a new key, and reencrypt his data with it. In addition, he should inform all his friends and share the new key with them.</p>
+	<p>To mitigate the risk of revealing a huge amount of data at the same time, users can use multiple key pairs, or multiple identities (e.g., one identity per project, or level of confidentiality).</p>
+
+	<h2>Do's and don'ts</h2>
+	<ul>
+		<li>Don't copy or transfer a private key from one device to another. Instead, create a new key pair on the new device, and add the public key to the account. An account can hold multiple keys, which are all treated equivalently.</li>
+		<li>Don't share a private key with any service. Each service has its own key pair, and you just share the relevant documents with them in the same way as you share documents with your friends, i.e., by encrypting them with their public key, or using a shared symmetric key.</li>
+		<li>Don't back up a private key. (But do back up your data.)</li>
+		<li>Don't accept private keys generated by anyone else. Always generate your keys by yourself, using a trusted implementation.</li>
+		<li>Do sign your data (to prevent box forgery).</li>
+	</ul>
+
+	<h2>Limitations</h2>
+	<p>Condensation is only one part of a secure working environment. Besides human factors (e.g. weak passwords, lost devices), care should be taken that the applications run locally on trustworthy devices. Unencrypted data may leak through a compromised operating system on which the application runs, a compromised library that the application includes, or through a compromised processor at hardware level.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<? title = 'Encryption vs. access control lists (ACLs)'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<div class="todo">Perhaps call this whole section "Access model", show how the access model works (perhaps with a schema), then compare it to ACLs.</div>
+	<p>Condensation's access model is based on encryption rather than ACLs. Instead of restricting access through a set of rules, access is restricted through encryption.</p>
+	<p>This has several advantages:</p>
+	<ul>
+		<li>With encryption, access rights are applied to <b>the data itself</b> rather than to resources holding data (e.g. file, or a folder).</li>
+		<li>Documents are shared through <b>message-passing</b> rather than shared resources.</li>
+		<li>Derived work (e.g. from a template) is <b>private by default</b>, until explicitly shared.</li>
+		<li>Managing ACLs tends to be difficult. Message-passing is <b>easier to use</b>, and far <b>less error-prone</b>.</li>
+		<li>System administrators do not have access to the data of the employees (and managers), unless the data is explicitly shared with them.</li>
+		<li>Encryption allows for data sharing and synchronization in a fully distributed setting.</li>
+	</ul>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

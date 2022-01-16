@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<? title = 'Actor groups'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A participant in Condensation &mdash; a user, service, or other entity &mdash; is an actor group encompassing one or more devices:</p>
+	<div class="hscroll"><? svgFile('ActorGroup.svg') ?></div>
+	<p>An actor group behaves like a single, consistent entity. Actors within the same group unconditionally trust each other, share (synchronize) their private data, and read each other's messages. Each actor thereby uses its own <a href="/actors/key-pair/">key pair</a>.</p>
+	<p>A group may evolve over time. New actors may be added, obsolete members removed, and <a href="/actors/key-management/#key-theft">stolen keys</a> revoked.</p>
+	<p>All actors in the group are equal. There is no group leader or main actor &mdash; unless the application designates such roles.</p>
+	<p>Group members may use different stores.</p>
+
+	<h2 id="announce">Group announcement</h2>
+	<p>Every actor publishes a list of group members on its <a href="/actors/public-card/">public card</a>. Conceptually, these cards form a directed graph of actors and their relationships:</p>
+	<div class="hscroll"><? svgFile('Graph.svg') ?></div>
+	<p>If two actors mutually claim to belong together, they are in the same group. In the above example, <i>A</i>, <i>B</i>, and <i>C</i> form a group.</p>
+	<p>A group's active members should be fully connected. However, when joining an actor, some links may be missing temporarily. <i>A</i>, for example, may just have joined the group through <i>B</i>, and <i>C</i> does not yet know about it.</p>
+	<p>Unidirectional links may also exist while a new actor (<i>D</i>) is joining the group.</p>
+
+	<h2 id="status">Member status</h2>
+	<p>Group members have one of the following status:</p>
+	<ul>
+		<li><i>Active</i> members regularly read their messages.</li>
+		<li><i>Idle</i> members just belong to the group, but are not active. They typically correspond to old devices that are not in use any more.</li>
+		<li><i>Revoked</i> members do not belong to the group any more because their <a href="/actors/key-management/#key-theft">private key got exposed</a>.</li>
+	</ul>
+	<p>Note that the distinction between <i>active</i> and <i>idle</i> is based on the member's intent, and not on its actual behavior. An active member may be sleeping for days (or even disappear), and an idle member may suddenly become active again.</p>
+
+	<p>Every actor publishes the status of each group member on its public card. This information may not be consistent, and is therefore <a href="/forward-merging-data/most-recent-merge/">most-recent merged</a> on a revision timestamp:</p>
+	<div class="hscroll"><? svgFile('Status.svg') ?></div>
+	<p>In the above example, <i>B</i> set the status of <i>C</i> to <i>idle</i>, and thereby overwrote <i>C</i>'s own status declaration.</p>
+	<p>Note that public cards of idle and revoked members may not be read during group discovery. As a consequence, an active member may switch itself to idle, but an idle member cannot reactivate itself.</p>
+
+	<h2 id="discover">Group discovery</h2>
+	<p>Given an actor, its group can be discovered by reading its public card, and that of all associated group members. Often, only the subgroup of active members is of interest.</p>
+	<p>Starting with <i>A</i>, the above group is discovered as follows:</p>
+	<div class="hscroll"><? svgFile('DiscoveryA.svg') ?></div>
+	<p>The resulting active subgroup is [<i>A</i>, <i>B</i>]. Since <i>C</i> is marked <i>idle</i> by <i>B</i>, its public card is ignored.</p>
+	<p>The origin actor is always considered active to start with, but may may switch to idle (or revoked) throughout the discovery process. This occurs, for instance, when starting the discovery process with <i>C</i>:</p>
+	<div class="hscroll"><? svgFile('DiscoveryB.svg') ?></div>
+
+	<h2 id="add-member">Adding a new member</h2>
+	<p>To attach a new actor <i>D</i> to the group, <i>D</i> sends a join request message to the group, and announces its (one-sided) membership on the public card:</p>
+	<div class="hscroll"><? svgFile('Join.svg') ?></div>
+	<p>An active member of the group (<i>B</i>) validates the request. If approved, it announces <i>D</i> on its public card, and discloses the current private data to the new member.</p>
+	<p>The content of a join request is specific to the application and its validation procedure. New actors may be validated through a shared group secret, a temporary pin code, or through any other appropriate means.</p>
+
+	<h2 id="remove-member">Removing a member</h2>
+	<p>A member is removed by changing its status to <i>idle</i> (or <i>revoked</i>). This may be done by any active member of the group, including the member to be removed itself.</p>
+
+	<h2 id="send-message">Sending messages</h2>
+	<p>To send a message to a group, an actor <a href="#discover">discovers the group</a>, encrypts the message for all active group members, and places the envelope into the message box of an active member. Usually, the most recent active member is chosen.</p>
+	<p>Messages specific to an actor can still be sent to the specific actor rather than to its group.</p>
+
+	<!-- <h2>Actor Group Discovery Algorithm</h2>
+	<p>To discover an actor group from a single account</p>
+	<ol>
+		<li>read the account's card</li>
+		<li>as long as there is progress</li>
+		<ol>
+			<li>start with the newest account</li>
+			<li>follow an active (potentially multi-hop) link to an undiscovered account</li>
+			<li>read the card</li>
+			<li>if the card does not mention any already discovered account, put it aside and try another active link</li>
+			<li>mark the account as discovered</li>
+			<li>merge its account list</li>
+		</ol>
+	</ol> -->
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

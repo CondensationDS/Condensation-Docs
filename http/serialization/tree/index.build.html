@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<? title = 'Object Tree'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 02); ?>
+	<h1><? title ?></h1>
+
+	<p>Through the hash list, an object may span a tree:</p>
+	<div class="hscroll"><? svgFile('Tree.svg') ?></div>
+	<p>Each node in that tree is an object, spanning its own subtree. The hash of a tree is simply the hash of its root object. Two trees with the same hash are <a href="/notes/hash-collisions/">almost certainly</a> equal.</p>
+	<p>An object can obviously be referenced from more than one object, and trees may share subtrees. This is particularly useful for versioned data:</p>
+	<div class="hscroll indent"><? svgFile('VersionedTree.svg') ?></div>
+	<!-- p>The <a href="/datatree/">data tree</a> implementation takes advantage of this.</p -->
+
+	<h2 id="dag">Directed acyclic graphs</h2>
+	<p>When objects are referenced multiple times, the resulting structure is a directed acyclic graph (DAG). However, since objects are immutable, we can (conceptually) duplicate them, and draw a corresponding tree:</p>
+	<div class="hscroll indent"><? svgFile('AcyclicGraph.svg') ?></div>
+	<p>In the context of Condensation, we stick to the <em>tree</em> terminology.</p>
+
+	<h2 id="loops">Loops</h2>
+	<p>Constructing a loop (cycle) would require constructing a hash collision.</p>
+	<p>To understand that, assume an object A that references an object B. Hence, A contains the SHA-256 sum of B. To create a back-reference from B to A, we would need to construct a new object B' containing the hash of A, and yielding the same hash as B, which is <a href="https://en.wikipedia.org/wiki/Preimage_attack">computationally infeasible</a>.</p>
+	<p>For the same reason, an object cannot reference itself.</p>
+
+	<h2 id="blockchain">Blockchains</h2>
+	<p>The special case where objects or trees form a chain is known as <a href="https://en.wikipedia.org/wiki/Blockchain">blockchain</a>:</p>
+	<div class="hscroll indent"><? svgFile('Blockchain.svg') ?></div>
+	<p>The hash of the head object of the blockchain uniquely identifies the blockchain. New blocks can easily be prepended to the head, but no block can be modified or inserted anywhere else in the chain.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

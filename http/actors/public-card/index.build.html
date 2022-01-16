@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<? title = 'Public card'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+	<script src="../../syntax-links.js"></script>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main" style="background: none">
+	<h1><? title ?></h1>
+
+	<p>Each actor publishes a card with public information on all its public boxes:</p>
+	<div class="hscroll indent"><? svgFile('PublicCard.svg') ?></div>
+
+	<p>A card is an unencrypted <a href="/serialization/object/">object</a> holding a <a href="/serialization/record/">record</a> with the following structure:</p>
+	<div class="hscroll box">
+		<pre>public key
+  <span class="ctext">empty</span> # <span class="im">public key hash</span>
+actor group <span class="annotation">?</span>
+  <span class="im">store URL</span> <span class="annotation">*</span>
+    <span class="im">status</span> <span class="annotation">*</span>
+      <span class="im">account hash</span> <span class="annotation">*</span>
+        <span class="im">revision</span>
+entrusted actors <span class="annotation">?</span>
+  <span class="im">revision</span>
+    <span class="im">store URL</span> <span class="annotation">*</span>
+      <span class="im">account hash</span> <span class="annotation">*</span>
+<em>other public data</em></pre>
+	</div>
+
+	<p>The <i>public key</i> section links the actor's public key.</p>
+
+	<p>The optional <i>actor group</i> section lists all messaging accounts of all actor group members, including those of the actor itself. The accounts are grouped by <i>store URL</i> (UTF-8 text) and <a href="/actors/actor-groups/#status"><i>status</i></a> (UTF-8 text). The following status labels are allowed:</p>
+	<ul>
+		<li><i>active</i> for members that regularly check their messages</li>
+		<li><i>idle</i> for all other members</li>
+		<li><i>revoked</i> for revoked members</li>
+	</ul>
+	<p><i>Account hashes</i> are stored as byte sequences. The corresponding public key can be obtained from the indicated store.</p>
+	<p><i>Revision</i> is a timestamp (milliseconds since epoch) stored as unsigned big-endian integer, and used to merge the actor's status during <a href="/actors/actor-groups/#discover">actor group discovery</a>.</p>
+	<p>If the <i>actor group</i> section is missing, the actor is considered active and alone.</p>
+	<p>The optional <i>entrusted actors</i> section lists the actors <a href="/actors/entrusted-actors/">entrusted</a> by the group. The <i>store URL</i> points to the store holding the public key(s). That store does not necessarily belong to the entrusted actor. The whole list is most-recent merged on <i>revision</i>.</p>
+	<p>The card may contain other public data, such as a name, a profile picture, a link to a website, or a product catalogue. All this information is unconditionally public.</p>
+	<p>The total size of the card object should not exceed 10 KiB. Large pieces of data (such as a picture or catalogue) should be stored in separate objects, and linked from the card.</p>
+</div>
+
+<script>
+	syntaxLinksAll();
+</script>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

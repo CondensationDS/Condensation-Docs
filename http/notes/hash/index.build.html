@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<? title = 'Hash'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>In the context of Condensation, a hash is a 32-byte (256-bit) value denoting the <a href="https://en.wikipedia.org/wiki/SHA-256">SHA-256 hash</a> of some byte sequence.</p>
+	<p>In binary context, e.g. in the <a href="/serialization/object/">hash list</a> of an object, hashes are written as 32 bytes. In textual context, hashes are written as 64 consecutive hex digits, in the order of the bytes:</p>
+	<div class="hscroll box wide"><pre>bf691049538cf525a2a515b5b2aa5195aaaacb8a7b0d0c6176c7ab4556a7fbb7</pre></div>
+	<p>Hashes are used in different contexts, and for different purposes.</p>
+
+	<h2>Object hash</h2>
+	<p>Hashes are used as <a href="/serialization/object/">object</a> identifiers. Objects are referred to by their hash when <a href="/stores/store/#get-object">retrieving them from a store</a>, or to build <a href="/serialization/tree/">trees</a>.</p>
+	<p>An object's hash is also used to <a href="/notes/hash-verification/">verify its integrity</a>.</p>
+	<p>On a HTTP store, an object may be referred to as follows:</p>
+	<div class="hscroll box wide"><pre>http://condensation.io/objects/bf691049538cf525a2a515b5b2aa5195aaaacb8a7b0d0c6176c7ab4556a7fbb7</pre></div>
+
+	<h2>Tree hash</h2>
+	<p>The hash of an object uniquely identifies the <a href="/serialization/tree/">tree</a> it spans. Hence, a tree hash is simply the hash of its root object.</p>
+
+	<h2>Actor hash</h2>
+	<p>Hashes are also used to identify <a href="/actors/store/">actors</a>. By definition, the hash of an actor is the hash of its public key object. This protects against <a href="/notes/identity-spoofing/">identity spoofing</a>.</p>
+	<p>An actor hash also identifies its <a href="/actors/actor-groups/">actor group</a>.</p>
+
+	<h2>Account hash</h2>
+	<p>When an actor accesses a store, it uses its actor hash as account hash. This allows the store to authenticate the actor by retrieving its public key, and verifying its signature.</p>
+	<p>On a HTTP store, an account may be referred to as follows:</p>
+	<div class="hscroll box wide"><pre>http://condensation.io/accounts/bf691049538cf525a2a515b5b2aa5195aaaacb8a7b0d0c6176c7ab4556a7fbb7</pre></div>
+	<p>and its boxes are:</p>
+	<div class="hscroll box wide"><pre>http://condensation.io/accounts/bf691049538cf525a2a515b5b2aa5195aaaacb8a7b0d0c6176c7ab4556a7fbb7/messages
+http://condensation.io/accounts/bf691049538cf525a2a515b5b2aa5195aaaacb8a7b0d0c6176c7ab4556a7fbb7/private
+http://condensation.io/accounts/bf691049538cf525a2a515b5b2aa5195aaaacb8a7b0d0c6176c7ab4556a7fbb7/public</pre></div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

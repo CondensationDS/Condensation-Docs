@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<? include('CommonHtmlHeader.inc.html') ?>
+	<title>Condensation — a general-purpose distributed data system</title>
+</head>
+
+<body>
+
+<? include('CommonHeader.inc.html') ?>
+<div class="greenBar"></div>
+
+<div class="main">
+	<div class="hscroll" style="font-size: 32px; font-weight: 200; margin: 100px -20px">
+		A general-purpose<br><span style="color: #3f8de5; font-weight: 800">distributed data system</span> with<br><span style="color: #e5473f; font-weight: 800">conflict-free synchronization</span>, and<br> inherent <span style="color: #6bc55f; font-weight: 800">end-to-end security</span>.
+	</div>
+
+	<div class="menu black">
+		<div class="chapter" id="overview">Overview</div>
+		<div><a href="/overview/objects/">Objects, accounts, and stores</a></div>
+		<div><a href="/overview/actors/">Actors and actor groups</a></div>
+		<div><a href="/overview/data-trees/">Forward-moving data, and data trees</a></div>
+
+		<div class="chapter" id="serialization">Serialization</div>
+		<div><a href="/serialization/object/">Object</a></div>
+		<div><a href="/serialization/tree/">Object tree</a></div>
+		<div><a href="/serialization/record/">Record</a></div>
+
+		<div class="chapter" id="stores">Stores</div>
+		<div><a href="/stores/store/">Store</a></div>
+		<div><a href="/stores/http/">HTTP Store</a></div>
+		<div><a href="/stores/folder/">Folder Store</a></div>
+
+		<div class="chapter" id="actors">Actors and actor groups</div>
+		<div><a href="/actors/key-pair/">Key pair (private and public key)</a></div>
+		<div><a href="/actors/envelope/">Envelope</a></div>
+		<div><a href="/actors/public-card/">Public card</a></div>
+		<div><a href="/actors/message/">Message</a></div>
+		<div><a href="/actors/actor-groups/">Actor groups</a></div>
+		<div><a href="/actors/concept/">Concept</a></div>
+		<div><a href="/actors/entrusted-actors/">Entrusted actors</a></div>
+		<div><a href="/actors/key-management/">Key management</a></div>
+
+		<div class="chapter" id="forward-moving-data">Forward-moving data</div>
+
+		<div class="chapter" id="actor-with-data-tree">Actor with Data Tree</div>
+
+		<div class="chapter"><a href="/api/">API</a></div>
+
+		<div class="chapter"><a href="/command-line-tools/">Command line tools</a></div>
+
+		<div class="chapter" id="notes">Notes</div>
+		<div><a href="/notes/hash/">Hash</a></div>
+		<div><a href="/notes/hash-shortening/">Hash shortening</a></div>
+		<div><a href="/notes/acid/">ACID compliance</a></div>
+		<div><a href="/notes/cryptography/">Cryptographic algorithms</a></div>
+		<div><a href="/notes/hash-collisions/">Hash collisions</a></div>
+		<div><a href="/notes/identity-spoofing/">Identity spoofing</a></div>
+		<div><a href="/notes/storing-object-sizes/">Storing object sizes</a></div>
+		<div><a href="/notes/complete-vs-partial-stores/">Complete vs. partial stores</a></div>
+		<div><a href="/notes/checking-store-availability/">Checking store availability</a></div>
+		<div><a href="/notes/storage-system-crashes/">Storage system crashes</a></div>
+		<!-- re-read below here (2019-01) -->
+		<div><a href="/notes/encryption-vs-acl/">Encryption vs. access control lists (ACLs)</a></div>
+		<div><a href="/notes/english-like-commands/">English-like commands</a></div>
+		<div><a href="/notes/data-integrity/">Data integrity</a></div>
+		<div><a href="/notes/mutability/">Mutability</a></div>
+		<div><a href="/notes/streams/">Message streams</a></div>
+		<div><a href="/notes/storing-object-types/">Storing object types</a></div>
+		<div><a href="/notes/passive-deduplication/">Passive deduplication</a></div>
+		<div><a href="/notes/records/">Records as generic data format</a></div>
+		<div><a href="/notes/security/">Security</a></div>
+		<div><a href="/notes/store-resolving/">Store resolving</a></div>
+		<div><a href="/notes/store-poisoning/">Store poisoning</a></div>
+		<div><a href="/notes/synchronization/">Synchronization</a></div>
+		<div><a href="/notes/transactions/">Transactions</a></div>
+		<div><a href="/notes/trust/">Trust model</a></div>
+		<div><a href="/notes/backup/">Backup</a></div>
+		<div><a href="/notes/data-recovery/">Data recovery</a></div>
+		<div><a href="/notes/hash-verification/">Hash verification</a></div>
+		<div><a href="/notes/message-envelopes/">Message envelopes</a></div>
+		<div><a href="/notes/thin-fat-box-entries/">Thin vs. fat box entries</a></div>
+
+		<div class="chapter" id="comparison">Comparison with other data systems</div>
+		<div><a href="/comparison/cloud-services/">Condensation vs. cloud services</a></div>
+		<div><a href="/comparison/file-systems/">Condensation vs. file systems</a></div>
+		<div><a href="/comparison/database-systems/">Condensation vs. database systems</a></div>
+		<div><a href="/comparison/version-control-systems/">Condensation vs. version control systems</a></div>
+		<div><a href="/comparison/email-system/">Condensation vs. the e-mail system</a></div>
+
+		<div><a href="/motivation/">Motivation</a></div>
+		<div><a href="/executive-summary/">Executive Summary</a></div>
+		<div><a href="/features/">Features</a></div>
+
+		<div class="chapter">Implementations</div>
+		<div><a href="/downloads/">Downloads</a></div>
+
+		<!-- <div class="chapter">Tutorials</div>
+		<div><a href="/tutorials/http/">HTTP tutorial</a></div> -->
+	</div>
+</div>
+
+<? include('CommonFooter.inc.html') ?>
+
+</body>
+</html>

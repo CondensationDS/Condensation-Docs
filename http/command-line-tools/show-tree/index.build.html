@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::ShowTree. Do not edit the content here. -->
+<? title = 'Show trees'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn show tree <span class="im">OBJECT*</span>
+cn show tree <span class="im">HASH*</span> on <span class="im">STORE</span></pre></div>
+<p>Downloads a tree, and shows the tree hierarchy. If an object has been traversed before, it is listed as "reported above".</p>
+<div class="hscroll box"><pre>cn show tree <span class="im">HASH*</span></pre></div>
+<p>As above, but uses the selected store.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="show-tree.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="show-tree.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::FolderStore. Do not edit the content here. -->
+<? title = 'Folder store management'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn create store <span class="im">FOLDERNAME</span></pre></div>
+<p>Creates a new store in FOLDERNAME, and adds it to the list of known stores. If the folder does not exist, it is created. If it does exist, it must be empty.</p>
+<p>By default, the filesystem permissions of the store are set such that only the current user can post objects and modify boxes. Other users on the system can post to the message box, list boxes, and read objects.</p>
+<div class="hscroll box"><pre>… for user <span class="im">USER</span></pre></div>
+<p>Makes the store accessible to the user USER.</p>
+<div class="hscroll box"><pre>… for group <span class="im">GROUP</span></pre></div>
+<p>Makes the store accessible to the group GROUP.</p>
+<div class="hscroll box"><pre>… for everybody</pre></div>
+<p>Makes the store accessible to everybody.</p>
+<p>Note that the permissions only affect direct filesystem access. If your store is exposed by a server (e.g. a web server), it may be accessible to others.</p>
+<div class="hscroll box"><pre>… and remember it as <span class="im">TEXT</span></pre></div>
+<p>Remembers the store under the label TEXT. See "cn help remember" for details.</p>
+<div class="hscroll box"><pre>cn check permissions [of <span class="im">STORE</span>]</pre></div>
+<p>Checks the permissions (owner, mode) of all accounts, boxes, box entries, and objects of the store, and reports any error. The permission scheme (user, group, or everybody) is derived from the "accounts" and "objects" folders.</p>
+<p>If the store is omitted, the selected store is used.</p>
+<div class="hscroll box"><pre>cn fix permissions [of <span class="im">STORE</span>]</pre></div>
+<p>Same as above, but tries to fix the permissions (chown, chmod) instead of just reporting them.</p>
+<div class="hscroll box"><pre>cn show permission scheme [of <span class="im">STORE</span>]</pre></div>
+<p>Reports the permission scheme of the store.</p>
+<div class="hscroll box"><pre>cn set permission scheme [of <span class="im">STORE</span>] to (user <span class="im">USER</span>|group <span class="im">GROUP</span>|everybody)</pre></div>
+<p>Sets the permission scheme of the stores, and changes all permissions accordingly.</p>
+<div class="hscroll box"><pre>cn add account <span class="im">ACCOUNT</span> [to <span class="im">STORE</span>]
+cn add account for <span class="im">FILE</span> [to <span class="im">STORE</span>]
+cn add account for <span class="im">KEYPAIR</span> [to <span class="im">STORE</span>]
+cn add account for <span class="im">OBJECT</span> [to <span class="im">STORE</span>]
+cn add account for <span class="im">ACTOR</span> on <span class="im">STORE</span> [to <span class="im">STORE</span>]</pre></div>
+<p>Uploads the public key (FILE, KEYPAIR, OBJECT, ACCOUNT, or ACTOR on STORE) onto the store, and adds the corresponding account. This grants the user the right to access this account.</p>
+<div class="hscroll box"><pre>cn remove account <span class="im">HASH</span> [from <span class="im">STORE</span>]</pre></div>
+<p>Removes the indicated account from the store. This immediately destroys the user's data.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="folder-store.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="folder-store.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

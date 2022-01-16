@@ -1,0 +1,333 @@
+#! /usr/bin/perl
+use strict;
+use warnings;
+use ViereckFilter;
+
+my $okColors = {
+	'#faf9e6' => 'background',
+	'#333333' => 'header',
+	'#ebe7ad' => 'footer',
+	'#6bc55f' => 'green0',
+	'#48a43c' => 'green1',
+	'#39812f' => 'green2',
+	'#e5b83f' => 'yellow0',
+	'#c5971b' => 'yellow1',
+	'#9b7715' => 'yellow2',
+	'#e5473f' => 'red0',
+	'#c5231b' => 'red1',
+	'#9b1b15' => 'red2',
+	'#9549db' => 'violet0',
+	'#7325bb' => 'violet1',
+	'#5a1d93' => 'violet2',
+	'#3f8de5' => 'blue0',
+	'#1b6bc5' => 'blue1',
+	'#15549b' => 'blue2',
+	'#000000' => 'black',
+	'#ffffff' => 'white',
+	'#666666' => 'gray',
+	'#999999' => 'gray',
+	'#bbbbbb' => 'gray',
+	'#ff0000' => 'red',
+	'none' => 'none',
+	};
+my $okFontSizes = {'18px' => 1, '13px' => 1, '15px' => 1};
+my $okFontFamilies = {'\'Source Sans Pro\'' => 1, '\'Source Code Pro\'' => 1, 'Source Sans Pro' => 1, 'Source Code Pro' => 1};
+my $okLineHeights = {'20px' => 1, '1' => 1};
+
+my %arrowTemplates = (
+	'A' => '<marker id="arrowA000000" refX="0" refY="0" orient="auto" style="overflow:visible">
+  <path inkscape:connector-curvature="0" style="fill:#000000" d="M -6,2.5 2,0 -6,-2.5 -5,0 Z" />
+</marker>
+',
+	'B' => '<marker id="arrowB000000" refX="0" refY="0" orient="auto" style="overflow:visible">
+  <path inkscape:connector-curvature="0" style="fill:#000000" d="M -4,2 2,0 -4,-2 -3,0 Z" />
+</marker>
+');
+
+my $roundingLimit = 0;
+for my $arg (@ARGV) {
+	if ($arg eq '-r') {
+		$roundingLimit += 0.1;
+	} else {
+		&process($arg);
+	}
+}
+
+sub usage {
+	print 'Usage: ./clean-svg [-r [-r]] SVGFILE', "\n";
+	print 'Removes unnecessary styles, unused markers and gradients, and replaces arrows.', "\n";
+	print '', "\n";
+}
+
+sub process($file) {
+	print $file, "\n";
+
+	open(F, '<', $file);
+	local $/;
+	my $content = <F>;
+	close F;
+
+	$content =~ s/(<g\s.*?>)/&checkGroup($1)/seg;
+
+	$content =~ s/(<text\s.*?>)(.*?)(<\/text>)/&cleanText($1, $2, $3)/seg;
+	$content =~ s/\sstyle="([^"]*)"/' style="'.&cleanStyle($1).'"'/eg;
+	$content =~ s/(<defs\s.*?>)(.*?)(<\/defs>)/&cleanDefs($1, $2, $3, $content)/seg;
+	$content =~ s/<defs\s([^>]*)\/>/&cleanDefs('<defs '.$1.'>', '', '<\/defs>', $content)/seg;
+
+	$content =~ s/\s(x|y|cx|cy|r)="([^"]*)"/' '.$1.'="'.&cleanCoordinate($2).'"'/eg;
+
+	$content =~ s/;+/;/g;
+	$content =~ s/style="[;\s]*"//g;
+	$content =~ s/\n\s*\n/\n/g;
+
+	if ($file =~ /^(.*)\.orig$/) {
+		$file = $1;
+	} else {
+		rename $file, $file.'.orig';
+	}
+
+	open(F, '>', $file);
+	print F $content;
+	close F;
+}
+
+sub checkGroup($tag) {
+	return $tag if $tag !~ /inkscape:groupmode="layer"/;
+	return $tag if $tag !~ /transform="/;
+
+	my $layerName = $tag =~ /inkscape:label="(.*?)"/ ? $1 : 'Unnamed layer';
+	print '  Layer ', $layerName, ' has a transform', "\n";
+	return $tag;
+}
+
+sub cleanText($startTag, $content, $endTag) {
+	$startTag =~ /style="([^"]*)"/ || die '<text> with no style.';
+	my $mainProperties = &parseStyle($1);
+	$mainProperties->{'font-weight'} = 'normal' if ! exists $mainProperties->{'font-weight'};
+	$mainProperties->{'line-height'} = '1' if ! exists $mainProperties->{'line-height'} || $mainProperties->{'line-height'} eq '0%' || $mainProperties->{'line-height'} eq '0';
+
+	# Check tspan styles which are all the same
+	my %common = ('font-weight' => undef);
+	my @tspans = $content =~ /(<tspan\s.*?>)/sg;
+	for my $tspan (@tspans) {
+		my $properties = $tspan =~ /style="([^"]*)"/g ? &parseStyle($1) : {};
+		for my $key (keys %common) {
+			my $value = $properties->{$key} || 'DEFAULT';
+			if (! defined $common{$key}) {
+				$common{$key} = $value;
+			} elsif ($common{$key} ne $value) {
+				$common{$key} = 'DIFFERENT';
+			}
+		}
+	}
+
+	# Move them to the text style
+	for my $key (keys %common) {
+		my $value = $common{$key};
+		next if $value eq 'DEFAULT';
+		next if $value eq 'DIFFERENT';
+		$mainProperties->{$key} = $value;
+		$content =~ s/([";])$key:[^";]*/$1/g;
+	}
+
+	# Remove unnecessary styles
+	&removeDefault($mainProperties, 'font-weight', 'normal');
+	&removeDefault($mainProperties, 'font-style', 'normal');
+	&removeDefault($mainProperties, 'font-variant', 'normal');
+	&removeDefault($mainProperties, 'font-stretch', 'normal');
+	&removeDefault($mainProperties, 'letter-spacing', '0px');
+	&removeDefault($mainProperties, 'word-spacing', '0px');
+	&removeDefault($mainProperties, 'fill-opacity', '1');
+	&removeDefault($mainProperties, 'stroke', 'none');
+	delete $mainProperties->{'line-height'} if scalar(@tspans) <= 1;
+
+	# Set the new main style
+	my $mainStyle = &joinStyle($mainProperties);
+	$startTag =~ s/style="[^"]*"/style="$mainStyle"/g;
+
+	print 'Text with xml:space="preserve"', "\n" if $startTag =~ /xml:space="preserve"/;
+	return $startTag.$content.$endTag;
+}
+
+sub removeDefault($properties, $key, $value) {
+	return if ! exists $properties->{$key};
+	return if $properties->{$key} ne $value;
+	delete $properties->{$key};
+}
+
+sub parseStyle($style) {
+	my $properties = {};
+	for my $item (split /;/, $style) {
+		next if $item =~ /^\s*$/;
+		$item =~ /^(.*?):(.*)$/ || die 'Unparsable style "'.$item.'" in "'.$style.'"';
+		$properties->{$1} = $2;
+	}
+	return $properties;
+}
+
+sub joinStyle($properties) {
+	return join(';', map { $_.':'.$properties->{$_} } sort keys %$properties)
+}
+
+sub cleanDefs($startTag, $content, $endTag, $use) {
+	# Clean unused markers
+	$content =~ s/(<marker\s.*?>)(.*?)(<\/marker>)/&checkDef($1, $2, $3, $use)/seg;
+	$content =~ s/(<linearGradient\s.*?>)(.*?)(<\/linearGradient>)/&checkDef($1, $2, $3, $use)/seg;
+
+	# Generate arrow markers
+	my %styles;
+	for my $style ($use =~ /url\(#arrow([A-B][0-9a-f]{6})\)/g) {
+		$styles{$style} = 1;
+	}
+
+	for my $style (sort keys %styles) {
+		my $color = substr($style, 1);
+		my $arrow = $arrowTemplates{substr($style, 0, 1)};
+		$arrow =~ s/000000/$color/g;
+		$content .= $arrow;
+	}
+
+	return $startTag.$content.$endTag;
+}
+
+sub checkDef($startTag, $content, $endTag, $use) {
+	$startTag =~ /id="([^"]*)"/ || die 'def without id';
+	my $id = $1;
+	return '' if $id =~ /^arrow/;
+
+	if ($use !~ /#$id/) {
+		print '  Def ', $id, ' is not in use', "\n";
+		return '';
+	}
+
+    return $startTag.$content.$endTag
+}
+
+sub cleanStyle($style) {
+	my $properties = &parseStyle($style);
+
+	my $stroke = $properties->{'stroke'} // 'none';
+	if ($stroke eq 'none') {
+		delete $properties->{'stroke'};
+		delete $properties->{'stroke-dasharray'};
+		delete $properties->{'stroke-dashoffset'};
+		delete $properties->{'stroke-linecap'};
+		delete $properties->{'stroke-linejoin'};
+		delete $properties->{'stroke-miterlimit'};
+		delete $properties->{'stroke-opacity'};
+		delete $properties->{'stroke-width'};
+	} else {
+		&removeDefault($properties, 'stroke-linejoin', 'miter');
+		&removeDefault($properties, 'stroke-opacity', '1');
+		&removeDefault($properties, 'stroke-dasharray', 'none');
+		&removeDefault($properties, 'stroke-dashoffset', '0');
+	}
+
+	# Remove features we never use
+	&removeDefault($properties, 'clip-rule', 'nonzero');
+	&removeDefault($properties, 'color-interpolation', 'sRGB');
+	&removeDefault($properties, 'color-interpolation-filters', 'linearRGB');
+	&removeDefault($properties, 'color-rendering', 'auto');
+	&removeDefault($properties, 'image-rendering', 'auto');
+	&removeDefault($properties, 'isolation', 'auto');
+	&removeDefault($properties, 'mix-blend-mode', 'normal');
+	&removeDefault($properties, 'shape-rendering', 'auto');
+	&removeDefault($properties, 'text-rendering', 'auto');
+	&removeDefault($properties, 'solid-color', '#000000');
+	&removeDefault($properties, 'solid-opacity', '1');
+	delete $properties->{'color'};
+
+	# Remove defaults
+	&removeDefault($properties, 'display', 'inline');
+	&removeDefault($properties, 'opacity', '1');
+	&removeDefault($properties, 'fill-opacity', '1');
+	&removeDefault($properties, 'fill-rule', 'nonzero');
+	&removeDefault($properties, 'fill-rule', 'evenodd');
+	&removeDefault($properties, 'enable-background', 'accumulate');
+	&removeDefault($properties, 'marker', 'none');
+	&removeDefault($properties, 'marker-end', 'none');
+	&removeDefault($properties, 'marker-start', 'none');
+	&removeDefault($properties, 'overflow', 'visible');
+	&removeDefault($properties, 'vector-effect', 'none');
+	&removeDefault($properties, 'visibility', 'visible');
+
+	# Check common property values
+	&checkFontFamily($properties->{'font-family'});
+	&checkFontSize($properties->{'font-size'});
+	&checkLineHeight($properties->{'line-height'});
+	&checkColor($properties->{'fill'});
+	&checkColor($properties->{'stroke'});
+
+	# Use arrow markers
+	&fixMarker($properties, 'marker-end');
+	&fixMarker($properties, 'marker-start');
+
+	# Use common dash array
+	if ($properties->{'stroke-dasharray'}) {
+		my $strokeWidth = &parseNumeric($properties->{'stroke-width'});
+		my $dashArray = &parseNumeric($properties->{'stroke-dasharray'});
+		if ($strokeWidth > 2.2) {
+			&replaceDashArray($properties, '3', '5, 5');
+		} elsif ($strokeWidth > 1.2) {
+			&replaceDashArray($properties, '2', '3, 3');
+		} else {
+			&replaceDashArray($properties, '1', $dashArray > 1.2 ? '3, 3' : '1, 1');
+		}
+	}
+
+	return &joinStyle($properties);
+}
+
+sub checkFontFamily($value // return) {
+	print '  Invalid font-family ', $value, "\n" if ! exists $okFontFamilies->{$value};
+}
+
+sub checkFontSize($value // return) {
+	print '  Invalid font-size ', $value, "\n" if ! exists $okFontSizes->{$value};
+}
+
+sub checkLineHeight($value // return) {
+	print '  Invalid line-height ', $value, "\n" if ! exists $okLineHeights->{$value};
+}
+
+sub checkColor($value // return) {
+	print '  Invalid color ', $value, "\n" if ! exists $okColors->{$value};
+}
+
+sub cleanCoordinate($value) {
+	return $value if $value == int($value);
+	my $rounded = int($value + 0.5);
+	my $diff = abs($value - $rounded);
+	if ($diff <= $roundingLimit) {
+		print '  Fixing non-integer coordinate ', $value, ' -> ', $rounded, "\n";
+		return $rounded;
+	} else {
+		print '  Non-integer coordinate ', $value, "\n";
+		return $value;
+	}
+}
+
+sub fixMarker($properties, $key) {
+	return if ! exists $properties->{$key};
+	return if $properties->{$key} !~ /^url\(#(BlackArrow|RedArrow|arrow)/i;
+	return if ! exists $properties->{'stroke'};
+	my $type = &parseNumeric($properties->{'stroke-width'}) > 1.2 ? 'B' : 'A';
+	$properties->{'stroke'} =~ /^#([a-f0-9]{6})$/;
+	$properties->{$key} = 'url(#arrow'.$type.$1.')';
+}
+
+sub replaceDashArray($properties, $strokeWidth, $dashArray) {
+	return if $properties->{'stroke-width'} eq $strokeWidth && $properties->{'stroke-dasharray'} eq $dashArray;
+	print '  ', 'Replacing dasharray ', $properties->{'stroke-dasharray'}, ' [', $properties->{'stroke-width'}, '] => ', $dashArray, ' [', $strokeWidth, ']', "\n";
+	$properties->{'stroke-width'} = $strokeWidth;
+	$properties->{'stroke-dasharray'} = $dashArray;
+	delete $properties->{'stroke-linecap'};
+	delete $properties->{'stroke-linejoin'};
+	delete $properties->{'stroke-dashoffset'};
+	delete $properties->{'stroke-miterlimit'};
+}
+
+sub parseNumeric($value // '0') {
+	$value = $1 if $value =~ /^\s*([\d*])/;
+	return $value * 1;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::Get. Do not edit the content here. -->
+<? title = 'Get'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn get <span class="im">OBJECT</span>
+cn get <span class="im">HASH</span> on <span class="im">STORE</span></pre></div>
+<p>Downloads an object and writes it to STDOUT. If the object is not found, the program quits with exit code 1.</p>
+<div class="hscroll box"><pre>cn get <span class="im">HASH</span></pre></div>
+<p>As above, but uses the selected store.</p>
+<div class="hscroll box"><pre>… decrypted with <span class="im">AESKEY</span></pre></div>
+<p>Decrypts the object after retrieval.</p>
+<div class="hscroll box"><pre>cn save … as <span class="im">FILENAME</span></pre></div>
+<p>Saves the object to FILENAME instead of writing it to STDOUT.</p>
+<div class="hscroll box"><pre>cn save data of … as <span class="im">FILENAME</span></pre></div>
+<p>Saves the object's data to FILENAME.</p>
+<h3>Related commands</h3>
+<div class="hscroll box"><pre>cn open envelope OBJECT
+cn show record OBJECT [decrypted with AESKEY]
+cn show hashes of OBJECT</pre></div>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="store-get.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="store-get.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

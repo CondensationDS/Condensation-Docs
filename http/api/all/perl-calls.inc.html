@@ -1,0 +1,788 @@
+
+CDS-&gt;DAY   # = 24 * 60 * 60 * 1000
+CDS-&gt;HOUR   # = 60 * 60 * 1000
+CDS-&gt;MINUTE   # = 60 * 1000
+CDS-&gt;MONTH   # = 30 * 24 * 60 * 60 * 1000
+CDS-&gt;SECOND   # = 1000
+CDS-&gt;WEEK   # = 7 * 24 * 60 * 60 * 1000
+CDS-&gt;YEAR   # = 365 * 24 * 60 * 60 * 1000
+CDS-&gt;emptyBytesHash
+CDS-&gt;now   # = time * 1000
+CDS-&gt;version   # = 'Condensation, Perl, '.$CDS::VERSION
+CDS-&gt;zeroCTR   # = "\0" x 16
+CDS-&gt;booleanCompare($a, $b)
+CDS-&gt;booleanFromBytes($bytes)
+CDS-&gt;bytesFromBoolean($value)
+CDS-&gt;bytesFromInteger($value)
+CDS-&gt;bytesFromUnsigned($value)
+CDS-&gt;groupedBoxOperations($operations)
+CDS-&gt;integerFromBytes($bytes)
+CDS-&gt;intermediateFolders($path)
+CDS-&gt;listFolder($folder)
+CDS-&gt;log($text)
+CDS-&gt;max($numbers)
+CDS-&gt;min($numbers)
+CDS-&gt;randomBytes($length)
+CDS-&gt;randomHex($length)
+CDS-&gt;randomKey
+CDS-&gt;readBytesFromFile($filename)
+CDS-&gt;readTextFromFile($filename)
+CDS-&gt;unsignedFromBytes($bytes)
+CDS-&gt;verifyEnvelopeSignature($envelope, $publicKey, $hash)
+CDS-&gt;writeBytesToFile($filename, $bytes)
+CDS-&gt;writeTextToFile($filename, $text)
+
+CDS::ActorGroup-&gt;new($members, $entrustedActorsRevision, $entrustedActors)
+$o-&gt;entrustedActors
+$o-&gt;entrustedActorsRevision
+$o-&gt;members
+$o-&gt;contains($actorHash)
+$o-&gt;entrusts($actorHash)
+$o-&gt;isActive
+$o-&gt;leader
+$o-&gt;publicKeys
+$o-&gt;toBuilder
+
+CDS::ActorGroup::EntrustedActor-&gt;new($actorOnStore, $storeUrl)
+$o-&gt;actorOnStore
+$o-&gt;storeUrl
+
+CDS::ActorGroup::Member-&gt;new($actorOnStore, $storeUrl, $revision, $isActive)
+$o-&gt;actorOnStore
+$o-&gt;isActive
+$o-&gt;revision
+$o-&gt;storeUrl
+
+CDS::ActorGroupBuilder-&gt;new
+$o-&gt;entrustedActors
+$o-&gt;entrustedActorsRevision
+$o-&gt;knownPublicKeys
+$o-&gt;members
+$o-&gt;addEntrustedActor($hash, $storeUrl)
+$o-&gt;addKnownPublicKey($publicKey)
+$o-&gt;addMember($hash, $storeUrl, $revision, $status)
+$o-&gt;addToRecord($record, $linkedPublicKeys)
+$o-&gt;discover($keyPair, $delegate)
+$o-&gt;entrustedActorListToRecord($linkedPublicKeys)
+$o-&gt;load($store, $keyPair, $delegate)
+$o-&gt;mergeEntrustedActors($revision)
+$o-&gt;parse($record, $linkedPublicKeys)
+$o-&gt;parseEntrustedActorList($record, $linkedPublicKeys)
+$o-&gt;parseEntrustedActors($record, $linkedPublicKeys)
+$o-&gt;parseMembers($record, $linkedPublicKeys)
+$o-&gt;removeEntrustedActor($hash)
+$o-&gt;removeMember($hash, $storeUrl)
+$o-&gt;toRecord($linkedPublicKeys)
+
+CDS::ActorGroupBuilder::EntrustedActor-&gt;new($hash, $storeUrl)
+$o-&gt;hash
+$o-&gt;storeUrl
+
+CDS::ActorGroupBuilder::Member-&gt;new($hash, $storeUrl, $revision, $status)
+$o-&gt;hash
+$o-&gt;revision
+$o-&gt;status
+$o-&gt;storeUrl
+
+CDS::ActorOnStore-&gt;equals($a, $b)
+CDS::ActorOnStore-&gt;new($publicKey, $store)
+$o-&gt;publicKey
+$o-&gt;store
+$o-&gt;equals($that)
+
+CDS::ActorWithDataTree-&gt;new($keyPair, $storageStore, $messagingStore, $messagingStoreUrl, $publicKeyCache)
+$o-&gt;actorGroupSelector
+$o-&gt;actorSelector
+$o-&gt;entrustedActorsSelector
+$o-&gt;groupDataSharer
+$o-&gt;groupDataTree
+$o-&gt;groupRoot
+$o-&gt;keyPair
+$o-&gt;localDataTree
+$o-&gt;localRoot
+$o-&gt;messagingPrivateRoot
+$o-&gt;messagingStore
+$o-&gt;messagingStoreUrl
+$o-&gt;publicDataSelector
+$o-&gt;sentList
+$o-&gt;sentListReady
+$o-&gt;storagePrivateRoot
+$o-&gt;storageStore
+$o-&gt;announce($store)
+$o-&gt;announceOnAllStores
+$o-&gt;doNotEntrust($hash)
+$o-&gt;entrust($storeUrl, $publicKey)
+$o-&gt;findMember($memberHash)
+$o-&gt;forgetOldIdleActors($limit)
+$o-&gt;getEntrustedKey($hash)
+$o-&gt;getEntrustedKeys
+$o-&gt;getGroupDataMembers
+$o-&gt;getName
+$o-&gt;isGroupMember($actorHash)
+$o-&gt;isMe($actorHash)
+$o-&gt;openMessageChannel($label, $validity)
+$o-&gt;procurePrivateData($interval)
+$o-&gt;procureSentList($interval)
+$o-&gt;savePrivateDataAndShareGroupData
+$o-&gt;sendMessages
+$o-&gt;setMyActiveFlag($flag)
+$o-&gt;setMyGroupDataFlag($flag)
+$o-&gt;setName($name)
+$o-&gt;updateMyRegistration
+
+$o-&gt;id
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($modifications, $keyPair)
+$o-&gt;new($store, $objects)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+
+CDS::DataTree-&gt;new($keyPair, $store)
+$o-&gt;dataChanged
+$o-&gt;hasPartsToMerge
+$o-&gt;keyPair
+$o-&gt;parts
+$o-&gt;prune
+$o-&gt;root
+$o-&gt;rootItem
+$o-&gt;unsaved
+$o-&gt;get($selector)
+$o-&gt;getOrCreate($selector)
+$o-&gt;merge($hashesAndKeys)
+$o-&gt;mergeNode($part, $selector, $record, $oldFormat)
+$o-&gt;read
+$o-&gt;save
+
+CDS::DataTree::Item-&gt;new($selector)
+$o-&gt;createSaveRecord
+$o-&gt;detachSaveRecord
+$o-&gt;forget
+$o-&gt;mergeValue($part, $revision, $record)
+$o-&gt;pruneTree
+$o-&gt;setPart($part)
+
+CDS::DataTree::Part-&gt;new
+
+CDS::DetachedDataTree-&gt;new($keyPair)
+$o-&gt;savingDone($revision, $newPart, $obsoleteParts)
+
+CDS::DiscoverActorGroup-&gt;discover($builder, $keyPair, $delegate)
+$o-&gt;covers($hash)
+$o-&gt;extend
+
+CDS::DiscoverActorGroup::Card-&gt;new($storeUrl, $actorOnStore, $envelopeHash, $envelope, $cardHash, $card)
+$o-&gt;actorOnStore
+$o-&gt;card
+$o-&gt;cardHash
+$o-&gt;envelope
+$o-&gt;envelopeHash
+$o-&gt;storeUrl
+
+CDS::DiscoverActorGroup::Link-&gt;new($node, $revision, $status)
+$o-&gt;node
+$o-&gt;revision
+$o-&gt;status
+
+CDS::DiscoverActorGroup::Node-&gt;new($discoverer, $actorHash, $storeUrl)
+$o-&gt;actorHash
+$o-&gt;attachedToUs
+$o-&gt;cards
+$o-&gt;isActive
+$o-&gt;isActiveOrIdle
+$o-&gt;links
+$o-&gt;revision
+$o-&gt;status
+$o-&gt;storeUrl
+$o-&gt;attach
+$o-&gt;discover
+$o-&gt;hasLinkToUs
+$o-&gt;merge($revision, $status)
+$o-&gt;readCards
+
+CDS::ErrorHandlingStore-&gt;new($store, $url, $errorHandler)
+$o-&gt;errorHandler
+$o-&gt;id
+$o-&gt;store
+$o-&gt;url
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($modifications, $keyPair)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+
+CDS::FolderStore-&gt;forUrl($url)
+CDS::FolderStore-&gt;new($folder)
+$o-&gt;folder
+$o-&gt;id
+$o-&gt;permissions
+$o-&gt;accounts
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;addAccount($accountHash)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;checkPermissions($logger)
+$o-&gt;createIfNecessary
+$o-&gt;exists
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($modifications, $keyPair)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;removeAccount($accountHash)
+$o-&gt;setPermissions($permissions)
+
+CDS::FolderStore::PosixPermissions-&gt;forFolder($folder)
+$o-&gt;gid
+$o-&gt;uid
+$o-&gt;checkPermissions($item, $expectedMode, $logger)
+$o-&gt;group
+$o-&gt;mkdir($folder, $mode)
+$o-&gt;user
+$o-&gt;writeTemporaryFile($folder, $mode)
+
+CDS::FolderStore::PosixPermissions::Group-&gt;accountFolderMode   # = 0771
+CDS::FolderStore::PosixPermissions::Group-&gt;baseFolderMode   # = 0771
+CDS::FolderStore::PosixPermissions::Group-&gt;objectFileMode   # = 0664
+CDS::FolderStore::PosixPermissions::Group-&gt;objectFolderMode   # = 0771
+CDS::FolderStore::PosixPermissions::Group-&gt;new($gid)
+$o-&gt;target
+$o-&gt;boxFileMode($boxLabel)
+$o-&gt;boxFolderMode($boxLabel)
+
+CDS::FolderStore::PosixPermissions::User-&gt;accountFolderMode   # = 0711
+CDS::FolderStore::PosixPermissions::User-&gt;baseFolderMode   # = 0711
+CDS::FolderStore::PosixPermissions::User-&gt;objectFileMode   # = 0644
+CDS::FolderStore::PosixPermissions::User-&gt;objectFolderMode   # = 0711
+CDS::FolderStore::PosixPermissions::User-&gt;new($uid)
+$o-&gt;target
+$o-&gt;boxFileMode($boxLabel)
+$o-&gt;boxFolderMode($boxLabel)
+
+CDS::FolderStore::PosixPermissions::World-&gt;accountFolderMode   # = 0777
+CDS::FolderStore::PosixPermissions::World-&gt;baseFolderMode   # = 0777
+CDS::FolderStore::PosixPermissions::World-&gt;boxFileMode   # = 0666
+CDS::FolderStore::PosixPermissions::World-&gt;boxFolderMode   # = 0777
+CDS::FolderStore::PosixPermissions::World-&gt;objectFileMode   # = 0666
+CDS::FolderStore::PosixPermissions::World-&gt;objectFolderMode   # = 0777
+CDS::FolderStore::PosixPermissions::World-&gt;target   # = 'everybody'
+CDS::FolderStore::PosixPermissions::World-&gt;new
+
+CDS::FolderStore::Watcher-&gt;new($folder)
+CDS::FolderStore::Watcher-&gt;new($folder)
+$o-&gt;done
+$o-&gt;done
+$o-&gt;wait($remaining, $until)
+$o-&gt;wait($remaining, $until)
+
+CDS::GroupDataSharer-&gt;new($actor)
+$o-&gt;onMessageChannelSubmissionCancelled
+$o-&gt;addDataHandler($label, $dataHandler)
+$o-&gt;addDataTo($record)
+$o-&gt;createMessage
+$o-&gt;mergeData($record)
+$o-&gt;mergeExternalData($store, $record, $source)
+$o-&gt;onMessageChannelSubmissionDone($succeeded, $failed)
+$o-&gt;onMessageChannelSubmissionRecipientDone($recipientActorOnStore)
+$o-&gt;onMessageChannelSubmissionRecipientFailed($recipientActorOnStore)
+$o-&gt;processGroupDataMessage($message, $section)
+$o-&gt;removeDataHandler($label, $dataHandler)
+$o-&gt;share
+
+CDS::HTTPServer-&gt;new
+$o-&gt;corsAllowEverybody
+$o-&gt;logger
+$o-&gt;addHandler($handler)
+$o-&gt;handler
+$o-&gt;headers($headers)
+$o-&gt;process
+$o-&gt;setCorsAllowEverybody($value)
+$o-&gt;setLogger($logger)
+$o-&gt;setup($ %parameters)
+
+CDS::HTTPServer::IdentificationHandler-&gt;new($root)
+$o-&gt;process($request)
+
+CDS::HTTPServer::Logger-&gt;new($fileHandle)
+$o-&gt;onRequestDone($request, $responseCode)
+$o-&gt;onRequestError($request, $text)
+$o-&gt;onRequestStarts($request)
+$o-&gt;onServerStarts($port)
+
+CDS::HTTPServer::MessageGatewayHandler-&gt;new($url, $identity, $recipient)
+$o-&gt;process($request)
+
+CDS::HTTPServer::Request-&gt;reply400   # = shift->reply(400, 'Bad Request', &textContentType, @_)
+CDS::HTTPServer::Request-&gt;reply403   # = shift->reply(403, 'Forbidden', &textContentType, @_)
+CDS::HTTPServer::Request-&gt;reply404   # = shift->reply(404, 'Not Found', &textContentType, @_)
+CDS::HTTPServer::Request-&gt;reply405   # = shift->reply(405, 'Method Not Allowed', &textContentType, @_)
+CDS::HTTPServer::Request-&gt;reply500   # = shift->reply(500, 'Internal Server Error', &textContentType, @_)
+CDS::HTTPServer::Request-&gt;reply503   # = shift->reply(503, 'Service Not Available', &textContentType, @_)
+CDS::HTTPServer::Request-&gt;textContentType   # = {'Content-Type' => 'text/plain; charset=utf-8'
+CDS::HTTPServer::Request-&gt;new($server, $ %parameters)
+$o-&gt;headers
+$o-&gt;method
+$o-&gt;path
+$o-&gt;peerAddress
+$o-&gt;peerPort
+$o-&gt;queryString
+$o-&gt;remainingData
+$o-&gt;server
+$o-&gt;checkSignature($store, $contentBytesToSign)
+$o-&gt;copyDataAndCalculateHash($fh)
+$o-&gt;dropData
+$o-&gt;parseQueryString
+$o-&gt;pathAbove($root)
+$o-&gt;readData
+$o-&gt;reply($responseCode, $responseLabel, $headers, $content)
+$o-&gt;reply200($content)
+$o-&gt;reply200Bytes($content)
+$o-&gt;reply200HTML($content)
+$o-&gt;reply303($location)
+$o-&gt;replyFatalError($error)
+$o-&gt;replyOptions($methods)
+$o-&gt;setHeaders($newHeaders)
+
+CDS::HTTPServer::StaticContentHandler-&gt;new($path, $content, $contentType)
+$o-&gt;process($request)
+
+CDS::HTTPServer::StaticFilesHandler-&gt;new($root, $folder, $defaultFile)
+$o-&gt;defaultFile
+$o-&gt;folder
+$o-&gt;mimeTypesByExtension
+$o-&gt;deliverFile($request, $file, $contentType)
+$o-&gt;deliverFileForPath($request, $path)
+$o-&gt;get($request)
+$o-&gt;guessContentType($file)
+$o-&gt;process($request)
+$o-&gt;readFile($file)
+$o-&gt;setContentType($extension, $contentType)
+
+CDS::HTTPServer::StoreHandler-&gt;new($root, $store, $checkPutHash, $checkSignatures)
+$o-&gt;accounts($request)
+$o-&gt;box($request, $accountHash, $boxLabel)
+$o-&gt;boxEntry($request, $accountHash, $boxLabel, $hash)
+$o-&gt;objects($request, $hash)
+$o-&gt;process($request)
+$o-&gt;verifyAddition($actorHash, $accountHash, $boxLabel, $hash)
+$o-&gt;verifyModifications($actorHash, $modifications)
+$o-&gt;verifyRemoval($actorHash, $accountHash, $boxLabel, $hash)
+
+CDS::HTTPStore-&gt;forUrl($url)
+CDS::HTTPStore-&gt;new($url)
+$o-&gt;id
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($modifications, $keyPair)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+
+CDS::Hash-&gt;calculateFor($bytes)
+CDS::Hash-&gt;equals($a, $b)
+CDS::Hash-&gt;fromBytes($hashBytes)
+CDS::Hash-&gt;fromHex($hashHex)
+$o-&gt;bytes
+$o-&gt;cmp($that)
+$o-&gt;equals($that)
+$o-&gt;hex
+$o-&gt;shortHex
+
+CDS::HashAndKey-&gt;new($hash, $key)
+$o-&gt;hash
+$o-&gt;key
+
+CDS::HashVerificationStore-&gt;new($store)
+$o-&gt;id
+$o-&gt;store
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($modifications, $keyPair)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+
+CDS::ISODate-&gt;dayString($time)
+CDS::ISODate-&gt;localSecondString($time)
+CDS::ISODate-&gt;millisecondString($time)
+CDS::ISODate-&gt;parse($dateString)
+CDS::ISODate-&gt;secondString($time)
+
+CDS::InMemoryStore-&gt;create
+$o-&gt;id
+$o-&gt;accountForWriting($hash)
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;collectGarbage($graceTime)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($modifications, $keyPair)
+$o-&gt;new($id)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+
+CDS::KeyPair-&gt;equals($a, $b)
+CDS::KeyPair-&gt;fromFile($file)
+CDS::KeyPair-&gt;fromHex($hex)
+CDS::KeyPair-&gt;fromRecord($record)
+CDS::KeyPair-&gt;generate
+CDS::KeyPair-&gt;new($publicKey, $rsaPrivateKey)
+$o-&gt;publicKey
+$o-&gt;rsaPrivateKey
+$o-&gt;createMessageEnvelope($storeUrl, $messageRecord, $recipientPublicKeys, $expires)
+$o-&gt;createPrivateEnvelope($contentHashAndKey, $recipientPublicKeys)
+$o-&gt;createPublicEnvelope($contentHash)
+$o-&gt;decrypt($bytes)
+$o-&gt;decryptKeyOnEnvelope($envelope)
+$o-&gt;equals($that)
+$o-&gt;getAndDecrypt($hashAndKey, $store)
+$o-&gt;getAndDecryptRecord($hashAndKey, $store)
+$o-&gt;getPublicKey($hash, $store)
+$o-&gt;getRecord($hash, $store)
+$o-&gt;sign($digest)
+$o-&gt;signHash($hash)
+$o-&gt;toHex
+$o-&gt;toRecord
+$o-&gt;transfer($hashes, $sourceStore, $destinationStore)
+$o-&gt;writeToFile($file)
+
+CDS::LoadActorGroup-&gt;load($builder, $store, $keyPair, $delegate)
+$o-&gt;getPublicKey($hash)
+
+CDS::MessageBoxReader-&gt;new($pool, $actorOnStore, $streamTimeout)
+$o-&gt;actorOnStore
+$o-&gt;pool
+$o-&gt;read($timeout)
+
+CDS::MessageBoxReader::Entry-&gt;new($hash)
+
+CDS::MessageBoxReaderPool-&gt;new($keyPair, $publicKeyCache, $delegate)
+$o-&gt;keyPair
+$o-&gt;publicKeyCache
+
+CDS::MessageChannel-&gt;new($actor, $label, $validity)
+$o-&gt;actor
+$o-&gt;entrustedKeys
+$o-&gt;item
+$o-&gt;label
+$o-&gt;recipients
+$o-&gt;unsaved
+$o-&gt;validity
+$o-&gt;addObject($hash, $object)
+$o-&gt;addTransfer($hashes, $sourceStore, $context)
+$o-&gt;clear
+$o-&gt;setRecipientActorGroup($actorGroup)
+$o-&gt;setRecipients($recipients, $entrustedKeys)
+$o-&gt;submit($message, $done)
+
+CDS::MessageChannel::Submission-&gt;new($channel, $message, $done)
+$o-&gt;channel
+$o-&gt;entrustedKeys
+$o-&gt;envelopeHash
+$o-&gt;envelopeObject
+$o-&gt;expires
+$o-&gt;message
+$o-&gt;recipients
+$o-&gt;onDataSaved
+
+CDS::MissingObject-&gt;new($hash, $store)
+$o-&gt;context
+$o-&gt;hash
+$o-&gt;path
+$o-&gt;store
+
+CDS::NewAnnounce-&gt;new($messagingStore)
+$o-&gt;card
+$o-&gt;messagingStore
+$o-&gt;addActorGroup($actorGroupBuilder)
+$o-&gt;addObject($hash, $object)
+$o-&gt;addTransfer($hashes, $sourceStore, $context)
+$o-&gt;submit
+
+CDS::NewMessagingStore-&gt;new($actor, $store)
+$o-&gt;actor
+$o-&gt;store
+
+CDS::Object-&gt;emptyHeader   # = "\0\0\0\0"
+CDS::Object-&gt;create($header, $data)
+CDS::Object-&gt;fromBytes($bytes)
+CDS::Object-&gt;fromFile($file)
+$o-&gt;byteLength
+$o-&gt;bytes
+$o-&gt;data
+$o-&gt;hashesCount
+$o-&gt;header
+$o-&gt;calculateHash
+$o-&gt;crypt($key)
+$o-&gt;hashAtIndex($index)
+$o-&gt;hashes
+$o-&gt;writeToFile($file)
+
+CDS::ObjectCache-&gt;new($backend, $cache)
+$o-&gt;backend
+$o-&gt;cache
+$o-&gt;id
+$o-&gt;add($accountHash, $boxLabel, $hash, $keyPair)
+$o-&gt;book($hash, $keyPair)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($additions, $removals, $keyPair)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;remove($accountHash, $boxLabel, $hash, $keyPair)
+
+CDS::PrivateBoxReader-&gt;new($keyPair, $store, $delegate)
+$o-&gt;actorOnStore
+$o-&gt;delegate
+$o-&gt;keyPair
+$o-&gt;invalid($entry, $reason)
+$o-&gt;read
+
+CDS::PrivateRoot-&gt;new($keyPair, $store, $delegate)
+$o-&gt;delegate
+$o-&gt;hasChanges
+$o-&gt;privateBoxReader
+$o-&gt;procured
+$o-&gt;unsaved
+$o-&gt;addDataHandler($label, $dataHandler)
+$o-&gt;dataChanged
+$o-&gt;onPrivateBoxEntry($source, $envelope, $contentHashAndKey, $content)
+$o-&gt;onPrivateBoxInvalidEntry($source, $reason)
+$o-&gt;procure($interval)
+$o-&gt;removeDataHandler($label, $dataHandler)
+$o-&gt;save($entrustedKeys)
+$o-&gt;savingSucceeded
+
+CDS::PublicKey-&gt;fromObject($object)
+$o-&gt;bytes
+$o-&gt;hash
+$o-&gt;object
+$o-&gt;encrypt($bytes)
+$o-&gt;verifyHash($hash, $signature)
+
+CDS::PublicKeyCache-&gt;new($maxSize)
+$o-&gt;add($publicKey)
+$o-&gt;get($hash)
+
+$o-&gt;new($store, $keyPair, $commitPool)
+$o-&gt;put($hash)
+
+CDS::ReceivedMessage-&gt;new($messageBoxReader, $entry, $source, $envelope, $senderStoreUrl, $sender, $content, $streamHead)
+$o-&gt;content
+$o-&gt;envelope
+$o-&gt;sender
+$o-&gt;senderStoreUrl
+$o-&gt;source
+$o-&gt;skip
+$o-&gt;waitForSenderStore
+
+CDS::Record-&gt;fromObject($object)
+CDS::Record-&gt;new($bytes, $hash)
+$o-&gt;asBoolean
+$o-&gt;asInteger
+$o-&gt;asText
+$o-&gt;asUnsigned
+$o-&gt;booleanValue
+$o-&gt;bytes
+$o-&gt;bytesValue
+$o-&gt;children
+$o-&gt;firstChild
+$o-&gt;hash
+$o-&gt;hashAndKeyValue
+$o-&gt;hashValue
+$o-&gt;integerValue
+$o-&gt;textValue
+$o-&gt;unsignedValue
+$o-&gt;add($bytes, $hash)
+$o-&gt;addBoolean($value, $hash)
+$o-&gt;addFromObject($object)
+$o-&gt;addHash($hash)
+$o-&gt;addHashAndKey($hashAndKey)
+$o-&gt;addInteger($value, $hash)
+$o-&gt;addRecord($records)
+$o-&gt;addText($value, $hash)
+$o-&gt;addUnsigned($value, $hash)
+$o-&gt;asHashAndKey
+$o-&gt;calculateSize
+$o-&gt;child($bytes)
+$o-&gt;childWithText($text)
+$o-&gt;contains($bytes)
+$o-&gt;containsText($text)
+$o-&gt;countEntries
+$o-&gt;dependentHashes
+$o-&gt;nthChild($i)
+$o-&gt;set($bytes, $hash)
+$o-&gt;toObject
+
+CDS::RecordReader-&gt;new($object)
+$o-&gt;hasError
+$o-&gt;readUnsigned32
+$o-&gt;readUnsigned64
+$o-&gt;readUnsigned8
+$o-&gt;trailer
+$o-&gt;readBytes($length)
+$o-&gt;readChildren($record)
+$o-&gt;use($length)
+
+CDS::RecordWriter-&gt;new
+$o-&gt;data
+$o-&gt;header
+$o-&gt;addHash($hash)
+$o-&gt;writeBytes($bytes)
+$o-&gt;writeChildren($record)
+$o-&gt;writeNode($record, $hasMoreSiblings)
+$o-&gt;writeUnsigned32($value)
+$o-&gt;writeUnsigned64($value)
+$o-&gt;writeUnsigned8($value)
+
+CDS::RootDataTree-&gt;new($privateRoot, $label)
+$o-&gt;label
+$o-&gt;privateRoot
+$o-&gt;addDataTo($record)
+$o-&gt;mergeData($record)
+$o-&gt;mergeExternalData($store, $record, $source)
+$o-&gt;savingDone($revision, $newPart, $obsoleteParts)
+
+CDS::Selector-&gt;root($dataTree)
+$o-&gt;booleanValue
+$o-&gt;bytesValue
+$o-&gt;clear
+$o-&gt;dataTree
+$o-&gt;hashAndKeyValue
+$o-&gt;hashValue
+$o-&gt;integerValue
+$o-&gt;label
+$o-&gt;parent
+$o-&gt;textValue
+$o-&gt;unsignedValue
+$o-&gt;addMergedSource($hash)
+$o-&gt;addObject($hash, $object)
+$o-&gt;child($label)
+$o-&gt;childWithText($label)
+$o-&gt;children
+$o-&gt;clearInThePast
+$o-&gt;firstValue
+$o-&gt;forget
+$o-&gt;forgetBranch
+$o-&gt;isSet
+$o-&gt;merge($revision, $record)
+$o-&gt;record
+$o-&gt;revision
+$o-&gt;set($record)
+$o-&gt;setBoolean($value, $hash, $hash)
+$o-&gt;setBytes($bytes, $hash)
+$o-&gt;setHash($hash, $hash)
+$o-&gt;setHashAndKey($hashAndKey, $hashAndKey)
+$o-&gt;setInteger($value, $hash, $hash)
+$o-&gt;setText($value, $hash, $hash)
+$o-&gt;setUnsigned($value, $hash, $hash)
+
+CDS::SentItem-&gt;new($unionList, $id)
+$o-&gt;envelopeHash
+$o-&gt;envelopeHashBytes
+$o-&gt;message
+$o-&gt;validUntil
+$o-&gt;addToRecord($record)
+$o-&gt;clear($validUntil)
+$o-&gt;merge($part, $validUntil, $message)
+$o-&gt;set($validUntil, $envelopeHash, $messageRecord)
+
+CDS::SentList-&gt;new($privateRoot)
+$o-&gt;createItem($id)
+$o-&gt;forgetObsoleteItems
+$o-&gt;mergeRecord($part, $record)
+
+CDS::Source-&gt;new($keyPair, $actorOnStore, $boxLabel, $hash)
+$o-&gt;actorOnStore
+$o-&gt;boxLabel
+$o-&gt;hash
+$o-&gt;keyPair
+$o-&gt;referenceCount
+$o-&gt;discard
+$o-&gt;keep
+
+CDS::StoreModifications-&gt;fromBytes($bytes)
+CDS::StoreModifications-&gt;fromRecord($record)
+CDS::StoreModifications-&gt;new
+$o-&gt;additions
+$o-&gt;objects
+$o-&gt;removals
+$o-&gt;add($accountHash, $boxLabel, $hash, $object)
+$o-&gt;executeIndividually($store, $keyPair)
+$o-&gt;isEmpty
+$o-&gt;put($hash, $object)
+$o-&gt;remove($accountHash, $boxLabel, $hash)
+$o-&gt;toRecord
+
+CDS::StreamCache-&gt;new($pool, $actorOnStore, $timeout)
+$o-&gt;messageBoxReader
+$o-&gt;readStreamHead($head)
+$o-&gt;removeObsolete
+
+CDS::StreamHead-&gt;new($hash, $envelope, $senderStoreUrl, $sender, $content, $error)
+$o-&gt;content
+$o-&gt;envelope
+$o-&gt;error
+$o-&gt;hash
+$o-&gt;isValid
+$o-&gt;lastUsed
+$o-&gt;sender
+$o-&gt;senderStoreUrl
+$o-&gt;stillInUse
+
+CDS::SubDataTree-&gt;new($parentSelector)
+$o-&gt;parentSelector
+$o-&gt;partSelector($hashAndKey)
+$o-&gt;read
+$o-&gt;savingDone($revision, $newPart, $obsoleteParts)
+
+CDS::UnionList-&gt;new($privateRoot, $label)
+$o-&gt;hasChanges
+$o-&gt;items
+$o-&gt;parts
+$o-&gt;privateRoot
+$o-&gt;unsaved
+$o-&gt;addDataTo($record)
+$o-&gt;forget($id)
+$o-&gt;forgetItem($item)
+$o-&gt;get($id)
+$o-&gt;getOrCreate($id)
+$o-&gt;merge($hashesAndKeys)
+$o-&gt;mergeData($record)
+$o-&gt;mergeExternalData($store, $record, $source)
+$o-&gt;read
+$o-&gt;save
+
+CDS::UnionList::Item-&gt;new($unionList, $id)
+$o-&gt;id
+$o-&gt;unionList
+$o-&gt;setPart($part)
+
+CDS::UnionList::Part-&gt;new
+
+CDS::Unsaved-&gt;new($store)
+$o-&gt;id
+$o-&gt;isSaving
+$o-&gt;savingState
+$o-&gt;state
+$o-&gt;book($hash, $keyPair)
+$o-&gt;get($hash, $keyPair)
+$o-&gt;list($accountHash, $boxLabel, $timeout, $keyPair)
+$o-&gt;modify($additions, $removals, $keyPair)
+$o-&gt;put($hash, $object, $keyPair)
+$o-&gt;savingDone
+$o-&gt;savingFailed
+$o-&gt;startSaving
+
+CDS::Unsaved::State-&gt;new
+$o-&gt;dataSavedHandlers
+$o-&gt;mergedSources
+$o-&gt;objects
+$o-&gt;addDataSavedHandler($handlers)
+$o-&gt;addMergedSource($sources)
+$o-&gt;addObject($hash, $object)
+$o-&gt;merge($state)

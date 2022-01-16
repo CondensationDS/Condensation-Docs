@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<? title = 'Actors'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p class="todo">This is incomplete and old. Peers are now called actor groups.</p>
+
+	<p>Condensation is based on <a href="https://en.wikipedia.org/wiki/Actor_model">actor-message-passing</a>. Actors can store private data, announce public data, and send messages to each other. Each actor holds a <a href="/notes/cryptography/">RSA 2048</a> key pair, and uses one or more <a href="/stores/store/">Condensation stores</a>.</p>
+
+	<div class="hscroll indent"><? svgFile('Actor.svg') ?></div>
+
+	<h2>Peer</h2>
+
+	<p>A group of one or more actors representing the same user or service is a peer. Within the same peer, actors unconditionally share all their private data with each other.</p>
+
+	<ul>
+		<li>Within a peer, actors unconditionally share all private data with each other. For that, actors encrypt the private data for each other, and read each other's private boxes.</li>
+		<li>Messages sent to a peer are encrypted for all its actors. Actors read each other's message boxes.</li>
+	</ul>
+
+	<p>To form a peer, actors announce each other on their card.</p>
+
+	<div class="hscroll indent"><? svgFile('Peer.svg') ?></div>
+
+	<p>A single actor implicitly forms a peer by itself.</p>
+
+	<p>To join another peer, the new actor and at least one actor of the peer .</p>
+
+	<!--
+	TODO analysis:
+	 - actors of the same peer do not need to be fully connected
+	 - actors are ephemeral, rotating actors is conceptually similar to forward secrecy
+	 - at least one actor needs to be active
+	-->
+
+	<h2>Peer</h2>
+	<p>Set of actors sharing all private data with each other, receiving messaging together</p>
+	<p>Implicit creation: every actor is a peer on its own, may team up with other actors</p>
+	<p>Implicit deletion: a peer disappears once the last of its actors disappears</p>
+
+	<h2>Creating an actor</h2>
+	<p>To create an actor, generate a <a href="/notes/cryptography/">RSA 2048</a> key pair.</p>
+	<p>Upload the public key</p>
+	<p>Optionally announce the public data</p>
+
+	<h2>Associating a new actor to a peer</h2>
+	<p>Association with another actor of the peer</p>
+	<p>Sending messages to each other, or through a third party (depending on application scenario)</p>
+	<p>Adding each others accounts to the public data</p>
+
+	<h2>Removing an actor from a peer</h2>
+	<p>Removing the accounts of the actor</p>
+	<p>Optionally add the accounts as "idle accounts" for a certain amount of time</p>
+
+	<h2>Announcing public data</h2>
+	<p></p>
+	<p></p>
+
+	<h2>Storing private data</h2>
+	<p></p>
+	<p></p>
+
+	<h2>Sending a message</h2>
+	<p></p>
+	<p></p>
+
+	<h2>Discovering a peer</h2>
+	<p>Recursively check the public cards of all actors associated with each other</p>
+	<p>Keep the newest card</p>
+	<p>Head actor = actor with the newest card</p>
+	<p>When changing the head actor, the new head actor must mention the old head actor among the accounts or idle accounts</p>
+
+	<h2>Actor accounts on the public card</h2>
+	<p><tt>accounts</tt>: Active accounts belonging to this peer. Use these accounts to send messages, and check these accounts for more recent public data.</p>
+	<p><tt>idle accounts</tt>: Idle accounts belonging to this peer. These accounts belong to the peer, but are not actively used at the moment, or not used any more. Do not send messages to these accounts (as they may not be read), and do not check these accounts for newer public data.</p>
+	<p><tt>entrusted accounts</tt>: Accounts that this peer entrusts, such as the company's main account, or a backup account. Encrypt all messages for these accounts. Do not send messages to these accounts, as they do <i>not</i> belong to the peer. The public cards of these accounts belong to the respective actor, and not to the peer.</p>
+
+	<p>---</p>
+
+	<p>To take part in Condensation, a user generates a <a href="/notes/cryptography/">RSA 2048</a> key pair on his device. The private key is stored locally, and never leaves the device. The <a href="/actors/key-pair/#public-key">public key</a> is serialized as <a href="/serialization/record/">record</a>:</p>
+	<div class="hscroll box">
+		<pre>e
+  <span class="im">public exponent, unsigned big-endian integer</span>
+n
+  <span class="im">modulus, unsigned big-endian integer</span></pre>
+	</div>
+	<p>and published on all stores. Its object hash is a <a href="/notes/identity-spoofing/">unique</a> identifier of this actor:</p>
+	<div class="hscroll indent"><? svgFile('ActorHash.svg') ?></div>
+	<p>If a user owns multiple devices, he/she repeats the above procedure to create one Condensation actor per device, and configures these actors to belong together.</p>
+
+	<h2>Accounts</h2>
+	<p>An actor uses one or more <a href="/stores/store/">Condensation stores</a>. On each store, the actor uses the account corresponding to its actor hash. Actors belonging together may use different stores.</p>
+	<p>Each account may be used for storage, messaging, or both.</p>
+
+	<h2>Storing private data</h2>
+	<p>To store private data, an actor serializes and encrypts the data, and uploads it onto the store. It then links it to its private box through an <a href="/actors/envelope/">envelope</a>:</p>
+	<div class="hscroll indent"><? svgFile('Store.svg') ?></div>
+	<p>If the actor uses multiple stores for storage, data and envelope are uploaded onto all of them, and linked from all private boxes. The encryption key of the root object is encrypted for all actors of the user.</p>
+	<p>Once the data is stored, previous versions can be removed from the private boxes, and fused messages can be removed from the message boxes.</p>
+
+	<h2>Retrieving private data</h2>
+	<p>To retrieve private data, an actor checks all private boxes of the user. For each (unique) box entry, it reads the envelope, verifies the signature, decrypts the AES key, and then decrypts the data.</p>
+	<p>If multiple versions of the data are available, the actor <a href="/notes/merging/">merges</a> them into a single version, and optionally stores this new version.</p>
+
+	<h2>Announcing public data</h2>
+	<p>An actor announces a public card record &ndash; comparable to a business card &ndash; on its own public boxes:</p>
+	<div class="hscroll indent"><? svgFile('Announce.svg') ?></div>
+	<p>The public card lists the user's messaging accounts (in order of preference), and references its public keys. It may contain additional public information, such as the user's name, or a description of its services. The card is signed, but not encrypted.</p>
+	<p>Each card contains a revision timestamp. Only the <a href="/merging/most-recent/">newest card</a> is valid.</p>
+	<p>If a user owns multiple devices, each actor publishes its own public card.</p>
+
+	<h2>Collecting public data</h2>
+	<p>To gather information about a peer, an actor checks all public boxes of the peer. For each public box, it reads the envelope, verifies the signature, and reads the public card.</p>
+	<p>Only the newest card of the peer is kept. If this card mentions new stores, the above procedure is repeated.</p>
+
+	<h2>Sending a message</h2>
+	<p>To send a <a href="/actors/message/">message</a> to a peer, an actor serializes and encrypts the message data, and uploads it onto one of its own messaging stores. By convention, the root object of a message is a record. It then creates and uploads an envelope addressed to all actors mentioned on the peer's public card, and signed using its own private key.</p>
+	<p>Finally, the actor posts a reference to the envelope (store URL, envelope hash) onto one of the actor group's message boxes, trying them in the order they appear on the public card:</p>
+	<p class="todo">Messages are now sent to all active actors of the group.</p>
+	<div class="hscroll indent"><? svgFile('Send.svg') ?></div>
+	<p>To prevent a message from being garbage-collected too soon, the actor should link it to its own private data for some time.</p>
+	<p>To send a message to multiple actor groups, the actor addresses the envelope to all actors mentioned on the public cards of all groups, and posts it onto one message box of each actor group. An actor may add itself as receiver.</p>
+	<p>To reply to a message, an actor may use the account from which he received the message, rather than the accounts indicated on the public card. This is particularly useful for messages that concern the actor rather than the actor group.</p>
+
+	<h2>Reading messages</h2>
+	<p>An actor regularly checks the message boxes of the user for new messages. For each (unique) entry, it reads the envelope, verifies the signature, decrypts the AES key, and then decrypts the message.</p>
+	<p>Once the actor has processed the message, it removes it from all message boxes.</p>
+
+<!--
+	<h2>Public information</h2>
+	<p>Public information may include a user's name (or pseudonyme), or a service's title and description. It may also point to a public website or blog.</p>
+	<p>Note that public information is <i>not</i> encrypted, and should therefore be used with care. Information to be shared with friends or collegues only must not be stored as public information (which should be considered visible to everybody). In most cases, it's advisable to keep public information short, or even empty.</p>
+
+	<h2>Users and services</h2>
+	<p>Condensation does not differ between users and services, such as computer programs or automated agents. Both are actors you can share data with.</p>
+	<p>If the service is a computer program (that you trust), for instance, you share the necessary data with that computer program, give instructions to the program about how to process or modify your data, and finally merge the modified copy back into your own object tree. Conceptually, this is no different from asking a friend (that you trust) to do something for you.</p>
+	<p>Consider a service simply as a friend carrying out something on behalf of you.</p>
+-->
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

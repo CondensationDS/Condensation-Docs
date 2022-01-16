@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="420"
+   height="240"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="JavaScript.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3014"
+       inkscape:collect="always">
+      <stop
+         id="stop3016"
+         offset="0"
+         style="stop-color:#87aade;stop-opacity:1" />
+      <stop
+         id="stop3018"
+         offset="1"
+         style="stop-color:#87aade;stop-opacity:0" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="translate(40,140)"
+       gradientUnits="userSpaceOnUse"
+       y2="907.36218"
+       x2="517.24957"
+       y1="907.36218"
+       x1="445"
+       id="linearGradient3020"
+       xlink:href="#linearGradient3014"
+       inkscape:collect="always" />
+    <marker
+       id="arrow000000"
+       refX="0"
+       refY="0"
+       orient="auto"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:#000000"
+         d="M -6,3 2,0 -6,-3 -5,0 Z"
+         id="path6" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-1121"
+     inkscape:cy="-249.89592"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       id="text1324"
+       y="17"
+       x="16"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';opacity:0.4;fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan1322"
+         y="17"
+         x="16"
+         sodipodi:role="line">main thread</tspan></text>
+    <rect
+       style="opacity:0.2;fill:#000000"
+       id="rect4618"
+       width="4"
+       height="240"
+       x="8"
+       y="0" />
+    <text
+       id="text4622"
+       y="62"
+       x="24"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan4620"
+         y="62"
+         x="24"
+         sodipodi:role="line">var operation = store.list(...)</tspan></text>
+    <rect
+       y="0"
+       x="288"
+       height="240"
+       width="4"
+       id="rect4624"
+       style="opacity:0.2;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;line-height:1;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="304"
+       y="118"
+       id="text4628"><tspan
+         sodipodi:role="line"
+         x="304"
+         y="118"
+         id="tspan4632">store</tspan><tspan
+         sodipodi:role="line"
+         x="304"
+         y="136"
+         id="tspan4514">access</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';opacity:0.4;fill:#000000"
+       x="296"
+       y="17"
+       id="text4636"><tspan
+         sodipodi:role="line"
+         x="296"
+         y="17"
+         id="tspan4517">HTTP request queue</tspan></text>
+    <rect
+       style="fill:#9549db"
+       id="rect4638"
+       width="20"
+       height="60"
+       x="280"
+       y="91" />
+    <rect
+       y="51"
+       x="0"
+       height="20"
+       width="20"
+       id="rect4640"
+       style="fill:#9549db" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#arrow000000)"
+       d="M 24,70 276,90"
+       id="path4644"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4646"
+       d="M 276,150 24,170"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#arrow000000)" />
+    <rect
+       style="fill:#9549db"
+       id="rect4650"
+       width="20"
+       height="40"
+       x="0"
+       y="171" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="24"
+       y="200"
+       id="text4654"><tspan
+         sodipodi:role="line"
+         x="24"
+         y="200"
+         id="tspan4652">operation.onDone(hashes)</tspan></text>
+  </g>
+</svg>

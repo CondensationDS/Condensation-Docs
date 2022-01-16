@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<? title = 'Passive deduplication'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">mature</span></h1>
+
+	<p>Since objects are identified by their SHA-256 hash, object stores inherently perform data deduplication. If the same object is submitted twice, it will only get stored once.</p>
+
+	<p>When using encryption, however, objects are hardly ever the same. In practice, deduplication therefore happens passively if a user is reusing objects &ndash; either to derive a new version of his data, or to share part of his date with friends.</p>
+
+	<h2>Versioning</h2>
+
+	<p>Keeping multiple versions of the same data is cheap if these versions share a lot of objects together. Similarly, data synchronization is cheaper if both parties know older versions of the data.</p>
+
+	<p>The <a href="/datatree/">data tree</a> implementation takes advantage of that.</p>
+
+	<h2>Deduplication vs. security</h2>
+
+	<p>When sharing an object (or tree) with friends, a user has two possibilities:</p>
+	<ul>
+		<li>Send the object's hash to the friends. All friends will access the same object (deduplication), but an attacker can observe with whom the object has been shared.</li>
+		<li>Create an individually encrypted copy for each friend. More disk space and bandwidth are required, but the hashes do not reveal with whom the object has been shared.</li>
+	</ul>
+	<p>Hence, there is a trade-off between deduplication and security.</p>
+
+	<h3>Avoid deterministic encryption keys</h3>
+	<p>Full deduplication of encrypted objects would work if the encryption key was derived from the (unencrypted) content. For example, the SHA-256 hash of the unencrypted object could be used as encryption key. Such a system however has two important security issues:</p>
+	<ul>
+		<li>An observer would know with whom objects are shared.</li>
+		<li>The content of short objects (up to 8&ndash;10 bytes of entropy) could be guessed by enumerating all possible byte sequences, and verifying if their SHA-256 sum allows to decrypt the object.</li>
+	</ul>
+	<p>Both issues could be solved by adding a random 32-byte sequence to each object, which would in turn render deduplication impossible.</p>
+	<p>Hence, implementors are strongly advised to use random encryption keys.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

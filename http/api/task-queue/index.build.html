@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<? title = 'Task queue'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="perl">
+		<p>Since the Perl implementation is single-threaded, there is no need for task queues.</p>
+	</div>
+
+	<div class="java javascript">
+		<p>A task queue executes asynchronous tasks at a given maximum rate. Once all tasks have been executed, a handler is executed:</p>
+		<div class="hscroll"><? svgFile('Concept.svg') ?></div>
+		<p>Each <i>await</i> call must be released by a <i>done</i> call. The <i>then</i> handler is executed immediately after the last task is done.</p>
+		<p>Note that task groups do not execute tasks &mdash; they only keep track of the number of unfinished tasks. <span class="java">Task group calls must always be made from <b>the same thread</b>, even if tasks are executed on different threads.</span></p>
+
+		<p>Task groups are typically used to execute several things in parallel:</p>
+		<div class="hscroll wide box java"><pre>
+			class ProcessItems implements TaskGroup.Done {
+				...
+
+				void processItems() {
+					TaskGroup taskGroup = new TaskGroup();
+
+					// Process all items
+					for (Item item: ...)
+						new ProcessItem(item, taskGroup);
+
+					// Then call the done handler
+					taskGroup.then(this);
+				}
+
+				void onTaskGroupDone() {
+					// This is executed once all items have been processed
+				}
+			}
+
+			class ProcessItem implements BackgroundTask {
+				final Item item;
+
+				ProcessItem(Item item, TaskGroup taskGroup) {
+					if (item.isEmpty()) return;
+
+					taskGroup.await();
+					someExecutor.execute(this);
+				}
+
+				void background() {
+					...
+				}
+
+				void after() {
+					taskGroup.done();
+				}
+			}
+		</pre></div>
+		<div class="hscroll wide box javascript"><pre>
+			function processItems() {
+				var taskGroup = new TaskGroup();
+
+				// Process all items
+				for (var i = 0; i &lt; items.length; i++)
+					processItem(item);
+
+				function processItem(item) {
+					if (item.isEmpty()) return;
+
+					taskGroup.await();
+					...		// potentially asynchronous
+					taskGroup.done();
+				}
+
+				// Then call the done handler
+				taskGroup.then(onTaskGroupDone);
+
+				function onTaskGroupDone() {
+					// This is executed once all items have been processed
+				}
+			}
+		</pre></div>
+
+		<h2>Functions</h2>
+		<div class="hscroll api java"><pre>TaskGroup taskGroup = new TaskGroup();</pre></div>
+		<div class="hscroll api javascript"><pre>var taskGroup = new TaskGroup();</pre></div>
+		<p>Creates a task group.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>taskGroup.await()</pre></div>
+		<div class="hscroll api javascript"><pre>taskGroup.await();</pre></div>
+		<p>Increments the await counter. Each <i>await</i> call must be released by a <i>done</i> call. Calling await is only allowed if the task group has not completed yet, i.e.</p>
+		<ul>
+			<li>if <i>then</i> has not been called yet,</li>
+			<li>if you are still holding at least one <i>await</i>.</li>
+		</ul>
+
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>taskGroup.done()</pre></div>
+		<div class="hscroll api javascript"><pre>taskGroup.done();</pre></div>
+		<p>Decrements the await counter. If the counter falls back to 0, and <i>then</i> has been called, the task group is completed and the <i>then</i> handler is called.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>taskGroup.then(handler)</pre></div>
+		<div class="hscroll api javascript"><pre>taskGroup.then(handler);</pre></div>
+		<p>Registers the <i>then</i> handler. If the await counter is 0, the handler is executed immediately.</p>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

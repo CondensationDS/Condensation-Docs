@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<? title = 'File System Store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft, to be re-read</span></h1>
+
+	<p>Condensation objects and accounts can be stored in a folder on any file system. The present document describes structure and operations of a Condensation store as a folder on a file system.</p>
+	<p>For the remainder of this text, we assume that the base folder is called <i>base-folder</i>.</p>
+
+	<h2>Objects</h2>
+	<p>Objects are stored as files named</p>
+	<div class="hscroll box"><pre><i>base-folder</i>/objects/HH/HHHHHH..HH</pre></div>
+	<p>where H* are the lowercase hex digits of the object's hash. The first two digits are used as sub folder, while the remaining 62 digits denote the file name. An example of an object file name is:</p>
+	<div class="hscroll wide box"><pre>/srv/condensation/objects/19/6d83b5ab49c7c7a0263f4b77ddee9f0d129202a6bc219c047541ae895d131b</pre></div>
+
+	<h3 id="get-object">Get object</h3>
+	<p>To get an object, simply read the corresponding file.</p>
+
+	<h3 id="put-object">Put object</h3>
+	<p>To add an object, create the destination folder (<i>base-folder</i>/objects/HH) if necessary, and write the contents as a temporary file within this folder. Then rename that file to its final name.</p>
+	<p>On all major operating systems, renaming a file in the same folder is atomic. If the object exists already (and its contents match the expected SHA-256 sum), no new file needs to be written, but the existing file must be touched to set its modification date to now.</p>
+
+	<h3 id="book-object">Book object</h3>
+	<p>To book an object, touch the corresponding file (i.e. set its modification date to now).</p>
+
+	<h2>Accounts and boxes</h2>
+	<p>Each box is a folder named</p>
+	<div class="hscroll box"><pre><i>base-folder</i>/accounts/ACCOUNT/BOX</pre></div>
+	<p>where ACCOUNT are 64 hex digits and BOX is either <i>messages</i>, <i>private</i>, or <i>public</i>. Each hash within a box is an empty file named after the hash (64 lowercase hex digits).</p>
+	<p>A store with one account may look as follows:</p>
+	<div class="hscroll box"><pre>/srv/condensation
+    accounts
+        eae220..c6
+            messages
+                465545..da
+                543c50..1a
+            private
+            public
+                29767d..da</pre></div>
+
+	<h3 id="list-box">List box</h3>
+	<p>To list a box, enumerate the files of the corresponding folder, and report all file names that consist of exactly 64 hex digits.</p>
+
+	<h3 id="add-envelope">Add envelope</h3>
+	<p>To add an envelope, <a href="#put-object">put</a> the object onto the store, and create a hash file in the corresponding box folder.</p>
+
+	<h3 id="remove-envelope">Remove envelope</h3>
+	<p>To remove an envelope from a box, simply delete the corresponding hash file from the box folder. Return success irrespective of whether deletion succeeded or not. The envelope remains on the store until garbage is collected.</p>
+
+	<h2>Path length considerations</h2>
+	<p>A Condensation object path is always 74 ASCII characters long, while a box entry requires up to 165 ASCII characters (message box).</p>
+	<p>On Windows, it is recommended to use the <a href="https://msdn.microsoft.com/en-us/library/aa365247.aspx">"\\?\" prefix</a>, as regular paths are limited to about 256 characters.</p>
+	<p>On 8.3 type file systems, the present protocol cannot be used.</p>
+
+	<h2>Recognizing Condensation folders</h2>
+	<p>A folder containing the sub folders <i>objects</i> and <i>accounts</i> (written with lowercase characters) is considered a Condensation store folder. Note that other files and folders may be present as well.</p>
+
+	<h2>POSIX permissions (private store)</h2>
+	<p>A store used by POSIX user U should use the following permissions and ownership:</p>
+	<table class="text">
+		<tr>
+			<th></th>
+			<th>Mode</th>
+			<th>Owner</th>
+		</tr>
+		<tr>
+			<td>Object folders</td>
+			<td>0711 (rwx, ––x, ––x)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Object files</td>
+			<td>0644 (rw–, r––, r––)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Account folders</td>
+			<td>0711 (rwx, ––x, ––x)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Message box folder</td>
+			<td>0700 (rwx, –––, –––)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Private box folder</td>
+			<td>0700 (rwx, –––, –––)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Public box folder</td>
+			<td>0755 (rwx, r–x, r–x)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Message box files</td>
+			<td>0600 (rw–, –––, –––)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Private box files</td>
+			<td>0600 (rw–, –––, –––)</td>
+			<td>User U</td>
+		</tr>
+		<tr>
+			<td>Public box files</td>
+			<td>0644 (rw–, r––, r––)</td>
+			<td>User U</td>
+		</tr>
+	</table>
+	<p>In general, everything belongs to user U. To share objects with other people, the object store must be publicly readable.</p>
+	<p>Note that it is not possible to receive messages from other people through a private store, as they cannot post envelopes. Hence, the message box can remain private.</p>
+
+	<h2>POSIX permissions (shared store)</h2>
+	<p>To share a store among multiple users, add all users to a group G, and use the following permission scheme:</p>
+	<table class="text">
+		<tr>
+			<th></th>
+			<th>Mode</th>
+			<th>Owner</th>
+		</tr>
+		<tr>
+			<td>Object folders</td>
+			<td>0771 (rwx, rwx, ––x)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Object files</td>
+			<td>0664 (rw–, rw–, r––)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Account folders</td>
+			<td>0771 (rwx, rwx, ––x)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Message box folder</td>
+			<td>0770 (rwx, rwx, –––)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Private box folder</td>
+			<td>0770 (rwx, rwx, –––)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Public box folder</td>
+			<td>0775 (rwx, rwx, r–x)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Message box files</td>
+			<td>0660 (rw–, rw–, –––)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Private box files</td>
+			<td>0660 (rw–, rw–, –––)</td>
+			<td>Any user, group G</td>
+		</tr>
+		<tr>
+			<td>Public box files</td>
+			<td>0664 (rw–, rw–, r––)</td>
+			<td>Any user, group G</td>
+		</tr>
+	</table>
+	<p>Shared folder stores allow users to communicate within the group.</p>
+	<p>Users must minimally trust each other. They cannot read or modify each others data (beyond of what they share with each other), but can delete each others accounts and objects.</p>
+
+	<h2>Two-store approach</h2>
+	<p>To thwart against private data deletion, users may use their private store to store private data, and a shared store for communication only. An actor thereby announces itself on both the private and the shared store. Messages are sent and read through the shared store, while private data is stored on the private store:</p>
+	<table class="text">
+		<tr>
+			<th></th>
+			<th>Private store</th>
+			<th>Shared store</th>
+		</tr>
+		<tr>
+			<td>messages</td>
+			<td>–</td>
+			<td>messages</td>
+		</tr>
+		<tr>
+			<td>private</td>
+			<td>private data</td>
+			<td>–</td>
+		</tr>
+		<tr>
+			<td>public</td>
+			<td>card</td>
+			<td>card</td>
+		</tr>
+	</table>
+
+	<h2>Centralized garbage collection through tree traversal</h2>
+	<p>Garbage collection can be performed by an external program (or by any user) when no user is actively writing to the store. For that, start with the boxes, and follow the objects down the tree. Keep a list of seen objects, and delete all other objects once all trees have been traversed.</p>
+	<p>Since every object needs to be opened to read the header, this procedure can take a few seconds for a store with several thousand objects.</p>
+	<p>Conceptually, this is a centralized strategy. The garbage collector must be able to follow all trees. If an intermediate node is missing, that whole subtree will be deleted, since the garbage collector is unable to traverse these nodes.</p>
+
+	<h2>Client-driven garbage collection through stages</h2>
+	<p>With client-driven garbage collection, stage folders are created. Each stage folder is named after the creation date (UTC timestamp in ISO 8602 format), and contains a Condensation store folder (i.e., the <i>objects</i> and <i>accounts</i> folders as mentioned above). As an example, consider the following store with two stage folders:</p>
+	<div class="hscroll box"><pre>base-folder
+    20140610T174211Z
+        objects
+        accounts
+    20140712T112958Z
+        objects
+        accounts</pre></div>
+	<p>A user:</p>
+	<ul>
+		<li>writes new objects to the most recent stage</li>
+		<li>moves all his objects from older stages to the most recent stage, and then moves his account to the newest stage</li>
+		<li>looks up objects in all stages (get object)</li>
+		<li>deletes old stages that do not contain any accounts</li>
+		<li>creates a new stage if the newest stage is more than 30 days old</li>
+	</ul>
+	<p>This garbage collection scheme works in a completely distributed setting, and is fault-tolerant. It requires cooperation of all users, however. Should a user not connect for a prolonged amount of time, he/she will block deletion of a stage.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<? title = 'Checking store availability'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p><a href="/stores/store/">Stores</a> do not provide any function to check whether they are alive and reachable. However, this can be checked with a <a href="/stores/store/#get-object">get object</a> request on the zero-length byte sequence:</p>
+	<div class="hscroll box wide"><pre><span class="op">SHA256</span>(<span class="ctext">empty</span>) = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</pre></div>
+	<p>Since a zero-length byte sequence is not a valid Condensation object, such a get request returns:</p>
+	<ul>
+		<li><i>not found</i>, if the store is available</li>
+		<li>a <i>store error</i>, otherwise</li>
+	</ul>
+
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

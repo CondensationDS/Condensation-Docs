@@ -1,0 +1,265 @@
+body,input,textarea { font-family: "Source Sans Pro", Helvetica, sans-serif; font-size: 18px }
+body { background: #faf9e6; margin: 0 0; padding: 0 0 }
+table { border-collapse: collapse; border-spacing: 0 }
+
+h1 { font-size: 32px; font-weight: 800; margin: 20px 0 20px 0 }
+h2 { font-size: 24px; font-weight: 800; margin: 30px 0 0 0 }
+h3 { font-size: 18px; font-weight: 800; margin: 30px 0 0 0 }
+h4 { font-size: 18px; font-weight: 600; margin: 20px 0 0 0 }
+p { -moz-hyphens: auto; -webkit-hyphens: auto; hyphens: auto; margin: 8px 0 0 0 }
+
+pre { color: black; font-family: "Source Code Pro", monospace; font-size: 16px; margin: 8px 0 0 0; padding: 0 0 }
+tt { border-radius: 2px; color: #666; font-family: "Source Code Pro", monospace; font-size: 16px; padding: 1px 3px }
+
+a:link { color: #3f8de5; text-decoration: none }
+a:visited { color: #15549b; text-decoration: none }
+a:hover { color: #15549b; text-decoration: underline }
+
+input,textarea { border: 1px solid #5967c1 }
+
+/* Horizontal scroll with and without background */
+div.hscroll	{ margin: 8px -20px 0 -20px; max-width: 600px; overflow: auto; padding: 8px 20px }
+div.hscroll.wide	{ max-width: none }
+div.hscroll :first-child	{ margin-top: 0 }
+div.hscroll.box	{ background: rgba(0, 0, 0, 0.04) }
+div.hscroll.center	{ text-align: center }
+div.hscroll.indent 	{ padding-left: 40px; max-width:580px }
+div.hscroll svg	{ margin-right: 20px; vertical-align:middle }
+div.hscroll.whiteBox	{ background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); padding: 16px 20px; }
+div.hscroll.api	{ border-top:2px dotted rgba(0, 0, 0, 0.4); padding-left:20px; background: rgba(0, 0, 0, 0.04) }
+div.space { height:15px }
+
+/* Colors for code highlighting */
+span.im, a.im { color: #48a43c } /* immutable variable, green */
+span.m, a.m { color: #1b6bc5 }	/* mutable variable, blue */
+span.op, a.op { color: #7325bb }	/* block call, operation, function, violet */
+span.cmd, a.cmd { color: #5a2ca0 }	/* command line function */
+span.ctext, a.ctext { color: #c5971b }	/* constant text, yellow */
+span.type, a.type { color: #333; font-weight: bold }	/* type */
+span.comment, a.comment { color: #999 }	/* comment */
+span.annotation, a.annotation { color: #c5231b }	/* annotation, red */
+span.control, a.control { color: #333; font-weight:bold } 	/* control flow */
+span.definition, a.definition { color: #333; font-weight:bold } 	/* definition */
+span.typeAnnotation, a.typeAnnotation { color: #000; opacity:0.5; font-weight:bold; font-size:13px }	/* analysis, gray */
+span.hoverable {cursor:pointer}
+span.hovering {background:rgba(192, 192, 0, 0.2)}
+span.optional { opacity:0.4 }
+
+ul { list-style-type: square; margin: 0 0; padding: 0 0 0 18px }
+ul li { margin: 4px 0 0 0 }
+
+ul.gap { list-style-type: square; margin: 0 0; padding: 0 0 0 18px }
+ul.gap li { padding-top: 8px }
+
+ol { margin: 0 0; padding: 0 0 0 18px }
+ol.footnote { font-size:15px }
+ol li { margin: 4px 0 0 0; padding: 0 0 0 4px }
+
+div.header { background: #333; font-size: 18px; padding: 20px 10px 16px 10px }
+div.header > div.quicklinks {padding:0 10px}
+div.header > div.quicklinks > a { font-size:13px; color:#999; line-height:20px; border-radius: 10px; padding: 2px 10px; white-space: nowrap}
+div.header > div.quicklinks > a:first-child {margin-left:-10px}
+div.header > div.quicklinks > a.selected { background: #666; color:#fff}
+div.header > div.quicklinks > a:hover { color: #eee; text-decoration: none }
+div.header > div.logo { margin-top: 40px; padding:0 10px }
+div.header > div.logo > a	{ font-size: 24px; font-weight: 800; color:#fff }
+div.header > div.logo > a:hover { color: #ccc; text-decoration: none }
+div.header > div.logo > a > span	{ font-weight: 300 }
+div.header > div.logo > a.selected {  }
+
+div.greenBar	{ font-size: 15px; line-height: 26px; padding: 5px 10px; background: #6bc55f }
+div.greenBar > div { max-width: 600px; position: relative }
+div.greenBar > div > a.selected	{ background: #39812f }
+div.greenBar a	{ border-radius: 15px; color: black; padding: 2px 10px; white-space: nowrap }
+div.greenBar a:hover { opacity: 0.7; text-decoration: none }
+div.greenBar a.selected	{ color: white }
+
+.greenBackground	{ background: #6bc55f }
+.blueBackground	{ background: #3f8de5 }
+.yellowBackground	{ background: #e5b83f }
+.violetBackground	{ background: #9549db }
+.redBackground	{ background: #e5473f }
+
+.greenColor	{ color: #6bc55f }
+.blueColor	{ color: #3f8de5 }
+.yellowColor	{ color: #e5b83f }
+.violetColor	{ color: #9549db }
+.redColor	{ color: #e5473f }
+
+.mediumGreenColor	{ color: #48a43c }
+.mediumBlueColor	{ color: #1b6bc5 }
+.mediumYellowColor	{ color: #c5971b }
+.mediumVioletColor	{ color: #7325bb }
+.mediumRedColor	{ color: #c5231b }
+
+.darkGreenColor	{ color: #39812f }
+.darkBlueColor	{ color: #15549b }
+.darkYellowColor	{ color: #9b7715 }
+.darkVioletColor	{ color: #5a1d93 }
+.darkRedColor	{ color: #9b1b15 }
+
+div.main { padding: 50px 20px 100px 20px; position: relative } /* background: rgba(255, 255, 255, 0.4); */
+div.main h1:first-child	{ margin-top: 0 }
+div.main p, div.main ol, div.main ul { max-width: 600px }
+
+span.greenFlag {color:#39812f; font-weight:800; border-radius:10px; line-height:20px; background:#6bc55f; padding:0 15px; font-size:13px}
+span.yellowFlag {color:#9b7715; font-weight:800; border-radius:10px; line-height:20px; background:#e5b83f; padding:0 15px; font-size:13px}
+span.redFlag {color:#9b1b15; font-weight:800; border-radius:10px; line-height:20px; background:#e5473f; padding:0 15px; font-size:13px}
+
+div.footer { background: #ebe7ad; color: rgba(0, 0, 0, 0.5); font-size: 15px; padding: 30px 20px 100px 20px }
+div.footer > div { max-width: 600px }
+div.footer a { color: rgba(0, 0, 0, 0.8) }
+
+div.menu > div { margin: 2px 0 0 0 }
+div.menu > div.chapter { margin: 20px 0 0 0; font-weight:bold }
+div.menu.black > div a { color: black }
+div.menu.black > div a:hover { color: #999 !important; text-decoration: none }
+div.menu.black > div a:visited { color: black }
+
+table.specifications	{  }
+table.specifications td:first-child	{ vertical-align: top }
+table.specifications td:first-child	{ padding-right: 10px }
+
+table.text	{ border-top: 1px solid rgba(0, 0, 0, 1); margin: 10px 0 0 0; width: 100%; max-width: 600px }
+table.text th	{ border-bottom: 1px solid rgba(0, 0, 0, 1); border-top: 1px solid rgba(0, 0, 0, 1); font-weight: bold; text-align: left; vertical-align: top }
+table.text td	{ font-weight: 200; padding-right: 10px; text-align: left; vertical-align: top }
+table.text tr	{ border-bottom: 1px dotted rgba(0, 0, 0, 0.2) }
+table.text tr:last-child	{ border-bottom: 1px solid rgba(0, 0, 0, 1) }
+table.text td i { font-style:normal; font-weight: 600 }
+
+table.lines td	{ border-bottom: 1px solid #cccccc }
+
+span.maturity	{ border-radius: 3px; color: red; font-size: 12px; font-weight: bold; margin-left: 10px; padding: 2px 5px; white-space: nowrap }
+.todo	{ color: red; font-size: 15px }
+p.todo	{ margin: 16px 0 }
+div.todo	{ border-left: 1px solid red; border-radius: 5px; left: 640px; margin: 0 0; padding: 10px 10px; position: absolute; width: 239px }
+
+img.schematic	{  }
+svg.schematic	{  }
+
+div#platforms	{ font-size: 15px; line-height: 30px; padding-left:14px }
+div#platforms span { color: #6bc55f; cursor: pointer; padding: 2px 6px }
+div#platforms span.selected { color: #48a43c; border-bottom: 2px solid #48a43c }
+
+p.flags	{ font-size: 12px; }
+p.flags span {border: 1px solid #333333; padding:1px 9px; border-radius:9px; line-height:16px}
+
+/* Large screens */
+@media (min-width:840px) {
+	div.header > div	{ margin-left: 100px }
+	div.greenBar > div	{ margin-left: 100px }
+	div#platforms	{ margin-left: 100px }
+	div.main	{ margin-left: 100px; margin-right: 100px }
+	div.footer > div	{ margin-left: 100px }
+}
+
+/* Medium screens */
+@media (min-width:640px) and (max-width:839px) {
+	div.header > div	{ margin-left: auto; margin-right: auto; width:600px }
+	div.greenBar > div	{ margin-left: auto; margin-right: auto; width:600px }
+	div#platforms	{ margin-left: auto; margin-right: auto; width:600px }
+	div.main	{ margin-left: auto; margin-right: auto; width:600px }
+	div.footer > div	{ margin-left: auto; margin-right: auto; width:600px }
+}
+
+/* Small screens */
+@media (max-width:640px) {
+	div.todo	{ display: none }
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: normal;
+	font-weight: 200;
+	src: local(Source Sans Pro Light), url(/fonts/SourceSansPro-Light.otf.woff) format('woff'), url(/fonts/SourceSansPro-Light.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: italic;
+	font-weight: 200;
+	src: local(Source Sans Pro Light Italic), url(/fonts/SourceSansPro-LightIt.otf.woff) format('woff'), url(/fonts/SourceSansPro-LightIt.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: normal;
+	font-weight: 400;
+	src: local(Source Sans Pro), url(/fonts/SourceSansPro-Regular.otf.woff) format('woff'), url(/fonts/SourceSansPro-Regular.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: italic;
+	font-weight: 400;
+	src: local(Source Sans Pro Italic), url(/fonts/SourceSansPro-It.otf.woff) format('woff'), url(/fonts/SourceSansPro-It.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: normal;
+	font-weight: 600;
+	src: local(Source Sans Pro Semibold), url(/fonts/SourceSansPro-Semibold.otf.woff) format('woff'), url(/fonts/SourceSansPro-Semibold.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: italic;
+	font-weight: 600;
+	src: local(Source Sans Pro Semibold Italic), url(/fonts/SourceSansPro-SemiboldIt.otf.woff) format('woff'), url(/fonts/SourceSansPro-SemiboldIt.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: normal;
+	font-weight: 800;
+	src: local(Source Sans Pro Bold), url(/fonts/SourceSansPro-Bold.otf.woff) format('woff'), url(/fonts/SourceSansPro-Bold.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-style: italic;
+	font-weight: 800;
+	src: local(Source Sans Pro Bold Italic), url(/fonts/SourceSansPro-BoldIt.otf.woff) format('woff'), url(/fonts/SourceSansPro-BoldIt.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Code Pro";
+	font-style: normal;
+	font-weight: 400;
+	src: local(Source Code Pro), url(/fonts/SourceCodePro-Regular.otf.woff) format('woff'), url(/fonts/SourceCodePro-Regular.otf.woff2) format('woff2')
+	}
+
+@font-face {
+	font-family: "Source Code Pro";
+	font-style: normal;
+	font-weight: 800;
+	src: local(Source Code Pro Bold), url(/fonts/SourceCodePro-Bold.otf.woff) format('woff'), url(/fonts/SourceCodePro-Bold.otf.woff2) format('woff2')
+	}
+
+
+/*
+Color Scheme
+NEW		NAME		OLD
+#faf9e6	background
+#333333	header
+#ebe7ad	footer
+#6bc55f	green0		#77c55f
+#48a43c	green1		#54a43c
+#39812f	green2		#42812f
+#e5b83f	yellow0
+#c5971b	yellow1
+#9b7715	yellow2
+-		orange0		#e5643f
+-		orange1		#c5411b
+-		orange2		#9b3315
+#e5473f	red0		#db4a8c
+#c5231b	red1		#bb2569
+#9b1b15	red2		#931d53
+#9549db	violet0		#8749db
+#7325bb	violet1		#6325bb
+#5a1d93	violet2		#4e1d93
+#3f8de5	blue0		#3fa2e5
+#1b6bc5	blue1		#1b80c5
+#15549b	blue2		#15659b
+*/

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="380"
+   height="68"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="RecordObject.svg">
+  <defs      id="defs3876" ></defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="222.48135"
+     inkscape:cy="32.453091"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1868"
+     inkscape:window-height="2125"
+     inkscape:window-x="1960"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="mm" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#48a43c"
+       id="rect3894"
+       width="40"
+       height="40"
+       x="0"
+       y="28" />
+    <rect
+       y="28"
+       x="40"
+       height="40"
+       width="140"
+       id="rect3896"
+       style="fill:#6bc55f" />
+    <rect
+       style="fill:#e5b83f"
+       id="rect3898"
+       width="200"
+       height="40"
+       x="180"
+       y="28" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="9"
+       y="46"
+       id="text3882"><tspan
+         sodipodi:role="line"
+         x="9"
+         y="46"
+         id="tspan4555"
+         >H</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="49"
+       y="46"
+       id="text3886"><tspan
+         sodipodi:role="line"
+         x="49"
+         y="46"
+         id="tspan4539"
+         >Hashes</tspan></text>
+    <text
+       id="text4439"
+       y="12"
+       x="90"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="12"
+         x="90"
+         id="tspan4441"
+         sodipodi:role="line"
+         >Condensation header</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="m 181,24.000017 7.5,-7.5 183,0 7.5,7.5"
+       id="path4443"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <text
+       id="text4575"
+       y="46"
+       x="189"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         id="tspan4579"
+         y="46"
+         x="189"
+         sodipodi:role="line"
+         >Nodes</tspan></text>
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path4589"
+       d="m 1,24.000017 7.5,-7.5 163,0 7.5,7.5"
+       style="fill:none;stroke:#000000;stroke-linecap:butt;stroke-width:1px" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px;text-align:center;text-anchor:middle"
+       x="280"
+       y="12"
+       id="text4591"><tspan
+         sodipodi:role="line"
+         id="tspan4593"
+         x="280"
+         y="12"
+         >Encrypted object data</tspan></text>
+    <text
+       id="text4192"
+       y="62"
+       x="9"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px"
+       xml:space="preserve"><tspan
+         id="tspan4196"
+         y="62"
+         x="9"
+         sodipodi:role="line"
+         >4</tspan></text>
+    <text
+       id="text4202"
+       y="62"
+       x="49"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px"
+       xml:space="preserve"><tspan
+         id="tspan4206"
+         y="62"
+         x="49"
+         sodipodi:role="line"
+         >H ⨯ 32 bytes</tspan></text>
+  </g>
+</svg>

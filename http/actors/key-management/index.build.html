@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<? title = 'Key management'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>In Condensation, keys are managed through <a href="/actors/actor-groups/">actor groups</a>.</p>
+	<p>As opposed to systems like PGP, an entity (user, service, ...) owns a set of key pairs, and not just a single key pair. Each <a href="/actors/key-pair/">key pair</a> constitues an actor, and actors belonging to the same entity form an actor group.</p>
+	<p>Within such a group, keys (actors) can be <a href="/actors/actor-groups/#status"><i>active</i>, <i>idle</i> (obsolete), or <i>revoked</i></a>:</p>
+	<div class="hscroll indent"><? svgFile('KeySet.svg') ?></div>
+	<p>All active keys are equal &ndash; there is no master key or leader actor.</p>
+	<p>An entity manages its keys on its own (distributed), and does not rely on a key server or any other centralized key management infrastructure.</p>
+	<p>Key pairs are generated on the device on which they are used. Private keys are stored in a safe place on the device, and may be protected with a fingerprint or a PIN code. They never leave the device, and are <em>not</em> backed up.</p>
+	<p>Groups may evolve over time. To add a device to its actor group, an entity generates a new key pair on the new device, and <a href="/actors/actor-groups/#add-member">adds it to the actor group</a>. To remove a device, the entity <a href="/actors/actor-groups/#remove-member">marks the corresponding key as <i>idle</i> or <i>revoked</i></a>, and destroys it.</p>
+	<div class="hscroll indent"><? svgFile('AddRemove.svg') ?></div>
+	<p>Every group member publishes the status of all keys on its <a href="/actors/public-card/">public card</a>. Two actors are in the same group if they both claim to be together. Every <a href="https://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29">connected component</a> of the resulting graph is an actor group:</p>
+	<div class="hscroll indent"><? svgFile('Groups.svg') ?></div>
+	<p>Knowing any actor is enough to <a href="/actors/actor-groups/#discover">discover</a> its group.</p>
+
+	<h2>Key rotation and forward secrecy</h2>
+	<p>All keys of an actor group are <a href="https://en.wikipedia.org/wiki/Ephemeral_key">ephemeral</a>. A device may rotate its key by generating a new key pair, and destroying the old one. The old key should then be marked <i>idle</i>:</p>
+	<div class="hscroll indent"><? svgFile('Rotate.svg') ?></div>
+	<p>Through regular key rotation, a certain degree of <a href="https://en.wikipedia.org/wiki/Forward_secrecy">forward secrecy</a> can be achieved. If a key is compromised,</p>
+	<ul>
+		<li>only messages sent to that key,</li>
+		<li>and private data stored for that key</li>
+	</ul>
+	<p>can be retrieved. However, since private data often changes slowly, key rotation primarily offers forward secrecy for messages.</p>
+	<p>Key rotation is optional. If used, all actors of a group should rotate their keys at roughly the same interval.</p>
+
+	<h2 id="key-loss">Key loss</h2>
+	<p>If a private key inadvertently got destroyed (e.g. because the device got destroyed), the key can simply be marked <i>idle</i>. This is the same as removing an actor from a group.</p>
+
+	<h2 id="backup-actor">Backup actor</h2>
+	<p>If the last active key is lost or destroyed, the group becomes irrecoverable, and its private data <a href="/notes/data-recovery/">may be lost</a>.</p>
+	<p>To avoid that, a user may set up a backup actor. Such an actor is registered as an active member of the group, and therefore receives all data updates. It may run on a safe device in a safe place, and only wake up occasionally to merge data updates.</p>
+	<p>The backup actor may be operated by a trusted service company.</p>
+
+	<h2>Losing track of an actor group</h2>
+	<p>Actor groups need to be followed to keep track of changes. If an actor group is not followed for an extended amount of time, one may lose track of it.</p>
+	<p>To illustrate that, consider the following evolution of a group:</p>
+	<div class="hscroll indent"><? svgFile('LosingTrack.svg') ?></div>
+	<p>At time <i>A</i>, the group has 3 active accounts. Over the course of time, the group evolves: new actors are added, and old actors are marked <i>idle</i>. At time <i>E</i> some idle actors become so old that they are completely removed. Their public key and card are removed from the store. At time <i>F</i>, all actors active at <i>A</i> have vanished.</p>
+	<p>Somebody regularly following the group will first discover <i>A</i>, then <i>B</i>, and so on, until eventually discovering <i>F</i>.</p>
+	<p>However, somebody knowing the group at time <i>A</i>, and not following up would lose track of the group at time <i>F</i>.</p>
+	<p>To alleviate this, idle accounts are typically stored for several years. An idle account only needs a public box with an <a href="/actors/envelope/#public">envelope</a>, a <a href="/actors/public-card/">public card</a>, and a <a href="/actors/key-pair/#public-key">public key</a>, all of which amounts to less than 20 KiB of (rarely accessed) storage space.</p>
+
+	<h2 id="key-theft">Key theft</h2>
+	<p>Key theft entails several issues intrinsic to public-key encryption. To alleviate these problems</p>
+	<ul>
+		<li>the stolen key should immediately be <a href="/actors/actor-groups/#status">revoked</a> by all active group members,</li>
+		<li>and messaging store(s) of the exposed actor should be erased, if possible.</li>
+	</ul>
+	<p>The latter requires that the store is under control of the user.</p>
+
+	<h3>Impersonation and data breach</h3>
+	<p>An attacker in possession of an active private key is a valid member of the group, and can thus read and modify the group's private data, and send messages on behalf of the group.</p>
+	<p>Once the key is revoked, the attacker is left with the last version of the private data before key revokation. Although it can still modify this data locally, other group members won't merge these changes any more.</p>
+	<p>Key revokation thus reestablishes group integrity from the point of view of all remaining group members.</p>
+
+	<h3>Revokation symmetry and group splitting</h3>
+	<p>After revokation, an outside observer will see the group split into two, and may only guess which part belongs to the actual entity, and which part belongs to the attacker.</p>
+	<p>To illustrate this, consider a group of two actors, of which one (white) gets exposed. An outside observer will see one of the following:</p>
+	<div class="hscroll indent"><? svgFile('Theft.svg') ?></div>
+	<ul>
+		<li><i>A</i>: No key has been revoked yet.</li>
+		<li><i>B</i>: The entity revoked the stolen key.</li>
+		<li><i>C</i>: The attacker revoked the remaining key.</li>
+		<li><i>D</i>: Both revoked each other.</li>
+	</ul>
+	<p>In cases <i>B</i>, <i>C</i>, and <i>D</i>, the group splits into two parts, but because of the symmetry, an outsider cannot know which of the two keys got exposed. The entity needs to be authenticated again.</p>
+	<p>Assuming that an attacker may steal multiple keys at the same time, the problem remains symmetric for larger groups.</p>
+	<p>Deleting the messaging account (on the store) of the stolen actor solves the problem. This, however, requires the user to have a separate access (with separate credentials) to the store, and is therefore external to key management.</p>
+
+	<h3>Comparison with centralized key management</h3>
+	<p>The group splitting problem is intrinsic to all key management schemes &mdash; whether central or distributed &mdash; and constitues a theoretical limit of key management.</p>
+	<p>What changes is the number of exposed entities per key theft:</p>
+	<table class="text">
+		<tr>
+			<th>Scheme</th>
+			<th>Exposed entities per key theft</th>
+			<th>Trust</th>
+		</tr>
+		<tr>
+			<td>Distributed</td>
+			<td>1</td>
+			<td>&ndash;</td>
+		</tr>
+		<tr>
+			<td>Centralized</td>
+			<td>all if the the central key is stolen,<br>0 otherwise</td>
+			<td>central server</td>
+		</tr>
+	</table>
+	<p>An application may obviously use a central key server on top of actor groups.</p>
+
+	<h2>Suicide</h2>
+	<p>When anticipating a problem (e.g. after too many wrong PIN code attempts, through <a href="https://en.wikipedia.org/wiki/Mobile_device_management">remote wipe</a>), an actor may commit suicide by destroying its private key. This immediately renders access the data impossible.</p>
+	<p>To recover, the device joins the actor group with a new key pair.</p>
+
+	<h2 id="scalability">Scalability</h2>
+	<p>Actor groups usually consist of 2 to 10 active actors. Users rarely own more devices, which naturally limits the number of active actors.</p>
+	<p>Discovering a group requires downloading the public cards of active actors only, and therefore has no scalability issues. To thwart malicious users intentionally creating large groups, the discovery algorithm may limit the number of accepted active accounts (e.g. 32).</p>
+	<p>Over time, an actor group may however accumulate hundreds of idle accounts, especially if keys are rotated regularly. Idle accounts scale fairly well:</p>
+	<ul>
+		<li>An idle actor only needs a public box with about 20 KiB of storage (public key, public card, and envelope).</li>
+		<li>Cards of idle actors are not downloaded during discovery, unless they are still believed to be active.</li>
+	</ul>
+	<p>Revoked actors do not need any storage space at all.</p>
+
+	<p class="todo">There is some information about data loss on the <a href="/notes/security/">security</a> page, which should probably be merged here.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

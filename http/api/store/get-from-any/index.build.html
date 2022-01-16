@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<? title = 'Hash verification store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Get from Any Store').openField('stores');
+	</script>
+
+	<p>Retrieves objects from a set of stores.</p>
+
+	<h2 id="new">Instance creation</h2>
+	<div class="hscroll api wide java"><pre>
+		GetFromAnyStore getFromAnyStore = new GetFromAnyStore(stores);
+		GetFromAnyStore getFromAnyStore = GetFromAnyStore.create(store0, store1, ...);
+	</pre></div>
+	<div class="hscroll api wide javascript"><pre>var getFromAnyStore = new cn.GetFromAnyStore([store0, store1, ...]);</pre></div>
+	<div class="hscroll api wide perl"><pre>my $getFromAnyStore = CN::GetFromAnyStore-&gt;new([$store0, $store1, ...]);</pre></div>
+	<p>Creates an instance.</p>
+
+	<h2 id="store-access">Store behavior</h2>
+	<p><a href="/api/store/#get">Get requests</a> are tried on each store in the order they are listed, until the object is found.</p>
+	<p>If no store succeeds, the request</p>
+	<ul>
+		<li>fails with an error, if at least one store reported an error,</li>
+		<li>fails as not found, otherwise.</li>
+	</ul>
+	<p>All other requests fail with an error.</p>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<? title = 'Fast store protocol'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Record-based, with records of max length M, where M is at least 1000 bytes, but could be several MB. Most messages are short.</p>
+	<p>For stream-based protocols, records are simply chained and written to the stream.</p>
+	<p>For packet-based protocols, one or more records are sent in one packet.</p>
+	<p>Record order does not matter. Packet-based protocols do not need to reorder or retransmit packets as long as a decent (&gt; 90%) packet transmission rate is expected. The protocol includes end-to-end retransmission.</p>
+	<p>Communication is always between 2 peers, usually a store and an actor, but the protocol does not impose any roles.</p>
+	<p>Minimal state is required on both ends. State can be removed after a time-out, or when the stream closes.</p>
+
+	<h2>Peer state</h2>
+	<ul>
+		<li>GET queue</li>
+		<li>PUT queue</li>
+		<li>BOOK queue</li>
+		<li>LIST queue</li>
+		<li>MODIFY queue</li>
+		<li>AES encryption key: 32 bytes</li>
+		<li>Authenticated: boolean</li>
+	</ul>
+
+	<h2>Message structure</h2>
+	<p class="todo">Stream-based and packet-based media is quite different in this context. There would better be two protocols using similar commands.</p>
+
+	<h3>Stream media</h3>
+	<p>Over stream media (e.g. TCP, Unix pipes), records are concatenated and transmitted over the stream:</p>
+	<div class="hscroll box"><pre>record | record | ...</pre></div>
+	<p>Records are serialized without their hash list, and may contain multiple commands.</p>
+	<p>After encryption set-up, records are interleaved with HMAC signatures, and encrypted:</p>
+	<div class="hscroll box"><pre>AES256-CTR(key, counter, record | HMAC-SHA256(auth, record) 32 | ...)</pre></div>
+	<p>The counter start values are:</p>
+	<ul>
+		<li>Initiator: 0x0000000000000000</li>
+		<li>Responder: 0x8000000000000000</li>
+	</ul>
+	<p class="todo">Add a diagram for connection setup and switching to encryption.</p>
+
+	<h3>Packet media</h3>
+	<p>Over packet media (e.g. UDP, HTTP), records are encapsulated in a packet with the following structure:</p>
+	<div class="hscroll box"><pre>zeros 8 | record | HMAC-SHA256(zeros, record) 32</pre></div>
+	<p>Records are serialized without their hash list, and may contain multiple commands.</p>
+	<p>Once encryption is set up, the records are encrypted:</p>
+	<div class="hscroll box"><pre>counter 8 | AES256-CTR(key, counter, record) | HMAC-SHA256(auth, record) 32</pre></div>
+	<p>The counter start values are:</p>
+	<ul>
+		<li>Initiator: 0x0000000000000001</li>
+		<li>Responder: 0x8000000000000001</li>
+	</ul>
+	<p>Counter values are incremented as needed, in such a way that no value is used more than once. The counter values may be used to reorder the messages.</p>
+	<p>The protocol assumes that:</p>
+	<ul>
+		<li>packets may arrive out-of-order,</li>
+		<li>up to 10 % of the packets may get lost,</li>
+		<li>or contain bit errors.</li>
+	</ul>
+	<p class="todo">In an asynchronous setup, several <i>connect</i> messages may arrive within short time, and multiple encryption secrets may co-exist. The initial secret "0" may be regarded as such an encryption secret as well. To resolve this, it may be easier to let the two channels (peer A → peer B, and peer B → peer A) have different secrets and avoid consensus.</p>
+	<p class="todo">Or: state-less setup, any valid connection setup message sets up a new connection and discards any previous one, send a confirmation message, which implicitly defines which connection is active in case multiple setup messages have been sent, connection timeout after 10 minutes</p>
+
+	<h2>Unencrypted commands</h2>
+
+	<h3>Public key</h3>
+	<p>The initiator needs the public key of the peer to set up a connection. In many cases, this key will be known beforehand. If now, it can obtained using a public key request:</p>
+	<div class="hscroll box"><pre>public key</pre></div>
+	<p>to which the recipient replies with its public key object:</p>
+	<div class="hscroll box"><pre>my public key
+  <span class="im">public key object</span></pre></div>
+	<p>To thward man-in-the-middle attacks, the this key (or its hash) must be authenticated in some way.</p>
+
+	<h3>Connection set-up</h3>
+	<p>The initiator generates 64 random bytes (<i>secret</i>) and sends a connect request:</p>
+	<div class="hscroll box"><pre>connect
+  encrypted secret
+    <span class="im">recipient hash</span> [32]
+      RSA/OAEP(<span class="im">secret</span>, <span class="im">secret</span>) [256]
+  signature
+    <span class="im">sender hash</span> [32]
+      RSA/PSS(<span class="im">encrypted secret</span>) [256]</pre></div>
+    <p>After this record, the initiator encrypts all messages using the secret.</p>
+
+	<p>The recipient requests the initiator's public key if necessary, verifies the signature, and decrypts the secret. If anything goes wrong, the connection is closed immediately.</p>
+
+	<p>When using stream-based media, the recipient sends a</p>
+	<div class="hscroll box"><pre>connected</pre></div>
+	<p>message, and encrypts all subsequent messages.</p>
+	<p>When using packet-based media, there is no need for a <i>connected message</i>.</p>
+
+	<h2>Encrypted commands</h2>
+
+	<h3>Replies</h3>
+	<div class="hscroll box"><pre>ok</pre></div>
+	<div class="hscroll box"><pre>error
+  <span class="im">error message text</span></pre></div>
+
+	<h3>Box modification</h3>
+	<div class="hscroll box"><pre>add
+  <span class="im">account hash</span>*
+    <span class="im">box label</span>*
+      <span class="im">hash</span>*</pre></div>
+
+	<div class="hscroll box"><pre>envelope
+  <span class="im">envelope hash</span>*
+    <span class="im">envelope object bytes</span></pre></div>
+
+	<div class="hscroll box"><pre>remove
+  <span class="im">account hash</span>*
+    <span class="im">box label</span>*
+      <span class="im">hash</span>*</pre></div>
+
+	<h3>Box listing</h3>
+	<div class="hscroll box"><pre>list
+  <span class="im">account hash</span>
+    <span class="im">box label</span>
+      <span class="im">timeout</span> [optional]</pre></div>
+
+	<div class="hscroll box"><pre>box
+  <span class="im">account hash</span>
+    <span class="im">box label</span>
+      <span class="im">hash</span>*</pre></div>
+	<p>List reply.</p>
+	<p class="todo">This should be truncatable to not exceed the maximum message size.</p>
+
+	<h3>Objects</h3>
+
+	<div class="hscroll box"><pre>exists
+  <span class="im">hash</span></pre></div>
+
+	<div class="hscroll box"><pre>missing
+  <span class="im">hash</span></pre></div>
+
+	<div class="hscroll box"><pre>get
+  <span class="im">hash</span></pre></div>
+	<p>Get request. The other party should start sending <i>data</i> messages with the data of this object, or a <i>missing</i> message if it does not have the object.</p>
+
+	<div class="hscroll box"><pre>get
+  <span class="im">hash</span>
+    <span class="im">byte offset</span>
+      <span class="im">byte length</span></pre></div>
+	<p>Partial get request. This can be used to request parts of an object that have not been received yet.</p>
+
+	<div class="hscroll box"><pre>get
+  <span class="im">hash</span>
+    <span class="im">size</span></pre></div>
+	<p>Put request. The other party should reserve enough space to save the object, and add this object to list of objects to fetch. The peer may start sending data messages immediately. The other party sends 'g' messages for missing byte ranges, and an 'E' (exists) message if the object is complete.</p>
+
+	<div class="hscroll box"><pre>book
+  <span class="im">hash</span></pre></div>
+	<p>Book request. If the object exists, the other party should book the object and reply with <i>exists</i>. Otherwise, the other party should reply with <i>missing</i>.</p>
+
+	<div class="hscroll box"><pre>data
+  <span class="im">hash</span>
+    <span class="im">byte offset</span>
+      <span class="im">bytes</span></pre></div>
+	<p>Data. If an object is larger than M, or larger than 2<sup>32</sup>, the object's data needs to be sent in multiple chunks.</p>
+
+	<p class="todo">This part of the protocol makes sense for packet-based protocols. For stream-based protocols, a simple request scheme would be more appropriate.</p>
+
+	<h2>Closing the connection</h2>
+	<p>If the underlying communication channel is connection-oriented, that connection can simply be closed. Otherwise, a peer sends a</p>
+	<div class="hscroll box"><pre>close</pre></div>
+	<p>record and frees the local connection state.</p>
+
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

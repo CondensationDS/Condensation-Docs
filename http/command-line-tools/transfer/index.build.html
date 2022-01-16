@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::Transfer. Do not edit the content here. -->
+<? title = 'Transfer'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn transfer <span class="im">OBJECT*</span> to <span class="im">STORE*</span>
+cn transfer <span class="im">HASH*</span> from <span class="im">STORE</span> to <span class="im">STORE*</span></pre></div>
+<p>Copies a tree from one store to another.</p>
+<div class="hscroll box"><pre>cn transfer <span class="im">HASH*</span> to <span class="im">STORE*</span></pre></div>
+<p>As above, but uses the selected store as source store.</p>
+<div class="hscroll box"><pre>cn <i>leniently</i> transfer …</pre></div>
+<p>Warns about missing objects, but ignores them and proceeds with the rest.</p>
+<div class="hscroll box"><pre>cn <i>thoroughly</i> transfer …</pre></div>
+<p>Check subtrees of objects existing at the destination. This may be used to fix missing objects on the destination store.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="transfer.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="transfer.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<? title = 'Message envelopes'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>With the exception of the envelopes, messages are stored on the sender's store, and only linked from the recipient's store.</p>
+
+	<p>In theory, message envelopes could be stored on the sender's store as well. All that is necessary is to keep track of the sender's store URL alongside with the message hash. This, however, has two significant practical disadvantages:</p>
+	<ul>
+		<li>To read a message, an actor would have to contact the sender's store before verifying the signature. A malicious user could abuse this to track the actor's activity, or to spam a webserver with requests. An actor could only mitigate such attacks to some extent by keeping a white-list or black-list of stores, or by asking the user for permission when a new store is encountered — both of which are highly undesirable.</li>
+		<li>For message removal, a store would have to request the envelope with the sender's signature from another store. This adds additional complexity to the store and its network infrastructure.</li>
+	</ul>
+	<p>Hence, Condensation stores message envelopes on the recipient's store.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

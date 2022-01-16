@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<? title = 'Transactions'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2022, 01); ?>
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Adding a hash to a box is an atomic operation, which either fails or succeeds. Along with a <a href="/forward-moving-data/forward-moving/">forward-moving</a> data structure, every modification is a transaction.</p>
+
+	<p>Recall that modifications are carried out in three steps:</p>
+	<ol>
+		<li>The client constructs a modified tree, and submits it to the store.</li>
+		<li>The client adds the new tree to the box.</li>
+		<li>The client removes the old tree from the box.</li>
+	</ol>
+
+	<p>The private box thereby goes through tree states:</p>
+	<div class="hscroll indent"><? svgFile('Transaction.svg') ?></div>
+	<p>The transaction is complete after the (atomic) addition.</p>
+	<p>Removal does not change the state of the data any more, but can be thought of as a cleanup step. If removal fails, the next read operation will incur some overhead, since both versions need to be read and merged. The result will be the same, however.</p>
+	<p>Note that no locking is involved at any point in the transaction.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

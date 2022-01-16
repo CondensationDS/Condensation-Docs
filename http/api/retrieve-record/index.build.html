@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<? title = 'Retrieving a record'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<h2>Retrieving an unencrypted record</h2>
+	<div class="hscroll wide api java"><pre>
+		GetRecord.Done done = new GetRecord.Done() {
+			void onGetRecordDone(@NonNull Record record, @NonNull CondensationObject object) {
+				// The object was found and parsed
+			}
+
+			void onGetRecordInvalid(@NonNull String reason) {
+				// The object was not found, or is not a record
+			}
+
+			void onGetRecordFailed(@NonNull String error) {
+				// The store reported an error
+			}
+		};
+
+		new GetRecord(hash, store, keyPair, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = keyPair.getRecord(hash, store);
+
+		done.onDone = function(record, object) {
+			// The object was found and parsed
+		};
+
+		done.onInvalid = function(reason !! String) {
+			// The object was not found, or is not a record
+		};
+
+		done.onFailed = function(error !! String) {
+			// The store reported an error
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($record, $object, $invalidReason, $storeError) = $keyPair-&gt;getRecord($hash, $store);
+
+		if (defined $storeError) {
+			# The store reported an error
+		} elsif (defined $invalidReason) {
+			# The object was not found, or is not a record
+		} else {
+			# The object was found and parsed
+		}
+	</pre></div>
+	<p><a href="/api/store/#get">Retrieves</a> an object from a store, and parses it as a <a href="/api/record/">record</a>.</p>
+	<p>If the store reports an error, the operation fails with that error. It may succeed when called again at a later time.</p>
+	<p>If the object is not found, or not a record, the operation fails as invalid.</p>
+
+	<h2>Retrieving an encrypted record</h2>
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>
+		GetRecord.Done done = new GetRecord.Done() {
+			void onGetRecordDone(@NonNull Record record, @NonNull CondensationObject object) {
+				// The object was found, decrypted, and parsed
+			}
+
+			void onGetRecordInvalid(@NonNull String reason) {
+				// The object was not found, or is not a record
+			}
+
+			void onGetRecordFailed(@NonNull String error) {
+				// The store reported an error
+			}
+		};
+
+		new GetAndDecryptRecord(reference, store, keyPair, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = keyPair.getAndDecryptRecord(reference, store);
+
+		done.onDone = function(record, object) {
+			// The object was found, decrypted, and parsed
+		};
+
+		done.onInvalid = function(reason !! String) {
+			// The object was not found, or is not a record
+		};
+
+		done.onFailed = function(error !! String) {
+			// The store reported an error
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($record, $object, $invalidReason, $storeError) = $keyPair-&gt;getAndDecryptRecord($reference, $store);
+
+		if (defined $storeError) {
+			# The store reported an error
+		} elsif (defined $invalidReason) {
+			# The object was not found, or is not a record
+		} else {
+			# The object was found, decrypted, and parsed
+		}
+	</pre></div>
+	<p>As above, but decrypts the object before parsing the record.</p>
+
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

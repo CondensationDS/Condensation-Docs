@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="160"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="BankAccount1.svg">
+  <defs
+     id="defs3876">
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="176.17551"
+     inkscape:cy="89.999997"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1839"
+     inkscape:window-height="1056"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       sodipodi:linespacing="125%"
+       id="text3041"
+       y="34.339897"
+       x="29.964001"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         y="34.339897"
+         x="29.964001"
+         id="tspan3043"
+         sodipodi:role="line">Balance sheet on device A</tspan></text>
+    <rect
+       height="100"
+       style="fill:#cccccc;fill-opacity:1;stroke:none"
+       id="rect3061"
+       width="260"
+       x="320"
+       y="40"
+       rx="5" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="329.96399"
+       y="34.339897"
+       id="text3077"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3079"
+         x="329.96399"
+         y="34.339897">Balance sheet  on device B</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3044"
+       y="62.339897"
+       x="329.96399"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan3046"
+         style="font-size:12px;font-weight:normal;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro"
+         y="62.339897"
+         x="329.96399"
+         sodipodi:role="line">2013-11-07</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="568.84497"
+       y="62.339897"
+       id="text3048"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan3050"
+         sodipodi:role="line"
+         x="568.84497"
+         y="62.339897"
+         style="font-size:15px;text-align:end;text-anchor:end">€ 100</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="329.96399"
+       y="82.339897"
+       id="text3052"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="329.96399"
+         y="82.339897"
+         style="font-size:12px;font-weight:normal;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro"
+         id="tspan3054">2013-12-02</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3056"
+       y="82.339897"
+       x="568.84497"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         style="font-size:15px;text-align:end;text-anchor:end"
+         y="82.339897"
+         x="568.84497"
+         sodipodi:role="line"
+         id="tspan3059">- € 5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="329.96399"
+       y="128.3399"
+       id="text3061"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="329.96399"
+         y="128.3399"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         id="tspan3063">Balance</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3065"
+       y="128.3399"
+       x="568.84497"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         style="font-size:15px;font-weight:bold;text-align:end;text-anchor:end;-inkscape-font-specification:Source Sans Pro Bold"
+         y="128.3399"
+         x="568.84497"
+         sodipodi:role="line"
+         id="tspan3067">€ 95</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="393.96399"
+       y="62.339897"
+       id="text3059"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="393.96399"
+         y="62.339897"
+         style="font-size:15px;font-weight:normal;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro"
+         id="tspan3062">Opening account</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="393.96399"
+       y="82.339897"
+       id="text3068"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="393.96399"
+         y="82.339897"
+         style="font-size:15px;font-weight:normal;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro"
+         id="tspan3070">Buying bananas</tspan></text>
+    <rect
+       rx="5"
+       y="40"
+       x="20"
+       width="260"
+       id="rect4081"
+       style="fill:#cccccc;fill-opacity:1;stroke:none"
+       height="100" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="29.963989"
+       y="62.339897"
+       id="text4083"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="29.963989"
+         y="62.339897"
+         style="font-size:12px;font-weight:normal;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro"
+         id="tspan4085">2013-11-07</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4087"
+       y="62.339897"
+       x="268.84497"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         style="font-size:15px;text-align:end;text-anchor:end"
+         y="62.339897"
+         x="268.84497"
+         sodipodi:role="line"
+         id="tspan4089">€ 100</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4099"
+       y="128.3399"
+       x="29.963989"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan4101"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         y="128.3399"
+         x="29.963989"
+         sodipodi:role="line">Balance</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="268.84497"
+       y="128.3399"
+       id="text4103"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4105"
+         sodipodi:role="line"
+         x="268.84497"
+         y="128.3399"
+         style="font-size:15px;font-weight:bold;text-align:end;text-anchor:end;-inkscape-font-specification:Source Sans Pro Bold">€ 87</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4107"
+       y="82.339897"
+       x="29.963989"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan4109"
+         style="font-size:12px;font-weight:normal;text-align:start;text-anchor:start;fill:#000000;-inkscape-font-specification:Source Sans Pro"
+         y="82.339897"
+         x="29.963989"
+         sodipodi:role="line">2013-11-17</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="268.84497"
+       y="82.339897"
+       id="text4111"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4113"
+         sodipodi:role="line"
+         x="268.84497"
+         y="82.339897"
+         style="font-size:15px;text-align:end;text-anchor:end;fill:#000000">- € 13</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4115"
+       y="62.339897"
+       x="93.963989"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan4117"
+         style="font-size:15px;font-weight:normal;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro"
+         y="62.339897"
+         x="93.963989"
+         sodipodi:role="line">Opening account</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="93.963989"
+       y="82.339897"
+       id="text4119"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="93.963989"
+         y="82.339897"
+         style="font-size:15px;font-weight:normal;text-align:start;text-anchor:start;fill:#000000;-inkscape-font-specification:Source Sans Pro"
+         id="tspan4121">Buying oranges</tspan></text>
+  </g>
+</svg>

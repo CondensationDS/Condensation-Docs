@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<? title = 'Condensation object'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Object');
+	</script>
+
+	<p>A <a href="/serialization/object/">Condensation object</a>. Header and data are immutable byte sequences. The header includes the number of hashes (4 bytes), and the hashes (32 bytes each).</p>
+
+	<h2 id="new">Instance creation</h2>
+	<div class="hscroll api java"><pre>CondensationObject object = CondensationObject.from(bytes);</pre></div>
+	<div class="hscroll api javascript"><pre>var object = cn.objectFromBytes(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $object = CN::Object-&gt;fromBytes($bytes);</pre></div>
+	<p>Parses the bytes, and returns an instance. If the bytes do not contain a valid Condensation object, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
+	<p>Note that the bytes are not copied. If you reuse the byte array, <a href="/api/bytes/#clone">clone it</a>.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>CondensationObject object = CondensationObject.create(headerBytes, dataBytes);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var object = cn.createObject(headerBytes, dataBytes);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $object = CN::Object-&gt;create($headerBytes, $dataBytes);</pre></div>
+	<p>Parses the header bytes, and returns an instance. If the header is not valid, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
+	<p>Note that header and data bytes are not copied. If you reuse the byte arrays, <a href="/api/bytes/#clone">clone them</a>.</p>
+
+	<h2 id="hash-list">Accessing the hash list</h2>
+	<div class="hscroll api java"><pre>Hash hash = object.hashAtIndex(i);</pre></div>
+	<div class="hscroll api javascript"><pre>var hash = object.hashAtIndex(i);</pre></div>
+	<div class="hscroll api perl"><pre>my $hash = $object-&gt;hashAtIndex($i);</pre></div>
+	<p>Returns the hash at index <i>i</i> in the object's header.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>Hash[] hashes = object.hashes();</pre></div>
+	<div class="hscroll api javascript"><pre>var hashes = object.hashes();</pre></div>
+	<div class="hscroll api perl"><pre>my @hashes = $object-&gt;hashes;</pre></div>
+	<p>Returns the list of hashes referenced in the object's header.</p>
+
+	<h2 id="calculate-hash">Calculating the object hash</h2>
+	<div class="hscroll api java"><pre>Hash hash = object.calculateHash();</pre></div>
+	<div class="hscroll api javascript"><pre>var hash = object.calculateHash();</pre></div>
+	<div class="hscroll api perl"><pre>my $hash = $object-&gt;calculateHash;</pre></div>
+	<p>Calculates the SHA-256 hash the object.</p>
+	<p>Note that hash calculation is a relatively time-intensive operation. Hence, hashes should only be calculated when necessary.</p>
+
+	<div class="java javascript">
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>Hash hash = new CalculateHash(object, done);</pre></div>
+		<div class="hscroll api javascript"><pre>
+			var done = object.calculateHashAsynchronously(object);
+			done.onDone = function(hash) { ... };
+		</pre></div>
+		<p>Asynchronously calculates the SHA-256, and calls <i class="java">done.onCalculateHashDone(hash)</i><i class="javascript">done.onDone(hash)</i> when done. This is particularly useful for large objects.</p>
+	</div>
+
+	<h2 id="crypt">Encryption and decryption</h2>
+	<div class="hscroll api java"><pre>CondensationObject encryptedObject = object.crypt(key);</pre></div>
+	<div class="hscroll api javascript"><pre>var encryptedObject = object.crypt(key);</pre></div>
+	<div class="hscroll api perl"><pre>my $encryptedObject = $object-&gt;crypt(key);</pre></div>
+	<p>Encrypts or decrypts the object with the given key.</p>
+
+	<div class="java javascript">
+		<h2 id="crypt-in-place">In-place encryption and decryption</h2>
+		<p>If an object and its data are fully owned, it may be encrypted or decrypted in-place. In-place en- or decryption is slightly more efficient, since no additional memory is allocated.</p>
+		<p>In-place encryption is sometimes used during <a href="#examples">object creation</a>. Objects retrieved from a store <em>must never</em> be modified in-place, however. They remain owned by the store.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>Bytes key = object.encryptInPlace();</pre></div>
+		<div class="hscroll api javascript"><pre>var key = object.encryptInPlace();</pre></div>
+		<p>Generates a random key, encrypts the object in-place, and returns the key.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>object.cryptInPlace(key);</pre></div>
+		<div class="hscroll api javascript"><pre>object.cryptInPlace(key);</pre></div>
+		<p>Encrypts or decrypts an object in-place with the provided <i>key</i>.</p>
+	</div>
+
+	<h2 id="clone">Cloning</h2>
+	<div class="hscroll api java"><pre>Bytes bytes = object.bytes();</pre></div>
+	<div class="hscroll api javascript"><pre>var bytes = object.bytes();</pre></div>
+	<div class="hscroll api perl"><pre>my $bytes = $object-&gt;bytes;</pre></div>
+	<p>Returns a copy of the bytes of this object. To avoid copying, consider accessing the header and data directly.</p>
+
+	<div class="hscroll api java"><pre>CondensationObject clonedObject = object.clone();</pre></div>
+	<div class="hscroll api javascript"><pre>var clonedObject = object.clone();</pre></div>
+	<div class="hscroll api perl"><pre>my $clonedObject = $object-&gt;clone;</pre></div>
+	<p>Returns a clone with copies of header and data.</p>
+
+	<h2>Examples</h2>
+	<h3>Serializing and encrypting a record</h3>
+	<div class="hscroll box java"><pre>
+		CondensationObject object = record.toObject();
+		Bytes key = object.encryptInPlace();
+		Hash hash = object.calculateHash();
+		Reference reference = new Reference(hash, key);
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		var object = record.toObject();
+		var key = object.encryptInPlace();
+		var hash = object.calculateHash();
+		var reference = new cn.Reference(hash, key);
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		my $key = CN-&gt;randomKey;
+		my $object = $record-&gt;toObject()-&gt;crypt($key);
+		my $hash = $object-&gt;calculateHash;
+		my $reference = CN::Reference-&gt;new($hash, $key);
+	</pre></div>
+	<p>Since record serialization always allocates new memory, the resulting object is fully owned, and can therefore be encrypted in-place on platforms that allow this.</p>
+
+	<h3>Creating an encrypted object from arbitrary data</h3>
+	<div class="hscroll wide box java"><pre>
+		Bytes data = ...
+		Bytes key = Condensation.randomKey();
+		CondensationObject object = CondensationObject.create(CondensationObject.emptyHeader, data).crypt(key);
+		Hash hash = object.calculateHash();
+		Reference reference = new Reference(hash, key);
+	</pre></div>
+	<div class="hscroll wide box javascript"><pre>
+		var data = ...	// Uint8Array
+		var key = cn.randomKey();
+		var object = cn.createObject(cn.emptyHeader, data).crypt(key);
+		var hash = object.calculateHash();
+		var reference = new cn.Reference(hash, key);
+	</pre></div>
+	<div class="hscroll wide box perl"><pre>
+		my $data = ...
+		my $key = CN-&gt;randomKey;
+		my $object = CN::Object-&gt;create(CN::Object-&gt;emptyHeader, $data)-&gt;crypt($key);
+		my $hash = $object-&gt;calculateHash;
+		my $reference = CN::Reference-&gt;new($hash, $key);
+	</pre></div>
+
+	<div class="java javascript">
+		<h3>Creating an encrypted object from owned data</h3>
+		<div class="hscroll wide box java"><pre>
+			Bytes data = ...
+			CondensationObject object = CondensationObject.create(CondensationObject.emptyHeader, data);
+			Bytes key = object.encryptInPlace();
+			Hash hash = object.calculateHash();
+			Reference reference = new Reference(hash, key);
+		</pre></div>
+		<div class="hscroll wide box javascript"><pre>
+			var data = ...	// Uint8Array
+			var object = cn.createObject(cn.emptyHeader, data);
+			var key = object.encryptInPlace();
+			var hash = object.calculateHash();
+			var reference = new cn.Reference(hash, key);
+		</pre></div>
+		<p>Note that <i>data</i> will be modified by <a href="#crypt-in-place">encryptInPlace</a>.</p>
+	</div>
+
+	<h2>See also</h2>
+	<p><a href="/api/record/#serialization">Encrypting a record</a></p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

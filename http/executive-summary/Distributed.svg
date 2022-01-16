@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="420"
+   height="120"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Distributed.svg">
+  <defs      id="defs3876" ></defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="-120.19636"
+     inkscape:cy="96.072762"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-global="true" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';text-align:start;text-anchor:start"
+       x="85"
+       y="110"
+       id="text4595"><tspan
+         sodipodi:role="line"
+         x="85"
+         y="110"
+         id="tspan4198"
+         style="font-size:18px;line-height:1;text-align:start;text-anchor:start">Intermediate server</tspan></text>
+    <path
+       style="fill:none;stroke:#999999;stroke-dasharray:3, 3;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:1"
+       d="m 133.5,26.5 h -79"
+       id="path4652"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <g
+       transform="translate(-194,-182)"
+       id="g4654">
+      <rect
+         rx="4"
+         y="191"
+         x="219"
+         height="34"
+         width="20"
+         id="rect4656"
+         style="fill:#9549db" />
+      <rect
+         style="fill:#ffffff"
+         id="rect4658"
+         width="16"
+         height="1"
+         x="221"
+         y="195" />
+      <rect
+         y="220"
+         x="221"
+         height="1"
+         width="16"
+         id="rect4660"
+         style="fill:#ffffff" />
+    </g>
+    <rect
+       style="fill:#9549db"
+       id="rect4686"
+       width="30"
+       height="46"
+       x="145"
+       y="3"
+       rx="4" />
+    <circle
+       style="fill:#ffffff"
+       id="circle4688"
+       cx="160"
+       cy="43"
+       r="2" />
+    <rect
+       rx="2"
+       y="87"
+       x="246"
+       height="10"
+       width="36"
+       id="rect842"
+       style="fill:#999999" />
+    <rect
+       style="fill:#666666"
+       id="rect844"
+       width="36"
+       height="10"
+       x="246"
+       y="98"
+       rx="2" />
+    <rect
+       rx="2"
+       y="109"
+       x="246"
+       height="10"
+       width="36"
+       id="rect846"
+       style="fill:#333333" />
+    <path
+       style="fill:none;stroke:#999999;stroke-dasharray:3, 3;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:1"
+       d="m 185.5,26.5 h 74 v 50"
+       id="path856"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <rect
+       style="fill:#9549db"
+       id="rect4950"
+       width="70"
+       height="44"
+       x="331"
+       y="1"
+       rx="4" />
+    <rect
+       rx="2"
+       y="47"
+       x="331"
+       height="4"
+       width="70"
+       id="rect4952"
+       style="fill:#5a1d93" />
+    <rect
+       rx="2"
+       y="3"
+       x="333"
+       height="40"
+       width="66"
+       id="rect4954"
+       style="fill:#ffffff" />
+    <rect
+       style="fill:#9549db"
+       id="rect4956"
+       width="64"
+       height="38"
+       x="334"
+       y="4"
+       rx="1" />
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path1015"
+       d="m 319.5,26.5 h -50 v 50"
+       style="fill:none;stroke:#999999;stroke-dasharray:3, 3;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:1" />
+  </g>
+</svg>

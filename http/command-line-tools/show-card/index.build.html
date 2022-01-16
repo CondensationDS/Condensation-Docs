@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::ShowCard. Do not edit the content here. -->
+<? title = 'Show an actor\'s public card'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn show card of <span class="im">ACCOUNT</span>
+cn show card of <span class="im">ACTOR</span> [on <span class="im">STORE</span>]
+cn show card of <span class="im">KEYPAIR</span> [on <span class="im">STORE</span>]</pre></div>
+<p>Shows the card(s) of an actor.</p>
+<div class="hscroll box"><pre>cn show card of <span class="im">ACTORGROUP</span></pre></div>
+<p>Shows all cards of an actor group.</p>
+<div class="hscroll box"><pre>cn show card</pre></div>
+<p>Shows the card of the selected actor on the selected store.</p>
+<div class="hscroll box"><pre>cn show my card</pre></div>
+<p>Shows your own card.</p>
+<p>An actor usually has one card. If no cards are shown, the corresponding actor does not exist, is not using that store, or has not properly announced itself. Two cards may exist while the actor is updating its card. Such a state is temporary, but may exist for hours or days if the actor has intermittent network access. Three or more cards may point to an error in the way the actor updates his card, an error in the synchronization code (if the account is synchronized). Two or more cards may also occur naturally when stores are merged.</p>
+<p>A peer consists of one or more actors, which all publish their own card. The cards are usually different, but should contain consistent information.</p>
+<p>You can publish your own card (i.e. the card of your main key pair) using</p>
+<p>  cn announce</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="show-card.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="show-card.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

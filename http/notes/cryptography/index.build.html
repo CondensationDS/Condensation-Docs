@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<? title = 'Cryptographic algorithms'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>Condensation uses the following cryptographic algorithms:</p>
+	<ul>
+		<li><b>SHA 256</b> to calculate object hashes, and validate their integrity.</li>
+		<li><b>AES 256</b> in CTR mode without padding to <a href="/serialization/object/#encryption">encrypt objects</a>.</li>
+		<li><b>RSA 2048</b> to encrypt AES keys (using OAEP with SHA 256) and sign hashes (using PSS with SHA 256).</li>
+	</ul>
+
+	<p>All three algorithms have been around for at least 10 years, and are believed to be secure. They offer good performance on today's computers, and a brute-force attack resistance until at least 2025.</p>
+
+	<p>Instead of offering a plethora of different encryption methods, Condensation limits itself to a small number of cryptographic primitives. This allows for a smaller codebase that is easier to maintain and review. In addition, no protocol negotiation and configuration is necessary, eliminating a frequent source of errors.</p>
+
+	<p>Just as with other protocols, the security suite will evolve to adjust for increasing processing power or changes in processor design. Future versions of Condensation may use a different set of algorithms.</p>
+
+	<h2>System architecture</h2>
+	<div class="todo">This should go to a separate section.</div>
+	<p>Condensation is based on <a href="https://en.wikipedia.org/wiki/End-to-end_encryption">end-to-end encryption</a>. The data is encrypted within the application that produces or sends it, and decrypted within the application that consumes or receives it. When storing data, sender and receiver of the data are usually the same.</p>
+	<p>Network and storage systems see encrypted data only, and do not have the encryption keys necessary to decrypt any data.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<? title = 'English-like commands'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>The <a href="/command-line-tools/">Condensation command line tools</a> use an english-like syntax as opposed to the more common options-based syntax. A typical <i>cn</i> command looks as follows:</p>
+	<div class="hscroll box"><pre>cn leniently copy tree HASH from STORE to STORE</pre></div>
+	<p>while an experienced Unix user would expect something like this:</p>
+	<div class="hscroll box"><pre>cn copy --lenient --from STORE --to STORE HASH  <span style="color:#red"># does not work</span>
+cn copy -l -f STORE -t STORE HASH               <span style="color:#red"># does not work</span>
+cn-copy -l STORE/HASH STORE                     <span style="color:#red"># does not work</span></pre></div>
+
+	<p>English-like sentences tend to be longer, but are generally easier to type, read, and understand. In addition, sentences are particularly easy to auto-complete, a feature available on virtually all platforms nowadays. Users therefore rarely type a complete sentence manually, but are guided through the syntax by auto-completion.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

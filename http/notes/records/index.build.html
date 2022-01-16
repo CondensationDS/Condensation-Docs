@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<? title = 'Records as generic data format'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Condensation uses <a href="/serialization/record/">records</a> as generic data encoding format.</p>
+
+	<p>Records are trees of byte sequences with optional hashes. Trees are extremely versatile: dictionaries, tables, n-dimensional arrays, and pretty much any other data structure can be mapped to a tree fairly straightforwardly. In addition, different data structures can easily be nested within each other.</p>
+
+	<p>A tree node can hold an arbitrary byte sequence. Binary data therefore does not need to be recoded or transformed, saving both disk space and complexity.</p>
+
+	<h2>Serialization overhead</h2>
+	<p>Records are serialized as a list of nodes. The node overhead depends on the length of the byte sequence:</p>
+	<table class="text">
+		<tr>
+			<th>Length of byte sequence</th>
+			<th>Overhead</th>
+		</tr>
+		<tr>
+			<td>0‒29 bytes</td>
+			<td>1 byte</td>
+		</tr>
+		<tr>
+			<td>30 bytes</td>
+			<td>2 bytes, 6.7 %</td>
+		</tr>
+		<tr>
+			<td>⁝</td>
+			<td>⁝</td>
+		</tr>
+		<tr>
+			<td>285 bytes</td>
+			<td>2 bytes, 0.7 %</td>
+		</tr>
+		<tr>
+			<td>286 bytes or more</td>
+			<td>9 bytes, &lt; 3.15 %</td>
+		</tr>
+	</table>
+	<p>A hash adds 36 bytes: 32 header bytes and 4 data bytes to store the hash index.</p>
+	<p>Since the root node's content is not stored, a record with no child nodes is serialized to a zero-length byte sequence.</p>
+
+	<h2>Simplicity</h2>
+	<p>The serialization scheme is very simple, and has virtually no error states. In common programming languages, the source code for serializing a record is just about 30 lines long, and deserialization is equally short.</p>
+
+	<h2>Ease of use</h2>
+	<p>In general, working with records is significantly easier than working with text files. TBD: no parsing, just traverse a tree, similarly simple, generic editor possible</p>
+
+	<h2>Comparison</h2>
+	<p>In general, records are more efficient than common <a href="https://en.wikipedia.org/wiki/Text_file">text file</a> formats, even if the data to encode is primarily text. The node overhead is competitive with <a href="https://en.wikipedia.org/wiki/Newline">line breaks</a> or <a href="https://en.wikipedia.org/wiki/Delimiter">field delimiters</a>, which usually take 1‒2 characters (bytes). In addition, records do not need quote or <a href="https://en.wikipedia.org/wiki/Escape_character">escape characters</a>, and can store numbers and binary data more compactly.</p>
+	<p>Structurally, records are somewhat similar to <a href="https://en.wikipedia.org/wiki/XML">XML</a>. Record nodes are significantly simpler and purer than XML elements, however. With XML, simple values can be stored as attributes of a tag, as text node, or even as tag name of a child element. Records avoid this redundancy: simple values are always stored as byte sequence of a node.</p>
+	<p>Record encoding shares some similarity with <a href="https://en.wikipedia.org/wiki/X.690">X.690</a> (ASN.1, BER, CER, DER), but is considerably thinner and simpler. No data types (class tags) are stored, as the interpretation of the byte sequences is left to the application or protocol. Length encoding is simpler, too. Constructed tags are not necessary, since any node can contain any number of child nodes.</p>
+
+	<!-- TODO: create a web page with examples of how to encode data in condensation using records and object trees
+	<h2>Applications</h2>
+	<ul>
+		<li>Settings (instead of INI, plist, XML, JSON or Apache style configuration files)</li>
+		<li>Tabular data, matrices (instead of CSV)</li>
+		<li>Hierarchical data (instead of XML or JSON)</li>
+		<li>Log files</li>
+		<li>Container (instead of tar, zip, ...)</li>
+		<li>Streaming containers (ogg, ...)</li>
+		<li>...</li>
+	</ul> -->
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

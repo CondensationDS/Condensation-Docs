@@ -1,0 +1,86 @@
+Introduction
+	Condensation at a glance
+	Motivation
+	Features
+
+Conceptual (currently "Overview")
+	// written with an didactical style, concept diagrams
+
+	Objects, hashes, trees, blockchains
+	Boxes
+	Accounts
+	Stores
+	RSA keys, public key, private key, actors
+	Account hashes
+	Object encryption, AES
+	Envelopes
+	Public card, announcing
+	Messages, message sending
+	Private data, saving updates
+
+	Forward-mergeable data, semilattice theory, union merge, max merge, broom merge
+
+	Store design
+	Store functions (get, put, list, add, remove)
+
+	Data trees (as example of forward-mergeable data)
+
+	// + most "Notes" documents (in their respective chapter)]
+
+Specification (currently: "Serialization", "Stores", "Actors")
+	// written in a formal, factual style, specs are binding
+
+	Generic store
+		Account
+		Box
+	HTTP store
+	Folder store
+		FTP store
+		SFTP store
+	SQL store
+	Hash
+	Object, encryption
+	Record
+	Envelope
+	Message
+	Public card
+	Document
+
+API documentation
+	// written in a didactical style
+	// with code examples (synopsis-style) rather than field and function specifications
+	// switchable programming language
+	// Command line interface
+
+Implementations, Downloads
+	// mostly download links and specific notes about the implementations
+
+	Client libraries
+		Perl
+		JavaScript
+		Java
+		...
+
+	Client libraries for IoT
+		ESP32
+		POSIX
+
+	Store servers
+		Perl HTTP store (quick start from command line)
+		JavaScript HTTP store
+			Nginx configuration
+		PHP HTTP store with mysql/mariadb backend
+		PHP HTTP store with folder backend
+		Standalone HTTP store
+
+	Services
+		authentication service
+		token service
+
+---
+
+Color code
+- red: data serialization
+- green: stores
+- blue: actors
+- yellow: forward-merging, data trees

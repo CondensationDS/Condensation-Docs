@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="580"
+   height="170"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="ConnectionPool.svg">
+  <defs
+     id="defs4">
+    <marker
+       style="overflow:visible"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="arrow000000">
+      <path
+         id="path4708"
+         d="M -6,3 2,0 -6,-3 -5,0 Z"
+         style="fill:#000000"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="19"
+     inkscape:cy="85.744654"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#6bc55f"
+       id="rect1650"
+       width="160"
+       height="30"
+       x="40"
+       y="40"
+       rx="3" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="50"
+       y="62"
+       id="text1654"><tspan
+         sodipodi:role="line"
+         x="50"
+         y="62"
+         id="tspan1652">https://condensation.io</tspan></text>
+    <rect
+       rx="3"
+       y="80"
+       x="40"
+       height="30"
+       width="160"
+       id="rect4492"
+       style="fill:#6bc55f" />
+    <text
+       id="text4496"
+       y="102"
+       x="50"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan4494"
+         y="102"
+         x="50"
+         sodipodi:role="line">https://condensation.io</tspan></text>
+    <rect
+       style="fill:#6bc55f"
+       id="rect4498"
+       width="160"
+       height="30"
+       x="40"
+       y="120"
+       rx="3" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="50"
+       y="142"
+       id="text4502"><tspan
+         sodipodi:role="line"
+         x="50"
+         y="142"
+         id="tspan4500">https://viereck.ch</tspan></text>
+    <text
+       id="text4506"
+       y="28"
+       x="40"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan4504"
+         y="28"
+         x="40"
+         sodipodi:role="line">Store instances</tspan></text>
+    <rect
+       y="1"
+       x="240"
+       height="168"
+       width="218"
+       id="rect3024"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0"
+       rx="10" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 0,98.5 H 32"
+       id="path5562"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path5564"
+       d="m 202,98.5 c 29.51831,0 21.60035,-17.462135 46,-24"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="260"
+       y="28"
+       id="text5003"><tspan
+         sodipodi:role="line"
+         x="260"
+         y="28"
+         id="tspan5001">Connection pool</tspan></text>
+    <rect
+       rx="3"
+       y="40"
+       x="260"
+       height="50"
+       width="180"
+       id="rect5005"
+       style="fill:#e5b83f" />
+    <text
+       id="text5009"
+       y="68"
+       x="270"
+       style="font-size:13px;line-height:1;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan5007"
+         y="68"
+         x="270"
+         sodipodi:role="line">Connection to</tspan><tspan
+         y="81"
+         x="270"
+         sodipodi:role="line"
+         id="tspan5025">https://condensation.io</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="6"
+       y="96"
+       id="text5019"><tspan
+         sodipodi:role="line"
+         x="6"
+         y="96"
+         id="tspan5017">get</tspan></text>
+    <text
+       id="text5023"
+       y="88"
+       x="208"
+       style="font-weight:bold;font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan5021"
+         y="88"
+         x="208"
+         sodipodi:role="line">get</tspan></text>
+    <rect
+       style="fill:#e5b83f"
+       id="rect5027"
+       width="180"
+       height="50"
+       x="260"
+       y="100"
+       rx="3" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;line-height:1;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="270"
+       y="128"
+       id="text5033"><tspan
+         sodipodi:role="line"
+         x="270"
+         y="128"
+         id="tspan5029">Connection to</tspan><tspan
+         id="tspan5031"
+         sodipodi:role="line"
+         x="270"
+         y="141">https://viereck.ch</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path5035"
+       d="M 442,80.5 H 574"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text5039"
+       y="76"
+       x="468"
+       style="font-weight:bold;font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan5037"
+         y="76"
+         x="468"
+         sodipodi:role="line">GET ... HTTP/1.1</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="m 202,58.5 c 29.51831,0 34.60035,1.537865 52,6"
+       id="path4527"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4529"
+       d="M 0,58.5 H 32"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)" />
+    <text
+       id="text4533"
+       y="56"
+       x="6"
+       style="font-weight:bold;font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan4531"
+         y="56"
+         x="6"
+         sodipodi:role="line">put</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="208"
+       y="54"
+       id="text4537"><tspan
+         sodipodi:role="line"
+         x="208"
+         y="54"
+         id="tspan4535">put</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;marker-end:url(#arrow000000)"
+       d="M 442,60.5 H 574"
+       id="path4539"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="468"
+       y="56"
+       id="text4543"><tspan
+         sodipodi:role="line"
+         x="468"
+         y="56"
+         id="tspan4541">PUT ... HTTP/1.1</tspan></text>
+  </g>
+</svg>

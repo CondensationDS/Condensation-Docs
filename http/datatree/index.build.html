@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<? title = 'Data trees'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<? include('Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">incomplete, to be adapted to new structure</span></h1>
+
+	<p>Data trees provide an efficient and convenient way to store data in the Condensation data system.</p>
+
+	<p>A data set is a tree of nodes. Each node is identified by a label, and can hold a small set of values.</p>
+	<p>TBD</p>
+
+	<h2>Object tree structure</h2>
+	<p>TODO: main object, list objects</p>
+	<p><? svgFile('ObjectStructure.svg') ?></p>
+
+	<h2>Main objects</h2>
+
+	<h2>List objects</h2>
+	<p>A list object has the following structure:</p>
+	<p><? svgFile('ListObject.svg') ?></p>
+
+	<h2>List inclusion algorithm</h2>
+	<p>Include lists &lt; 2 times the number of included lists</p>
+
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

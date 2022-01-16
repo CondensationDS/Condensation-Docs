@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<? title = 'Strip'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation Servers</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A strip is a fixed-length byte sequence with the following structure:</p>
+	<div class="hscroll box"><? svgFile('Structure.svg') ?></div>
+	<p>At regular intervals of usually 8 MiB, checkpoints are located. Checkpoints contain the strip configuration and state information. The rest of the space is available for object entries.</p>
+	<p>A strip is written in an append-only manner &mdash; like a log file or a journal &mdash; and entries and checkpoints are immutable once they are written. Once the end is reached, a strip restarts at the beginning like a circular buffer.</p>
+
+	<h2>Checkpoints</h2>
+	<p>A checkpoint has the following structure:</p>
+	<div class="hscroll wide box"><pre><span class="im">checkpoint</span> = <span class="im">welcome</span> 88 | 0 | <span class="im">hash</span> 32 | <span class="im">length</span> 8 | <span class="im">object</span> [length]
+hash = SHA256(object)</pre></div>
+	<p>The <i>welcome</i> message is a short UTF-8 text pointing to this documentation, e.g.:</p>
+	<div class="hscroll wide box"><pre>This is a Condensation strip.
+See https://condensation.io/servers/standalone/strip for details.</pre></div>
+	<p>This text is purely informational, and prominently visible when inspecting the strip with a hex editor, or similar tools.</p>
+	<p>The <i>object</i> contains a record with the strip configuration and state information:</p>
+	<div class="hscroll box"><pre>configuration
+  creator
+    CREATOR
+  creation time
+    CREATION TIME
+  size
+    SIZE
+  read block size
+    log2(READ BLOCK SIZE)
+  write block size
+    log2(WRITE BLOCK SIZE)
+  erase block size
+    log2(ERASE BLOCK SIZE)
+  hash mask
+    HASH MASK
+  checkpoint interval
+    log2(CHECKPOINT INTERVAL)
+  index
+    hash size
+      INDEX HASH LENGTH
+    position size
+      INDEX POSITION LENGTH
+index
+  LAST INDEX POSITION
+cycles
+  CYCLES</pre></div>
+	<p>The record is considered a dictionary. Keys may appear in any order.</p>
+	<p>The <i>configuration</i> section contains values valid throughout the whole strip. These values <em>must</em> remain the same throughout the strip, and are simply repeated at each checkpoint. The configuration values are:</p>
+	<div class="hscroll whiteBox">
+		<h4>size</h4>
+		<p>Strip size in bytes.</p>
+
+		<h4>read block size</h4>
+		<p>The minimum amount of data read at once, written as a <a href="#powers-of-two">power of 2</a>. This is usually 4 KiB.</p>
+
+		<h4>write block size</h4>
+		<p>The minimum amount of data written at once, written as a <a href="#powers-of-two">power of 2</a>.</p>
+
+		<h4>erase block size</h4>
+		<p>The minimum amount of data erased at once, written as a <a href="#powers-of-two">power of 2</a>. For HDDs, this value is the same as the write block size. For SSDs, typical values are between 128 KiB and 4 MiB.</p>
+
+		<h4>hash mask</h4>
+		<p>A random 32-byte value generated when initializing the strip, and used to mask (XOR) all hashes. Reinitializing a strip with a new hash mask automatically invalidates all existing checkpoints and objects.</p>
+
+		<h4>checkpoint interval</h4>
+		<p>The byte distance from one checkpoint to the next, written as a <a href="#powers-of-two">power of 2</a>. Meaningful values are between 1 MiB and 1 GiB. Using larger intervals is slightly more efficient, but takes more time to mount. Mounting requires to read all data between the last two checkpoints. A good trade-off is 8 MiB.</p>
+
+		<h4>index key</h4>
+		<p>A random 32-byte value generated when initializing the strip, and used to encrypt (scramble) the hashes when indexing them. This ensures that the hashtable is balanced. The key must not be published, as this would allow attacks on the hashtable balancing to degrade the performance.</p>
+
+		<h4>index hash length</h4>
+		<p>The amount of (scrambled) hash bytes to store in the index. For strips up to 32 TiB, a value of 5 is <a href="#suitable-index-hash-length">suitable</a>.</p>
+
+		<h4>index position length</h4>
+		<p>The amount of bytes used to store the position. This must be at least</p>
+		<pre style="margin-left:20px">index position length &ge; ceil(log<sub>2</sub>(size))</pre>
+	</div>
+	<p>The configuration may contain additional informational fields, such as the <i>creator</i> and the <i>creation time</i>.</p>
+	<p><i>Cycles</i> (unsigned integer) denotes the number of times the strip wrapped around. This indicates the number of times each block was erased (and rewritten), and is used to distinguish the head (new cycle) from the tail (old cycle) of the strip. The tuple [cycle, physical position] is steadily increasing, and can be used as total order.</p>
+	<p>The whole checkpoint must not be longer than 16 KiB. A checkpoint is considered <i>active</i> if its total length is shorter than 16 KiB, and its hash value is correct. Otherwise, the checkpoint is <i>inactive</i>.</p>
+
+	<h3>Entries</h3>
+	<p>An entry starts with a type byte, followed by type-specific data:</p>
+	<div class="hscroll box"><pre>entry = type 1 | type-specific data</pre></div>
+	<p><i>Type</i> takes one of the following values:</p>
+	<table class="text">
+		<tr>
+			<th colspan="3">Type</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>0x00<br>0xff</td>
+			<td></td>
+			<td>0000 0000<br>1111 1111</td>
+			<td>spacer for NOR memory<br>spacer for NAND memory</td>
+		</tr>
+		<tr>
+			<td>0x10<br>0x11<br>0x12<br>0x13</td>
+			<td>0x90<br>0x91<br>0x92<br>0x93</td>
+			<td>s001 0000<br>s001 0001<br>s001 0010<br>s001 0011</td>
+			<td>continued index part<br>start of index part<br>ent of index part<br>complete index part (start and end)</td>
+		</tr>
+		<tr>
+			<td>0x20<br>0x21</td>
+			<td>0xa0<br>0xa1</td>
+			<td>s010 0000<br>s010 0001</td>
+			<td>full object entry<br>combined object entry</td>
+		</tr>
+		<tr>
+			<td>0x22<br>0x23</td>
+			<td>0xa2<br>0xa3</td>
+			<td>s010 0010<br>s010 0011</td>
+			<td>full object entry with account information<br>combined object entry with account information</td>
+		</tr>
+	</table>
+	<p><i>S</i> is 0 on even cycles, and 1 on odd cycles. This allows to tell objects at the head (new cycle) and tail (old cycle) apart.</p>
+	<p>All other values are reserved for future use.</p>
+
+	<h2>Object entries</h2>
+	<p>Condensation objects are stored as object entries. Small objects are stored as full object entries, while larger objects are cut into slices, and held together by combined object entry.</p>
+
+	<h3>Full object entry</h3>
+	<p>A full object entry has the following structure:</p>
+	<div class="hscroll box wide"><pre>full object entry = 0x02 | hash 32 | length 8 | object [length]
+hash = SHA256(object) ^ HASH MASK</pre></div>
+
+	<h3>Combined object entry</h3>
+	<p>A combined object entry has the following structure:</p>
+	<div class="hscroll box wide"><pre>combined object entry = 0x03 | entry hash 32 | object hash 32 | length 8 | slice list [length]
+slice list = slice hash | slice hash | ...
+hash = SHA256(hashes) ^ HASH MASK</pre></div>
+	<p>The <i>object hash</i> denotes the hash of the original object, and stored there for indexing purposes. <i>slice list</i> is a list of hashes refering to the object slices to be recombined. Each slice may be a full or combined object entry.</p>
+
+	<h2>Spacers</h2>
+	<p>An entry starting with a 0x00 or 0xff byte is a spacer, and ends the current write block. The stream continues with the next write block.</p>
+	<p>Spacers are used in two situations:</p>
+	<ul>
+		<li>If there is not enough space left before the next checkpoint to write the next object entry, a spacer is inserted, and the entry is moved after the checkpoint.</li>
+		<li>If a write-through is enforced (e.g. upon unmounting a strip), and the current write block is not complete, a spacer is inserted to complete the block.</li>
+	</ul>
+	<p>Spacers are not allowed at the first byte of a write block.</p>
+
+	<h2 id="index">Index</h2>
+	<p>Hashes are mapped to object positions using an index. In principal, such an index could be built by scanning all objects. This, however, would require reading a large part of the strip at mount time. It is far more efficient to build the index on the go, and store it on the strip.</p>
+	<p>The index consists of multiple <em>parts</em>, whereby each part contains at least twice as many index entries as the previous part:</p>
+	<div class="hscroll box"><? svgFile('Index.svg') ?></div>
+	<p>Each such part is stored as an index entry on the strip. An index entry has the following structure:</p>
+	<div class="hscroll box wide"><pre>index entry = 0x01 | hash 32 | count parts 2 | parts | count 8 | hashes | positions | lengths
+hash = SHA256(count parts 2 | parts | count entries 8 | hashes | positions | lengths)
+
+parts = short part position<sub>0</sub> | short part position<sub>1</sub> | ...
+short part position<sub>i</sub> = first INDEX POSITION LENGTH bytes of part position<sub>i</sub>
+
+hashes = short hash<sub>0</sub> | short hash<sub>1</sub> | short hash<sub>2</sub> | ...
+short hash<sub>i</sub> = first INDEX HASH LENGTH bytes of AES(HASH KEY, first 16 bytes of hash<sub>i</sub>)
+
+positions = short position<sub>0</sub> | length estimate<sub>0</sub> | short position<sub>1</sub> | length estimate<sub>1</sub> | ...
+short position<sub>i</sub> = first INDEX POSITION LENGTH bytes of position<sub>i</sub></pre></div>
+	<p>A <i>length estimate</i> is a 1-byte unsigned integer expressing how many read blocks to read to have the full object in memory. A value of 0 means that the entry has been deleted, while a value of 0xff means that more than 255 blocks need to be read. The length estimate allows small objects to be read with a single seek. Large objects, for which the seek time is less important, will require two seeks.</p>
+	<p>The entries are sorted by their short hash. Multiple entries with a different hash but the same short hash may exist. To improve lookup times, entries with the same short hash are kept on the same part.</p>
+	<p>To improve data locality, the hashes are stored apart from the positions and length estimate.</p>
+
+	<h3 id="index-lookup">Lookup</h3>
+	<p>Hash lookup starts with the smallest (most recent) part. The hash is looked up using binary search.</p>
+	<p>If not found, hash lookup proceeds with the next bigger part, all the way to the biggest (oldest) part.</p>
+	<p>Since the same short hash may appear multiple times, the result of a hash lookup is a short list of candidate positions and length estimates. On a <a href="suitable-index-hash-length">well-configured strip</a>, the list most often contains 1 entry if the hash exists, and 0 entries if the hash does not exist. On rare occasions, the list contains a few additional entries which do not correspond to the hash being looked for.</p>
+
+	<h3 id="index-add">Adding a entry</h3>
+	<p>To add an entry, a lookup is made for that short hash. The new entry is added to the (possibly empty) list returned by the lookup, and <a href="#index-save">saved</a> as new part.</p>
+	<p>In practice, a small list of entries to add is kept in memory, and saved when it reaches a certain size (e.g. 32).</p>
+
+	<h3 id="index-remove">Removing an entry</h3>
+	<p>To remove an entry, a lookup is made for that short hash. The length estimate of the entry to delete is set to 0, and then <a href="#index-add">added</a> as a new part (or put onto the list of entries to add).</p>
+
+	<h3 id="index-save">Saving a new part</h3>
+	<p>Before adding a part with N elements, all parts with less than 2N elements are merged with the new part. This process is repeated until no remaining part is smaller than twice the size of the new part.</p>
+	<p>Merging two parts zips the elements together. If two entries have the same short hash and position, the one from the smaller list is kept. If no larger part exists, deleted entries (entries with a length estimate of 0) are removed. Otherwise, they remain on the part.</p>
+
+	<h3>In-memory operation</h3>
+	<p>On systems with enough memory, the index is fully loaded into memory at mount time. This allows for O(log(N)<sup>2</sup>) lookups.</p>
+	<p>Even faster lookups can be achieved by building a hashtable of the loaded entries. This requires more memory, but allows for amortized O(1) lookups.</p>
+
+	<h3>On-store operation</h3>
+	<p>If not enough memory is available, the lookups are performed by loading the corresponding read blocks from the storage medium. This process can be greatly sped up if each index part is scanned, and the first short hash of each read block kept in memory. This requires some memory, but allows for O(log(N)<sup>2</sup>) lookups with a single seek operation, and 1-2 read blocks transfer.</p>
+
+	<h2>Write-back</h2>
+	<p>When the strip wraps around, objects still in use are written to the head, while objects not used any more are discarded. This compactation step frees up memory. The server tries to keep a certain amount of free space in front of the head.</p>
+
+	<h2>Garbage collection</h2>
+	<p>Garbage collection is done by higher-level code, and unused objects are removed from the index.</p>
+
+	<h2>Account information</h2>
+	<p>Accounts are handled by higher-level code, usually using multiple strips. The strip simply stores the hash holding the most recent account information:</p>
+	<div class="hscroll box wide"><pre>account entry = 0x02 | hash 32 | account hash 32
+hash = account hash ^ HASH MASK</pre></div>
+
+	<h2>Account information</h2>
+	<p>Account entries are stored as union lists. Head objects contain record with the following structure:</p>
+	<div class="hscroll box"><pre>creator
+  CREATOR    # creator app and version
+time
+  TIMESTAMP  # unsigned integer, timestamp at the time of writing, purely informational
+parts
+  HASH*      # hashes of the part objects</pre></div>
+	<p>Part objects contain records with the following structure:</p>
+	<div class="hscroll box"><pre>creator
+  CREATOR    # creator app and version
+revision
+  TIMESTAMP  # unsigned integer, used for merging
+accounts
+  ACCOUNT HASH
+    SHORT BOX LABEL   # 'm' = message box, 'c' = public box, 'p' = private box, lowercase = union merge / add to list, uppercase = replace merge / full list
+      HASH</pre></div>
+	<p>Account management can be done by higher-level code. The low-level code only needs to scan for the newest object holding account information.</p>
+
+	<h2>Mounting</h2>
+	<p>To mount a strip, the following steps are executed:</p>
+	<ol>
+		<li>Read the checkpoint at position 0. The that checkpoint does not exist, look for checkpoints at various powers of two. If no checkpoint is found, the data is not a strip, and mounting fails.</li>
+		<li>Read and verify the strip configuration.</li>
+		<li>Find the most recent checkpoint using binary search.</li>
+		<li>Read the index referred to by that checkpoint.</li>
+		<li>Scan all objects after that index, and index them. Keep track of the last index entry and the last account entry, if found. The strip stops at the first invalid entry, or at the checkpoint after the most recent checkpoint.</li>
+	</ol>
+	<p>Checkpoint 0 may be missing if the strip wrapped around, destroyed write block 0, and did not yet rewrite it. This never happens on transactional storage systems.</p>
+	<p>Upon clean unmounting, the strip ends at the end of a write block. Otherwise, the stream may end in the middle of a write block &ndash; at the end of the last complete object entry. If the underlying storage system is NAND flash, the following byte is pulled to 0xff, which introduces a spacer. With NOR flash, a spacer is introduced by pulling the byte to 0x00. For other storage systems, </p>
+
+	<h2>Unmounting</h2>
+	<p>Unmounting proceeds as follows:</p>
+	<ol>
+		<li>Write any unwritten object data to the strip.</li>
+		<li>Append the current account data.</li>
+		<li>If necessary, append a spacer to close the last write block.</li>
+		<li>Flush the last write block.</li>
+	</ol>
+
+	<h2 id="powers-of-two">Powers of two</h2>
+	<table class="text">
+		<tr>
+			<td><i>0</i> = 1 bytes</td>
+			<td><i>10</i> = 1 KiB</td>
+			<td><i>20</i> = 1 MiB</td>
+			<td><i>30</i> = 1 GiB</td>
+			<td><i>40</i> = 1 TiB</td>
+		</tr>
+		<tr>
+			<td><i>1</i> = 2 bytes</td>
+			<td><i>11</i> = 2 KiB</td>
+			<td><i>21</i> = 2 MiB</td>
+			<td><i>31</i> = 2 GiB</td>
+			<td><i>41</i> = 2 TiB</td>
+		</tr>
+		<tr>
+			<td><i>2</i> = 4 bytes</td>
+			<td><i>12</i> = 4 KiB</td>
+			<td><i>22</i> = 4 MiB</td>
+			<td><i>32</i> = 4 GiB</td>
+			<td><i>42</i> = 4 TiB</td>
+		</tr>
+		<tr>
+			<td><i>3</i> = 8 bytes</td>
+			<td><i>13</i> = 8 KiB</td>
+			<td><i>23</i> = 8 MiB</td>
+			<td><i>33</i> = 8 GiB</td>
+			<td><i>43</i> = 8 TiB</td>
+		</tr>
+		<tr>
+			<td><i>4</i> = 16 bytes</td>
+			<td><i>14</i> = 16 KiB</td>
+			<td><i>24</i> = 16 MiB</td>
+			<td><i>34</i> = 16 GiB</td>
+			<td><i>44</i> = 16 TiB</td>
+		</tr>
+		<tr>
+			<td><i>5</i> = 32 bytes</td>
+			<td><i>15</i> = 32 KiB</td>
+			<td><i>25</i> = 32 MiB</td>
+			<td><i>35</i> = 32 GiB</td>
+			<td><i>45</i> = 32 TiB</td>
+		</tr>
+		<tr>
+			<td><i>6</i> = 64 bytes</td>
+			<td><i>16</i> = 64 KiB</td>
+			<td><i>26</i> = 64 MiB</td>
+			<td><i>36</i> = 64 GiB</td>
+			<td><i>46</i> = 64 TiB</td>
+		</tr>
+		<tr>
+			<td><i>7</i> = 128 bytes</td>
+			<td><i>17</i> = 128 KiB</td>
+			<td><i>27</i> = 128 MiB</td>
+			<td><i>37</i> = 128 GiB</td>
+			<td><i>47</i> = 128 TiB</td>
+		</tr>
+		<tr>
+			<td><i>8</i> = 256 bytes</td>
+			<td><i>18</i> = 256 KiB</td>
+			<td><i>28</i> = 256 MiB</td>
+			<td><i>38</i> = 256 GiB</td>
+			<td><i>48</i> = 256 TiB</td>
+		</tr>
+		<tr>
+			<td><i>9</i> = 512 bytes</td>
+			<td><i>19</i> = 512 KiB</td>
+			<td><i>29</i> = 512 MiB</td>
+			<td><i>39</i> = 512 GiB</td>
+			<td><i>49</i> = 512 TiB</td>
+		</tr>
+	</table>
+
+	<h2 id="suitable-index-hash-length">Suitable index hash lengths</h2>
+	<p>For a given number of objects N, the number of seeks per request is:</p>
+	<pre style="margin-left:20px">E[seeks] &approx; 1 + 2<sup>-C</sup> &nbsp; for N &gt;&gt; 0</pre>
+	<p>where</p>
+	<pre style="margin-left:20px">C = log<sub>2</sub>(N) - index hash length [in bits]</pre>
+	<p>To maintain a good performance, the index hash length should therefore be chosen such that C remains in the 8 &ndash; 10 range when the store is full. Assuming an average object size of 32 KiB, the following table list suitable values for various store sizes:</p>
+	<table class="text">
+		<tr>
+			<th>Store size</th>
+			<th>N</th>
+			<th>log<sub>2</sub>(N)</th>
+			<th>C</th>
+			<th>E[seek]</th>
+			<th>index hash length</th>
+		</tr>
+		<tr>
+			<td>512 MiB</td>
+			<td>16 k</td>
+			<td>14</td>
+			<td>10</td>
+			<td>1.00098</td>
+			<td>24 bits = <i>3 bytes</i></td>
+		</tr>
+		<tr>
+			<td>128 GiB</td>
+			<td>4 M</td>
+			<td>22</td>
+			<td>10</td>
+			<td>1.00098</td>
+			<td>32 bits = <i>4 bytes</i></td>
+		</tr>
+		<tr>
+			<td>32 TiB</td>
+			<td>1 G</td>
+			<td>30</td>
+			<td>10</td>
+			<td>1.00098</td>
+			<td>40 bits = <i>5 bytes</i></td>
+		</tr>
+		<tr>
+			<td>8 PiB</td>
+			<td>256 G</td>
+			<td>38</td>
+			<td>10</td>
+			<td>1.00098</td>
+			<td>48 bits = <i>6 bytes</i></td>
+		</tr>
+		<tr>
+			<td>2 EiB</td>
+			<td>64 T</td>
+			<td>46</td>
+			<td>10</td>
+			<td>1.00098</td>
+			<td>56 bits = <i>7 bytes</i></td>
+		</tr>
+	</table>
+
+	<p class="todo">The system above is pretty good, with one exception: if the strip becomes almost full, a complete cycle (i.e. rewriting all data) is necessary to free up the remaining space. Hence, the performance is badly degrading with the percentage of space used. (This has been the case with at least one of the log-structured filesystems.) Unless 20% or so are kept free, performance will be an issue. Keeping 20% free is hardly acceptable.</p>
+	<p class="todo">In addition, perfect wear-leveling (which is achieved here) is not the best strategy, as objects are copied around too much. It would be better to keep objects were they are by default, and only move them when the erase count is lagging 50 or more behind.</p>
+	<p class="todo">The whole space could therefore be split into erase blocks, which are managed through a free-list, and host:</p>
+	<p class="todo">(1) either part of the journal, much like described above, a circular log, but just storing object positions, not objects;</p>
+	<p class="todo">(2) or some object data.</p>
+	<p class="todo">The erase count could be written at the beginning of each erase block, or integrated into the free space management. Each journal block would simply point to the next journal block.</p>
+	<p class="todo">The journal would be rather small - so keeping 20% of that free here would be fine.</p>
+	<p class="todo">The free list could be stored in a similar way as the index, and manage bad blocks as well.</p>
+</div>
+
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

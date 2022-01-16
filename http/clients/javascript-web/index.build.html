@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<? title = 'JavaScript for the web'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>This is a single-threaded non-blocking implementation useful for websites. Data accesses are handled synchronously, while store access operations call a handler (callback) function upon completion.</p>
+
+	<h2>Download</h2>
+	<p>2016-05-13 &ndash; <a href="2016-05-13-condensation.js">condensation.js</a></p>
+
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="http://viereck.ch/send">Secure message sender</a></li>
+		<li><a href="http://viereck.ch/list">List of elements</a></li>
+	</ul>
+
+	<h2>API documentation</h2>
+	<p>No API documentation available yet. Feel free to <a href="mailto:info@condensation.io">contact us</a> if you have questions.</p>
+
+	<h2>Available stores</h2>
+	<ul>
+		<li>HTTP</li>
+		<li>HTTPS</li>
+	</ul>
+
+	<!-- <h2>Special features</h2>
+	<ul>
+		<li>None.</li>
+	</ul> -->
+
+	<h2>Limitations</h2>
+	<ul>
+		<li>The RSA implementation is about half as fast as in other implementations. This is because no 64-bit integers are available in JavaScript.</li>
+		<li>RSA key generation is be done in little bits, because JavaScript does not allow for asynchronous tasks. The whole process may take a few seconds, but does not block the user interface.</li>
+		<li>Because of <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a>, HTTP stores on foreign domains are not accessible unless they explicitly allow this.</li>
+		<li>Web sites delivered through HTTPS can usually access HTTPS stores only. Most browsers block plain HTTP requests from HTTPS websites to avoid security holes. By default, Condensation translates http://... URLs to https://..., hoping that the store is accessible through both protocols.</li>
+		<li>The maximum object size is approximately 2 GiB, since the implementation uses regular JavaScript arraybuffers to handle them internally. As a consequence, the maximum size of a record node byte sequence is approximately 2 GiB as well.</li>
+		<li>The default integer serialization functions (<i>bytesFromInteger</i>, <i>bytesFromUnsigned</i>, <i>integerFromBytes</i> and <i>unsignedFromBytes</i>) use JavaScript's number type, and therefore keep 52 significant bits only.</li>
+	</ul>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

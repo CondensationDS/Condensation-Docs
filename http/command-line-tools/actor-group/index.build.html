@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::ActorGroup. Do not edit the content here. -->
+<? title = 'Actor group'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn show actor group</pre></div>
+<p>Shows all members of our actor group and the entrusted keys.</p>
+<div class="hscroll box"><pre>cn join <span class="im">ACCOUNT*</span>
+cn join <span class="im">ACTOR</span> on <span class="im">STORE</span></pre></div>
+<p>Adds a member to our actor group. To complete the association, the new member must join us, too.</p>
+<div class="hscroll box"><pre>cn set member <span class="im">ACTOR*</span> active
+cn set member <span class="im">ACTOR*</span> backup
+cn set member <span class="im">ACTOR*</span> idle
+cn set member <span class="im">ACTOR*</span> revoked</pre></div>
+<p>Changes the status of a member to one of the following:</p>
+<p><b>Active members</b> share the group data among themselves, and are advertised to receive messages.</p>
+<p><b>Backup members</b> share the group data (like active members), but are publicly advertised as not processing messages (like idle members). This is suitable for backup actors.</p>
+<p><b>Idle members</b> are part of the group, but advertised as not processing messages. They generally do not have the latest group data, and may have no group data at all. Idle members may reactivate themselves, or get reactivated by any active member of the group.</p>
+<p><b>Revoked members</b> have explicitly been removed from the group, e.g. because their private key (or device) got lost. Revoked members can be reactivated by any active member of the group.</p>
+<p>Note that changing the status does not start or stop the corresponding actor, but just change how it is regarded by others. The status of each member should reflect its actual behavior.</p>
+<p>After modifying the actor group members, you should "cn announce" yourself to publish the changes.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="actor-group.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="actor-group.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

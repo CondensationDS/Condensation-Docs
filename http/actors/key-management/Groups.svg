@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="396"
+   height="116"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="Groups.svg">
+  <defs
+     id="defs3876">
+  <marker id="arrowA000000" refX="0" refY="0" orient="auto" style="overflow:visible">
+  <path inkscape:connector-curvature="0" style="fill:#000000" d="M -6,2.5 2,0 -6,-2.5 -5,0 Z" />
+</marker>
+</defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.9545455"
+     inkscape:cx="198"
+     inkscape:cy="58"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:measure-start="0,0"
+     inkscape:measure-end="0,0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       r="8"
+       cy="58"
+       cx="148"
+       id="circle893"
+       style="fill:#5a1d93" />
+    <circle
+       style="fill:#5a1d93"
+       id="circle895"
+       cx="88"
+       cy="88"
+       r="8" />
+    <circle
+       style="fill:#e5b83f"
+       id="circle907"
+       cx="28"
+       cy="88"
+       r="8" />
+    <rect
+       style="fill:none;stroke:#bbbbbb;stroke-dasharray:3, 3;stroke-width:2"
+       id="rect903"
+       width="174"
+       height="114"
+       x="1"
+       y="1"
+       rx="10" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path939"
+       d="M 38,90.5 H 76.00001"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 76.00001,85.5 H 38"
+       id="path941"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <circle
+       style="fill:#5a1d93"
+       id="path889"
+       cx="88"
+       cy="28"
+       r="8" />
+    <circle
+       r="8"
+       cy="28"
+       cx="28"
+       id="circle905"
+       style="fill:#e5b83f" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 38,30.5 H 76.00001"
+       id="path955"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path957"
+       d="M 76.00001,25.5 H 38"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path970"
+       d="M 25.5,38 V 76.00001"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 30.5,76.00001 V 38"
+       id="path972"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 85.5,38 V 76.00001"
+       id="path980"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path982"
+       d="M 90.5,76.00001 V 38"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 136.5,50.00001 100.5,30"
+       id="path998"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1000"
+       d="m 100.5,36 36,20.00001"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1002"
+       d="M 100.5,88.00001 136.5,68"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="m 136.5,62 -36,20.00001"
+       id="path1004"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       rx="10"
+       y="1"
+       x="201"
+       height="114"
+       width="54"
+       id="rect863"
+       style="fill:none;stroke:#bbbbbb;stroke-dasharray:3, 3;stroke-width:2" />
+    <circle
+       r="8"
+       cy="88"
+       cx="228"
+       id="circle883"
+       style="fill:#5a1d93" />
+    <circle
+       r="8"
+       cy="28"
+       cx="228"
+       id="circle885"
+       style="fill:#5a1d93" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path887"
+       d="M 225.5,38 V 76.00001"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 230.5,76.00001 V 38"
+       id="path890"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:none;stroke:#bbbbbb;stroke-dasharray:3, 3;stroke-width:2"
+       id="rect859"
+       width="114"
+       height="114"
+       x="281"
+       y="1"
+       rx="10" />
+    <circle
+       style="fill:#5a1d93"
+       id="circle861"
+       cx="308"
+       cy="88"
+       r="8" />
+    <circle
+       style="fill:#5a1d93"
+       id="circle863"
+       cx="308"
+       cy="28"
+       r="8" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 305.5,38 V 76.00001"
+       id="path865"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path867"
+       d="M 310.5,76.00001 V 38"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <circle
+       r="8"
+       cy="28"
+       cx="368"
+       id="circle869"
+       style="fill:#5a1d93" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path873"
+       d="m 318,30.5 h 38.00001"
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1" />
+    <path
+       style="marker-end:url(#arrowA000000);stroke:#000000;stroke-width:1"
+       d="M 356.00001,25.5 H 318"
+       id="path875"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

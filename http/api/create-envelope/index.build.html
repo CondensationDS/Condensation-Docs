@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<? title = 'Creating an envelope'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<h2>Message envelopes</h2>
+	<div class="hscroll wide api java"><pre>
+		ArrayList&lt;PublicKey&gt; recipientPublicKeys = new ArrayList&lt;&gt;();
+		recipientPublicKeys.add(publicKey1);
+		recipientPublicKeys.add(publicKey2);
+		...
+		Record envelopeRecord = keyPair.createMessageEnvelope(messagingStoreUrl, messageRecord, recipientPublicKeys, expires);
+		CondensationObject envelopeObject = envelopeRecord.toObject();
+		Hash envelopeHash = envelopeObject.calculateHash();
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var recipientPublicKeys = [publicKey1, publicKey2, ...];
+		var envelopeRecord = keyPair.createMessageEnvelope(messagingStoreUrl, messageRecord, recipientPublicKeys, expires);
+		var envelopeObject = envelopeRecord.toObject();
+		var envelopeHash = envelopeObject.calculateHash();
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my $recipientPublicKeys = [$publicKey1, $publicKey2, ...];
+		my $envelopeRecord = $keyPair-&gt;createMessageEnvelope($messagingStoreUrl, $messageRecord, $recipientPublicKeys, $expires);
+		my $envelopeObject = $envelopeRecord-&gt;toObject;
+		my $envelopeHash = $envelopeObject-&gt;calculateHash;
+	</pre></div>
+	<p>Creates a <a href="/actors/envelope/#message">message envelope</a> embedding the <i>message record</i>. The message record should not be larger than 1 KiB. Additional data must be stored on the <i>messaging store</i>. The envelope is signed with the key pair's private key, and the AES key is encrypted for each <i>recipient</i>. The <i>expiration date</i> indicates when the message expires.</p>
+
+	<h2>Private box envelopes</h2>
+
+	<div class="hscroll wide api java"><pre>
+		ArrayList&lt;PublicKey&gt; recipientPublicKeys = new ArrayList&lt;&gt;();
+		recipientPublicKeys.add(publicKey1);
+		recipientPublicKeys.add(publicKey2);
+		...
+		Record envelopeRecord = keyPair.createPrivateEnvelope(contentReference, recipientPublicKeys);
+		CondensationObject envelopeObject = envelopeRecord.toObject();
+		Hash envelopeHash = envelopeObject.calculateHash();
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var recipientPublicKeys = [publicKey1, publicKey2, ...];
+		var envelopeRecord = keyPair.createPrivateEnvelope(contentReference, recipientPublicKeys);
+		var envelopeObject = envelopeRecord.toObject();
+		var envelopeHash = envelopeObject.calculateHash();
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my $recipientPublicKeys = [$publicKey1, $publicKey2, ...];
+		my $envelopeRecord = $keyPair-&gt;createPrivateEnvelope($contentReference, $recipientPublicKeys);
+		my $envelopeObject = $envelopeRecord-&gt;toObject;
+		my $envelopeHash = $envelopeObject-&gt;calculateHash;
+	</pre></div>
+	<p>Creates a <a href="/actors/envelope/#private">private envelope</a> pointing to the given <i>content reference</i>. The envelope is signed with the key pair's private key, and the AES key is encrypted for each recipient.</p>
+
+	<h2>Public box envelopes</h2>
+
+	<div class="hscroll wide api java"><pre>
+		Record envelopeRecord = keyPair.createPublicEnvelope(contentHash);
+		CondensationObject envelopeObject = envelopeRecord.toObject();
+		Hash envelopeHash = envelopeObject.calculateHash();
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var envelopeRecord = keyPair.createPublicEnvelope(contentHash);
+		var envelopeObject = envelopeRecord.toObject();
+		var envelopeHash = envelopeObject.calculateHash();
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my $envelopeRecord = $keyPair-&gt;createPublicEnvelope($contentHash);
+		my $envelopeObject = $envelopeRecord-&gt;toObject;
+		my $envelopeHash = $envelopeObject-&gt;calculateHash;
+	</pre></div>
+	<p>Creates a <a href="/actors/envelope/#public">public envelope</a> pointing to the given <i>content hash</i>. The envelope is signed with the key pair's private key.</p>
+
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

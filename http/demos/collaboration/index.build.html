@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+	<script src="../condensation.js"></script>
+	<title>List</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	<style>
+		body,input,textarea	{ font-family: Lato; font-size: 20px }
+		a	{ color: #4583ee; text-decoration: none }
+
+		div#items	{  }
+		div#items > div	{ border-bottom: 1px solid #ddd; padding: 0 40px 0 50px; position: relative }
+		div#items > div:hover	{ background: #f7f7f7 }
+		div#items input	{ background: none; border: none; padding: 20px 0; width: 100% }
+		div#items div.checked	{ background: #4583ee; border: 1px solid #4583ee; border-radius: 5px; cursor: pointer; height: 20px; left: 10px; position: absolute; top: 20px; width: 20px }
+		div#items div.unchecked	{ border: 1px solid #999; border-radius: 5px; cursor: pointer; height: 20px; left: 10px; position: absolute; top: 20px; width: 20px }
+		div#items img.remove	{ cursor: pointer; padding: 4px 4px; position: absolute; right: 10px; top: 20px; width: 12px }
+
+		@font-face {
+			font-family: "Lato";
+			font-style: normal;
+			font-weight: normal;
+			src: url(../fonts/LatoLatin-Regular.woff) format('woff'), url(../fonts/LatoLatin-Regular.woff2) format('woff2')
+			}
+
+		@font-face {
+			font-family: "Lato";
+			font-style: normal;
+			font-weight: bold;
+			src: url(../fonts/LatoLatin-Bold.woff) format('woff'), url(../fonts/LatoLatin-Bold.woff2) format('woff2')
+			}
+	</style>
+</head>
+<body style="background: white; margin: 0; padding: 0">
+
+<div style="background: #444; color: white; padding: 20px 10px; position: relative">
+	<div><b>List</b> <span id="saveStatus1" style="font-size: 14px; margin-left: 30px"></span></div>
+
+	<svg height="30" style="position: absolute; right: 15px; top: 15px" viewbox="0 0 100 100" width="30" xmlns="http://www.w3.org/2000/svg">
+		<circle cx="50" cy="50" id="saveStatus" r="40" style="fill: #f00; stroke: none" />
+	</svg>
+</div>
+
+<div id="items"></div>
+
+<div id="addButton" style="background: #4583ee; border-radius: 10px; color: white; cursor: pointer; font-size: 30px; font-weight: bold; height: 34px; margin: 10px 10px; padding: 3px 0; text-align: center; width: 40px">+</div>
+
+<script>
+'use strict';
+GENERATED JAVASCRIPT
+
+INCLUDE me.inc.js
+initialize();
+
+// TODO: add other demos (simple text, checkboxes, images, ...), and allow them to sync data with other devices, or share data with friends
+
+</script>
+
+</body>
+</html>

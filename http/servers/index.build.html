@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<? title = 'Store servers'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title>Condensation — Store servers</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<div class="greenBar">
+	<div>
+		<a href="/servers/" class="selected" style="font-weight:bold">Store servers</a>
+	</div>
+</div>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="menu">
+		<div class="chapter">HTTP</div>
+		<div><a href="/servers/php-files/">PHP using the file system</a></div>
+		<div><a href="/servers/php-mysql/">PHP using a MySQL/MariaDB database</a></div>
+		<!-- <div><a href="/servers/nginx/">NginX module</a></div>
+		<div><a href="/servers/standalone/">Standalone server for Linux</a></div> -->
+
+		<div class="chapter">FTP</div>
+		<div><a href="/servers/ftp-minimal/">Minimalistic FTP server</a></div>
+
+		<h2>Serverless stores</h2>
+		<p>The <a href="/stores/folder/">folder store</a> accesses the file system directly (or via SFTP or FTP) and therefore does not require any store server.</p>
+	</div>
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

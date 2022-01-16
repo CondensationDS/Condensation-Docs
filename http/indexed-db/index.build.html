@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<? title = 'Indexed DB test'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+	<style>
+		pre.command {cursor:pointer}
+	</style>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+	<p>This demo uses the IndexedDB API as object store. See the JavaScript console for the results.</p>
+	<div class="hscroll">
+		<pre class="command" onclick="testPut()">testPut()</pre>
+		<pre class="command" onclick="testGet()">testGet()</pre>
+		<pre class="command" onclick="testDelete()">testDelete()</pre>
+	</div>
+</div>
+
+<script>
+var db = null;
+var objectStore = null;
+var openRequest = window.indexedDB.open("condensation", 1);
+
+openRequest.onsuccess = function(event) {
+	console.log('Database initialised.');
+	db = openRequest.result;
+};
+
+openRequest.onupgradeneeded = function(event) {
+	var db = event.target.result;
+	db.onerror = function(event) {
+		note.innerHTML += '<li>Error loading database.</li>';
+	};
+
+	var objectStore = db.createObjectStore("objects");
+	console.log('Object store created.', objectStore);
+};
+
+function get(hash) {
+	var transaction = db.transaction('objects', 'readwrite');
+
+	transaction.oncomplete = function(event) {
+		console.log('Transaction completed.');
+	};
+
+	transaction.onerror = function(event) {
+		console.log('Transaction failed.');
+	};
+
+	var objectStore = transaction.objectStore('objects');
+	var objectStoreRequest = objectStore.get(hash.bytes);
+
+	objectStoreRequest.onsuccess = function(event) {
+		console.log('Object retrieved.', objectStoreRequest.result);
+	};
+}
+
+function put(bytes, hash) {
+	var transaction = db.transaction('objects', 'readwrite');
+
+	transaction.oncomplete = function(event) {
+		console.log('Transaction completed.');
+	};
+
+	transaction.onerror = function(event) {
+		console.log('Transaction failed. Duplicate items not allowed.');
+	};
+
+	var objectStore = transaction.objectStore('objects');
+	var objectStoreRequest = objectStore.add(bytes, hash.bytes);
+
+	objectStoreRequest.onsuccess = function(event) {
+		console.log('New item added to database.');
+	}
+}
+
+function deleteObject(hash) {
+	var transaction = db.transaction('objects', 'readwrite');
+
+	transaction.oncomplete = function(event) {
+		console.log('Transaction completed.');
+	};
+
+	transaction.onerror = function(event) {
+		console.log('Transaction failed.');
+	};
+
+	var objectStore = transaction.objectStore('objects');
+	var objectStoreRequest = objectStore.delete(hash.bytes);
+
+	objectStoreRequest.onsuccess = function(event) {
+		console.log('Object deleted.');
+	};
+}
+
+function testPut() {
+	var bytes = new Uint8Array(10000);
+	bytes[0] = 27;
+	var hash = {bytes: '59e360b38ce18ca82eab91f437908c709591e3bd15cdfb0affa23982cea80968'};	// using Uint8Array's as keys is new in the standard, but does not work yet (2015-07)
+	put(bytes, hash);
+}
+
+function testGet() {
+	var hash = {bytes: '59e360b38ce18ca82eab91f437908c709591e3bd15cdfb0affa23982cea80968'};
+	get(hash);
+}
+
+function testDelete() {
+	var hash = {bytes: '59e360b38ce18ca82eab91f437908c709591e3bd15cdfb0affa23982cea80968'};
+	deleteObject(hash);
+}
+</script>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

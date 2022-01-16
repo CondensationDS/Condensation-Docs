@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<? title = 'Minimalistic FTP server'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>This is a very minimalistic FTP server that only processes commands relevant to Condensation.</p>
+
+	<h2>Download</h2>
+	<p>2016-01-06 &ndash; <a href="2016-01-06-condensation-ftp-server" target="_blank">condensation-ftp-server</a></p>
+
+	<h2>Description</h2>
+	<p>Since Condensation does not require the communication with the store to be encrypted, using the &ndash; a priori &ndash; insecure FTP protocol is perfectly all right. However, using a generic FTP server is not a great option, since it would allow an attacker to carry out arbitrary file system operations within the store folder. Using this minimalistic FTP server instead has several advantages:</p>
+	<ul>
+		<li>No generic file or folder operations are allowed. All commands are interpreted as being part of an object put/get, or a box list/add/remove request.</li>
+		<li>Any command not needed for Condensation is ignored.</li>
+		<li>The configuration is simple and straightforward.</li>
+		<li>You may run this server as a user with access to the store folder only.</li>
+		<li>The source code is just about 450 lines long. Code audit is therefore very simple.</li>
+	</ul>
+	<p>Objects and accounts are stored on the <a href="/stores/folder/">file system</a>. Use the cn tools to collect garbage.</p>
+	<p>Due to the plain-text nature of FTP, no meaningful user authentication is possible. Hence, any username and password are accepted. Do not use this as your primary store, since malicious users may purge arbitrary private and message boxes.</p>
+	<p>Note that the FTP protocol is not very efficient. This store is therefore not recommended for large volumes.</p>
+
+	<h2>Running the server</h2>
+	<p>To run this server, type:</p>
+	<pre>./condensation-ftp-server</pre>
+	<p>on the command line. To run it in the background, use something like this:</p>
+	<pre>./condensation-ftp-server &gt; log-file </pre>
+	<p>The configuration can be modified at the top of the executable (Perl script).</p>
+
+	<h2 id="server">See also</h2>
+	<p><a href="/api/store/ftp/">FTP Store</a> (client)</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<? title = 'Record'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A <a href="/serialization/record/">record</a> is a tree of byte sequences with optional hashes:</p>
+	<div class="hscroll"><? svgFile('Tree.svg') ?></div>
+	<p>Each tree node is a record instance:</p>
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Record').openField('children').openField('child 1');
+	</script>
+
+	<p>Record instances are mutable. Due to the nature of Condensation, however, records are rarely modified in-place. Most often, they are either constructed or queried.</p>
+	<p>Byte sequences may contain any type of data. The record type provides functions to deal with UTF-8 text, numbers, boolean values, and references. Other data must be encoded and decoded by the application.</p>
+	<p>Records can be serialized and deserialized very efficiently and compactly, and are therefore the data structure of choice for most applications. The root node of a record is not serialized.</p>
+
+	<h2 id="instance-creation">Creation</h2>
+	<div class="hscroll api java"><pre>
+		Record record = new Record();
+		Record record = new Record(bytes);
+		Record record = new Record(bytes, hash);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var record = new cn.Record();
+		var record = new cn.Record(bytes);
+		var record = new cn.Record(bytes, hash);
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $record = CN::Record-&gt;new;
+		my $record = CN::Record-&gt;new($bytes);
+		my $record = CN::Record-&gt;new($bytes, $hash);
+	</pre></div>
+	<p>Creates a record.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>Record record = Record.from(object);</pre></div>
+	<div class="hscroll api javascript"><pre>var record = cn.recordFromObject(object);</pre></div>
+	<div class="hscroll api perl"><pre>my $record = CN::Record-&gt;fromObject($object);</pre></div>
+	<p>Parses an object. If the object is <i class="java javascript">null</i><i class="perl">undef</i>, or does not contain a valid record, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
+
+	<h2 id="construction">Record construction</h2>
+	<div class="hscroll api java"><pre>
+		record.add(bytes, hash);
+		record.add(text, hash);
+		record.add(booleanValue, hash);
+		record.add(integerValue, hash);
+		record.addUnsigned(integerValue, hash);
+		record.add(hash);
+		record.add(hashAndKey);
+		record.add(record);
+		record.add(records);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		record.add(bytes, hash);
+		record.addText(text, hash);
+		record.addBoolean(value, hash);
+		record.addInteger(value, hash);
+		record.addUnsigned(value, hash);
+		record.addHash(hash);
+		record.addHashAndKey(hashAndKey);
+		record.addRecord(record);
+		record.addRecords(record);
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		$record-&gt;add($bytes, $hash);
+		$record-&gt;addText($text, $hash);
+		$record-&gt;addBoolean($value, $hash);
+		$record-&gt;addInteger($value, $hash);
+		$record-&gt;addUnsigned($value, $hash);
+		$record-&gt;addHash($hash);
+		$record-&gt;addHashAndKey($hashAndKey);
+		$record-&gt;addRecord(@records);
+	</pre></div>
+	<p>Adds a child node to the record and returns that child. The value is converted to a byte sequence. The second <i>hash</i> argument is optional.</p>
+	<p>Signed integers are supported up to a size of 52 bits. Unsigned integers are <a href="/notes/unsigned-integers/">discouraged</a>, as they are easily confused with signed integers, which may lead to errors that go unnoticed for a long time. <span class="todo">Put this in a chapter under "notes" with examples, why text and integer are not easily mistaken, but unsigned and integer are.</span></p>
+	<p>A piece of record construction code may look as follows:</p>
+	<div class="hscroll box java"><pre>
+		record.add("pressure").add(859000);
+		record.add("picture").add(pictureHashAndKey);
+		Record location = record.add("location");
+		location.add(latitude);
+		location.add(longitude);
+		location.add(altitude);
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		record.addText('pressure').addInteger(859000);
+		record.addText('picture').addHashAndKey(pictureHashAndKey);
+		var location = record.add('location');
+		location.addInteger(latitude);
+		location.addInteger(longitude);
+		location.addInteger(altitude);
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		$record-&gt;addText('pressure')-&gt;addInteger(859000);
+		$record-&gt;addText('picture')-&gt;addHashAndKey($pictureHashAndKey);
+		my $location = $record-&gt;add('location');
+		$location-&gt;addInteger($latitude);
+		$location-&gt;addInteger($longitude);
+		$location-&gt;addInteger($altitude);
+	</pre></div>
+
+	<h2 id="querying">Querying</h2>
+	<div class="hscroll api java"><pre>
+		boolean result = record.contains(bytes);
+		boolean result = record.contains(text);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var result = record.contains(bytes);
+		var result = record.containsText(text);
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $result = $record-&gt;contains($bytes);
+		my $result = $record-&gt;containsText($text);
+	</pre></div>
+	<p>Returns true if the record contains a child with the given bytes.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		Record child = record.child(bytes);
+		Record child = record.child(text);
+		Record child = record.firstChild();
+		Record child = record.child(i);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var child = record.child(bytes);
+		var child = record.childWithText(text);
+		var child = record.firstChild();
+		var child = record.nthChild(i);
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $result = $record-&gt;child($bytes);
+		my $result = $record-&gt;childWithText($text);
+		my $result = $record-&gt;firstChild;
+		my $result = $record-&gt;nthChild($bytes);
+	</pre></div>
+	<p>Returns the respective child, or an empty record node. This is useful for records that are used as dictionaries or arrays.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api wide java"><pre>
+		Bytes value = record.bytes;
+		Hash hash = record.hash;                           // may be null
+		boolean value = record.asBoolean();
+		long value = record.asInteger();
+		long value = record.asUnsigned();
+		String text = record.asText();
+		HashAndKey hashAndKey = record.asHashAndKey();     // may be null
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var value = record.bytes;
+		var hash = record.hash;                     // may be null
+		var value = record.asBoolean();
+		var value = record.asInteger();
+		var value = record.asUnsigned();
+		var text = record.asText();
+		var hashAndKey = record.asHashAndKey();     // may be null
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $value = $record-&gt;bytes;
+		my $hash = $record-&gt;hash;                   # may be undef
+		my $value = $record-&gt;asBoolean;
+		my $value = $record-&gt;asInteger;
+		my $value = $record-&gt;asUnsigned;
+		my $text = $record-&gt;asText;
+		my $hashAndKey = $record-&gt;asHashAndKey;     # may be undef
+	</pre></div>
+	<p>Returns the node's value converted to the respective type.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api wide java"><pre>
+		Bytes value = record.bytesValue();
+		Hash hash = record.hashValue();                    // may be null
+		boolean value = record.booleanValue();
+		long value = record.integerValue();
+		long value = record.unsignedValue();
+		String text = record.textValue();
+		HashAndKey hashAndKey = record.hashAndKeyValue();  // may be null
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var value = record.bytesValue();
+		var hash = record.hashValue();              // may be null
+		var value = record.booleanValue();
+		var value = record.integerValue();
+		var value = record.unsignedValue();
+		var text = record.textValue();
+		var hashAndKey = record.hashAndKeyValue();  // may be null
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $value = $record-&gt;bytesValue;
+		my $hash = $record-&gt;hashValue;              # may be undef
+		my $value = $record-&gt;booleanValue;
+		my $value = $record-&gt;integerValue;
+		my $value = $record-&gt;unsignedValue;
+		my $text = $record-&gt;textValue;
+		my $hashAndKey = $record-&gt;hashAndKeyValue;  # may be undef
+	</pre></div>
+	<p>Returns the value of the first child converted to the respective type. This is useful to retrieve values from dictionary-style records:</p>
+	<div class="hscroll wide box java"><pre>long value = record.child("pressure").integerValue();</pre></div>
+	<div class="hscroll wide box javascript"><pre>var value = record.childWithText('pressure').integerValue();</pre></div>
+	<div class="hscroll wide box perl"><pre>my $value = $record-&gt;child('pressure')-&gt;integerValue;</pre></div>
+	<p>and a shortcut for:</p>
+	<div class="hscroll wide box java"><pre>long value = record.child("pressure").firstChild().asInteger();</pre></div>
+	<div class="hscroll wide box javascript"><pre>var value = record.childWithText('pressure').firstChild().asInteger();</pre></div>
+	<div class="hscroll wide box perl"><pre>my $value = $record-&gt;child('pressure')-&gt;firstChild-&gt;asInteger;</pre></div>
+
+	<h2 id="serialization">Serialization and encryption</h2>
+	<div class="hscroll api java"><pre>CondensationObject object = record.toObject();</pre></div>
+	<div class="hscroll api javascript"><pre>var object = record.toObject();</pre></div>
+	<div class="hscroll api perl"><pre>my $object = $record-&gt;toObject;</pre></div>
+	<p>Serializes the record to an object.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>
+		CondensationObject object = record.toObject();
+		Bytes key = object.cryptInplace();
+		HashAndKey hashAndKey = new HashAndKey(object.calculateHash(), key);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var object = record.toObject();
+		var key = object.cryptInplace();
+		var hashAndKey = new cn.HashAndKey(object.calculateHash(), key);
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my $key = CN-&gt;randomKey;
+		my $object = $record-&gt;toObject-&gt;crypt($key);
+		my $hashAndKey = CN::HashAndKey-&gt;new($object-&gt;calculateHash, $key);
+	</pre></div>
+	<p>Serializes and encrypts a record, and prepares the hash and key of the resulting object.</p>
+
+	<div class="java">
+		<h2>Threading</h2>
+		<p>Records are not synchronized. However, they may be passed from one thread to another as long as they are accessed from a single thread at a time only.</p>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

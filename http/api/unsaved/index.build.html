@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<? title = 'Unsaved state'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p></p>
+
+	<div class="hscroll wide api java"><pre>
+		unsavedState.startSaving();
+		// unsavedState.isSaving() returns true
+		unsavedState.savingDone();
+
+		unsavedState.startSaving();
+		unsavedState.savingFailed();
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+
+	</pre></div>
+
+
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?
+var pageStatus = '<span class="yellowFlag">unknown</span>';
+
+var monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function verified(year, month) {
+	pageStatus = '<span class="' + (year < 2019 ? 'yellowFlag' : 'greenFlag') + '">' + monthLabels[month - 1] + ' ' + year + '</span>';
+}
+
+function selectedFor(match) {
+	return target.substr(0, match.length) == match ? 'selected' : '';
+}
+?>
+
+<div class="header">
+	<div class="quicklinks">
+		<a href="/overview/objects/" class="<? selectedFor('overview/') ?>">Overview</a>
+		<a href="/api/" class="<? selectedFor('api/') ?>">API</a>
+		<a href="/downloads/" class="<? selectedFor('downloads/') ?>">Downloads</a>
+	</div>
+	<div class="logo">
+		<a href="/" class="<? selectedFor('index.html') ?>">Condensation <span>Data System</span></a>
+	</div>
+</div>

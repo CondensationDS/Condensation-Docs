@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<? title = 'Log store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Log Store').openField('store');
+	</script>
+
+	<div class="perl">
+		<p>Logs all requests to STDERR (or another file handle) while passing them to another store.</p>
+
+		<h2 id="new">Instance creation</h2>
+		<div class="hscroll api perl wide"><pre>my $logStore = CN::LogStore-&gt;new($store);
+my $logStore = CN::LogStore-&gt;new($store, $fileHandle, $prefix);</pre></div>
+		<p>Wraps a log store around <i>store</i>. The log store uses the URL from the store. All requests are logged to <i>fileHandle</i> (STDERR by default), prefixed by <i>prefix</i> (empty string by default), and then passed as-is to the wrapped store.</p>
+
+		<h2 id="store-access">Store behavior</h2>
+		<p>All <a href="/api/store/#store-interface">store requests</a> are passed as-is to the wrapped store.</p>
+	</div>
+
+	<div class="java javascript">
+		<p>The log store is currently only implemented in Perl.</p>
+	</div>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

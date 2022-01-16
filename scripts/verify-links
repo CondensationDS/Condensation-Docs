@@ -1,0 +1,132 @@
+#! /usr/bin/perl
+use strict;
+use ViereckFilter;
+
+my @errors;
+my %documents;
+&traverseDocuments('.');
+
+my %external;
+my %internal;
+&verifyFolder('.');
+
+print "\n";
+print 'COUNT', "\t", 'EXTERNAL LINK', "\n";
+for my $link (sort keys %external) {
+	print $external{$link}, "\t", $link, "\n";
+}
+
+print "\n";
+print 'COUNT', "\t", 'INTERNAL LINK', "\n";
+for my $link (sort keys %internal) {
+	print $internal{$link}, "\t", $link, $link !~ /^\// || exists $documents{$link} ? '' : ' (missing)', "\n";
+}
+
+print "\n";
+print 'LINKED', "\t", 'DOCUMENT', "\n";
+for my $link (sort keys %documents) {
+	print $documents{$link}, "\t", $link, "\n";
+}
+
+print "\n";
+print 'ERRORS', "\n";
+for my $error (@errors) {
+	print $error, "\n";
+}
+
+print "\n";
+
+sub traverseDocuments($folder) {
+	for my $filename (&listFolder($folder)) {
+		next if $filename =~ /^\./;
+		my $file = $folder.'/'.$filename;
+		&traverseDocuments($file) if -d $file;
+		next if $filename ne 'index.build.html';
+
+		# Add the main link
+		my $mainLink = substr($folder, 1).'/';
+		$documents{$mainLink} = 0;
+
+		# Add links with hashes
+		if ($filename =~ /\.html$/) {
+			my $content = &readFile($file);
+			my @ids = $content =~ /\sid="([a-zA-Z0-9-]*)"/g;
+			for my $id (@ids) {
+				$documents{$mainLink.'#'.$id} = 0;
+			}
+		}
+	}
+}
+
+sub verifyFolder($folder) {
+	for my $filename (&listFolder($folder)) {
+		next if $filename =~ /^\./;
+		my $file = $folder.'/'.$filename;
+		&verifyFolder($file) if -d $file;
+		&verifyFile($file) if $filename eq 'index.html';
+	}
+}
+
+sub verifyFile($file) {
+	my $content = &readFile($file);
+	my @links = $content =~ /href="(.*?)"/g;
+	push @links, $content =~ /src="(.*?)"/g;
+	for my $link (@links) {
+		&verifyLink($file, $link);
+	}
+}
+
+sub verifyLink($file, $link) {
+	my $hash = '';
+	if ($link =~ /^(.*?)#(.*)/) {
+		$link = $1;
+		$hash = $2;
+	}
+
+	$link = $1 if $link =~ /^\s*(.*?)\s*$/;
+	return if ! length $link;
+
+	# External
+	if ($link =~ /^(http|https|mailto):/) {
+		$external{$link} = ($external{$link} || 0) + 1;
+		return;
+	}
+
+	# Internal
+	$internal{$link} = ($internal{$link} || 0) + 1;
+
+	# Images, style sheets, and more
+	return if $link =~ /\.(css|js|png|svg|jpg|zip)$/;
+	return if $link eq '.';
+
+	# Relative
+	return &error($file, $link, ' is relative') if $link !~ /^\//;
+
+	# Missing '/'
+	&error($file, $link, ' misses trailing /') if $link !~ /\/$/ && $link !~ /\.[A-Za-z0-9]{1,4}$/;
+
+	# Missing document
+	return &error($file, $link, ' does not exist') if ! exists $documents{$link};
+	return &error($file, $link.'#'.$hash, ' is not a valid anchor') if $hash && ! exists $documents{$link.'#'.$hash};
+	$documents{$link} += 1;
+}
+
+sub error($file; @text) {
+	$file =~ s/index.html$/index.build.html/;
+	push @errors, join('', $file, '  ', @_);
+}
+
+sub listFolder($folder) {
+	opendir(D, $folder) || return warn 'Unable to open folder "', $folder, '".';
+	my @files = readdir(D);
+	closedir D;
+	return @files;
+}
+
+sub readFile($file) {
+	open(F, '<', $file) || return warn 'Unable to open file "', $file, '".';
+	local $/;
+	my $content = <F>;
+	close F;
+	return $content;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<? title = 'Split store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Split Store');
+	</script>
+
+	<div class="perl">
+		<p>Dispatches requests to up to 256 account and object stores. These stores may reside on different servers.</p>
+
+		<h2 id="new">Instance creation</h2>
+		<div class="hscroll api perl"><pre>my $splitStore = CN::SplitStore-&gt;new($key);
+$splitStore-&gt;assignAccounts(0, 255, $store1);
+$splitStore-&gt;assignObjects(0, 127, $store2);
+$splitStore-&gt;assignObjects(128, 255, $store3);</pre></div>
+		<p>Instantiates and configures a split store.</p>
+
+		<h2 id="store-access">Store behavior</h2>
+		<p>Each <a href="/api/store/#store-interface">store request</a> is cryptographically mapped onto a number from 0..255, and dispatched to the corresponding store.</p>
+		<p>For <i>get</i>, <i>put</i>, and <i>book</i> requests, the mapping is derived from the object hash:</p>
+		<div class="hscroll"><? svgFile('MappingObjectRequests.svg') ?></div>
+		<p><i>List</i> and <i>modify</i> requests are mapped using the account hash:</p>
+		<div class="hscroll"><? svgFile('MappingAccountRequests.svg') ?></div>
+		<p><i>Key</i> is a 32-byte sequence known to the store operator only, and used to encrypt the hash. This prevents outsiders from guessing the store to which an object or account is mapped. This additional encryption step also ensures that each slot will statistically get the same amount of objects and accounts.</p>
+		<p>Once the store is in use, the mapping must remain the same.</p>
+
+		<h2 id="garbage-collection">Garbage collection</h2>
+		<p>Garbage must be collected on the split store as a whole. It is not possible to collect garbage on the individual stores separately. As of now, no tools are available for that.</p>
+	</div>
+
+	<div class="java javascript">
+		<p>The split store is currently only implemented in Perl.</p>
+	</div>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

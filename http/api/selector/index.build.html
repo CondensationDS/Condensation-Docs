@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<? title = 'Selector'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Selector').openField('label');
+	</script>
+
+	<p>A reference to a data tree node.</p>
+	<p>Selectors are used to access data in a data tree:</p>
+	<div class="hscroll box java wide"><pre>
+		// Get the settings selector
+		Selector settings = dataTree.root.child("settings");
+
+		// Write the settings
+		settings.child("enabled").setBoolean(true);
+		settings.child("speed").setInteger(240);
+		settings.child("display text").setText("SALE SALE");
+
+		// Read the settings
+		boolean enabled = settings.child("enabled").booleanValue();
+		long speed = settings.child("speed").integerValue();
+		String displayText = settings.child("display text").textValue();
+	</pre></div>
+	<p>Using records, nodes can contain structured data:</p>
+	<div class="hscroll box java wide"><pre>
+		// Set a new background
+		Record background = new Record();
+		Record gradient = background.add("gradient");
+		gradient.add("start color").add(0xcc3300);
+		gradient.add("end color").add(0x996600);
+		gradient.add("angle").add(900);
+		settings.child("background").update(background);
+
+		// Read the background
+		Record background = settings.child("background").record();
+		Record value = background.firstChild();
+		if (value.asText().equals("gradient")) {
+			long startColor = value.child("start color").integerValue();
+			long endColor = value.child("end color").integerValue();
+			long angle = value.child("angle").integerValue();
+		} else {
+			...
+		}
+	</pre></div>
+
+	<p>Note that child labels are byte sequences. </p>
+
+	<h2 id="new">Navigation</h2>
+	<div class="hscroll api java"><pre>Selector rootSelector = dataTree.root;</pre></div>
+	<div class="hscroll api javascript"><pre>var rootSelector = dataTree.root</pre></div>
+	<div class="hscroll api perl"><pre>my $rootSelector = $dataTree-&gt;root</pre></div>
+	<p>The root node of a data tree.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		Bytes settingsLabel = Bytes.fromText("settings");
+		Selector settingsSelector = selector.child(settingsLabel);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var settingsLabel = cn.bytesFromText('settings');
+		var settingsSelector = selector.child(settingsLabel);
+	</pre></div>
+	<div class="hscroll api perl"><pre>my $settingsSelector = $selector-&gt;child('settings');</pre></div>
+	<p>Retrieves to the subnode with the label <b>settings</b>. Note that all labels are byte sequences.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		for (Selector child : selector.children()) {
+			...
+		}
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var children = selector.children();
+		for (var i = 0; i &lt; children.length; i++) {
+			var child = children[i];
+			...
+		}
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		for my $child ($selector-&gt;children) {
+			...
+		}
+	</pre></div>
+	<p>Iterates over all children of a selector.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>Selector parent = selector.parent();</pre></div>
+	<div class="hscroll api javascript"><pre>var parent = selector.parent();</pre></div>
+	<div class="hscroll api perl"><pre>my $parent = $selector-&gt;parent;</pre></div>
+	<p>Navigates to the parent of a selector. For the root node, this returns <span class="java javascript">null</span><span class="perl">undef</span>.</p>
+
+	<h2 id="query">Querying data</h2>
+	<div class="hscroll api java"><pre>
+		Record record = selector.record();
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var record = selector.record();
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $record = $selector-&gt;record;
+	</pre></div>
+	<p>Retrieves the node's raw value. This is always a <a href="/api/record/">record</a> with zero or more children.</p>
+
+	<div class="space" id="isSet"></div>
+	<div class="hscroll api java"><pre>boolean isSet = selector.isSet();</pre></div>
+	<div class="hscroll api javascript"><pre>var isSet = selector.isSet();</pre></div>
+	<div class="hscroll api perl"><pre>my $isSet = $selector-&gt;isSet;</pre></div>
+	<p>Returns true if the node has a value (i.e., a record with at least one child), and false otherwise.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		Record record = selector.firstValue();
+		boolean value = selector.booleanValue();
+		long value = selector.integerValue();
+		long value = selector.unsignedValue();
+		String text = selector.textValue();
+		Bytes bytes = selector.bytesValue();
+		Hash hash = selector.hashValue();
+		Reference reference = selector.referenceValue();
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var record = selector.firstValue();
+		var value = selector.booleanValue();
+		var value = selector.integerValue();
+		var value = selector.unsignedValue();
+		var text = selector.textValue();
+		var bytes = selector.bytesValue();
+		var hash = selector.hashValue();
+		var reference = selector.referenceValue();
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $record = $selector-&gt;firstValue;
+		my $value = $selector-&gt;booleanValue;
+		my $value = $selector-&gt;integerValue;
+		my $value = $selector-&gt;unsignedValue;
+		my $text = $selector-&gt;textValue;
+		my $bytes = $selector-&gt;bytesValue;
+		my $hash = $selector-&gt;hashValue;
+		my $reference = $selector-&gt;referenceValue;
+	</pre></div>
+	<p>Returns the first value of the node in the requested format.</p>
+	<p>Empty nodes are treated as nodes with an empty byte sequence, which will translate into boolean false, number 0, or an empty text. Use <a href="#isSet">isSet</a> to check if the node is empty.</p>
+	<p>Signed integers are supported up to a size of 52 bits. Unsigned integers are discouraged, as they are easily confused with signed integers, which may lead to errors that go unnoticed for a long time.</p>
+	<p>Note that nodes and records do not store any data types. The application (implicitly or explicitly) defines the structure of a data tree, and the data type of each node. However, dynamic type information can &ndash; if needed &ndash; easily be stored as a record with two children: one holding the type, and one holding the data.</p>
+	<p>If the node's record holds multiple values, the above functions only return the first value. The complete list of values can be retrieved by traversing the record's children, e.g.</p>
+	<div class="hscroll box java"><pre>
+		for (Record child: selector.record().children) {
+			String text = child.asText();
+			...
+		}
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		var record = selector.record();
+		for (var i = 0; i &lt; record.children.length; i++) {
+			var text = record.children[i].asText();
+			...
+		}
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		for my $child ($selector-&gt;record-&gt;children) {
+			my $text = child-&gt;asText;
+			...
+		}
+	</pre></div>
+
+	ancestorOf
+	isAncestorOf
+
+	any() -&gt; SelectorRange
+
+	<h2 id="modify">Modifying data</h2>
+	<div class="hscroll api java"><pre>selector.set(record);</pre></div>
+	<div class="hscroll api javascript"><pre>selector.set(record);</pre></div>
+	<div class="hscroll api perl"><pre>$selector-&gt;set($record);</pre></div>
+	<p>Sets a new value for this node.</p>
+	<p>The node's revision is increased to the current timestamp. In case the node's revision is larger (e.g. due to badly synchronized clocks), the revision is simply incremented by 1. This is not ideal, but good enough for most practical cases.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>selector.merge(revision, record);</pre></div>
+	<div class="hscroll api javascript"><pre>selector.merge(revision, record);</pre></div>
+	<div class="hscroll api perl"><pre>$selector-&gt;merge($revision, $record);</pre></div>
+	<p>Merges a value with a revision.</p>
+	<p>Merging only keeps the value with the newer revision. Hence, if the value currently stored in the node has a newer revision, it is not modified.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>selector.clear();</pre></div>
+	<div class="hscroll api javascript"><pre>selector.clear();</pre></div>
+	<div class="hscroll api perl"><pre>$selector-&gt;clear();</pre></div>
+	<p>Clears the value. This is a shortcut for :</p>
+	<div class="hscroll box java"><pre>selector.set(new Record());</pre></div>
+	<div class="hscroll box javascript"><pre>selector.set(new cn.Record());</pre></div>
+	<div class="hscroll box perl"><pre>$selector-&gt;set(CN::Record-&gt;new);</pre></div>
+
+	<h2 id="query-metadata">Querying metadata</h2>
+	<div class="hscroll api java"><pre>Bytes label = selector.label;</pre></div>
+	<div class="hscroll api javascript"><pre>var label = selector.label;</pre></div>
+	<div class="hscroll api perl"><pre>my $label = $selector-&gt;label;</pre></div>
+	<p>Retrieves the node's label.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>long revision = selector.revision();</pre></div>
+	<div class="hscroll api javascript"><pre>var revision = selector.revision();</pre></div>
+	<div class="hscroll api perl"><pre>my $revision = $selector-&gt;revision;</pre></div>
+	<p>Retrieves the node's revision. This is the timestamp of the last node modification. When merging two versions of the data tree, only the value with the larger revision value is kept.</p>
+
+	<h2 id="broom">Broom management</h2>
+	<div class="hscroll api java"><pre>long broom = selector.broom();</pre></div>
+	<div class="hscroll api javascript"><pre>var broom = selector.broom();</pre></div>
+	<div class="hscroll api perl"><pre>my $broom = $selector-&gt;broom;</pre></div>
+	<p>Retrieves the node's broom.</p>
+
+	<h2 id="change-notification">Change notification</h2>
+	<div class="hscroll api java"><pre>
+		selector.trackBranch();
+		selector.untrackBranch();
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		selector.trackBranch();
+		selector.untrackBranch();
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		$selector-&gt;trackBranch;
+		$selector-&gt;untrackBranch;
+	</pre></div>
+	<p>.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		selector.trackValue();
+		selector.untrackValue();
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		selector.trackValue();
+		selector.untrackValue();
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		$selector-&gt;trackValue;
+		$selector-&gt;untrackValue;
+	</pre></div>
+	<p>.</p>
+
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

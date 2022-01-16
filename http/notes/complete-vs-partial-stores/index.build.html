@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<? title = 'Complete vs. partial stores'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<h2>Complete store</h2>
+
+	<p>On a complete store, all trees are complete. An object only links objects that already exist on the store &mdash; there are no dangling links. A store may enforce this by checking the <a href="/serialization/object/">hash list</a> of <a href="/stores/store/#put-object">uploaded</a> objects.</p>
+
+	<p>Complete stores have two important properties:</p>
+	<ol>
+		<li>All linked objects exists. The application does not need worry about missing objects, which greatly simplifies the application logic. A missing object points to failing storage, or a serious implementation error, and can simply be treated as fatal error.</li>
+		<li>When transferring trees, existing subtrees can be skipped and do not need to be traversed. If an object exists, the tree it spans exists as well. This greatly improves the performance when saving and transferring trees.</li>
+	</ol>
+
+	<p>Common actor implementations require a complete store as main storage, and take advantage of the above properties.</p>
+
+	<h2>Partial store</h2>
+
+	<p>A partial store holds individual objects. Links are ignored, and trees may be incomplete.</p>
+
+	<p>Partial stores may be used as building blocks for complete stores. Distributing objects across multiple disks, for example, will leave a partial store on each disk. Together, however, they form a complete store.</p>
+
+	<p>Similarly, an object cache is a partial store. Together with a complete store as main store, however, the resulting store is complete.</p>
+
+	<p class="todo">This is a faily important topic, and should be elaborated. It may even go to the store documentation, rather than leaving it here with the notes. Add two concrete examples (object cache and split store) with drawings and longer explanations. Also mention that using a complete store as partial store (e.g. object cache) is a very bad idea, as it will (implicitly) make the store partial. This could lead to data loss.</p>
+
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

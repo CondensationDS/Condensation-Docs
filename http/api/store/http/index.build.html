@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<? title = 'HTTP store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('HTTP Store');
+	</script>
+
+	<p>An implementation of the <a href="/stores/http/">HTTP store</a> specification.</p>
+
+	<h2 id="new">Instance creation</h2>
+	<div class="hscroll api java"><pre>HttpStore httpStore = new HTTPStore(url);</pre></div>
+	<div class="hscroll api javascript"><pre>var httpStore = cn.HTTPStore(url);</pre></div>
+	<div class="hscroll api perl"><pre>my $httpStore = CN::HTTPStore-&gt;new($url);</pre></div>
+	<p>Instantiates a HTTP store for a <i>url</i> of the form:</p>
+	<div class="hscroll indent"><pre>http://HOST<span style="opacity: 0.3">:PORT</span>/PATH/TO/STORE
+https://HOST<span style="opacity: 0.3">:PORT</span>/PATH/TO/STORE</pre></div>
+	<p>The port is optional, and defaults to 80 for HTTP, and 443 for HTTPS.</p>
+
+	<h2 id="store-access">Store behavior</h2>
+	<p>Each <a href="/api/store/#store-interface">store request</a> results in one HTTP request.</p>
+
+	<div class="java">
+		<h2 id="reachability">Reachability</h2>
+		<div class="hscroll api java"><pre>HTTPStoreState storeState = HTTPStoreManager.getOrCreate(url);
+int reachable = storeState.isReachable();</pre></div>
+		<p>Returns the current reachability estimate for the store. The estimate is based on the success of recent requests, and can take one of the following values:</p>
+		<table class="text">
+			<tr>
+				<td style="font-weight: 600; text-align: right; width: 30px">1</td>
+				<td>The store is probably reachable. A recent request was successful.</td>
+			</tr>
+			<tr>
+				<td style="font-weight: 600; text-align: right; width: 30px">0</td>
+				<td>It is not known whether the store is reachable. There have not been any requests recently.</td>
+			</tr>
+			<tr>
+				<td style="font-weight: 600; text-align: right; width: 30px">-1</td>
+				<td>The store is probably not reachable. The last request failed.</td>
+			</tr>
+		</table>
+
+		<h2 id="threading">Threading</h2>
+		<p>The Java implementation creates up to 3 <a href="/api/threading/">threads</a> per URL, and dispatches store accesses onto these threads. If a store is slow, this does not affect operations on other stores.</p>
+	</div>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

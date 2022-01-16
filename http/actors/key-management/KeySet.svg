@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="320"
+   height="136"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="KeySet.svg">
+  <defs      id="defs3876" ></defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-609.5"
+     inkscape:cy="3"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       id="text849"
+       y="44"
+       x="156"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="44"
+         x="156"
+         id="tspan847"
+         sodipodi:role="line">Active keys</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       x="156"
+       y="94"
+       id="text901"><tspan
+         sodipodi:role="line"
+         id="tspan899"
+         x="156"
+         y="94">Idle, obsolete keys</tspan></text>
+    <circle
+       r="8"
+       cy="78"
+       cx="122"
+       id="circle905"
+       style="fill:#e5b83f" />
+    <circle
+       style="fill:#e5b83f"
+       id="circle907"
+       cx="122"
+       cy="98"
+       r="8" />
+    <circle
+       r="8"
+       cy="18"
+       cx="122"
+       id="circle909"
+       style="fill:#5a1d93" />
+    <circle
+       style="fill:#5a1d93"
+       id="circle935"
+       cx="122"
+       cy="38"
+       r="8" />
+    <rect
+       style="fill:none;stroke:#bbbbbb;stroke-dasharray:3, 3;stroke-width:2"
+       id="rect922"
+       width="34"
+       height="134"
+       x="105"
+       y="1"
+       rx="10" />
+    <text
+       id="text950"
+       y="74"
+       x="2"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="74"
+         x="2"
+         id="tspan948"
+         sodipodi:role="line">Actor group</tspan></text>
+    <circle
+       r="8"
+       cy="58"
+       cx="122"
+       id="circle972"
+       style="fill:#5a1d93" />
+    <circle
+       r="8"
+       cy="118"
+       cx="122"
+       id="circle974"
+       style="fill:#e5473f" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       x="156"
+       y="124"
+       id="text1165"><tspan
+         sodipodi:role="line"
+         id="tspan1163"
+         x="156"
+         y="124">Revoked key</tspan></text>
+  </g>
+</svg>

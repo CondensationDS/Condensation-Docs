@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<? title = 'Hash verification store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Hash Verification Store').openField('store');
+	</script>
+
+	<p>Verifies the hash of each retrieved object. Hash verification should be used <a href="/notes/hash-verification/">consideredly</a>.</p>
+
+	<h2 id="new">Instance creation</h2>
+	<div class="hscroll api wide java"><pre>HashVerificationStore hashVerificationStore = new HashVerificationStore(store);</pre></div>
+	<div class="hscroll api wide javascript"><pre>var hashVerificationStore = new cn.HashVerificationStore(store);</pre></div>
+	<div class="hscroll api wide perl"><pre>my $hashVerificationStore = CN::HashVerificationStore-&gt;new($store);</pre></div>
+	<p>Wraps a hash verification store around another store.</p>
+
+	<h2 id="store-access">Store behavior</h2>
+	<p>All <a href="/api/store/#store-interface">store request</a> are passed as-is to the wrapped store.</p>
+	<p>The objects retrieved through a <a href="/api/store/#get">get</a> request are <span class="java javascript">(asynchronously)</span> checked against the expected SHA256 hash. If wrong, the request fails with a "Hash mismatch." error.</p>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

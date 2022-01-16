@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::Put. Do not edit the content here. -->
+<? title = 'Put'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn put <span class="im">FILE*</span> [onto <span class="im">STORE*</span>]</pre></div>
+<p>Uploads object files onto object stores. If no stores are provided, the selected store is used. If an upload fails, the program immediately quits with exit code 1.</p>
+<div class="hscroll box"><pre>cn put <span class="im">FILE</span> encrypted with <span class="im">AESKEY</span> [onto <span class="im">STORE*</span>]</pre></div>
+<p>Encrypts the object before the upload.</p>
+<div class="hscroll box"><pre>cn put object with [<span class="im">HASH*</span> and] <span class="im">FILE</span> …</pre></div>
+<p>Creates an object with the HASHes as hash list and FILE as data.</p>
+<div class="hscroll box"><pre>cn put public key of <span class="im">KEYPAIR</span> …</pre></div>
+<p>Uploads the public key of the indicated key pair onto the store.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="store-put.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="store-put.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

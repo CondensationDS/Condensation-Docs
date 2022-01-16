@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<? title = 'Hash verification'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Condensation's security model relies on the verification of hashes when <a href="/stores/store/#get-object">retrieving objects from a store</a>. If hashes are not verified, malicious data modification will remain unnoticed.</p>
+	<p>However, hash verification also entails a computational overhead. While SHA256 is a fairly fast and efficient algorithm, hash verification will consume additional energy and time.</p>
+	<p>Hence, hash verification (e.g. through chaining a <a href="/api/store/hash-verification/">hash verification store</a>) should be used consideredly. As a rule of thumb, hash verification should be done for remote stores, but not for local stores.</p>
+
+	<h2>Local stores</h2>
+	<p>Hash verification will not add any security if the attacker has access to the private key. This is typically the case on the applications's device, where the application &ndash; by design &ndash; needs to have access to the private key.</p>
+	<p>Exceptions are high-security settings, where the private key remains in a protected area, while the store is easily accessible. Conceptually, one could consider this a <em>remote</em> store (relative to the private key).</p>
+
+	<h2>Remote stores</h2>
+	<p>For remote stores, hashes should always be verified inside the application.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

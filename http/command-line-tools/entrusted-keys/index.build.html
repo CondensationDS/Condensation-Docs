@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::EntrustedKeys. Do not edit the content here. -->
+<? title = 'Entrusted keys'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn show entrusted keys</pre></div>
+<p>Shows all entrusted keys.</p>
+<div class="hscroll box"><pre>cn entrust <span class="im">ACCOUNT*</span>
+cn entrust <span class="im">ACTOR</span> on <span class="im">STORE</span></pre></div>
+<p>Adds the indicated entrusted keys. Entrusted keys can read our private data and messages. The public key of the entrusted actor must be available on the store.</p>
+<div class="hscroll box"><pre>cn do not entrust <span class="im">ACTOR*</span></pre></div>
+<p>Removes the indicated entrusted keys.</p>
+<p>After modifying the entrusted keys, you should "cn announce" yourself to publish the changes.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="entrusted-keys.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="entrusted-keys.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

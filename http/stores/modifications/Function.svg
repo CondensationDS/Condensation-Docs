@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="380"
+   height="100"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="Function.svg">
+  <defs      id="defs3876" ></defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="145.55437"
+     inkscape:cy="108.82816"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3759"
+     inkscape:window-height="2131"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       style="fill:#000000"
+       d="m 124,52.999997 8,-3 -8,-3 2,3 z"
+       id="path4002" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4004"
+       d="m 97,49.499997 0,1 29,0 0,-1 z"
+       style="fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:20px;text-align:end;text-anchor:end"
+       x="87"
+       y="35"
+       id="text3024"><tspan
+         sodipodi:role="line"
+         x="87"
+         y="35"
+         id="tspan3040">Objects</tspan><tspan
+         sodipodi:role="line"
+         x="87"
+         y="55"
+         id="tspan845">Additions</tspan><tspan
+         sodipodi:role="line"
+         x="87"
+         y="75"
+         id="tspan4163">Removals</tspan></text>
+    <rect
+       rx="3"
+       y="10"
+       x="140"
+       height="80"
+       width="80"
+       id="rect3015-9"
+       style="fill:#ffffff;stroke:#9549db;stroke-width:2" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-weight:bold;text-align:start;text-anchor:start"
+       x="180"
+       y="56"
+       id="text3017"><tspan
+         id="tspan4471"
+         sodipodi:role="line"
+         x="180"
+         y="56"
+         style="-inkscape-font-specification:'Source Sans Pro Bold';font-size:18px;text-align:center;text-anchor:middle">modify</tspan></text>
+    <text
+       id="text3035"
+       y="44"
+       x="273"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         id="tspan3037"
+         y="44"
+         x="273"
+         sodipodi:role="line">Success</tspan></text>
+    <path
+       style="fill:#ff0000"
+       d="m 275.00001,55 -2,2 3,3 -3,3 2,2 3,-3 3,3 2,-2 -3,-3 3,-3 -2,-2 -3,3 z"
+       id="rect3001"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccc" />
+    <path
+       id="path3988"
+       d="m 256.00001,43 8,-3 -8,-3 2,3 z"
+       style="fill:#000000"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#000000"
+       d="m 229.00001,39.5 0,1 29,0 0,-1 z"
+       id="path3990"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#ff0000"
+       d="m 229.00001,59.5 0,1 29,0 0,-1 z"
+       id="path4000"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path4008"
+       d="m 256.00001,63 8,-3 -8,-3 2,3 z"
+       style="fill:#ff0000"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

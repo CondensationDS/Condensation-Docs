@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="280"
+   height="80"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="KeyPair.svg">
+  <defs
+     id="defs3876">
+    <marker
+       style="overflow:visible"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="arrow000000">
+      <path
+         id="path2"
+         d="M -6,3 2,0 -6,-3 -5,0 Z"
+         style="fill:#000000"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-623"
+     inkscape:cy="-201.5"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#5a1d93;fill-opacity:1"
+       id="rect3065"
+       width="156"
+       height="80"
+       x="0"
+       y="0"
+       rx="4" />
+    <text
+       id="text862"
+       y="68"
+       x="10"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="68"
+         x="10"
+         id="tspan860"
+         sodipodi:role="line">Private key</tspan></text>
+    <rect
+       y="0"
+       x="160"
+       height="80"
+       width="120"
+       id="rect864"
+       style="fill:#9549db;fill-opacity:1"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       x="170"
+       y="68"
+       id="text868"><tspan
+         sodipodi:role="line"
+         id="tspan866"
+         x="170"
+         y="68">Public key</tspan></text>
+    <circle
+       style="fill:#ffffff"
+       id="path874"
+       cx="25"
+       cy="25"
+       r="15" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#5a1d93;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle;fill-opacity:1;"
+       x="25"
+       y="30"
+       id="text872"><tspan
+         sodipodi:role="line"
+         id="tspan870"
+         x="25"
+         y="30">e</tspan></text>
+    <circle
+       r="15"
+       cy="25"
+       cx="65"
+       id="circle876"
+       style="fill:#ffffff" />
+    <text
+       id="text880"
+       y="30"
+       x="65"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#5a1d93;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle;fill-opacity:1;"
+       xml:space="preserve"><tspan
+         y="30"
+         x="65"
+         id="tspan878"
+         sodipodi:role="line">p</tspan></text>
+    <circle
+       style="fill:#ffffff"
+       id="circle882"
+       cx="105"
+       cy="25"
+       r="15" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#5a1d93;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle;fill-opacity:1;"
+       x="105"
+       y="30"
+       id="text886"><tspan
+         sodipodi:role="line"
+         id="tspan884"
+         x="105"
+         y="30">q</tspan></text>
+    <circle
+       r="15"
+       cy="25"
+       cx="185"
+       id="circle888"
+       style="fill:#ffffff" />
+    <text
+       id="text892"
+       y="30"
+       x="185"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#9549db;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle;fill-opacity:1;"
+       xml:space="preserve"><tspan
+         y="30"
+         id="tspan890"
+         sodipodi:role="line"
+         x="185">e</tspan></text>
+    <circle
+       style="fill:#ffffff"
+       id="circle894"
+       cx="225"
+       cy="25"
+       r="15" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#9549db;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle;fill-opacity:1;"
+       x="225"
+       y="30"
+       id="text898"><tspan
+         sodipodi:role="line"
+         id="tspan896"
+         x="225"
+         y="30">n</tspan></text>
+  </g>
+</svg>

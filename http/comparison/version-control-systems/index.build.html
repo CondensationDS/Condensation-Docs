@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<? title = 'Condensation vs. version control systems'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Software developers and engineers often use <a href="https://en.wikipedia.org/wiki/Version_control">version control systems</a> (VCS) such as <a href="https://git-scm.com/">git</a>, <a href="https://www.mercurial-scm.org/">hq</a>, or <a href="https://subversion.apache.org/">subversion</a>, to manage their project data and source code. Such systems offer versioning and traceability of modifications, as well as transactional synchronization of all data.</p>
+	<p>Condensation has many things in common with a distributed VCS. Like most VCS, Condensation uses immutable data structures to keep different versions. Both put data synchronization forward, and both use a merge function to combine two data states.</p>
+	<p>However, there are a few key differences between VCS and Condensation.</p>
+
+	<h2>Target audience</h2>
+	<p>VCS are built for a specific purpose and audience: software developers (or engineers) managing project data, primarily source code.</p>
+	<p>Condensation is very generic, and does not target any specific audience. A VCS could be built as application on top of Condensation, but Condensation can be used for many other applications as well.</p>
+
+	<h2>Versioning</h2>
+	<p>VCS typically keep all versions &ndash; a desired feature in software development &ndash; and store <a href="https://en.wikipedia.org/wiki/Data_comparison">diffs</a> rather than full versions, as long as this makes sense.</p>
+	<p>Condensation offers generic versioning, but does not specify how these versions are encoded or linked with each other. This is left for the application to decide and implement. Versions can be given up at any time.</p>
+
+	<h2>Explicit vs. implicit commits</h2>
+	<p>In most VCS, the user decides when to commit his work, i.e., store a new version. This is typically done in intervals of a few hours.</p>
+	<p>In Condensation, new versions implicitly appear whenever the data is stored. In <a href="https://en.wikipedia.org/wiki/Autosave">autosave</a> applications, this can take place several times per minute.</p>
+
+	<h2>Merge conflicts</h2>
+	<p>Most VCS use interactive merging. Upon a conflict, the merge process stops and forces the user to investigate before completing the merge.</p>
+	<p>Condensation requires the use of a conflict-free merge algorithm. Logical conflicts in the data do not result in technical conflicts, and can be solved later if necessary.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

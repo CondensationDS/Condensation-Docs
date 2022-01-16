@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::ShowMessages. Do not edit the content here. -->
+<? title = 'Show messages'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn show messages of <span class="im">ACCOUNT</span>
+cn show messages of <span class="im">ACTOR</span>|<span class="im">KEYPAIR</span> [on <span class="im">STORE</span>]</pre></div>
+<p>Shows all (unprocessed) messages of an actor ordered by their envelope hash. If store is omitted, the selected store is used.</p>
+<div class="hscroll box"><pre>cn show messages of <span class="im">ACTORGROUP</span></pre></div>
+<p>Shows all messages of all actors of that group.</p>
+<div class="hscroll box"><pre>cn show messages</pre></div>
+<p>Shows the messages of the selected key pair on the selected store.</p>
+<div class="hscroll box"><pre>cn show my messages</pre></div>
+<p>Shows your messages.</p>
+<div class="hscroll box"><pre>cn show our messages</pre></div>
+<p>Shows all messages of your actor group.</p>
+<p>Unprocessed messages are stored in the message box of an actor. Each entry points to an envelope, which in turn points to a record object. The envelope is signed by the sender, but does not hold any date. If the application relies on dates, it must include this date in the message.</p>
+<p>While the envelope hash is stored on the actor's store, the envelope and the message are stored on the sender's store, and are downloaded from there. Depending on the reachability and responsiveness of that store, messages may not always be accessible.</p>
+<p>Senders typically keep sent messages for about 10 days on their store. After that, the envelope hash may still be in the message box, but the actual message may have vanished.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="show-messages.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="show-messages.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

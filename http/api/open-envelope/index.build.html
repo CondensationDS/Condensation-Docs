@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<? title = 'Opening an envelope'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<!-- h2>Message envelopes</h2>
+	<div class="hscroll wide api java"><pre>
+		OpenInQueueEnvelope.Done done = new OpenInQueueEnvelope.Done() {
+			boolean onOpenInQueueEnvelopeVerifySender(Record envelope, String senderStoreUrl, Hash senderHash) {
+				// Called after opening the envelope, but before accessing the sender's store.
+				// Return true if the sender is valid, and false otherwise.
+				return true;
+			}
+
+			void onOpenInQueueEnvelopeDone(Record envelope, AccountWithKey sender, Reference contentReference) {
+				// Called when opening and validating the envelope succeeded.
+			}
+
+			void onOpenInQueueEnvelopeInvalid(String error) {
+				// Called if the envelope object was not found, or does not contain a valid envelope.
+			}
+
+			void onOpenInQueueEnvelopeFailed(String error) {
+				// Called if a store could not be accessed.
+			}
+		};
+
+		new OpenInQueueEnvelope(keyPair, accountWithKey, hash, publicKeyCache, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = keyPair.openPrivateEnvelope(accountWithKey, hash, publicKeyCache);
+
+		done.onOpenInQueueEnvelopeVerifySender = function(envelope, senderStoreUrl, senderHash) {
+			// Called after opening the envelope, but before accessing the sender's store.
+			// Return true if the sender is valid, and false otherwise.
+			return true;
+		}
+
+		done.onDone = function(envelope, sender, contentReference) {
+			// Called when opening and validating the envelope succeeded.
+		};
+
+		done.onInvalid = function(error) {
+			// Called if the envelope object was not found, or does not contain a valid envelope.
+		};
+
+		done.onFailed = function(error) {
+			// Called if a store could not be accessed.
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($envelope, $sender, $contentReference, $invalidError, $storeError) = $keyPair-&gt;openPrivateEnvelope($accountWithKey, $hash, $publicKeyCache);
+
+		if (defined $invalidError) {
+			# The envelope object was not found, or does not contain a valid envelope.
+		} elsif (defined $storeError) {
+			# A store could not be accessed.
+		} else {
+			# Opening and validating the envelope succeeded.
+		}
+	</pre></div>
+	<p>Retrieves, opens, and verifies the <a href="/actors/envelope/#message">message envelope</a> pointed to by <i>hash</i> on <i>accountWithKey</i>.</p>
+
+	<p>The <i>publicKeyCache</i> is used to cache public keys across multiple invocations. This greatly improves performance when receiving multiple messages from the same sender.</p>
+	<p>In case of success, <i>contentReference</i> allows to retrieve the content from the <i>sender</i>'s store, and <i>envelope</i> contains the raw envelope record.</p>
+	<p>If retrieval of the envelope object or the public key object failed with a store error, the operation fails with a store error. In this case, the envelope may be opened again later when the stores are available.</p>
+	<p>If the envelope is incomplete, not properly signed, or not encrypted for the identity, the operation fails as <i>invalid</i>. In this case, the corresponding box entry should be removed. Opening the same envelope will also fail at a later point in time.</p -->
+
+	<h2>Private box envelopes</h2>
+	<div class="hscroll wide api java"><pre>
+		OpenPrivateEnvelope.Done done = new OpenPrivateEnvelope.Done() {
+			void onOpenPrivateEnvelopeDone(Record envelope, Reference contentReference) {
+				// Called when opening and validating the envelope succeeded
+			}
+
+			void onOpenPrivateEnvelopeInvalid(String error) {
+				// Called if the envelope object was not found, or does not contain a valid envelope
+			}
+
+			void onOpenPrivateEnvelopeFailed(String error) {
+				// Called if a store could not be accessed
+			}
+		};
+
+		new OpenPrivateEnvelope(keyPair, accountWithKey, hash, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = keyPair.openPrivateEnvelope(accountWithKey, hash);
+
+		done.onDone = function(envelope, contentReference) {
+			// Called when opening and validating the envelope succeeded
+		};
+
+		done.onInvalid = function(error) {
+			// Called if the envelope object was not found, or does not contain a valid envelope
+		};
+
+		done.onFailed = function(error) {
+			// Called if a store could not be accessed
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($envelope, $contentReference, $invalidError, $storeError) = $keyPair-&gt;openPrivateEnvelope($accountWithKey, $hash);
+
+		if (defined $invalidError) {
+			# The envelope object was not found, or does not contain a valid envelope
+		} elsif (defined $storeError) {
+			# A store could not be accessed
+		} else {
+			# Opening and validating the envelope succeeded
+		}
+	</pre></div>
+	<p>Retrieves, opens, and verifies the <a href="/actors/envelope/#private">private box envelope</a> pointed to by <i>hash</i> on <i>accountWithKey</i>. Upon success, the <i>content reference</i> points to the private data on the account's store, and <i>envelope</i> contains the envelope record.</p>
+	<p>If envelope retrieval failed with a store error, the operation fails. In this case, the envelope may be opened again later when the stores are available.</p>
+	<p>If the envelope is incomplete, not properly signed, or not encrypted for the key pair, the operation fails as <i>invalid</i>. In this case, the corresponding box entry should be removed. Opening the same envelope will also fail at a later point in time.</p>
+
+	<h2>Public box envelopes</h2>
+	<div class="hscroll wide api java"><pre>
+		OpenPublicEnvelope.Done done = new OpenPublicEnvelope.Done() {
+			void onOpenPublicEnvelopeDone(Record envelope, Hash contentHash) {
+				// Called when opening and validating the envelope succeeded
+			}
+
+			void onOpenPublicEnvelopeInvalid(String error) {
+				// Called if the envelope object was not found, or does not contain a valid envelope
+			}
+
+			void onOpenPublicEnvelopeFailed(String error) {
+				// Called if a store could not be accessed
+			}
+		};
+
+		new OpenPublicEnvelope(keyPair, accountWithKey, hash, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = keyPair.openPublicEnvelope(accountWithKey, hash);
+
+		done.onDone = function(envelope, contentHash) {
+			// Called when opening and validating the envelope succeeded
+		};
+
+		done.onInvalid = function(error) {
+			// Called if the envelope object was not found, or does not contain a valid envelope
+		};
+
+		done.onFailed = function(error) {
+			// Called if a store could not be accessed
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($envelope, $contentHash, $invalidError, $storeError) = $keyPair-&gt;openPublicEnvelope($accountWithKey, $hash);
+
+		if (defined $invalidError) {
+			# The envelope object was not found, or does not contain a valid envelope
+		} elsif (defined $storeError) {
+			# A store could not be accessed
+		} else {
+			# Opening and validating the envelope succeeded
+		}
+	</pre></div>
+	<p>Retrieves, opens, and verifies the <a href="/actors/envelope/#public">public box envelope</a> pointed to by <i>hash</i> on <i>accountWithKey</i>. Upon success, the <i>contentHash</i> points to the public card on the account's store, and <i>envelope</i> contains the envelope record.</p>
+	<p>If envelope retrieval failed with a store error, the operation fails. In this case, the envelope may be opened again later when the stores are available.</p>
+	<p>If the envelope is incomplete, or not properly signed, the operation fails as <i>invalid</i>. Opening the same envelope will also fail at a later point in time.</p>
+
+	<h2>Message envelopes</h2>
+	<p>Messages envelopes are read and verified by the <a href="/api/message-box-reader/">message box reader</a>.</p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

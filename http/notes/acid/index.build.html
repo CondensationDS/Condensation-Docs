@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<? title = 'ACID compliance'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>Condensation is <a href="https://en.wikipedia.org/wiki/ACID_(computer_science)">ACID compliant</a>. The following discussion applies to the public and private data of an actor, as well as a system of actors communicating through messages.</p>
+
+	<h2>Atomicity</h2>
+	<p>To apply a transaction (data modification), a new tree is derived and uploaded onto the store. When ready, the hash of that new tree is added to the box, resulting in an atomic commit:</p>
+	<ul>
+		<li>Adding the hash applies the transaction in its entirety.</li>
+		<li>If adding fails, the old state is retained in its entirety.</li>
+	</ul>
+	<p>Since the data is forward-moving, removing obsolete hashes is merely cosmetic, and only affects the performance.</p>
+	<p>Note that the above atomicity directly depends on the atomicity of the store's <a href="/stores/store/#add-hash">add operation</a>. This is usually easy to accomplish, even for raw storage:</p>
+	<ul>
+		<li>If all 32 bytes of the hash get correctly written to the storage system, the operation succeeds.</li>
+		<li>If one or more bits are not written, or flipped, the resulting hash <a href="/notes/hash-collisions/">very likely</a> does not point to an existing object, and is therefore invalid. The old state remains.</li>
+	</ul>
+
+	<h2>Consistency</h2>
+	<p>Each transaction moves the data from one valid state to another valid state of the forward-moving data structure. Higher-level constraints have to be implemented by the application.</p>
+
+	<h2>Isolation</h2>
+	<p>Multiple independent transactions may run concurrently, and won't affect each other. When reading the data, all changes are be merged.</p>
+
+	<h2>Durability</h2>
+	<p>A committed transaction is durable on the applied store, and will remain committed throughout the lifetime of the store.</p>
+	<p>The lifetime of a store depends on the nature of the underlying storage system. On non-volatile storage, such as a hard disk or solid state drive, a store lives until the drive fails, or until the store is wiped. On volatile memory, such as RAM, a store lives until power is removed, or until the process managing the store exits.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

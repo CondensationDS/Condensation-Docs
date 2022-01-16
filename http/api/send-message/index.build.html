@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<? title = 'Sending a message'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Sending a message</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll wide api java"><pre>
+		SendMessage.Done done = new SendMessage.Done() {
+			void onSendMessageDone(HashReference messageReference) {
+				// Called after sending succeeded
+			}
+
+			void onSendMessageFailed(ArrayList&lt;String&gt; errors) {
+				// Called if a store could not be accessed, or
+			}
+		};
+
+		identity.sendMessage(recipient, record, sourceStores, done);
+		//new SendMessage(identity, recipient, record, sourceStores, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = identity.sendMessage(recipient, record, sourceStores);
+
+		done.onDone = function(messageReference) {
+			// Called after sending succeeded
+		};
+
+		done.onFailed = function(error) {
+			// Called if a store could not be accessed
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($hashReference, $storeError) = $identity-&gt;sendMessage($recipient, $record, @sourceStores);
+
+		if (defined $storeError) {
+			# A store could not be accessed
+		} else {
+			# Opening and validating the envelope succeeded
+		}
+	</pre></div>
+	<p>Sends <i>record</i> to <i>recipient</i>.</p>
+	<p>The record is first serialized and encrypted, and then uploaded onto the identity's messaging store. If this succeeds, an envelope pointing to the record is submitted to a recipients messaging store.</p>
+	<p>If the recipient uses multiple messaging stores, they are tried sequentially in the order listed by the recipient, until one succeeds. If stores fail, it is possible that the recipient receives the exact same envelope on multiple messaging stores.</p>
+	<p>If the record points to more data, <i>source stores</i> may be provided to copy the referenced content from these source stores to the identity's messaging store. If the referenced objects are part of the identity's private data, the source stores are simply the identity's <i>retrieve stores</i>. For content that has not (yet) be saved, a temporary <a href="/api/store/in-memory/">in-memory store</a> may be created.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>identity.sendMessage(recipient, reference, sourceStores, done);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var done = identity.sendMessageFromReference(recipient, reference, sourceStores);</pre></div>
+	<div class="hscroll wide api perl"><pre>my ($hashReference, $storeError) = $identity-&gt;sendMessageFromReference($recipient, $reference, @sourceStores);</pre></div>
+	<p>As above, but assumes that the message record has already been serialized, encrypted, and put onto one of the source stores (e.g. an <a href="/api/store/in-memory/">in-memory store</a>).</p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

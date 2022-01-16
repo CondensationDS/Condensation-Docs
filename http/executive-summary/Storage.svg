@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="502"
+   height="80"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Storage.svg">
+  <defs
+     id="defs3876">
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="6.5537849"
+     inkscape:cx="251"
+     inkscape:cy="43.691343"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3759"
+     inkscape:window-height="2131"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="rect4209"
+       width="500"
+       height="32"
+       x="1"
+       y="47"
+       rx="8" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="46"
+       y="70"
+       id="text4211"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4213"
+         x="46"
+         y="70">raw disk</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4215"
+       y="70"
+       x="141"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="70"
+         x="141"
+         id="tspan4217"
+         sodipodi:role="line">file system</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="291"
+       y="70"
+       id="text4219"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4221"
+         x="291"
+         y="70">database</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4223"
+       y="70"
+       x="434"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="70"
+         x="434"
+         id="tspan4225"
+         sodipodi:role="line">cloud storage</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4227"
+       y="70"
+       x="354"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="70"
+         x="354"
+         id="tspan4229"
+         sodipodi:role="line">...</tspan></text>
+    <path
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="M 90,79 90,47"
+       id="path4231"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4237"
+       d="m 245,79 0,-32"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 337,79 0,-32"
+       id="path4239"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4241"
+       d="m 371.99997,79 0,-32"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="218"
+       y="70"
+       id="text4243"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4245"
+         x="218"
+         y="70">NAS</tspan></text>
+    <path
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 192,79 0,-32"
+       id="path4247"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4251"
+       y="14"
+       x="91"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="14"
+         x="91"
+         id="tspan4253"
+         sodipodi:role="line">HTTP(S)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="171"
+       y="14"
+       id="text4257"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4259"
+         x="171"
+         y="14">(S)FTP</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4263"
+       y="14"
+       x="251"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="14"
+         x="251"
+         id="tspan4265"
+         sodipodi:role="line">POSIX FS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="331"
+       y="14"
+       id="text4269"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4271"
+         x="331"
+         y="14">SQL</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 171,39 0,-18"
+       id="path4255"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4261"
+       d="m 251,39 0,-18"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 331,39 0,-18"
+       id="path4267"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4280"
+       d="m 411,39 0,-18"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       sodipodi:nodetypes="cc" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4282"
+       y="14"
+       x="411"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="14"
+         x="411"
+         id="tspan4284"
+         sodipodi:role="line">...</tspan></text>
+    <path
+       id="path4364"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 87,35 4,4 4,-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       d="m 87,25 4,-4 4,4"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="path4367" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4369"
+       d="M 91,39 91,21"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       d="m 167,35 4,4 4,-4"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="path4371" />
+    <path
+       id="path4373"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 167,25 4,-4 4,4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       id="path4375"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 247,35 4,4 4,-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       d="m 247,25 4,-4 4,4"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="path4377" />
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       d="m 327,35 4,4 4,-4"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="path4379" />
+    <path
+       id="path4381"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 327,25 4,-4 4,4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       id="path4383"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       d="m 407,35 4,4 4,-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       d="m 407,25 4,-4 4,4"
+       style="fill:none;stroke:#333333;stroke-linecap:butt;stroke-miterlimit:4;stroke-width:2"
+       id="path4385" />
+  </g>
+</svg>

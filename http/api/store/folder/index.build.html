@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<? title = 'Folder store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Folder Store');
+	</script>
+
+	<div class="java perl">
+		<p>An implementation of the <a href="/stores/folder/">folder store specification</a>.</p>
+
+		<h2 id="new">Instance creation</h2>
+		<div class="hscroll api java"><pre>FolderStore folderStore = FolderStore.forUrl(folder);</pre></div>
+		<div class="hscroll api perl"><pre>my $folderStore = CN::FolderStore-&gt;forUrl($url);</pre></div>
+		<p>Instantiates a folder store for a <i>url</i> of the form:</p>
+		<div class="hscroll indent"><pre>file:///PATH/TO/STORE</pre></div>
+
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>FolderStore folderStore = new FolderStore(folder);</pre></div>
+		<div class="hscroll api perl"><pre>my $folderStore = CN::FolderStore-&gt;new($folder);</pre></div>
+		<p>Instantiates a folder store for a <i>folder</i> <span class="java">(<a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html" target="_blank">File</a> object)</span><span class="perl">(local filesystem path)</span>.</p>
+
+		<h2 id="store-access">Store behavior</h2>
+		<p>Each <a href="/api/store/#store-interface">store request</a> results in one or more file system operations.</p>
+
+		<h2 id="administration">Administration</h2>
+		<div class="hscroll api java"><pre>boolean success = folderStore.createIfNecessary();</pre></div>
+		<div class="hscroll api perl"><pre>my $success = $folderStore-&gt;createIfNecessary;</pre></div>
+		<p>Initializes an empty store in the store folder, unless this has been done before. The store folder itself must exist and be writable.</p>
+		<p>The return value tells whether the store exists when the function returns, independently of whether is has been created, or already existed.</p>
+	</div>
+
+	<div class="perl">
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my @accountHashes = $folderStore-&gt;accounts;</pre></div>
+		<p>Returns the list of accounts. Each account is a hash.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my $ok = $folderStore-&gt;addAccount($accountHash);</pre></div>
+		<p>Adds an account by creating its account and (empty) box folders.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my $ok = $folderStore-&gt;removeAccount($accountHash);</pre></div>
+		<p>Removes an account and deletes its boxes.</p>
+		<p>Removal is done in two steps: the account folder is first renamed to ".deleted-RANDOMSEQUENCE", and then removed. If removal fails, an obsolete ".deleted-RANDOMSEQUENCE" folder will remain, which can safely be removed manually by an administrator.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my $ok = $folderStore-&gt;checkPermissions($logger);</pre></div>
+		<p>Checks, and optionally fixes POSIX permissions of this store. This traverses all objects and accounts of the store, and may therefore take some time.</p>
+		<p>For logger examples, see</p>
+		<ul>
+			<li><a href="/src/clients/perl/Condensation/CLI/Commands/FolderStore/Logger.pm">Logger.pm</a></li>
+			<li><a href="/src/clients/perl/Condensation/CLI/Commands/FolderStore/CheckLogger.pm">CheckLogger.pm</a></li>
+			<li><a href="/src/clients/perl/Condensation/CLI/Commands/FolderStore/FixLogger.pm">FixLogger.pm</a></li>
+			<li><a href="/src/clients/perl/Condensation/CLI/Commands/FolderStore/SetLogger.pm">SetLogger.pm</a></li>
+		</ul>
+	</div>
+
+	<div class="javascript">
+		<p>The folder store is currently only implemented in Java and Perl.</p>
+	</div>
+
+	<h2>See also</h2>
+	<div class="menu">
+		<div><a href="/command-line-tools/folder-store/">Folder store management (command line tools)</a></div>
+		<div><a href="/command-line-tools/collect-garbage/">Garbage collection (command line tools)</a></div>
+	</div>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="120"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Value.svg">
+  <defs
+     id="defs3876">
+    <marker
+       inkscape:stockid="DotM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4541"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4543"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.4,0,0,0.4,2.96,0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="DotM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="DotM"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4291"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4599"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotM"
+       inkscape:collect="always">
+      <path
+         transform="matrix(0.4,0,0,0.4,2.96,0.4)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path4601"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3059">
+      <stop
+         style="stop-color:#87aade;stop-opacity:1;"
+         offset="0"
+         id="stop3061" />
+      <stop
+         style="stop-color:#87aade;stop-opacity:0;"
+         offset="1"
+         id="stop3063" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         id="path3838"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path3850"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3059"
+       id="linearGradient3065"
+       x1="286"
+       y1="1114.3622"
+       x2="286"
+       y2="1149.3765"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3059"
+       id="linearGradient3069"
+       gradientUnits="userSpaceOnUse"
+       x1="286"
+       y1="1114.3622"
+       x2="286"
+       y2="1149.3765"
+       gradientTransform="translate(100,0)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="148.91995"
+     inkscape:cy="-37.000017"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1868"
+     inkscape:window-height="2125"
+     inkscape:window-x="1960"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1072.3622)">
+    <rect
+       style="fill:#e6e6e6;fill-opacity:1;stroke:none"
+       id="rect4449"
+       width="600"
+       height="120"
+       x="0"
+       y="1072.3622"
+       rx="3" />
+    <rect
+       y="1092.3622"
+       x="260"
+       height="40"
+       width="120"
+       id="rect4533"
+       style="fill:#e9d1af;fill-opacity:1;stroke:none" />
+    <rect
+       style="fill:#d3a35f;fill-opacity:1;stroke:none"
+       id="rect3894"
+       width="40"
+       height="40"
+       x="20"
+       y="1092.3622" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="28.695"
+       y="1110.1782"
+       id="text3882"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="28.695"
+         y="1110.1782"
+         style="line-height:100%"
+         id="tspan4545">T</tspan><tspan
+         sodipodi:role="line"
+         x="28.695"
+         y="1125.1782"
+         style="line-height:100%"
+         id="tspan4555">1</tspan></text>
+    <rect
+       style="fill:#deba87;fill-opacity:1;stroke:none"
+       id="rect4535"
+       width="100"
+       height="40"
+       x="380"
+       y="1092.3622" />
+    <rect
+       style="fill:#deba87;fill-opacity:1;stroke:none"
+       id="rect4196"
+       width="40"
+       height="40"
+       x="220"
+       y="1092.3622" />
+    <text
+       sodipodi:linespacing="100%"
+       id="text4547"
+       y="1110.1782"
+       x="228.69501"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         id="tspan4551"
+         style="line-height:100%"
+         y="1110.1782"
+         x="228.69501"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="388.69501"
+       y="1110.1782"
+       id="text4557"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="388.69501"
+         y="1110.1782"
+         style="line-height:100%"
+         id="tspan4262">Hash index</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="268.69501"
+       y="1110.1782"
+       id="text4198"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="268.69501"
+         y="1110.1782"
+         id="tspan4200"
+         style="line-height:100%">Byte segment</tspan><tspan
+         sodipodi:role="line"
+         x="268.69501"
+         y="1125.1782"
+         style="line-height:100%"
+         id="tspan4202">V bytes</tspan></text>
+    <text
+       sodipodi:linespacing="100%"
+       id="text4210"
+       y="1156.3622"
+       x="228.69501"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         id="tspan4212"
+         y="1156.3622"
+         x="228.69501"
+         sodipodi:role="line">1 byte if T<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan4222">2</tspan></tspan><tspan
+         id="tspan4216"
+         y="1171.3622"
+         x="228.69501"
+         sodipodi:role="line">4 bytes if T<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan4220">3</tspan></tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4597"
+       d="m 232,1124.3622 0,17"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker4541)" />
+    <rect
+       style="fill:#e9d1af;fill-opacity:1;stroke:none"
+       id="rect4515"
+       width="120"
+       height="40"
+       x="100"
+       y="1092.3622" />
+    <rect
+       y="1092.3622"
+       x="60"
+       height="40"
+       width="40"
+       id="rect4517"
+       style="fill:#deba87;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="68.695007"
+       y="1110.1782"
+       id="text4519"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="68.695007"
+         y="1110.1782"
+         style="line-height:100%"
+         id="tspan4521">L</tspan></text>
+    <text
+       sodipodi:linespacing="100%"
+       id="text4523"
+       y="1110.1782"
+       x="108.69501"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="line-height:100%"
+         id="tspan4525"
+         y="1110.1782"
+         x="108.69501"
+         sodipodi:role="line">Label</tspan><tspan
+         id="tspan4527"
+         style="line-height:100%"
+         y="1125.1782"
+         x="108.69501"
+         sodipodi:role="line">L bytes</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="68.695007"
+       y="1156.3622"
+       id="text4529"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="68.695007"
+         y="1156.3622"
+         id="tspan4531">1 byte if T<tspan
+   id="tspan4533"
+   style="font-size:64.99999762%;baseline-shift:sub">0</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="68.695007"
+         y="1171.3622"
+         id="tspan4535">4 bytes if T<tspan
+   id="tspan4537"
+   style="font-size:64.99999762%;baseline-shift:sub">1</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker4599)"
+       d="m 72,1124.3622 0,17"
+       id="path4539"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="388.69501"
+       y="1156.3622"
+       id="text4649"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="388.69501"
+         y="1156.3622"
+         id="tspan4651">1 byte if T<tspan
+   id="tspan4653"
+   style="font-size:64.99999762%;baseline-shift:sub">4</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="388.69501"
+         y="1171.3622"
+         id="tspan4655">4 bytes if T<tspan
+   id="tspan4657"
+   style="font-size:64.99999762%;baseline-shift:sub">5</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker4541)"
+       d="m 392,1124.3622 0,17"
+       id="path4659"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

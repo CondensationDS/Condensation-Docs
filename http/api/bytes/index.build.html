@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<? title = 'Byte sequences'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p class="java">The Java implementation uses the <i>Bytes</i> class for byte sequences. A <i>Bytes</i> object is basically a slice of a <i>byte[]</i> array (byte buffer).</p>
+	<p class="javascript">The JavaScript implementation uses Uint8Array instances as byte sequences. An <i>Uint8Array</i> is basically a slice of an <i>ArrayBuffer</i> (byte buffer).</p>
+	<p class="perl">The Perl implementation uses Perl byte strings (strings without the UTF-8 flag) as byte sequences.</p>
+
+	<h2 id="instance-creation">Creation</h2>
+	<div class="hscroll api java"><pre>Bytes bytes = new Bytes(32);
+Bytes bytes = new Bytes(new byte[]{67, 78});
+Bytes bytes = new Bytes(byteArray, offset, length);</pre></div>
+	<div class="hscroll api javascript"><pre>var bytes = new Uint8Array(32);
+var bytes = new Uint8Array([67, 78]);
+var bytes = new Uint8Array(arrayBuffer, offset, length);</pre></div>
+	<div class="hscroll api perl"><pre>my $bytes = 'some bytes';</pre></div>
+	<p>Creates a byte string.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>Bytes randomBytes = Condensation.randomBytes(16);</pre></div>
+	<div class="hscroll api javascript"><pre>var randomBytes = cn.randomBytes(16);</pre></div>
+	<div class="hscroll api perl"><pre>my $randomBytes = CN-&gt;randomBytes(16);</pre></div>
+	<p>Creates a sequence of 16 random bytes.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>Bytes randomBytes = Condensation.randomKey();</pre></div>
+	<div class="hscroll api javascript"><pre>var randomBytes = cn.randomKey();</pre></div>
+	<div class="hscroll api perl"><pre>my $randomBytes = CN-&gt;randomKey;</pre></div>
+	<p>Creates a random AES key, i.e. a sequence of 32 random bytes.</p>
+
+	<h2 id="slice">Slicing</h2>
+	<div class="hscroll api java"><pre>Bytes slice = bytes.slice(10, 4);</pre></div>
+	<div class="hscroll api javascript"><pre>var slice = cn.slice(bytes, 10, 4);</pre></div>
+	<div class="hscroll api perl"><pre>my $slice = substr($bytes, 10, 4);</pre></div>
+	<p class="java javascript">Creates a slice of length 4 starting at byte 10. The slice points to the same byte buffer &ndash; the bytes are not copied.</p>
+	<p class="perl">Creates a slice of length 4 starting at byte 10.</p>
+
+	<h2 id="concatenation">Concatenation</h2>
+	<div class="hscroll api java"><pre>Bytes concatenated = bytes1.concatenate(bytes2);
+Bytes concatenated = Bytes.concatenate(bytesIterable);</pre></div>
+	<div class="hscroll api javascript"><pre>var concatenated = cn.concatenate(bytes1, bytes2);</pre></div>
+	<div class="hscroll api perl"><pre>my $concatenated = $bytes1.$bytes2;</pre></div>
+	<p>Concatenates byte sequences by copying them.</p>
+
+	<h2 id="comparison">Comparison</h2>
+	<div class="hscroll api java"><pre>boolean result = bytes1.equals(bytes2);
+boolean result = Bytes.equals(bytes1, bytes2);</pre></div>
+	<div class="hscroll api javascript"><pre>var result = cn.equalBytes(bytes1, bytes2);</pre></div>
+	<div class="hscroll api perl"><pre>my $result = $bytes1 eq $bytes2;</pre></div>
+	<p>Returns true if the two bytes sequences are equal.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>int result = bytes1.compareTo(bytes2);</pre></div>
+	<div class="hscroll api javascript"><pre>var result = cn.compareBytes(bytes1, bytes2);</pre></div>
+	<div class="hscroll api perl"><pre>my $result = $bytes1 cmp $bytes2;</pre></div>
+	<p>Compares the two byte sequences, and returns</p>
+	<table class="text">
+		<tr>
+			<td>-1</td>
+			<td>if <i>bytes1</i> &lt; <i>bytes2</i></td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>if <i>bytes1</i> &gt; <i>bytes2</i></td>
+		</tr>
+		<tr>
+			<td>0</td>
+			<td>if <i>bytes1</i> = <i>bytes2</i></td>
+		</tr>
+	</table>
+
+	<h2 id="byte-access">Accessing single bytes</h2>
+	<div class="hscroll api java"><pre>
+		byte result = bytes.getInteger8(i);
+		short result = bytes.getUnsigned8(i);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>var result = bytes[i];</pre></div>
+	<div class="hscroll api perl"><pre>my $result = ord(substr($bytes, $i, 1));</pre></div>
+	<p>Returns the byte value at position <i>i</i>.</p>
+
+	<h2 id="conversion">Serialization</h2>
+	<div class="hscroll api java"><pre>Bytes bytes = Bytes.fromBoolean(value);
+Bytes bytes = Bytes.fromInteger(value);
+Bytes bytes = Bytes.fromUnsigned(value);
+Bytes bytes = Bytes.fromText(text);
+
+boolean value = bytes.asBoolean();
+long value = bytes.asInteger();
+long value = bytes.asUnsigned();
+String text = bytes.asText();</pre></div>
+	<div class="hscroll api javascript"><pre>var bytes = cn.bytesFromBoolean(value);
+var bytes = cn.bytesFromInteger(value);
+var bytes = cn.bytesFromUnsigned(value);
+var bytes = cn.bytesFromText(text);
+
+var value = cn.booleanFromBytes(bytes);
+var value = cn.integerFromBytes(bytes);
+var value = cn.unsignedFromBytes(bytes);
+var text = cn.textFromBytes(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $bytes = CN-&gt;bytesFromBoolean($value);
+my $bytes = CN-&gt;bytesFromInteger($value);
+my $bytes = CN-&gt;bytesFromUnsigned($value);
+my $bytes = Encode::encode_utf8($text);
+
+my $value = CN-&gt;booleanFromBytes($bytes);
+my $value = CN-&gt;integerFromBytes($bytes);
+my $value = CN-&gt;unsignedFromBytes($bytes);
+my $text = Encode::decode_utf8($bytes);</pre></div>
+	<p>Serializes or deserializes values of common data types. These functions are rarely used directly, but often indirectly when <a href="/api/record/">constructing or querying records</a>.</p>
+	<p><i>Boolean</i> values are serialized to an empty byte sequence (false) or a single byte 121 (true).</p>
+	<p><i>Unsigned</i> integers are serialized using <a href="https://en.wikipedia.org/wiki/Endianness">big-endian (network) byte order</a>, with as many bytes as necessary.</p>
+	<p>Signed <i>integers</i> are serialized similarly, but the first bit (<a href="https://en.wikipedia.org/wiki/Bit_numbering#Most_significant_bit">most significant bit</a> of the most significant byte) denotes the sign.</p>
+	<p><i>Text</i> is serialized as a <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> encoded sequence of <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters.</p>
+	<p>There are no functions to serialize floating-point numbers. </p>
+
+	<h2 id="hex">Hex representation</h2>
+	<div class="hscroll api java"><pre>Bytes bytes = Bytes.fromHex(hex);
+String hex = bytes.asHex();</pre></div>
+	<div class="hscroll api javascript"><pre>var bytes = cn.bytesFromHex(hex);
+var hex = cn.hexFromBytes(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $bytes = pack('H*', $hex);
+my $hex = unpack('H*', $bytes);</pre></div>
+	<p>Converts from and to a hex encoded string.</p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

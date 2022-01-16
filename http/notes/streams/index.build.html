@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<? title = 'Message streams'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+	<script src="../../syntax-links.js"></script>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2020, 05); ?>
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Message streams are a more efficient way to send a lot of messages to the same recipient(s).</p>
+
+	<h2>Stream structure</h2>
+
+	<p>A message stream starts with a head message followed by any number of <a href="/actors/envelope/#stream">stream messages</a>:</p>
+	<div class="hscroll indent"><? svgFile('Stream.svg') ?></div>
+	<p>The head is a regular <a href="/actors/envelope/#message">message</a>, signed by the sender and encrypted for all recipients. Any such message may be used to start a stream.</p>
+	<p>Stream messages reuse the same AES key as their head, but a different CTR range within the encryption stream. A stream message can be thought of as an extension to the original message.</p>
+	<p>Stream messages are not signed. Instead, they carry a <a href="https://en.wikipedia.org/wiki/HMAC" target="_blank">message authentication code (MAC)</a> to ensure data integrity. Everyone knowing the AES key, i.e. sender and recipients of the head, may produce and verify MACs.</p>
+	<p>As opposed to regular messages, stream messages do not involve any RSA exponentiations, which makes sending and receiving far less computationally expensive. In addition, stream envelopes are just about 100 bytes in size, and therefore significantly shorter than regular message envelopes (~1 KB).</p>
+
+	<h2 id="ctr-ranges">CTR ranges</h2>
+	<p>Since all messages of a stream (including the head) use the same AES key, it is of utmost importance that their CTR ranges do not overlap, as this would undermine the security of the AES-256-CTR encryption scheme.</p>
+	<p>The total available CTR range is huge (0 to 2<sup>128</sup> - 1). The head message always starts at the beginning of that range (CTR 0), and requires 1 count for every block of 16 bytes of the content object. Note that the last block still requires one count, even if it is smaller than 16 bytes.</p>
+	<p>Stream messages require 8 counts for their MAC, and 1 count for every 16 bytes of their content object. To pick CTR start values for these messages, an application may use one of the following schemes.</p>
+
+	<h3>Random</h3>
+	<p>CTR ranges may be assigned randomly:</p>
+	<div class="hscroll"><? svgFile('Random.svg') ?></div>
+	<p>Each CTR start value is thereby simply 16 random bytes. Up to a total stream length about 1 <a href="https://en.wikipedia.org/wiki/Pebibyte" target="_blank">PiB</a>, the probability that two such ranges overlap is negligible.</p>
+	<p>Replies can be sent on the same stream. No coordination is necessary.</p>
+
+	<h3>Sequential</h3>
+	<p>CTR ranges may be assigned sequentially:</p>
+	<div class="hscroll"><? svgFile('Sequential.svg') ?></div>
+	<p>The CTR start value of a message is thereby calculated as follows:</p>
+	<div class="hscroll box">
+		<pre><span class="comment">// Initialization</span>
+<span class="m">used</span> = <span class="op">ceil</span>(<span class="im">head content object length</span> / 16)
+
+<span class="comment">// Sending a message</span>
+<span class="im">ctr</span> = <span class="m">used</span>
+<span class="m">used</span> = <span class="m">used</span> + 8 + <span class="op">ceil</span>(<span class="im">content object length</span> / 16)</pre>
+	</div>
+	<p>With this scheme, the CTR start value can be used as message order. Over lossy message channels, missing messages can be detected.</p>
+	<p>To send replies on the same stream, coordination among sender and recipient(s) is necessary. It is generally easier for each actor to start its own stream.</p>
+	<p>In some applications, it may be easier to increment the CTR start value by a fixed (large enough) value rather than what is required by the message:</p>
+	<div class="hscroll"><? svgFile('Spaced.svg') ?></div>
+
+</div>
+
+<script>
+	syntaxLinksAll();
+</script>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

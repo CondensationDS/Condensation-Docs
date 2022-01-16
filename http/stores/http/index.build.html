@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<? title = 'HTTP Store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2022, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>A Condensation HTTP store exposes seven HTTP/REST calls: three for storing and retrieving objects, three for modifying and listing boxes, and a combined modification call.</p>
+
+	<h3 id="get-object">Retrieving an object</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>GET /objects/<span class="im">HASH</span><br>[Range: <span class="im">range-specifier</span>]</pre>
+		<pre><b>Response</b><br>200 OK<br>Content-Type: application/condensation-object<br><br><span class="im">The object's content.</span></pre>
+	</div>
+	<p>Returns the object identified by <span class="im">HASH</span> (64 hexadecimal digits). If the object exists, the server replies with status code 200 OK, and sends the object's content. Otherwise, a 404 Not Found status code is returned.</p>
+
+	<h3 id="put-object">Submitting an object</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>PUT /objects/<span class="im">HASH</span><br>Condensation-Date: <span class="im">DATE</span><br>Condensation-Actor: <span class="im">PUBLIC KEY HASH</span><br>Condensation-Signature: <span class="op">SIGN</span><span style="color: black">(<span class="im">PRIVATE KEY</span>, <span class="op">SHA256</span>(<span class="im">DATE</span>|<span class="ctext">"\0"</span>|<span class="im">METHOD</span>|<span class="ctext">"\0"</span>|<span class="im">HOST</span>|<span class="im">PATH</span>))</span><br>Content-Type: application/condensation-object<br><br><span class="im">OBJECT BYTES</span></pre>
+		<pre><b>Response</b><br>204 No Content</pre>
+	</div>
+	<p>Stores a new object. Upon success, the server replies with 204 No Content. Note that the operation is also successful if the object already exists.</p>
+	<p>If the indicated <span class="im">HASH</span> does not correspond to the SHA-256 sum of the received content, the server discards the object and returns status code 400 Bad Request.</p>
+	<p>If the signature is wrong, or the date too old, the server responds with 403 Forbidden. Condensation servers only accept objects from users that have an account.</p>
+
+	<h3 id="book-object">Booking an object</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>POST /objects/<span class="im">HASH</span><br>Condensation-Date: <span class="im">DATE</span><br>Condensation-Actor: <span class="im">PUBLIC KEY HASH</span><br>Condensation-Signature: <span class="op">SIGN</span><span style="color: black">(<span class="im">PRIVATE KEY</span>, <span class="op">SHA256</span>(<span class="im">DATE</span>|<span class="ctext">"\0"</span>|<span class="im">METHOD</span>|<span class="ctext">"\0"</span>|<span class="im">HOST</span>|<span class="im">PATH</span>))</span></pre>
+		<pre><b>Response</b><br>204 No Content</pre>
+	</div>
+	<p>Books an existing object. The server replies with 204 No Content upon success, or 404 Not Found if the object does not exist.</p>
+	<p>Signatures are validated as for object submission.</p>
+
+	<h3 id="list-box">Listing a box</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>GET /accounts/<span class="im">ACCOUNT</span>/<span class="im">BOX</span><br><span class="optional">Condensation-Watch: <span class="im">TIMEOUT</span> ms</span></pre>
+		<pre><b>Response</b><br>200 OK<br>Content-Type: application/condensation-box<br>Last-Modified: <span class="im">DATE</span><br><br><span class="im">HASH HASH HASH ...</span></pre>
+	</div>
+	<p>Returns the set of hashes currently held in BOX. Each hash is 32 bytes long. The set is not ordered, and may contain duplicates.</p>
+	<p>Note that <a href="/notes/security/">everybody can read boxes</a>, not just the owner.</p>
+	<p>Some stores support a watch timeout. If the box is empty, the server will reply when an entry is added, or after the timeout expires. This is sometimes used to read message boxes.</p>
+
+	<h3 id="add-hash">Adding a hash</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>PUT /accounts/<span class="im">ACCOUNT</span>/<span class="im">BOX</span>/<span class="im">HASH</span><br>Condensation-Date: <span class="im">DATE</span><br>Condensation-Actor: <span class="im">PUBLIC KEY HASH</span><br>Condensation-Signature: <span class="op">SIGN</span><span style="color: black">(<span class="im">PRIVATE KEY</span>, <span class="op">SHA256</span>(<span class="im">DATE</span>|<span class="ctext">"\0"</span>|<span class="im">METHOD</span>|<span class="ctext">"\0"</span>|<span class="im">HOST</span>|<span class="im">PATH</span>))</span></pre>
+		<pre><b>Response</b><br>204 No Content</pre>
+	</div>
+	<p>Adds a box entry.</p>
+	<p>If the operation succeeds, the server replies with 204 No Content. If the operation is not allowed, the server responds with 403 Forbidden.</p>
+	<p>On the <i>private</i> and <i>public</i> boxes, only the account owner is allowed to add hashes. On the <i>message</i> box, anybody is allowed to add envelopes, and the signature is optional.</p>
+
+	<h3 id="remove-hash">Removing a hash</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>DELETE /accounts/<span class="im">ACCOUNT</span>/<span class="im">BOX</span>/<span class="im">HASH</span><br>Condensation-Date: <span class="im">DATE</span><br>Condensation-Actor: <span class="im">PUBLIC KEY HASH</span><br>Condensation-Signature: <span class="op">SIGN</span><span style="color: black">(<span class="im">PRIVATE KEY</span>, <span class="op">SHA256</span>(<span class="im">DATE</span>|<span class="ctext">"\0"</span>|<span class="im">METHOD</span>|<span class="ctext">"\0"</span>|<span class="im">HOST</span>|<span class="im">PATH</span>))</span></pre>
+		<pre><b>Response</b><br>204 No Content</pre>
+	</div>
+	<p>Removes a box entry.</p>
+	<p>If the operation succeeds, the server replies with 204 No Content. If the operation is not allowed, the server responds with 403 Forbidden.</p>
+	<p>On the <i>private</i> and <i>public</i> boxes, only the account owner is allowed to remove hashes. <i>Message</i> envelopes can be removed by the account owner, or any actors listed as <a href="/actors/envelope/#message">updated by</a>.</p>
+
+	<h3 id="modify">Modifications</h3>
+	<div class="hscroll wide box">
+		<pre><b>Request</b><br>POST /accounts<br>Condensation-Date: <span class="im">DATE</span><br>Condensation-Actor: <span class="im">PUBLIC KEY HASH</span><br>Condensation-Signature: <span class="op">SIGN</span><span style="color: black">(<span class="im">PRIVATE KEY</span>, <span class="op">SHA256</span>(<span class="im">DATE</span>|<span class="ctext">"\0"</span>|<span class="im">METHOD</span>|<span class="ctext">"\0"</span>|<span class="im">HOST</span>|<span class="im">PATH</span>|<span class="ctext">"\0"</span>|<span class="im">MODIFICATIONS RECORD</span>))</span><br>Content-Type: application/condensation-modifications<br><br><span class="im">MODIFICATIONS RECORD</span></pre>
+		<pre><b>Response</b><br>204 No Content</pre>
+	</div>
+	<p><a href="#put-object">Puts objects</a>, and <a href="#add-hash">adds</a> and <a href="#remove-hash">removes</a> box entries in a single request.</p>
+	<p>The payload is a <a href="/serialization/record/">record</a> with the following structure:</p>
+	<div class="hscroll box"><pre>put
+  <span class="im">HASH BYTES</span>*
+    <span class="im">OBJECT BYTES</span>
+add
+  <span class="im">ACCOUNT HASH BYTES</span>*
+    <span class="im">BOX LABEL</span>*
+      <span class="im">HASH BYTES</span>*
+remove
+  <span class="im">ACCOUNT HASH BYTES</span>*
+    <span class="im">BOX LABEL</span>*
+      <span class="im">HASH BYTES</span>*</pre></div>
+	<p>Records marked with a star (*) can be repeated as many times as necessary. Empty sections may be skipped. Hashes are stored as 32 bytes (<i>not</i> as hashes).</p>
+	<p><a href="/stores/modifications/">Modifications</a> are carried out as follows:</p>
+	<ol>
+		<li>The server reads the modifications record, and fails with 400 Bad Request if there is an error.</li>
+		<li>The server verifies the request, and responds with 403 Forbidden if it is invalid or not allowed.</li>
+		<li>The server now <a href="#put-object">stores</a> all submitted objects. Objects may be stored in any order, or concurrently. If this fails, processing is stopped, and the corresponding error is returned.</li>
+		<li>The server then attempts to <a href="#add-hash">add</a> box entries. Additions may be processed in any order, or concurrently. If this fails, processing is stopped, and the corresponding error is returned.</li>
+		<li>The server finally <a href="#remove-hash">removes</a> box entries, and ignores all errors.</li>
+		<li>The server responds with 204 No Content.</li>
+	</ol>
+
+	<h2>Storage system errors</h2>
+	<p>To all above requests, the server may respond with 500 Internal Server Error if the underlying storage system fails to carry out the request, or reports an error.</p>
+
+	<h2>Boxes</h2>
+	<p>A server must support the following boxes:</p>
+	<ul>
+		<li>messages</li>
+		<li>private</li>
+		<li>public</li>
+	</ul>
+	<p>It may support other boxes as well.</p>
+
+	<h2>Other URIs</h2>
+	<p>For any URI not specified above, the server should return 404 Not Found. This also applies to URIs with incomplete hashes, or unsupported boxes.</p>
+
+	<h2>Signatures <span class="maturity">mature</span></h2>
+	<p>A store may require signatures for all PUT, POST and DELETE requests to authenticate the user. This protects the storage service provider (server) – who may want to charge for the service – from unauthorized access.</p>
+	<p>Note that request signatures do not protect the user's data. Data is protected through end-to-end encryption and end-to-end signatures, and does not need any additional protection.</p>
+
+	<h3>Signatures for <i>put</i>, <i>book</i>, <i>add</i>, and <i>remove</i> requests</h3>
+	<p>The signature for a <a href="#put-object">put</a>, <a href="#book-object">book</a>, <a href="#add-hash">add</a> or <a href="#remove-hash">remove</a> request is calculated as follows:</p>
+	<div class="hscroll wide box"><? svgFile('GenericSignature.svg') ?></div>
+	<p>and added to the HTTP header as shown in the following example:</p>
+	<div class="hscroll wide box">
+		<pre>PUT /objects/7df84cd2f426a2c34d50deaa6cc1a7b17f2085350a3aaebcecbb11a2987b62cd HTTP/1.1
+Host: condensation.io
+Condensation-Date: 2013-12-11T16:04:22.000Z
+Condensation-Actor: f056974f4efd71246917314c1cb878c1af3e81057df5692b992f2a9cec8f3828
+Condensation-Signature: 80810b874799341789fcf033935e2d6272c284581ca9b47228260bc4ccaada77465dadd44a0d2e4fed58fb2fdc26ffaa21f9bca01882d7f937f80271d7d4401ef24e554e2e15474cc928b6ddcd80d6d2a3f163f90e1d38f9452276e62e74b1c249bd76d11827e59cc9270e29dff595d4fd2344d66ed903aed0a56da98d7252295e1d031be861d8ae8a7106cb446fe0fafbb74576625bdf1c1cf23232c0050827bf7fdf7c202a4f8764b643a995c4e7744cdddcef5b5e5f90344872236f7333086c3cd71a8ea7aef05339ce32eb32057590797550a41c816113a75c190b82812b7224874d03f720bc2139843627161bf02d7f579620edf5bac29d1be1a6aa67b9
+...</pre>
+	</div>
+	<p>Actor hash and signature are hex-encoded.</p>
+
+	<h3>Signature for <i>modify</i> requests</h3>
+	<p>The signature for submitting modifications is similar, but also covers the submitted modifications (post data):</p>
+	<div class="hscroll wide box"><? svgFile('ModifySignature.svg') ?></div>
+
+	<h3>Dates <span class="maturity">mature</span></h3>
+	<p>Requests with a date that is more than a few minutes off should be rejected to prevent replay attacks.</p>
+	<p>The date is indicated using the <i>Condensation-Date</i> header, since some clients (e.g. JavaScript within the web browser) do not have access to the standard <i>Date</i> header field. Clients may of course send the <i>Date</i> header, too.</p>
+	<p>The date is written using the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>mm</i>:<i>hh</i>:<i>ss.sss</i>Z.</p>
+
+	<h3>Public key</h3>
+	<p>The user's public key must be known to the server to verify these signatures. For that, the user must first <a href="#put-object">put</a> its public key, and sign that request with that key.</p>
+
+	<h2>HTTP vs. HTTPS</h2>
+	<p>A HTTP store may be accessed via <a href="/notes/http-vs-https">HTTP or HTTPS</a>.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

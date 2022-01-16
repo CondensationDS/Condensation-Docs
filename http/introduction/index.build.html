@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<? title = 'A short introduction to Condensation'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">needs to be re-read</span></h1>
+
+	<p>Condensation is a general-purpose data system &ndash; much like a database or file system. It excels in security, and at synchronizing data across different devices, or with friends.</p>
+
+	<h2>Objects, trees, and boxes</h2>
+	<p>In Condensation, your data is stored as objects and trees. Tree roots are kept inside a box of your account:</p>
+	<p><? svgFile('TreesBoxes.svg') ?></p>
+	<p>Trees are immutable (green), and objects are identified by a 256-bit cryptographic hash (SHA-256) derived from their content. The hash of the root object uniquely identifies the whole tree, and allows you to check whether your data has been altered.</p>
+	<p>Boxes are mutable (blue), and can keep references to one or a few trees.</p>
+	<p>Whenever you modify your data, you're creating a new tree with some new objects, and reuse some existing objects. Then, you make the box point to the new tree:</p>
+	<p><? svgFile('TreesBoxesModified.svg') ?></p>
+	<p>Old objects are recycled after a while (garbage collection).</p>
+
+	<h2>Stores</h2>
+	<p>Objects and accounts are stored on so-called Condensation stores:</p>
+	<p><? svgFile('CondensationStore.svg') ?></p>
+	<p>Condensation stores offer functions to get and put objects, and to list and modify boxes. Stores can be set up on top of virtually any storage media (cloud storage, file system, ..., raw disk partition), and accessed through various protocols (HTTP, ...).</p>
+	<p>Any set of stores forms a Condensation store as well, so that you can easily spread your Condensation data across multiple disks or storage providers:</p>
+	<p><? svgFile('CondensationStoreSet.svg') ?></p>
+
+	<h2>Encryption</h2>
+	<p>On Condensation, data is end-to-end encrypted. For that, the object's data part is encrypted:</p>
+	<p><? svgFile('EncryptedObject.svg') ?></p>
+	<p>The object's header is not encrypted, so that the server can still compile the list of objects in use. Parent objects keep the encryption keys of their children, and the tree root is often an envelope holding a password-encrypted or asymmetrically encrypted key.</p>
+
+	<h2>Personas <span class="maturity">unfinished</span></h2>
+	<p>As a user, you generate a key pair on each of your devices. This key pair along with the store your are using is your <i>persona</i>. As a persona</p>
+	<ul>
+		<li>you are a full-fledged and equal actor in the Condensation data system,</li>
+		<li>you have an account on the store,</li>
+		<li>you can submit and retrieve object from your store,</li>
+		<li>you can attach your personal data to your private box,</li>
+		<li>you can attach your public data to your public box,</li>
+		<li>you can receive messages from other actors through your message box,</li>
+		<li>you can send messages to other actors.</li>
+	</ul>
+
+	<p><? svgFile('Persona.svg') ?></p>
+	<p>The other actors are called <i>peers</i>.</p>
+
+	<h3>Public information</h3>
+	<p>Your public information contains all your public keys, and optionally your name or other information about you:</p>
+	<p><? svgFile('Peer.svg') ?></p>
+	<p>Unlike other data, public information is not encrypted and therefore visible to everybody. A signature envelope protects it against forgery.</p>
+	<p>Private keys are kept in a safe place on the devices.</p>
+	<p>Services, such as a computer program or internet service, also have a public identity with one or more public keys, as well as a title or description of the service.</p>
+
+	<h2>Sending messages</h2>
+	<p>To send a message to a peer, you wrap the message data in an envelope containing encrypted keys for all you friends' devices, and post it on their message boxes:</p>
+	<p><? svgFile('Sharing.svg') ?></p>
+	<p>When processing their messages, your friends will check the signature of your envelope, decrypt the encryption key using their own private key, and then decrypt the actual data to merge it into their private tree.</p>
+	<p>Note that you need to post the data onto Condensation stores your friends have access to.</p>
+
+	<h2>Sharing and synchronization</h2>
+	<p>To share data with friends, you keep sending messages with the newest version of the data to each other. Synchronizing data across your own devices is the same: you simply share the data with your own devices. Detecting and merging changes is very efficient.</p>
+	<p>Sharing data requires a conflict-free merge operation, such as set union.</p>
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

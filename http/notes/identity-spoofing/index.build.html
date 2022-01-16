@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<? title = 'Identity spoofing'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>An actor is identified through the <a href="https://en.wikipedia.org/wiki/SHA-256">SHA-256</a> hash of its <a href="/actors/key-pair/#public-key">public key object</a>. For the reasons stated below, this ensures that actor hashes are <a href="/notes/hash-collisions/">almost certainly</a> unique, and cannot be spoofed.</p>
+
+	<h2>Probability of choosing the same actor hash</h2>
+	<p>An actor generates an <a href="https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29">RSA</a> key pair consisting of a private key and a public key. For such a cryptographic scheme to be secure, a huge number of key pairs must exist. Otherwise, an attacker could break the scheme by enumerating all key pairs (<a href="https://en.wikipedia.org/wiki/Brute-force_attack">brute force attack</a>). Hence, users will almost certainly generate different key pairs.</p>
+
+	<p>If all key pairs have different public keys, users will almost certainly have different actor hashes.</p>
+
+	<p>One could imagine a strong cryptographic scheme in which some key pairs have different private keys, but share the same public key. Inevitably, any of the private keys could decrypt the message encrypted using the public key. Such a scheme is strong only if a huge number of public keys exist, so that users are likely to have different public keys. This, in turn, ensures that actor hashes are almost certainly unique.</p>
+
+	<h2>Malicious spoofing</h2>
+	<p>To spoof an actor hash, an attacker would have to come up with a valid key pair of which the SHA-256 hash of the public key yields the actor hash to be spoofed. To do this, he must either break the SHA-256 hash function to find a colliding public key, or break the asymmetric cryptography scheme by finding the private key corresponding to the public key of the account. Both are believed to be hard.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

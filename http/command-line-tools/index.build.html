@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<? title = 'Command line tools'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<div class="greenBar">
+	<div>
+		<a href="/"><? svgFile('../Home.svg') ?></a> ⟩
+		<a href="/command-line-tools/">Command line tools</a>
+	</div>
+</div>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Condensation comes with a series of commands that can be executed from a <a href="https://en.wikipedia.org/wiki/Unix_shell">Unix shell</a> such as <a href="https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29">bash</a>.</p>
+
+	<p>The commands all start with the <i>cn</i> keyword and adopt an <a href="/notes/english-like-commands/">english-like syntax</a>.</p>
+	<p>Condensation supports auto-completion, which is usually available by pressing the TAB key once (simple completion) or twice (list possibilities). Auto-completion naturally guides users to build valid sentences.</p>
+	<p>In addition, a command may be suffixed with a <i>?</i> to list possible continuations:</p>
+	<div class="hscroll box"><pre>cn show object <b>?</b></pre></div>
+	<p>The same help texts written below are available on the terminal using</p>
+	<div class="hscroll box"><pre>cn help ...</pre></div>
+	<p>For a list of help topics, type</p>
+	<div class="hscroll box"><pre>cn help <b>?</b></pre></div>
+
+	<h2>Commands</h2>
+	<div class="menu">
+		<div class="chapter">Local actor group</div>
+		<div><a href="/command-line-tools/actor-group/">Actor group</a></div>
+		<div><a href="/command-line-tools/entrusted-keys/">Entrusted keys</a></div>
+		<div><a href="/command-line-tools/announce/">Announce</a></div>
+		<div><a href="/command-line-tools/remember/">Remember</a></div>
+		<div><a href="/command-line-tools/show-private-data/">Show private data</a></div>
+
+		<div class="chapter">Key pairs</div>
+		<div><a href="/command-line-tools/create-key-pair/">Create a key pair</a></div>
+		<div><a href="/command-line-tools/check-key-pair/">Check a key pair</a></div>
+		<div><a href="/command-line-tools/show-key-pair/">Show a key pair</a></div>
+
+		<div class="chapter">Store access</div>
+		<div><a href="/command-line-tools/store-get/">Get</a></div>
+		<div><a href="/command-line-tools/store-put/">Put</a></div>
+		<div><a href="/command-line-tools/store-book/">Book</a></div>
+		<div><a href="/command-line-tools/store-list/">List</a></div>
+		<div><a href="/command-line-tools/store-modify/">Modify</a></div>
+		<div><a href="/command-line-tools/use-cache/">Use cache</a></div>
+
+		<div class="chapter">Displaying objects and trees</div>
+		<div><a href="/command-line-tools/show-object/">Show objects</a></div>
+		<div><a href="/command-line-tools/open-envelope/">Open envelope</a></div>
+		<div><a href="/command-line-tools/show-tree/">Show trees</a></div>
+
+		<div class="chapter">Copying objects and trees</div>
+		<div><a href="/command-line-tools/transfer/">Transfer</a></div>
+
+		<div class="chapter">Actors</div>
+		<div><a href="/command-line-tools/show-card/">Show card</a></div>
+		<div><a href="/command-line-tools/show-messages/">Show messages</a></div>
+
+		<div class="chapter">Actor groups</div>
+		<div><a href="/command-line-tools/discover/">Discover</a></div>
+
+		<div class="chapter">Folder stores</div>
+		<div><a href="/command-line-tools/folder-store/">Folder stores</a></div>
+		<div><a href="/command-line-tools/collect-garbage/">Collect garbage</a></div>
+
+		<div class="chapter">Other tools</div>
+		<div><a href="/command-line-tools/curl/">Curl</a></div>
+		<div><a href="/command-line-tools/start-http-server/">Start HTTP server</a></div>
+		<div><a href="/command-line-tools/what-is/">What is</a></div>
+	</div>
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

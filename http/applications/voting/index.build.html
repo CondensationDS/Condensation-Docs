@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<? title = 'E-Voting with Blockchains'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Applications</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Condensation can be used to build e-voting platforms.</p>
+
+	<h2>Preparation</h2>
+	<p>Whoever organizes the vote compiles the list of people allowed to vote. Each voter receives a voter token VT, which is basically a large random number (e.g. 32 bytes). The organizer publishes a list of all hashed VTs:</p>
+	<div class="hscroll box"><pre>SHA256(VT1)
+SHA256(VT2)
+...</pre></div>
+	<p>The list may be published as block-DAQ, or as a single block.</p>
+	<p>The organizer then distributes the VTs to the voters in a secure way, and destroys them.</p>
+	<p>In addition, the organizer creates a master key pair, and publishes its public key. The private key remains sealed until the vote is over.</p>
+
+	<h2>Voting</h2>
+	<p>A voter first checks whether his VT is on the list of allowed VTs. If not, he files a complaint.</p>
+	<p>To vote, the voter generates a key pair unique to this vote only. To perserve anonymity, the key pair must not be used for any other purposes.</p>
+	<p>The voter then creates a record with his vote and the voter token:</p>
+	<div class="hscroll box"><pre>voter token
+  VT
+vote
+  YES | NO | ...</pre></div>
+	<p>The voter now encrypts and signs this record, and creates the following ballot:</p>
+	<div class="hscroll box"><pre>----------------------------------------
+| <i>envelope</i>                             |
+| encrypted for                        |
+| - master key                         |
+| - personal vote key                  |
+| signed with                          |
+| - personal vote key                  |
+----------------------------------------
+         |                     |
+---------------------   ----------------
+| voter token       |   |  public key  |
+|   VT              |   ----------------
+| vote              |
+|   YES | NO | ...  |
+| filler bytes      |
+---------------------
+  </pre></div>
+	<p>The ballot along with the public key is submitted to a ballot collecting server.</p>
+
+	<h2>Collecting the ballots</h2>
+	<p>A ballot server accepts ballots and adds them to a blockchain with a time stamp. There may be more than one such server, and voters may submit their ballot to as many servers as they want.</p>
+	<p>No distributed consensus is required, as duplicate ballot submissions can easily be filtered out when counting the votes. The blockchain may fan out into a block DAG.</p>
+	<p>The blockchain (or block DAG) is published, and accessible to all voters during the vote. Voters can check if their ballot is in the blockchain, and file a complaint in case of irregularities. Independent observers can check that the blockchain is not tampered with.</p>
+	<p>At this point, each voter can decrypt his own ballot only, and VTs are still secret. Observers can estimate the number of ballots cast, but not count the votes themselves, since the ballots are still encrypted. An exact ballot count is not possible, since a voter may have used his VT twice with different key pairs.</p>
+
+	<h2>Counting the votes</h2>
+	<p>Once the vote is over, ballot servers stop accepting new ballots, and the final ballot blockchain (or block DAG) is published. Voters can now delete their vote key.</p>
+	<p>In a second step, the master key is unsealed and published, so that the ballots can be decrypted and counted. All information necessary to count the ballots is public:</p>
+	<ul>
+		<li>the master key</li>
+		<li>the final block DAG with all ballots</li>
+		<li>the list of hashed VTs</li>
+	</ul>
+	<p>During counting, duplicate VTs, invalid VTs, or invalid votes need to be eliminated. Only the first submitted ballot counts.</p>
+
+	<h2>Security analysis</h2>
+	<p>A very important property of this voting system is transparency: voters can check their vote during the voting process, and check all votes once the vote is over.</p>
+	<p>As long as the organizer properly handles and distributes the VTs, voters remain anonymous. If the organizer leaks this mapping, the vote of every person is revealed.</p>
+	<p>The distribution of VTs is equivalent to the current distribution of the ballots. VTs may be stolen or get lost due to human errors or malicious behavior (e.g. postal service, ...). This is largely equivalent to the current voting process.</p>
+	<p>Ballot servers only need to be trusted minimally. Malicious behavior is easily detected by observing the blockchains, and can be mitigated by using multiple independent ballot severs. Ballot servers cannot modify or create ballots.</p>
+	<p>Once the ballots are in the blockchain, they can not be modified or moved any more.</p>
+	<p>It is of outmost importance that the private master key remains secret during the vote. A ballot server with access to the master key could steal VTs of submitted ballots to create and submit another ballot just before the voter's ballot. This would look like the voter submitted two ballots in a row with different keys, which is legal.</p>
+
+	<h2>Scalability</h2>
+	<p>A good desktop computer from 2015 ($400) can decrypt and verify about 150 votes per second, or 540'000 per hour.</p>
+	<p>Each vote takes about 1500 bytes. That's 1.5 GB per million votes.</p>
+	<p>If a voter submits the same ballot to multiple ballot servers, the space required for additional submissions is only about 100 bytes, and the vote does not need to be decrypted twice. If a voter submits multiple different ballots with the same VT (or invalid VTs), all ballots have to be stored and decrypted.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

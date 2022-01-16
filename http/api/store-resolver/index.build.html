@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<? title = 'Store resolver'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p class="TODO">This is obsolete, but should be reused in DiscoverActorGroup, ActorWithDataTree, ...</p>
+
+	<p>A store resolver finds a store implementation for a URL, e.g.</p>
+	<table class="text">
+		<tr>
+			<td>http://condensation.io</td>
+			<td>&rarr; <a href="/api/store/http/">HTTP store</a> for <i>http://condensation.io</i></td>
+		</tr>
+		<tr>
+			<td>file:///media/store</td>
+			<td>&rarr; <a href="/api/store/folder/">Folder store</a> for the local folder <i>/media/store</i></td>
+		</tr>
+	</table>
+
+	<p>Each platform comes with a store resolver tailored to the available <a href="/api/store/#implementations">store implementations</a>. However, it is common for applications to implement their own store resolver, e.g.</p>
+	<ul>
+		<li>to enable logging for certain stores while debugging,</li>
+		<li>to access a local store directly,</li>
+		<li>to wrap a local object cache around a remote store, or</li>
+		<li>to limit or extend the supported protocols.</li>
+	</ul>
+
+	<h2 id="implementation-hints">Implementing a store resolver</h2>
+	<p>The following code fragment shows a typical store resolver:</p>
+	<div class="hscroll box java wide"><pre>
+		public class MyStoreResolver extends StoreResolver {
+			@Override
+			@NonNull
+			public Store fromUrl(@NonNull String url) {
+				// Access our store on the local file system
+				if (url.equals("https://condensation.io"))
+					return new FolderStore(url, "/media/store/");
+
+				// All other HTTP and HTTPS stores
+				if (url.startsWith("http://") || url.startsWith("https://"))
+					return new HTTPStore(url, url);
+
+				// No implementation available
+				return new NoStore(url);
+			}
+		}
+	</pre></div>
+	<div class="hscroll api javascript wide"><pre>
+		function myStoreFromUrl(url) {
+			// Use logging for our store
+			if (url == 'https://condensation.io')
+				return new cn.LogStore(new cn.HTTPStore(url, url));
+
+			// All other HTTP and HTTPS stores
+			if (url.match(/^(http|https):\/\//))
+				return new cn.HTTPStore(url, url);
+
+			// No implementation available
+			return new cn.NoStore();
+		}
+	</pre></div>
+	<div class="hscroll api perl wide"><pre>
+		package MyStoreResolver;
+
+		sub new { bless {} }
+
+		sub fromUrl {
+			my ($o, $url) = @_;
+
+			# Access our store on the local file system
+			return CN::FolderStore-&gt;new($url, '/media/store') if $url eq 'https://condensation.io';
+
+			# All other HTTP and HTTPS stores
+			return CN::HTTPStore-&gt;new($url, $url) if $url =~ /^(http|https):\/\//;
+
+			# No implementation available
+			return CN::NoStore-&gt;new($url, $url);
+		}
+	</pre></div>
+	<p>Note that the URL (by convention the first argument) <b>must</b> be passed unmodified to the store, such that</p>
+	<div class="hscroll box java"><pre>store.url.equals(url)</pre></div>
+	<div class="hscroll box javascript"><pre>store.url == url</pre></div>
+	<div class="hscroll box perl"><pre>$store-&gt;url eq $url</pre></div>
+	<p>The store resolver must return a <a href="/api/store/no/" class="java">NoStore</a><a href="/api/store/no/" class="javascript">cn.NoStore</a><a href="/api/store/no/" class="perl">CN::NoStore</a> instance when no implementation is available.</p>
+
+	<h2 id="registering">Setting the default store resolver</h2>
+	<div class="hscroll api java"><pre>Condensation.storeResolver = new MyStoreResolver(...);</pre></div>
+	<div class="hscroll api javascript"><pre>cn.storeFromUrl = myStoreFromUrl;</pre></div>
+	<div class="hscroll api perl"><pre>$CN::storeResolver = MyStoreResolver-&gt;new(...);</pre></div>
+	<p>Sets the (project-wide) store resolver used when calling <a href="/api/store/#instance-creation" class="java">Store.fromUrl(url)</a><a href="/api/store/#instance-creation" class="javascript">cn.storeFromUrl(url)</a><a href="/api/store/#instance-creation" class="perl">CN::Store-&gt;fromUrl($url)</a>.</p>
+	<p>The store resolver should be set when initializing Condensation. Changing the store resolver at a later time may yield undesired results. E.g., if the new store resolver uses a different implementation to handle HTTP stores, Store instances created before the change will still use the old implementation, while Store instances created after the change will use the new implementation.</p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<? title = 'Object'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A Condensation object is a byte sequence with the following structure:</p>
+	<div class="hscroll indent"><? svgFile('ObjectContent.svg') ?></div>
+	<p><i>H</i> is a 4-byte big-endian integer denoting the number of items in the hash list. Each of these items is a 32-byte hash pointing to another object. Through the hash list, objects may span a <a href="/serialization/tree/">tree</a>.</p>
+	<p>The data part is a byte sequence. It often holds a <a href="/serialization/record/">record</a>, but can carry any type of data.</p>
+
+	<h2 id="integrity">Integrity and atomicity</h2>
+	<p>Objects are identified by their <a href="https://en.wikipedia.org/wiki/SHA-256">SHA-256 hash</a>:</p>
+	<div class="hscroll indent"><? svgFile('Hash.svg') ?></div>
+	<p>That hash can also be used to verify the object's integrity after transmission, or retrieval from a <a href="/stores/store/">store</a>.</p>
+	<p>Although some protocols allow partial downloads (e.g., HTTP range requests), the integrity can can only be checked if the whole object is available. Objects are simply not meant to be divided further. Large amounts of data should be structured as a tree of medium-sized objects.</p>
+
+	<h2 id="size">Object size</h2>
+	<p>In practice, objects are often between 1 KiB to 100 MiB in size.</p>
+
+	<p>The optimal object size depends on how the data is accessed. In general, objects should be smaller the more often the underlying data is modified. In addition, data should be split into several objects if only small parts are needed at a time. This avoids downloading a large object to extract a small piece of information.</p>
+
+	<p>On the other hand, each object incurs a storage overhead of about 100 bytes, and a similar transmission overhead.</p>
+
+	<h2 id="size-limits">Size limits</h2>
+	<p>The size of an object is not inherently limited. While the hash list may contain at most 2^32 hashes, the data section may be arbitrarily long.</p>
+	<p>Object stores however impose practical limits, often somewhere between 10 GiB and 1 TiB. The maximum object size is limited either by the remaining space, or some parameter intrinsic to the storage system. Some stores also keep objects fully in memory during the transfer, and may therefore be limited by the available memory. Object stores may even refuse exceedingly large objects.</p>
+	<p>It is safe to assume that an object store can handle objects up to 1 GiB in size.</p>
+
+	<h2 id="encryption">Object encryption</h2>
+	<p>The majority of objects are encrypted:</p>
+	<div class="hscroll indent"><? svgFile('EncryptedObject.svg') ?></div>
+	<p>The data section is thereby encrypted using <a href="/notes/cryptography/">AES 256</a> in CTR mode with a random 256-bit key. The CTR counter starts at 0, and is incremented by 1 for each AES block (16 bytes). The last block may be truncated. No padding is applied.</p>
+	<p>The hash list remains unencrypted. This allows stores to know which objects are still in use.</p>
+	<p>The object's hash is calculated over the encrypted object. Hence, the integrity of an object can be verified without decrypting it.</p>
+	<p>Within a tree, an object's encryption key is stored in its parent object.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

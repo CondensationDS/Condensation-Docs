@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<? title = 'Private box reader'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A private box reader lists an actor's private box, opens and verifies each envelope, and passes each entry to a delegate for further processing. The root object is supposed to contain a record.</p>
+
+	<h2>Instance creation</h2>
+	<div class="hscroll wide api java"><pre>PrivateBoxReader privateBoxReader = new PrivateBoxReader(keyPair, store, delegate);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var privateBoxReader = new cn.PrivateBoxReader(keyPair, store, delegate);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $privateBoxReader = CN::PrivateBoxReader-&gt;new($keyPair, $store, $delegate);</pre></div>
+	<p>Creates a private box reader for the provided <i>key pair</i> and <i>store</i>.</p>
+
+	<h2>Reading the private box</h2>
+	<div class="hscroll api java"><pre>privateBoxReader.read();</pre></div>
+	<div class="hscroll api javascript"><pre>privateBoxReader.read();</pre></div>
+	<div class="hscroll api perl"><pre>my $error = $privateBoxReader-&gt;read;</pre></div>
+	<p>Starts reading the private box<span class="java javascript">, unless a read operation is ongoing already</span>.</p>
+	<p>A read operation first <a href="/api/store/#list">lists</a> the private box. If listing fails, the store error is reported to the delegate, and the read operation stops immediately.</p>
+	<p>The reader then processes each message. <span class="java javascript">Up to approximately 4 messages are processed in parallel.</span></p>
+	<ol>
+		<li>The envelope is retrieved from the store, and parsed.</li>
+		<li>The signature is verified.</li>
+		<li>The AES key is decrypted using the key pair.</li>
+		<li>The content is retrieved from the store, parsed, and passed to the delegate.</li>
+	</ol>
+	<p>If any of these steps fails, the entry is passed to the delegate as <i>invalid</i>, and processing stops. Invalid entries are remembered for 24 hours, and not reported again during this time.</p>
+	<p class="perl">If a store error occurs, processing stops immediately, and the error is returned. If the operation succeeds, the function returns <i>undef</i>.</p>
+
+	<div class="java javascript">
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>boolean isReading = privateBoxReader.isReading();</pre></div>
+		<div class="hscroll api javascript"><pre>var isReading = privateBoxReader.isReading();</pre></div>
+		<p>Indicates whether a read operation for the indicated store is ongoing.</p>
+	</div>
+	<h2 id="delegate">Implementing a delegate</h2>
+	<div class="hscroll wide api java"><pre>
+		@Override
+		public void onPrivateBoxEntry(Source source, Record envelope, Reference contentReference, Record content) {
+			// An valid entry was found.
+		}
+
+		@Override
+		public void onPrivateBoxInvalidEntry(Source source, String reason) {
+			// An invalid entry was found.
+		}
+
+		@Override
+		public void onPrivateBoxStoreError(String error) {
+			// An object could not be retrieved from the store.
+		}
+
+		@Override
+		public void onPrivateBoxReadingDone() {
+			// All entries have been read.
+		}
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+	</pre></div>
+
+	<h2>Handling invalid entries</h2>
+	<p>Entries on the private box are written by the application itself, and should therefore always be valid. Invalid entries could point to serious issues with the store (e.g. lost objects), or malicious attempts to modify the private data (e.g. wrong signatures).</p>
+	<p>In general, invalid entries require human investigation to figure out what happened. Where this is not possible, it is best to delete these entries, and synchronize the latest state from another actor of the group.</p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

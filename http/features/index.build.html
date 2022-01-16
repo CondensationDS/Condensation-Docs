@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<? title = 'Features'; ?>
+
+<html lang="en">
+<head>
+	<? include('../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p class="todo">While mostly correct, this section is a bit dry (no pictures, just linear text).</p>
+
+	<h2>Conflict-free synchronization</h2>
+	<p>Condensation is built around a conflict-free merge function (<a href="https://en.wikipedia.org/wiki/Semilattice">semilattice</a> join). Any two states of the data can thereby be merged in a way that no merge conflicts occur.</p>
+	<p>Unlike distributed revision control systems, Condensation does not need to keep the complete history of all transactions. The mathematical properties of the merge function guarantee that every transaction is applied exactly once, no matter in which order they are merged.</p>
+	<p>Furthermore, the merge function is transaction-aware. Changes applied atomically are merged atomically.</p>
+	<p>Data synchronization is efficient. Only changes are physically transported over the network, and these changes can be determined efficiently.</p>
+
+	<h2>Distributed</h2>
+	<p>Unlike most file systems and databases, Condensation is a distributed data system. Condensation clients are autonomous. There is no central server.</p>
+	<p>If two clients are connected to each other, they can share and synchronize data with each other, even if neither of them is connected to the internet.</p>
+
+	<h2>Federated</h2>
+	<p>Every user or organization can set up their own Condensation system, and interoperate with other users and organizations.</p>
+
+	<h2>End-to-end secure</h2>
+	<p>Condensation uses SHA 256 to verify data integrity, AES 256 to encrypt data, and RSA 2048 to encrypt and sign envelopes.</p>
+	<p>Data is encrypted and decrypted inside the application, and therefore safe even if a network or storage system is compromised. Neither an infected hard disk firmware nor a malicious storage system administrator get to see (or modify) the data.</p>
+
+	<h2>Zero-configuration, no passwords</h2>
+	<p>Apart from selecting a store, Condensation does not require any configuration, and is therefore easy to set up.</p>
+	<p>Users identify themselves with their RSA 2048 keys. While this key may be protected with a password when stored on the device, the Condensation system itself does not use any passwords.</p>
+
+	<h2>Flexible storage</h2>
+	<p>The main structure of a Condensation store is a hash table with immutable key-value pairs. This can be implemented on virtually all storage systems &ndash; from a raw disk partition to a cloud storage service.</p>
+	<p>A simple Condensation store can be as short as 200 lines of code.</p>
+
+	<h2>System scalability</h2>
+	<p>The distributed and federated nature of Condensation makes it highly scalable. There is no intrinsic bottleneck, such as a central server, in the system.</p>
+
+	<h2>Store scalability</h2>
+	<p>A hash table with immutable entries &ndash; the primary data structure of stores &ndash; may span thousands of disks with little overhead, and excellent performance. Hence, a single store can be arbitrarily large.</p>
+	<p>In addition, a set of Condensation stores can be combined to a single Condensation store.</p>
+
+	<h2>Lock-free transactions</h2>
+	<p>Transactions are carried out in space rather than in time. No locking is required, and as a consequence, no deadlocks or livelocks can occur.</p>
+
+	<h2>Versioning</h2>
+	<p>Versioning (or keeping different snapshots or branches of the data) is intrinsic to the protocol, and incurs no additional overhead.</p>
+
+	<h2>Passive deduplication</h2>
+	<p>If two data objects are exactly the same, they are stored only once on the physical storage system.</p>
+	<p>However, if the same data is encrypted with two different encryption keys, the resulting data objects will be different, and therefore stored separately. Since the store does not know the encryption keys, it cannot possibly know that these objects contain the same data.</p>
+	<p>Data objects can be shared without re-encrypting them. Hence, <a href="/notes/passive-deduplication/">deduplication</a> works most of the time within a group of people sharing data.</p>
+
+	<h2>Encryption instead of access rights management</h2>
+	<p>Condensation users and services share data through encrypted message-passing rather than access rules. This is easier, and less error-prone.</p>
+
+	<h2>One protocol for storage and messaging</h2>
+	<p>On most computer systems, storage (file system, database) and communication (e-mail, chat, ..., synchronization protocols) systems are separated. Condensation combines data storage and communication in one simple and efficient protocol. <!-- Link to how to build an e-mail like system (messenger), dns-like system, file-system like system, database-like system, content distribution, streaming, backup --></p>
+
+	<h2>Simplicity</h2>
+	<p>A fully operational Condensation system consists of barely 20'000 lines of code. Only 5'000 to 10'000 lines thereof are relevant to data security. Errors outside of this core code may have nasty effects, but will not compromise data security.</p>
+	<p>Such a small footprint reduces the probability of implementation errors, and facilitates code audit.</p>
+
+	<h2>Free and open</h2>
+	<p>Condensation is an open protocol. Source code and documentation are freely available.</p>
+
+	<h2>Compliance</h2>
+	<p>Condensation can be configured to comply with various data policies. The data of employees may automatically be shared with a trusted third party, for instance, so that it can be accessed in the case of a legal investigation.</p>
+</div>
+
+<? include('../CommonFooter.inc.html') ?>
+
+</body>
+</html>

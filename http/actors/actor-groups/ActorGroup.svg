@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="422"
+   height="252"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="ActorGroup.svg">
+  <defs
+     id="defs3876">
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="55"
+     inkscape:cy="13.5"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro Bold';fill:#000000;font-family:'Source Sans Pro';font-size:18px;font-weight:bold;text-align:start;text-anchor:start"
+       x="20"
+       y="34"
+       id="text835"><tspan
+         sodipodi:role="line"
+         id="tspan833"
+         x="20"
+         y="34">User A</tspan></text>
+    <text
+       id="text849"
+       y="92"
+       x="20"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="92"
+         x="20"
+         id="tspan847"
+         sodipodi:role="line">Smartphone</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       x="20"
+       y="110"
+       id="text853"><tspan
+         sodipodi:role="line"
+         id="tspan851"
+         x="20"
+         y="110">Actor 929c...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       x="20"
+       y="152"
+       id="text857"><tspan
+         sodipodi:role="line"
+         id="tspan855"
+         x="20"
+         y="152">Laptop</tspan></text>
+    <text
+       id="text861"
+       y="170"
+       x="20"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="170"
+         x="20"
+         id="tspan859"
+         sodipodi:role="line">Actor 7e9e...</tspan></text>
+    <text
+       id="text865"
+       y="212"
+       x="20"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="212"
+         x="20"
+         id="tspan863"
+         sodipodi:role="line">Backup</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       x="20"
+       y="230"
+       id="text869"><tspan
+         sodipodi:role="line"
+         id="tspan867"
+         x="20"
+         y="230">Actor 35bc...</tspan></text>
+    <text
+       id="text873"
+       y="50"
+       x="20"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="50"
+         x="20"
+         id="tspan871"
+         sodipodi:role="line">Actor group</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-dasharray:3, 3;stroke-width:2"
+       id="rect1342"
+       width="200"
+       height="250"
+       x="1"
+       y="1"
+       rx="10" />
+    <g
+       id="g1814"
+       transform="translate(124,-74)">
+      <rect
+         style="fill:#9549db"
+         id="rect3917"
+         width="36"
+         height="10"
+         x="20"
+         y="273"
+         rx="2" />
+      <rect
+         rx="2"
+         y="284"
+         x="20"
+         height="10"
+         width="36"
+         id="rect3923"
+         style="fill:#7325bb" />
+      <rect
+         style="fill:#5a1d93"
+         id="rect3925"
+         width="36"
+         height="10"
+         x="20"
+         y="295"
+         rx="2" />
+    </g>
+    <g
+       id="g4217"
+       transform="translate(-77)">
+      <rect
+         style="fill:#9549db"
+         id="rect3041"
+         width="20"
+         height="34"
+         x="229"
+         y="77"
+         rx="4" />
+      <rect
+         y="81"
+         x="231"
+         height="1"
+         width="16"
+         id="rect4888"
+         style="fill:#ffffff" />
+      <rect
+         style="fill:#ffffff"
+         id="rect4890"
+         width="16"
+         height="1"
+         x="231"
+         y="106" />
+    </g>
+    <g
+       id="g1830"
+       transform="translate(134,6)">
+      <rect
+         rx="4"
+         y="134"
+         x="10"
+         height="24"
+         width="36"
+         id="rect4950"
+         style="fill:#9549db" />
+      <rect
+         style="fill:#5a1d93"
+         id="rect4952"
+         width="36"
+         height="4"
+         x="10"
+         y="160"
+         rx="2" />
+      <rect
+         style="fill:#ffffff"
+         id="rect4954"
+         width="32"
+         height="20"
+         x="12"
+         y="136"
+         rx="2" />
+      <rect
+         rx="1"
+         y="137"
+         x="13"
+         height="18"
+         width="30"
+         id="rect4956"
+         style="fill:#9549db" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro Bold';fill:#000000;font-family:'Source Sans Pro';font-size:18px;font-weight:bold;text-align:start;text-anchor:start"
+       x="240"
+       y="34"
+       id="text1850"><tspan
+         sodipodi:role="line"
+         id="tspan1848"
+         x="240"
+         y="34">Service Z</tspan></text>
+    <text
+       id="text1854"
+       y="92"
+       x="240"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="92"
+         x="240"
+         id="tspan1852"
+         sodipodi:role="line">Server 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       x="240"
+       y="110"
+       id="text1858"><tspan
+         sodipodi:role="line"
+         id="tspan1856"
+         x="240"
+         y="110">Actor adc4...</tspan></text>
+    <text
+       id="text1862"
+       y="152"
+       x="240"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="152"
+         x="240"
+         id="tspan1860"
+         sodipodi:role="line">Server 2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       x="240"
+       y="170"
+       id="text1866"><tspan
+         sodipodi:role="line"
+         id="tspan1864"
+         x="240"
+         y="170">Actor e211...</tspan></text>
+    <text
+       id="text1870"
+       y="50"
+       x="240"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="50"
+         x="240"
+         id="tspan1868"
+         sodipodi:role="line">Actor group</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-dasharray:3, 3;stroke-width:2"
+       id="rect1872"
+       width="200"
+       height="250"
+       x="221"
+       y="1"
+       rx="10" />
+    <g
+       id="g1888"
+       transform="translate(344,-134)">
+      <rect
+         style="fill:#e5473f"
+         id="rect1882"
+         width="36"
+         height="10"
+         x="20"
+         y="273"
+         rx="2" />
+      <rect
+         rx="2"
+         y="284"
+         x="20"
+         height="10"
+         width="36"
+         id="rect1884"
+         style="fill:#c5231b" />
+      <rect
+         style="fill:#9b1b15"
+         id="rect1886"
+         width="36"
+         height="10"
+         x="20"
+         y="295"
+         rx="2" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:start;text-anchor:start"
+       x="240"
+       y="212"
+       id="text2095"><tspan
+         sodipodi:role="line"
+         id="tspan2093"
+         x="240"
+         y="212">Backup</tspan></text>
+    <text
+       id="text2099"
+       y="230"
+       x="240"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:15px;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="230"
+         x="240"
+         id="tspan2097"
+         sodipodi:role="line">Actor 1657...</tspan></text>
+    <g
+       transform="translate(344,-74)"
+       id="g2107">
+      <rect
+         rx="2"
+         y="273"
+         x="20"
+         height="10"
+         width="36"
+         id="rect2101"
+         style="fill:#e5473f" />
+      <rect
+         style="fill:#c5231b"
+         id="rect2103"
+         width="36"
+         height="10"
+         x="20"
+         y="284"
+         rx="2" />
+      <rect
+         rx="2"
+         y="295"
+         x="20"
+         height="10"
+         width="36"
+         id="rect2105"
+         style="fill:#9b1b15" />
+    </g>
+    <g
+       transform="translate(344,-194)"
+       id="g2115">
+      <rect
+         rx="2"
+         y="273"
+         x="20"
+         height="10"
+         width="36"
+         id="rect2109"
+         style="fill:#e5473f" />
+      <rect
+         style="fill:#c5231b"
+         id="rect2111"
+         width="36"
+         height="10"
+         x="20"
+         y="284"
+         rx="2" />
+      <rect
+         rx="2"
+         y="295"
+         x="20"
+         height="10"
+         width="36"
+         id="rect2113"
+         style="fill:#9b1b15" />
+    </g>
+  </g>
+</svg>

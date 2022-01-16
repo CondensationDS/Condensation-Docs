@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="160"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="Address2.svg">
+  <defs
+     id="defs3876">
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-79.3496"
+     inkscape:cy="89.999997"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1839"
+     inkscape:window-height="1056"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       y="40"
+       x="40"
+       width="220"
+       id="rect3034"
+       style="fill:#aade87;fill-opacity:1;stroke:none"
+       height="100"
+       rx="5" />
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="49.964001"
+       y="62.339897"
+       id="text3025"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="49.964001"
+         y="62.339897"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         id="tspan3018">UID:</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3041"
+       y="34.339897"
+       x="49.964001"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         y="34.339897"
+         x="49.964001"
+         id="tspan3043"
+         sodipodi:role="line">Address on device A</tspan></text>
+    <rect
+       height="100"
+       style="fill:#aade87;fill-opacity:1;stroke:none"
+       id="rect3061"
+       width="220"
+       x="340"
+       y="40"
+       rx="5" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="349.96399"
+       y="34.339897"
+       id="text3077"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3079"
+         x="349.96399"
+         y="34.339897">Address on device B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="300.03854"
+       y="99.071999"
+       id="text3055"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3058"
+         x="300.03854"
+         y="99.071999">?</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3024"
+       y="62.339897"
+       x="99.964005"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         style="font-size:15px;text-align:start;text-anchor:start"
+         y="62.339897"
+         x="99.964005"
+         sodipodi:role="line"
+         id="tspan3061">ed7b...</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3069"
+       y="82.339897"
+       x="49.964001"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan3075"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         y="82.339897"
+         x="49.964001"
+         sodipodi:role="line">Name:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="49.964001"
+       y="102.3399"
+       id="text3078"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="49.964001"
+         y="102.3399"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         id="tspan3084">City:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="99.964005"
+       y="102.3399"
+       id="text3099"
+       sodipodi:linespacing="100%"><tspan
+         id="tspan3109"
+         sodipodi:role="line"
+         x="99.964005"
+         y="102.3399"
+         style="font-size:15px;text-align:start;line-height:100%;text-anchor:start">Pankow (near Berlin)</tspan></text>
+    <text
+       sodipodi:linespacing="100%"
+       id="text3124"
+       y="82.339897"
+       x="99.964005"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         style="font-size:15px;text-align:start;line-height:100%;text-anchor:start"
+         y="82.339897"
+         x="99.964005"
+         sodipodi:role="line"
+         id="tspan3132">Francesco</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3143"
+       y="62.339897"
+       x="349.96399"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan3145"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         y="62.339897"
+         x="349.96399"
+         sodipodi:role="line">UID:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="399.96399"
+       y="62.339897"
+       id="text3147"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan3149"
+         sodipodi:role="line"
+         x="399.96399"
+         y="62.339897"
+         style="font-size:15px;text-align:start;text-anchor:start">ed7b...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="349.96399"
+       y="82.339897"
+       id="text3151"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="349.96399"
+         y="82.339897"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         id="tspan3153">Name:</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3155"
+       y="102.3399"
+       x="349.96399"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         id="tspan3157"
+         style="font-weight:bold;text-align:start;text-anchor:start;-inkscape-font-specification:Source Sans Pro Bold"
+         y="102.3399"
+         x="349.96399"
+         sodipodi:role="line">City:</tspan></text>
+    <text
+       sodipodi:linespacing="100%"
+       id="text3159"
+       y="102.3399"
+       x="399.96399"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       xml:space="preserve"><tspan
+         style="font-size:15px;text-align:start;line-height:100%;text-anchor:start"
+         y="102.3399"
+         x="399.96399"
+         sodipodi:role="line"
+         id="tspan3163">Berlin</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
+       x="399.96399"
+       y="82.339897"
+       id="text3165"
+       sodipodi:linespacing="100%"><tspan
+         id="tspan3169"
+         sodipodi:role="line"
+         x="399.96399"
+         y="82.339897"
+         style="font-size:15px;text-align:start;line-height:100%;text-anchor:start">Francesco</tspan></text>
+  </g>
+</svg>

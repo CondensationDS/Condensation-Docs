@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300"
+   height="220"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="PublicCard.svg">
+  <defs
+     id="defs3876">
+<marker id="arrowA000000" refX="0" refY="0" orient="auto" style="overflow:visible">
+  <path inkscape:connector-curvature="0" style="fill:#000000" d="M -6,2.5 2,0 -6,-2.5 -5,0 Z" />
+</marker>
+</defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-128.5"
+     inkscape:cy="63.37361"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       inkscape:connector-curvature="0"
+       id="path4548"
+       d="m 15,106 v 16"
+       style="fill:none;marker-end:url(#arrowA000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g1193"
+       transform="translate(-60,70)">
+      <rect
+         y="0"
+         x="60"
+         height="30"
+         width="30"
+         id="rect4544"
+         style="fill:#6bc55f" />
+      <path
+         sodipodi:nodetypes="czc"
+         inkscape:connector-curvature="0"
+         id="path1157"
+         d="m 60,0 c 15.070552,15.07055 11.064875,15 15,15 3.935125,0 0.02178,-0.0218 15,-15"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:2" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path1159"
+         d="M 62,28 70,15"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px"
+         d="M 88,28 80,15"
+         id="path1161"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;marker-end:url(#arrowA000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="m 15,166 v 16"
+       id="path1175"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="56"
+       y="91"
+       id="text1372"><tspan
+         sodipodi:role="line"
+         id="tspan1370"
+         x="56"
+         y="91">Envelope</tspan></text>
+    <rect
+       y="130"
+       x="0"
+       height="30"
+       width="30"
+       id="rect4609"
+       style="fill:#6bc55f" />
+    <rect
+       style="fill:#6bc55f"
+       id="rect4619"
+       width="30"
+       height="30"
+       x="0"
+       y="190" />
+    <text
+       id="text4650"
+       y="151"
+       x="56"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         y="151"
+         x="56"
+         id="tspan4648"
+         sodipodi:role="line">Public card</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="56"
+       y="211"
+       id="text4656"><tspan
+         sodipodi:role="line"
+         id="tspan4654"
+         x="56"
+         y="211">Public key</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px"
+       x="56"
+       y="167"
+       id="text4663"><tspan
+         sodipodi:role="line"
+         id="tspan4661"
+         x="56"
+         y="167">Actor group and other public information</tspan></text>
+    <rect
+       style="fill:#3f8de5"
+       id="rect4677"
+       width="150"
+       height="40"
+       x="0"
+       y="0" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;marker-end:url(#arrowA000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="M 15,46 V 62"
+       id="path4679"
+       inkscape:connector-curvature="0" />
+    <text
+       id="text4683"
+       y="31"
+       x="10"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         y="31"
+         x="10"
+         id="tspan4681"
+         sodipodi:role="line">public box</tspan></text>
+    <text
+       id="text4687"
+       y="107"
+       x="56"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px"
+       xml:space="preserve"><tspan
+         y="107"
+         x="56"
+         id="tspan4685"
+         sodipodi:role="line">Signature only</tspan></text>
+  </g>
+</svg>

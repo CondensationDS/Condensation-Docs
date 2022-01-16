@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<? title = 'Public Key'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Public Key').openField('RSA public key');
+	</script>
+
+	<p>The public key of an actor.</p>
+
+	<h2 id="new">Instance creation</h2>
+	<div class="hscroll api java"><pre>PublicKey publicKey = PublicKey.from(object);</pre></div>
+	<div class="hscroll api javascript"><pre>var publicKey = cn.publicKeyFromObject(object);</pre></div>
+	<div class="hscroll api perl"><pre>my $publicKey = CN::PublicKey-&gt;fromObject($object);</pre></div>
+	<p>Parses the public key from the Condensation object returns a corresponding instance. This function returns <i class="java javascript">null</i><i class="perl">undef</i> if the object does not contain a parsable public key.</p>
+
+	<h2>Encryption</h2>
+	<div class="hscroll api java"><pre>Bytes encryptedBytes = publicKey.encrypt(bytes);</pre></div>
+	<div class="hscroll api javascript"><pre>var encryptedBytes = publicKey.encrypt(bytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $encryptedBytes = $publicKey-&gt;encrypt($bytes);</pre></div>
+	<p>Encrypts <i>bytes</i>.</p>
+
+	<h2>Signature verification</h2>
+	<div class="hscroll api java"><pre>boolean ok = publicKey.verify(digestBytes, signatureBytes);
+boolean ok = publicKey.verify(hash, signatureBytes);</pre></div>
+	<div class="hscroll api javascript"><pre>var ok = publicKey.verifyHash(hash, signatureBytes);</pre></div>
+	<div class="hscroll api perl"><pre>my $ok = $publicKey-&gt;verifyHash($hash, $signatureBytes);</pre></div>
+	<p>Verifies whether <i>signatureBytes</i> is a valid signature for <i>hash</i><span class="java"> or <i>digestBytes</i></span>.</p>
+
+	<div class="java">
+		<h2>Threading</h2>
+		<p>Public keys are immutable objects and can be accessed concurrently from multiple threads.</p>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

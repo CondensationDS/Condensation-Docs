@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<? title = 'JavaScript for the web'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<script type="text/javascript" src="/condensation.js"></script>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>See the console for results.</p>
+</div>
+
+<script>
+var cn = new Condensation();
+
+console.log('Unsigned');
+testUnsignedSmall();
+for (var i = 4; i < 80; i++)
+	console.log(i, testUnsignedNumber(i), testUnsignedBytes(i));
+
+function testUnsignedSmall() {
+	for (var value = 0; value < 8; value++) {
+		var converted = cn.unsignedFromBytes(cn.bytesFromUnsigned(value));
+		if (converted != value) return converted + ' != ' + value;
+	}
+	return 'OK';
+}
+
+function testUnsignedNumber(bits) {
+	for (var r = 0; r < bits; r++) {
+		var value = randomNumber(bits);
+		var converted = cn.unsignedFromBytes(cn.bytesFromUnsigned(value));
+		if (converted != value) return converted + ' != ' + value;
+	}
+	return 'OK';
+}
+
+function testUnsignedBytes(bits) {
+	for (var r = 0; r < bits; r++) {
+		var bytes = randomBytes(bits);
+		var converted = cn.bytesFromUnsigned(cn.unsignedFromBytes(bytes));
+		if (! cn.equalBytes(converted, bytes)) return '0x' + cn.hexFromBytes(converted) + ' != 0x' + cn.hexFromBytes(bytes);
+	}
+	return 'OK';
+}
+
+console.log('Signed');
+testSignedSmall();
+for (var i = 4; i < 80; i++)
+	console.log(i, testPositiveNumber(i), testPositiveBytes(i), testNegativeNumber(i), testNegativeBytes(i));
+
+function testSignedSmall() {
+	for (var value = -7; value < 8; value++) {
+		var converted = cn.signedFromBytes(cn.bytesFromSigned(value));
+		if (converted != value) return converted + ' != ' + value;
+	}
+	return 'OK';
+}
+
+function testPositiveNumber(bits) {
+	for (var r = 0; r < bits; r++) {
+		var value = randomNumber(bits);
+		var converted = cn.integerFromBytes(cn.bytesFromInteger(value));
+		if (converted != value) return converted + ' != ' + value;
+	}
+	return 'OK';
+}
+
+function testPositiveBytes(bits) {
+	for (var r = 0; r < bits; r++) {
+		var bytes = positiveBytes(randomBytes(bits));
+		var converted = cn.bytesFromInteger(cn.integerFromBytes(bytes));
+		if (! cn.equalBytes(converted, bytes)) return '0x' + cn.hexFromBytes(converted) + ' != 0x' + cn.hexFromBytes(bytes);
+	}
+	return 'OK';
+}
+
+function testNegativeNumber(bits) {
+	for (var r = 0; r < bits; r++) {
+		var value = randomNumber(bits);
+		var converted = cn.integerFromBytes(cn.bytesFromInteger(value));
+		if (converted != value) return converted + ' != ' + value;
+	}
+	return 'OK';
+}
+
+function testNegativeBytes(bits) {
+	for (var r = 0; r < bits; r++) {
+		var bytes = positiveBytes(randomBytes(bits));
+		var converted = cn.bytesFromInteger(cn.integerFromBytes(bytes));
+		if (! cn.equalBytes(converted, bytes)) return '0x' + cn.hexFromBytes(converted) + ' != 0x' + cn.hexFromBytes(bytes);
+	}
+	return 'OK';
+}
+
+function randomNumber(bits) {
+	var mask = 1;
+	var value = 0;
+	for (var i = 1; i < bits; i++) {
+		if (Math.random() < 0.5) value += mask;
+		mask *= 2;
+	}
+	value += mask;
+	return value;
+}
+
+function randomBytes(bits) {
+	var byteLength = Math.floor((bits + 7) / 8);
+	var bytes = cn.randomBytes(byteLength);
+	bytes[0] &= 0xff >> (byteLength * 8 - bits);
+	bytes[0] |= 0x80 >> (byteLength * 8 - bits);
+	return bytes;
+}
+
+function positiveBytes(bytes) {
+	if (bytes[0] < 128) return bytes;
+	var newBytes = new Uint8Array(bytes.byteLength + 1);
+	newBytes[0] = 0;
+	newBytes.set(bytes, 1);
+	return newBytes;
+}
+
+function negativeBytes(bytes) {
+	var positive = positiveBytes(bytes);
+	for (var i = 0; i < bytes.byteLength; i++) bytes[i] ^= 0xff;
+	return positive;
+}
+</script>
+
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

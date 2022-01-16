@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<? title = 'Synchronization'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">writing in progress</span></h1>
+
+	<p>Condensation's immutable trees allow for very efficient data synchronization. For that, the data structure (or data format, if you prefer) used on top of Condensation must provide a merge function, taking two trees A and B (e.g. two versions), and producing a merged tree M.</p>
+	<p>Condensation is agnostic as to what data structure and merge function you use. Designing a suitable data structure and merge function for a completely distributed setting is not easy, however.</p>
+
+	<!--
+	<h2>Change detection</h2>
+	<p>If A and B have the same <a href="/serialization/tree/">tree hash</a>, both trees are the same, and merged tree M is simply the </p>
+
+	<h2>Tree synchronization</h2>
+
+	<p>Trees can easily be synchronized among devices. Using the tree hash, the root object can be downloaded (if necessary). From there, the tree is traversed, and all objects not yet available are downloaded.</p>
+	<p>If a similar tree (e.g. a previous version) is available locally, only the differences are actually transmitted.</p>
+	<p>In a similar way, one can check very efficiently if a tree is locally available.</p>
+
+	<h2>Partial tree synchronization</h2>
+
+	<p>Large trees do not need to be synchronized completely. If a permanent connection to the server is available, one only needs to fetch objects as they are used. In other scenarios, an application could decide to preload one part of the tree.</p>
+	-->
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

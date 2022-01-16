@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="560"
+   height="58"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="EncryptedObject.svg">
+  <defs
+     id="defs3876" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="309.30727"
+     inkscape:cy="48.518"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1519"
+     inkscape:window-height="871"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#6bc55f"
+       id="rect3898"
+       width="320"
+       height="40"
+       x="240"
+       y="0" />
+    <rect
+       style="fill:#39812f"
+       id="rect3894"
+       width="40"
+       height="40"
+       x="0"
+       y="0" />
+    <rect
+       y="0"
+       x="40"
+       height="40"
+       width="200"
+       id="rect3896"
+       style="fill:#48a43c" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="9"
+       y="31"
+       id="text3882"><tspan
+         sodipodi:role="line"
+         id="tspan3884"
+         x="9"
+         y="31"
+         >H</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="49"
+       y="31"
+       id="text3886"><tspan
+         sodipodi:role="line"
+         id="tspan3888"
+         x="49"
+         y="31"
+         >Hashes (H ⨯ 32 bytes)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px;text-align:center;text-anchor:middle"
+       x="400"
+       y="55"
+       id="text3009"><tspan
+         sodipodi:role="line"
+         id="tspan3011"
+         x="400"
+         y="55"
+         >encrypted</tspan></text>
+    <text
+       id="text3013"
+       y="55"
+       x="120"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:13px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="55"
+         x="120"
+         id="tspan3015"
+         sodipodi:role="line"
+         >not encrypted</tspan></text>
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path5913"
+       d="m 400,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 380,0 h 10 l -20,40 h -10 z"
+       id="path4765"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4767"
+       d="m 360,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 340,0 h 10 l -20,40 h -10 z"
+       id="path4769"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4771"
+       d="m 320,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 300,0 h 10 l -20,40 h -10 z"
+       id="path4773"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4775"
+       d="m 280,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 260,0 h 10 l -20,40 h -10 z"
+       id="path4777"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path4779"
+       d="M 250,0 240,20 Z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 420,0 h 10 l -20,40 h -10 z"
+       id="path4781"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4783"
+       d="m 440,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 460,0 h 10 l -20,40 h -10 z"
+       id="path4785"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4787"
+       d="m 480,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 500,0 h 10 l -20,40 h -10 z"
+       id="path4789"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4791"
+       d="m 520,0 h 10 l -20,40 h -10 z"
+       style="fill:#ffffff;opacity:0.25" />
+    <path
+       style="fill:#ffffff;opacity:0.25"
+       d="m 540,0 h 10 l -20,40 h -10 z"
+       id="path4793"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4795"
+       d="M 560,0 V 20 L 550,40 H 540 Z"
+       style="fill:#ffffff;opacity:0.25" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="249"
+       y="31"
+       id="text3890"><tspan
+         sodipodi:role="line"
+         id="tspan3892"
+         x="249"
+         y="31"
+         >Encrypted data</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="M 440,51.5 H 560"
+       id="path4497"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4499"
+       d="M 0.5,46 V 56"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="M 559.5,46 V 56"
+       id="path4501"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4503"
+       d="M 0,51.5 H 70"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1018"
+       d="M 239.5,46 V 56"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1020"
+       d="M 170,51.5 H 360"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px" />
+  </g>
+</svg>

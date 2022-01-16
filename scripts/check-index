@@ -1,0 +1,97 @@
+#! /usr/bin/env node
+'use strict';
+
+const fs = require('fs');
+
+var paths = {};
+
+var index = fs.readFileSync('index.build.html', 'utf-8');
+index.replace(/<div><a href="(.*?)">(.*?)<\/a>/g, collectPath);
+
+function collectPath(match, path, title) {
+	var match = path.match(/^(.*)\/$/);
+	if (match) {
+		path = match[1];
+	} else {
+		console.log(path + ' is missing trailing slash.');
+	}
+
+	markPath('.' + path, 'indexTitle', title);
+}
+
+traverse('.');
+
+function traverse(folder) {
+	var files = fs.readdirSync(folder);
+	for (var i = 0; i < files.length; i++) {
+		var file = files[i];
+		if (file.substr(0, 1) == '.') continue;
+
+		var fullPath = folder + '/' + file;
+		try {
+			var stat = fs.statSync(fullPath);
+		} catch (e) { continue; }
+		if (! stat.isDirectory()) continue;
+
+		checkFolder(fullPath);
+		traverse(fullPath);
+	}
+}
+
+function checkFolder(path) {
+	var indexFile = path + '/index.build.html';
+	try {
+		var stat = fs.statSync(indexFile);
+	} catch (e) { return; }
+	if (! stat.isFile()) return;
+
+	var title = 'TITLE MISSING';
+	var index = fs.readFileSync(indexFile, 'utf-8');
+	index.replace(/title = '(.*)'/, function(match, t) { title = t; });
+	markPath(path, 'fsTitle', title);
+}
+
+function markPath(path, key, value) {
+	var item = paths[path];
+	if (! item) item = paths[path] = {};
+	item[key] = value;
+}
+
+var pathsList = Object.keys(paths).sort();
+
+for (var i = 0; i < pathsList.length; i++) {
+	var path = pathsList[i];
+	var item = paths[path];
+
+	if (item.fsTitle == null) continue;
+	if (item.indexTitle == null) continue;
+	if (item.fsTitle == item.indexTitle) continue;
+	console.log();
+	console.log('Wrong title: ' + path);
+	console.log('  ' + item.fsTitle);
+	console.log('  ' + item.indexTitle);
+}
+
+console.log();
+console.log('Missing documents:');
+for (var i = 0; i < pathsList.length; i++) {
+	var path = pathsList[i];
+	var item = paths[path];
+
+	if (item.fsTitle != null) continue;
+	if (item.indexTitle == null) continue;
+	console.log('  ' + path);
+}
+
+console.log();
+console.log('Missing on index:')
+for (var i = 0; i < pathsList.length; i++) {
+	var path = pathsList[i];
+	var item = paths[path];
+
+	if (item.fsTitle == null) continue;
+	if (item.indexTitle != null) continue;
+	console.log('  ' + path);
+}
+
+console.log();

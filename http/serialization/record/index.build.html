@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<? title = 'Record'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 02); ?>
+	<h1><? title ?></h1>
+
+	<p>A record is a tree of byte sequences and optional hashes, primarily used to store <a href="/actors/key-pair/#public-key">public keys</a>, <a href="/actors/envelope/">envelopes</a>, <a href="/actors/message/">messages</a>, or other data.</p>
+	<p>A record may look as follows:</p>
+	<div class="hscroll box">
+		<pre>(root)
+  title
+    Mountain hike
+  time
+    start
+      2015-08-05 09:00:00 UTC
+    end
+      2015-08-05 17:00:00 UTC
+  confirmed attendees
+    John  # 34bf..7e
+    Bob   # a529..10</pre>
+    </div>
+
+    <h2 id="structure">Structure</h2>
+	<p>Each tree node of a record contains:</p>
+	<ul>
+		<li>a byte sequence of length 0 or more</li>
+		<li>an optional hash, linking another Condensation object</li>
+	</ul>
+	<p>Nodes are ordered, but the order does not always matter. The root node is not stored.</p>
+
+	<h2 id="byte-sequences">Byte sequences</h2>
+	<p>Byte sequences may contain arbitrary data. Their encoding and interpretation is protocol- or application-specific. The following encodings are recommended:</p>
+	<table class="text">
+	<tr>
+		<th>Data type</th>
+		<th>Byte sequence</th>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="text">Text</td>
+		<td>A <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> sequence of <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters.</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="boolean-true">Boolean <em>true</em></td>
+		<td>A non-zero-length byte sequence, usually the single byte 0x79 (ASCII "y").</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="boolean-false">Boolean <em>false</em></td>
+		<td>A zero-length byte sequence.</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="integer">Integer with sign</td>
+		<td>A <a href="https://en.wikipedia.org/wiki/Endianness">big-endian</a> <a href="https://en.wikipedia.org/wiki/Signed_number_representations#Two's_complement">signed</a> integer of arbitrary length.</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="unsigned">Integer without sign¹</td>
+		<td>A big-endian unsigned integer of arbitrary length.</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="fixed-point-number">Fixed-point number</td>
+		<td>A signed integer <a href="https://en.wikipedia.org/wiki/Fixed-point_arithmetic">shifted by a predefined number of bits</a>.</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="floating-point-number">Floating-point number</td>
+		<td>A <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">single-precision</a> (4 bytes) or <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">double-precision</a> (8 bytes) IEEE floating point number.</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="date">Date</td>
+		<td>A signed integer, denoting the time (minus <a href="https://en.wikipedia.org/wiki/Leap_second">leap seconds</a>) since <a href="https://en.wikipedia.org/wiki/Unix_time">epoch</a> in milliseconds.</td>
+	</tr>
+	</table>
+	<ol class="footnote">
+		<li>Unsigned integers are discouraged, as they are easily confused with signed integers, which may lead to errors that go unnoticed for a long time.</li>
+	</ol>
+
+	<p>Since the <a href="/notes/records/">overhead of a node</a> is small, it is usually not worth packing multiple values into a single node, and easier to create a small subtree. An exception are arrays of a fixed-length data type, such as arrays of 4-byte integers.</p>
+
+	<h2 id="linking-objects">Linking objects</h2>
+	<p>Other objects are linked by adding their hash. If the objects are encrypted, the corresponding AES key is stored in the byte sequence:</p>
+
+	<table class="text">
+	<tr>
+		<th>Data type</th>
+		<th>Byte sequence</th>
+		<th>Hash</th>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="hash">Link to an object</td>
+		<td>&ndash;</td>
+		<td>Object hash</td>
+	</tr>
+	<tr>
+		<td style="white-space: nowrap" id="hash-with-key">Link to an encrypted object</td>
+		<td>AES key (32 bytes)</td>
+		<td>Object hash</td>
+	</tr>
+	</table>
+
+	<h2 id="dictionaries">Dictionaries</h2>
+	<p>Records, or parts thereof, may be interpreted as key-value dictionaries:</p>
+	<div class="hscroll box">
+		<pre>(root or parent)
+  key 1
+    value 1
+  key 2
+    value 2
+  ...</pre>
+	</div>
+	<p>Key nodes usually hold a short text, and must be unique. Their order has no importance. Values are stored as child node(s) of their key.</p>
+
+	<h2 id="tables">Tables</h2>
+	<p>Records, or parts thereof, may be interpreted as tables:</p>
+	<div class="hscroll box">
+		<pre>(root or parent)
+  primary key of row 1
+    content of cell A1
+    content of cell B1
+    ...
+  primary key of row 2
+    content of cell A2
+    content of cell B2
+    ...
+  ...</pre>
+	</div>
+	<p>The first row may contain column headers.</p>
+
+	<h2 id="nesting">Nesting</h2>
+	<p>Dictionaries <span class="violetColor">◼</span>, tables <span class="redColor">◼</span>, and other structures may be nested to create more complex data structures:</p>
+	<div class="hscroll box">
+		<pre><span style="color:#999">(root or parent)</span>
+  <span class="violetColor">title</span>
+    Mountains in Switzerland
+  <span class="violetColor">author</span>
+    <span class="violetColor">name</span>
+      John
+    <span class="violetColor">email</span>
+      john@example.com
+  <span class="violetColor">table</span>
+    <span class="redColor">mountain
+      latitude
+      longitude
+      elevation
+    Matterhorn
+      45.976389
+      7.658611
+      4478
+    ...</span></pre>
+	</div>
+
+	<h2 id="serialization">Serialization</h2>
+	<p>A record object has the following structure:</p>
+	<div class="hscroll indent"><? svgFile('RecordObject.svg') ?></div>
+	<p>Nodes are stored in depth-first traversal order. The root node is omitted. Each node is encoded as follows:</p>
+	<div class="hscroll indent"><? svgFile('Node.svg') ?></div>
+	<p>The bits of F have the following meaning:</p>
+	<div class="hscroll indent"><? svgFile('Flags.svg') ?></div>
+	<p>Bits 6 and 7 along with the node sequence encode the tree structure.</p>
+	<p>L and K are stored as unsigned big-endian integers of the indicated length. K is the index of a hash in the object header. Multiple nodes may refer to the same hash.</p>
+
+	<h2 id="merge">Merge semantics</h2>
+	<p>Merge semantics are application- or protocol-specific.</p>
+</div>
+
+<script>
+	syntaxHighlight(document.getElementById('syntax'));
+
+	function syntaxHighlight(element) {
+		function highlightToggle() {
+			if (this.style.fontWeight == 'bold') highlightOff(); else highlightOn();
+		}
+
+		function highlightOn() {
+			for (var i = 0; i < elements.length; i++) {
+				//elements[i].style.color = this.syntaxGroup == elements[i].syntaxGroup ? 'black' : null;
+				elements[i].style.backgroundColor = this.syntaxGroup == elements[i].syntaxGroup ? '#cccc33' : 'transparent';
+			}
+		}
+
+		function highlightOff() {
+			for (var i = 0; i < elements.length; i++) {
+				//elements[i].style.color = null;
+				elements[i].style.backgroundColor = 'transparent';
+			}
+		}
+
+		function traverse(element) {
+			var e = element.firstChild;
+			while (e != null) {
+				if (e.tagName == 'SPAN') {
+					add(e, e.innerHTML);
+				} else {
+					traverse(e);
+				}
+				e = e.nextSibling;
+			}
+		}
+
+		function add(element, group) {
+			element.onclick = highlightToggle;
+			element.onmouseenter = highlightOn;
+			element.onmouseleave = highlightOff;
+			element.syntaxGroup = group;
+			elements.push(element);
+		}
+
+		function addById(id, group) {
+			add(document.getElementById(id), group);
+		}
+
+		var elements = [];
+		traverse(element);
+		//addById('hashpair', 'HASHPAIR');
+	}
+</script>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<? title = 'Mutability'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">mature</span></h1>
+
+	<p>Condensation is strictly separated in a mutable and an immutable part:</p>
+	<ul>
+		<li>An account with its <b>mutable</b> boxes defines the state of a user. Account data rarely exceeds 10 kiB of storage space. Such a compact state representation is easy to manage and synchronize.</li>
+		<li>
+			<p style="margin-top: 0">The actual data is stored as large hash table with <b>immutable</b> objects. Such hash tables are highly scalable, as their entries can be partitioned, cached, and mirrored.</p>
+			<p>Note that objects are inherently immutable. If an existing object is modified, its hash changes, making it a different object.</p>
+			<p>Similarly, object trees are inherently immutable. If any object of the tree is modified, the hashes of all ancestors (including the object itself) up to the root change, making it a different tree.</p>
+		</li>
+	</ul>
+	<p>This separation is a very fundamental architectural choice of Condensation. Features such as efficient versioning, fast transactional synchronization, and deduplication are directly related to that.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

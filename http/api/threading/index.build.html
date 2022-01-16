@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<? title = 'Threading model'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="java">
+		<p>The Java implementation takes advantage of multi-threading. Operations (e.g. store access) are non-blocking, and call a <i>done handler</i> when finished.</p>
+		<p>A typical piece of code looks as follows:</p>
+		<div class="hscroll box java"><pre>
+			Store.ListDone doneHandler = new Store.ListDone() {
+				void onListDone(ArrayList&lt;Hash&gt; hashes) {
+					...
+				}
+
+				void onListFailed(String error) {
+					...
+				}
+			};
+
+			store.list(accountHash, boxLabel, doneHandler);
+		</pre></div>
+		<p>The code lists a box of a store (e.g. over HTTP). The <i>list</i> operation is executed on a separate thread, and calls either <i>onListDone</i> or <i>onListFailed</i> on the main thread upon completion:</p>
+		<div class="hscroll indent"><? svgFile('Java.svg') ?></div>
+		<p>The code after <i>store.list(...)</i> is always executed before any done handler. If the operation completes immediately, it posts the result to the main thread's task queue rather than calling the done handler immediately:</p>
+		<div class="hscroll indent"><? svgFile('JavaImmediate.svg') ?></div>
+
+		<h2>Computation</h2>
+		<p>For computationally expensive work, Condensation creates a separate thread upon initialization. This thread is used for <a href="/api/create-identity/">RSA key generation</a>, <a href="/api/object/#calculate-hash">hash calculation</a> as well as <a href="/api/object/#crypt">object en- and decryption</a>.</p>
+		<p>You may run your own code on the computation thread as follows:</p>
+		<div class="hscroll wide box java"><pre>
+			public class SomeOperation implements BackgroundTask {
+				public final Done done;
+				private Result result_ = null;
+
+				public SomeOperation(Done done) {
+					this.done = done;
+					Condensation.computationExecutor.run(this);
+				}
+
+				@Override
+				public void background() {
+					// This is running on the computation thread.
+					result_ = ...
+				}
+
+				@Override
+				public void after() {
+					// This is running on the main thread after "background" completed.
+					done.onOperationDone(result_);
+				}
+
+				public interface Done {
+					void onOperationDone(Result result);
+				}
+			}
+		</pre></div>
+	</div>
+
+	<div class="javascript">
+		<p>The JavaScript implementation takes advantage of multi-threading. Operations (e.g. store access) are non-blocking, and call a <i>done handler</i> when finished.</p>
+		<p>A typical piece of code looks as follows:</p>
+		<div class="hscroll box javascript"><pre>
+			var listOperation = store.list(accountHash, boxLabel);
+
+			listOperation.onDone_ = function(hashes) {
+				...
+			};
+
+			listOperation.onFailed_ = function(error) {
+				...
+			};
+		</pre></div>
+		<p>The code lists a box of a store over HTTP. The actual HTTP request is processed by the browser's request queue. Once the operation completes, the <i>listOperation.onDone</i> or <i>listOperation.onFailed</i> handler are called:</p>
+		<div class="hscroll indent"><? svgFile('JavaScript.svg') ?></div>
+
+		<h2>Computation</h2>
+		<p>Computationally expensive work, such as <a href="/api/create-identity/">RSA key generation</a>, <a href="/api/object/#calculate-hash">hash calculation</a> or <a href="/api/object/#crypt">object en- and decryption</a>, is split into small pieces and executed when the main thread is idle.</p>
+	</div>
+
+	<div class="perl">
+		<p>The Perl implementation is single-threaded. All operations (e.g. store access) are blocking, i.e. they wait for completion and return the result.</p>
+		<p>Hence, operations are simple function calls:</p>
+		<div class="hscroll wide box perl"><pre>my ($hashes, $error) = $store-&gt;list($accountHash, $boxLabel);</pre></div>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

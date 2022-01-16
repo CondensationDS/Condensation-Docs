@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<? title = 'HTTP store server'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="perl">
+		<p>A simple <a href="/stores/http/">HTTP store server</a>.</p>
+
+		<h2 id="instance-creation">Usage example</h2>
+		<div class="hscroll wide api perl"><pre>
+			my $store = CN::FolderStore-&gt;new('/path/to/store');
+			my $server = CN::HTTPServer-&gt;new(80);
+			$server-&gt;addHandler(CN::HTTPServer::StoreHandler-&gt;new('/', $store));
+			$server-&gt;addHandler(CN::HTTPServer::IdentificationHandler-&gt;new('/'));
+			$server-&gt;run;
+		</pre></div>
+		<p>Creates and runs a HTTP store server.</p>
+		<p>The server authenticates the users, enforces access rights, and makes a trusted (unauthenticated) request on the store:</p>
+		<div class="hscroll"><? svgFile('Authentication.svg') ?></div>
+		<p>The store is usually a local store (such as a folder store), or a store in the local (trusted) network.</p>
+		<p>The first parameter to the StoreHandler is the path under which the store is available. The above example yields the following URLs:</p>
+		<div class="hscroll box"><pre><b>Store:</b>     http://your-domain.tld/
+<b>Objects:</b>   http://your-domain.tld/objects/
+<b>Accounts:</b>  http://your-domain.tld/accounts/</pre></div>
+		<p>The identification handler is optional, and simply outputs a message saying that this is a Condensation store.</p>
+		<p>The <i>run</i> call starts listening for connections and does not return.</p>
+
+		<h3>CORS</h3>
+		<div class="hscroll api perl"><pre>$server-&gt;setCorsAllowEverybody(1)</pre></div>
+		<p>Sets the CORS headers to allow everybody to access the store from within a web browser. Without these headers, all major web browsers prevent foreign websites from accessing the store.</p>
+		<p>CORS has no effects on direct TCP connections from outside web browsers.</p>
+
+		<h2>Static content delivery</h2>
+		<p>The server can be configured to deliver static content. This is particularly useful to create small self-contained web apps.</p>
+
+		<div class="space"></div>
+		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CN::HTTPServer::StaticContentHandler-&gt;new('/path/to/content', $content, $contentType));</pre></div>
+		<p>Upon accessing the specified path, delivers the content bytes with the given content type (e.g. <i>image/png</i>, or <i>text/html; charset=utf-8</i>) and response code <i>200 OK</i>. Only <i>GET</i> requests are processed.</p>
+
+		<div class="space"></div>
+		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CN::HTTPServer::StaticFilesHandler-&gt;new('/path/to/static', $rootFolder, $indexFilename));</pre></div>
+		<p>Upon accessing anything below the specified path, delivers the corresponding file from within <i>rootFolder</i>. If an <i>indexFilename</i> (e.g. <i>index.html</i>) is provided, folders are handled as follows:</p>
+		<ul>
+			<li><i>/path/to/folder</i> is redirected to <i>/path/to/folder/</i> with a 303 response code.</li>
+			<li><i>/path/to/folder/</i> delivers the index file within that folder.</li>
+		</ul>
+		<p>Content types are inferred from the file extension. Additional content types may be specified as follows:</p>
+		<div class="hscroll wide api perl"><pre>
+			my $handler = CN::HTTPServer::StaticFilesHandler-&gt;new('/path/to/static', $folder, $indexFilename);
+			$handler-&gt;setContentType('mp4', 'video/mp4');
+			$server-&gt;addHandler($handler);
+		</pre></div>
+		<p>If the extension is not known, the content type <i>application/octet-stream</i> is used.</p>
+
+		<p>For more advanced configuration, subclass this handler and overwrite the <i>get</i> method with your own rules:</p>
+		<div class="hscroll wide box perl"><pre>
+			sub get {
+				my $o = shift;
+				my $request = shift;
+				my $path = $request-&gt;pathAbove($o:root) // return;
+				return $o-&gt;deliverFile($request, '/srv/common/logo.png') if $path eq '/logo.png';
+				return $o-&gt;deliverFile($request, '/srv/common/notes', 'text/plain; charset=utf-8') if $path eq '/notes';
+				return $request-&gt;reply404 if $path !~ /\.jpg$/;
+				return $o-&gt;deliverFileForPath($request, $path);
+			}
+		</pre></div>
+		<p>Two high-level methods for file delivery are available:</p>
+		<ul>
+			<li><i>deliverFile</i> takes a file system path and delivers the corresponding file.</li>
+			<li><i>deliverFileForPath</i> takes a request path, maps it onto the root folder, and delivers the resulting file or folder.</li>
+		</ul>
+
+		<h2>Message gateway</h2>
+		<div class="hscroll wide api perl"><pre>$server-&gt;addHandler(CN::HTTPServer::MessageGatewayHandler-&gt;new('/path', $keyPair, $recipient));</pre></div>
+		<p>Sends a Condensation message to <i>recipient</i> for each incoming request. The message is signed by the provided <i>key pair</i>, and contains a single record with:</p>
+		<ul>
+			<li>Time</li>
+			<li>IP address of the sender</li>
+			<li>Method (GET, PUT, ...)</li>
+			<li>Path</li>
+			<li>Query string</li>
+			<li>HTTP headers</li>
+			<li>Request data, if any</li>
+		</ul>
+		<p>Requests are answered with a <i>200 OK</i>.</p>
+		<p>The message gateway is primarily useful to collect data from sensors which submit their data via HTTP requests.</p>
+
+		<h2>Implementing handlers</h2>
+		<p>To imlement your own handler, create a package with a <i>process</i> method:</p>
+		<div class="hscroll wide box perl"><pre>
+			package MyHandler;
+
+			sub new { bless {} }
+
+			sub process {
+				my $o = shift;
+				my $request = shift;
+
+				return if $request-&gt;path !~ /^\/my-handler$/;
+
+				# Options requests
+				return $request-&gt;replyOptions('HEAD', 'GET')
+					if $request-&gt;method eq 'OPTIONS';
+
+				# Get requests
+				return $request-&gt;reply200('You have reached this handler.')
+					if $request-&gt;method eq 'HEAD' || $request-&gt;method eq 'GET';
+
+				# Method not allowed
+				return $request-&gt;reply405;
+			}
+		</pre></div>
+		<p>and add an instance to the server:</p>
+		<div class="hscroll box perl"><pre>
+			...
+			$server-&gt;addHandler(MyHandler-&gt;new);
+			...
+		</pre></div>
+		<p>Handlers are called in the order they have been added to the server, until a handler returns a status code. If no handler processes a request, a fallback handler drops the request data and issues a 404 Not Found reply.</p>
+
+		<h3>Requests</h3>
+		<p>The <i>request</i> instance provides information about the current request, as well as a few useful functions to produce a reply:</p>
+		<div class="hscroll wide api perl"><pre>
+			# Request properties
+			$request-&gt;server         # returns the CN::HTTPServer instance
+			$request-&gt;method         # returns the HTTP request method as uppercase string (e.g. GET)
+			$request-&gt;path           # returns the request path without the query string
+			$request-&gt;queryString    # returns the query string
+			$request-&gt;peerAddress    # returns the client's IP address
+			$request-&gt;peerPort       # returns the client's TCP port
+			$request-&gt;headers        # returns the HTTP headers of the request as hashref
+
+			# Request data
+			$request-&gt;remainingData  # returns the number of remaining bytes the client sent
+			$request-&gt;readData       # reads all data sent by the client and returns it as byte string
+			$request-&gt;dropData       # drops (reads but ignores) all data sent by the client
+
+			# Logging
+			$request-&gt;log($text)     # writes a short text to the log file
+
+			# Utility
+			$request-&gt;pathAbove('/myroot/')    # returns the request path above this folder, or undef
+			$request-&gt;parseQueryString         # parses the query string, and returns a hashref of byte strings
+			$request-&gt;checkSignature($bytes)   # checks the Condensation signature for $bytes
+
+			# Common replies
+			$request-&gt;reply200($text)          # sends a 200 OK reply with a "text/plain; charset=utf-8" content type
+			$request-&gt;reply200Bytes($bytes)    # sends a 200 OK reply with a "application/octet-stream" content type
+			$request-&gt;reply200HTML($html)      # sends a 200 OK reply with a "text/html; charset=utf-8" content type
+			$request-&gt;reply303($location)      # sends a 303 See Other reply with the given location
+			$request-&gt;reply400($text)          # sends a 400 Bad Request reply with the given text message
+			$request-&gt;reply403($text)          # sends a 403 Forbidden reply with the given text message
+			$request-&gt;reply404($text)          # sends a 404 Not Found reply with the given text message
+			$request-&gt;reply405($text)          # sends a 405 Method Not Allowed reply with the given text message
+			$request-&gt;reply500($text)          # sends a 500 Internal Server Error reply with the given text message
+			$request-&gt;reply503($text)          # sends a 503 Service Not Available reply with the given text message
+			$request-&gt;replyOptions(@methods)   # sends a 200 OK reply to an OPTIONS request
+			$request-&gt;replyFatalError($error)  # logs the error and sends an empty 500 Internal Server Error reply
+
+			# Generic reply
+			$request-&gt;reply($responseCode, $responseLabel, $headers, $content)
+		</pre></div>
+		<p>Since the query string parser returns a hashref of byte strings, its values need to be converted appropriately:</p>
+		<div class="hscroll wide api perl"><pre>
+			my $args = $request-&gt;parseQueryString;
+			my $valueAsBytes = $args-&gt;{'key'};
+			my $valueAsText = Encode::decode_utf8($args-&gt;{'key'});
+			my $valueAsNumber = $args-&gt;{'key'} * 1;
+			my $valueProvided = exists $args-&gt;{'key'};
+		</pre></div>
+	</div>
+
+	<div class="java javascript">
+		<p>The HTTP store server is only available in Perl.</p>
+	</div>
+
+	<h2>See also</h2>
+	<div class="menu">
+		<div><a href="/command-line-tools/start-http-server/">cn start http server ...</a></div>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

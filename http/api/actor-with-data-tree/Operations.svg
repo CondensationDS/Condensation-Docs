@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="304"
+   height="400"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="Operations.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-101"
+     inkscape:cy="325"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       y="1"
+       x="1"
+       height="398"
+       width="290"
+       id="rect3024"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0"
+       rx="10" />
+    <a
+       id="a5113"
+       xlink:href="/api/read-messages/"
+       transform="translate(170,40)">
+      <text
+         id="text4568"
+         y="60"
+         x="100"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         xml:space="preserve"><tspan
+           id="tspan4566"
+           y="60"
+           x="100"
+           sodipodi:role="line">read</tspan></text>
+    </a>
+    <a
+       id="a5121"
+       xlink:href="/api/read-data/"
+       transform="translate(170,40)">
+      <text
+         id="text4576"
+         y="120"
+         x="100"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         xml:space="preserve"><tspan
+           id="tspan4574"
+           y="120"
+           x="100"
+           sodipodi:role="line">read</tspan></text>
+    </a>
+    <a
+       id="a5129"
+       transform="translate(170,40)">
+      <text
+         xml:space="preserve"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         x="100"
+         y="180"
+         id="text4580"><tspan
+           sodipodi:role="line"
+           x="100"
+           y="180"
+           id="tspan4578">discover</tspan></text>
+    </a>
+    <a
+       id="a5109"
+       xlink:href="/api/send-message/"
+       transform="translate(170,40)">
+      <text
+         xml:space="preserve"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         x="100"
+         y="40"
+         id="text4588"><tspan
+           sodipodi:role="line"
+           x="100"
+           y="40"
+           id="tspan4586">send</tspan></text>
+    </a>
+    <a
+       id="a5117"
+       xlink:href="/api/save-data/"
+       transform="translate(170,40)">
+      <text
+         id="text4592"
+         y="100"
+         x="99.911873"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         xml:space="preserve"><tspan
+           id="tspan4590"
+           y="100"
+           x="99.911873"
+           sodipodi:role="line">save</tspan></text>
+    </a>
+    <a
+       id="a5125"
+       transform="translate(170,40)">
+      <text
+         id="text4600"
+         y="160"
+         x="100"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         xml:space="preserve"><tspan
+           id="tspan4598"
+           y="160"
+           x="100"
+           sodipodi:role="line">announce</tspan></text>
+    </a>
+    <path
+       style="fill:#e5473f;fill-rule:evenodd"
+       d="m 302,89 h -18 l -6,6 6,6 h 18 z"
+       id="path4644"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4646"
+       d="m 280,69 h 18 l 6,6 -6,6 h -18 z"
+       style="fill:#9549db;fill-rule:evenodd"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       id="path4648"
+       d="m 302,149 h -18 l -6,6 6,6 h 18 z"
+       style="fill:#e5473f;fill-rule:evenodd" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       style="fill:#9549db;fill-rule:evenodd"
+       d="m 280,129 h 18 l 6,6 -6,6 h -18 z"
+       id="path4650"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#e5473f;fill-rule:evenodd"
+       d="m 302,209 h -18 l -6,6 6,6 h 18 z"
+       id="path4652"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4654"
+       d="m 280,189 h 18 l 6,6 -6,6 h -18 z"
+       style="fill:#9549db;fill-rule:evenodd"
+       sodipodi:nodetypes="cccccc" />
+    <a
+       id="a5141"
+       xlink:href="/api/open-envelope/"
+       transform="translate(20,40)">
+      <text
+         xml:space="preserve"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         x="250"
+         y="300"
+         id="text4572"><tspan
+           sodipodi:role="line"
+           x="250"
+           y="300"
+           id="tspan4570"
+           style="text-align:end;text-anchor:end">open envelope</tspan></text>
+    </a>
+    <a
+       id="a5137"
+       xlink:href="/api/create-envelope/"
+       transform="translate(170,40)">
+      <text
+         xml:space="preserve"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         x="100"
+         y="280"
+         id="text4596"><tspan
+           sodipodi:role="line"
+           x="100"
+           y="280"
+           id="tspan4594">create envelope</tspan></text>
+    </a>
+    <a
+       id="a5133"
+       xlink:href="/api/remove-hashes/"
+       transform="translate(170,40)">
+      <text
+         xml:space="preserve"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         x="100"
+         y="240"
+         id="text4604"><tspan
+           sodipodi:role="line"
+           x="100"
+           y="240"
+           id="tspan4602">remove obsolete hashes</tspan></text>
+    </a>
+    <path
+       sodipodi:nodetypes="cccccc"
+       style="fill:#9549db;fill-rule:evenodd"
+       d="m 280,269 h 18 l 6,6 -6,6 h -18 z"
+       id="path4656"
+       inkscape:connector-curvature="0" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       id="path4658"
+       d="m 302,329 h -18 l -6,6 6,6 h 18 z"
+       style="fill:#e5473f;fill-rule:evenodd" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       style="fill:#9549db;fill-rule:evenodd"
+       d="m 280,309 h 18 l 6,6 -6,6 h -18 z"
+       id="path4660"
+       inkscape:connector-curvature="0" />
+    <text
+       id="text5083"
+       y="90"
+       x="160"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan5081"
+         y="90"
+         x="160"
+         sodipodi:role="line">messages</tspan></text>
+    <a
+       id="a5091"
+       xlink:href="/api/public-key/"
+       transform="matrix(1.2,0,0,0.46666667,166,60)">
+      <rect
+         rx="3"
+         y="0"
+         x="0"
+         height="107.14285"
+         width="1.6666666"
+         id="rect5089"
+         style="fill:#000000" />
+    </a>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+       x="160"
+       y="150"
+       id="text5095"><tspan
+         sodipodi:role="line"
+         x="160"
+         y="150"
+         id="tspan5093">private data</tspan></text>
+    <a
+       transform="matrix(1.2,0,0,0.46666667,166,120)"
+       xlink:href="/api/public-key/"
+       id="a5099">
+      <rect
+         style="fill:#000000"
+         id="rect5097"
+         width="1.6666666"
+         height="107.14285"
+         x="0"
+         y="0"
+         rx="3" />
+    </a>
+    <text
+       id="text5103"
+       y="210"
+       x="160"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan5101"
+         y="210"
+         x="160"
+         sodipodi:role="line">public card</tspan></text>
+    <a
+       id="a5107"
+       xlink:href="/api/public-key/"
+       transform="matrix(1.2,0,0,0.46666667,166,180)">
+      <rect
+         rx="3"
+         y="0"
+         x="0"
+         height="107.14285"
+         width="1.6666666"
+         id="rect5105"
+         style="fill:#000000" />
+    </a>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Bold';text-align:center;text-anchor:middle;fill:#000000"
+       x="146"
+       y="30"
+       id="text4537"><tspan
+         sodipodi:role="line"
+         x="146"
+         y="30"
+         id="tspan4535">Identity</tspan></text>
+    <a
+       transform="translate(20,80)"
+       xlink:href="/api/open-envelope/"
+       id="a4543">
+      <text
+         id="text4541"
+         y="300"
+         x="250"
+         style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:end;text-anchor:end;fill:#000000"
+         xml:space="preserve"><tspan
+           style="text-align:end;text-anchor:end"
+           id="tspan4539"
+           y="300"
+           x="250"
+           sodipodi:role="line">retrieve object</tspan></text>
+    </a>
+    <path
+       style="fill:#e5473f;fill-rule:evenodd"
+       d="m 302,369 h -18 l -6,6 6,6 h 18 z"
+       id="path4545"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+  </g>
+</svg>

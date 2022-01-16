@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<? title = 'Condensation vs. database systems'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">add graphs from presentation slides</span></h1>
+
+	<p>Data is often stored in a database. Usually used on top of file systems, database systems provide a higher level of abstraction as compared to plain files. They take care of data serialization, and keep indices.</p>
+	<p>In Condensation, a higher abstraction layer is provided by <a href="/datatree/">data trees</a>.</p>
+
+	<h2>Immutable vs. mutable</h2>
+	<p>Database systems are <i>mutable</i> data systems, i.e. records and values can be modified in-place. Mutable data is simple and straightforward to use, but more difficult to synchronize, replicate, and distribute.</p>
+	<p>Condensation is an <i>immutable</i> storage system. Once a piece of data is written, it cannot be modified any more. Any change results in a new version of the data. Old versions are garbage collected when they are not needed any more. This allows for simple synchronization, replication, and distribution.</p>
+
+	<h2>Conflict-free merging vs. locking</h2>
+	<p>Database systems use locking (in time or space) to execute transactions. On centralized systems, locking requires careful design to work correctly and efficiently. On distributed systems, locking is difficult, and imposes a lot of constraints.</p>
+	<p>Condensation does not use locking, but allows multiple versions of the data to coexist. Different versions can be merged at any time.</p>
+
+	<h2>Distributed vs. centralized</h2>
+	<p>Classic database systems are centralized. Even if a database is running on multiple CPUs or servers, it provides a consistent state of the data to all clients. Clients store all their data in the central database.</p>
+	<p>Condensation is distributed. Every user stores its own data. If the network is down, users may see and edit different versions of some shared data, which will get synchronized as soon as the network is back up.</p>
+
+	<h2>Client-centric vs. server-centric</h2>
+	<p>In a database system, the bulk of the work is done by the server. Clients merely send queries for execution to the server. As a consequence, the server has access to all data.</p>
+	<p>In Condensation, the bulk of the work is done by the clients. Any processing step, including indexing, querying, serializing and encrypting the data, is carried out by the client. The server merely stores encrypted pieces of data.</p>
+
+	<h2>Summary</h2>
+	<table class="text">
+		<tr>
+			<th></th>
+			<th>Condensation</th>
+			<th>Database (typical)</th>
+		</tr>
+		<tr>
+			<td>Server-client protocol</td>
+			<td>get object, put object, list, add, remove</td>
+			<td>query language (e.g. <a href="https://en.wikipedia.org/wiki/SQL">SQL</a>) or <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD functions</a></td>
+		</tr>
+		<tr>
+			<td>Mutability</td>
+			<td>immutable</td>
+			<td>mutable</td>
+		</tr>
+		<tr>
+			<td>Main data structure</td>
+			<td>object tree</td>
+			<td>table (collection) with tuples (rows, records, documents), relational</td>
+		</tr>
+		<tr>
+			<td>Data serialization</td>
+			<td>managed by the client</td>
+			<td>managed by the server</td>
+		</tr>
+		<tr>
+			<td>Indices</td>
+			<td>managed by the client</td>
+			<td>managed by the server</td>
+		</tr>
+		<tr>
+			<td>Distributed</td>
+			<td>yes, by design</td>
+			<td>no</td>
+		</tr>
+		<tr>
+			<td>Transactions</td>
+			<td>inherent, through atomic box additions; executed by the client</td>
+			<td>good support, but complex; executed by the server</td>
+		</tr>
+		<tr>
+			<td>Replication (one-way)</td>
+			<td>inherent, efficient</td>
+			<td>easy; limited efficiency</td>
+		</tr>
+		<tr>
+			<td>Synchronization (two-way)</td>
+			<td>fairly easy</td>
+			<td>difficult</td>
+		</tr>
+		<tr>
+			<td>Versioning</td>
+			<td>inherent, easy</td>
+			<td>difficult</td>
+		</tr>
+	</table>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

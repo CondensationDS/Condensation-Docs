@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<? title = 'Actor with data tree'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Actor with Data Tree').openField('key pair').openField('public key');
+	</script>
+
+	<p>A complete actor implementation suitable for most applications. It manages a data tree as private data and a list of actor group members, allows sending and receiving messages, and announces itself.</p>
+
+	<h2 id="instance-creation">Creating an instance</h2>
+	<div class="hscroll wide api java"><pre>
+		KeyPair keyPair = KeyPair.from(record);   // or KeyPair.generate()
+		Store storageStore = new FolderStore("local:", "file:///path/to/local/store");
+		Store messagingStore = Store.fromUrl("https://condensation.io");
+		long autoSaveDelay = 200;
+		ActorWithDataTree actor = new ActorWithDataTree(keyPair, storageStore, messagingStore, autoSaveDelay, new Delegate());
+
+		class Delegate implements ActorWithDataTree.Delegate {
+			...
+		};
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var keyPair = cn.keyPairFromRecord(record);   // or cn.createKeyPair()
+		var storageStore = cn.storeFromUrl('https://condensation.io');
+		var messagingStore = cn.storeFromUrl('https://condensation.io');
+		var autoSaveDelay = 200;
+		var actor = new cn.ActorWithDataTree(keyPair, storageStore, messagingStore, entrustedAccounts, autoSaveDelay);
+
+		actor.onReceiveMessage = function() { ... };
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my $keyPair = CN::KeyPair-&gt;fromRecord($record);   # or CN::KeyPair-&gt;generate()
+		my $storageStore = cn.storeFromUrl('file:///path/to/local/store');
+		my $messagingStore = cn.storeFromUrl('https://condensation.io');
+		my $actor = CN::ActorWithDataTree-&gt;new($keyPair, $storageStore, $messagingStore, $entrustedAccounts, Delegate-&gt;new);
+
+		package Delegate;
+
+		sub onReceiveMessage { ... }
+	</pre></div>
+	<p>The <a href="/api/key-pair/">key pair</a> (public and private key) is used to sign and encrypt data. It should be stored safely on the device.</p>
+	<p>The <i>storage store</i> is used for storing private data. It may be a private store accessible to the actor only. Ideally, this should be a local (on-device) store with fast access.</p>
+	<p>The <i>messaging store</i> is used for sending and receiving messages, and must be publicly available.</p>
+	<p>Storage and messaging stores may be the same.</p>
+	<p><i>Entrusted accounts</i> belong to trusted actors ("trustees"). All messages and private data can be decrypted by any entrusted actor. The list may be empty.</p>
+	<p class="java javascript">The <i>auto save delay</i> is used to auto-save the private data whenever it changes. A value of 0 disables automatic saving.</p>
+
+	<h2>Actor identifier</h2>
+	<div class="hscroll api java"><pre>Hash actorHash = actor.keyPair.publicKey.hash</pre></div>
+	<div class="hscroll api javascript"><pre>var actorHash = actor.keyPair.publicKey.hash;</pre></div>
+	<div class="hscroll api perl"><pre>my $actorHash = $actor-&gt;keyPair-&gt;publicKey-&gt;hash;</pre></div>
+	<p>The actor hash is a globally unique 32-byte identifier of this actor. It is derived from the public key.</p>
+	<p>In certain places, the identifier may be shortened to 16 bytes:</p>
+	<div class="hscroll box java"><pre>Bytes shortIdentifier = actorHash.bytes.slice(0, 16)</pre></div>
+	<div class="hscroll box javascript"><pre>var shortIdentifier = actorHash.bytes.slice(0, 16);</pre></div>
+	<div class="hscroll box perl"><pre>my $shortIdentifier = substr($actorHash-&gt;bytes, 0, 16);</pre></div>
+	<p>Identifiers shorter than 16 bytes (128 bits) are susceptible to spoofing, and should therefore not be used.</p>
+
+	<h2 id="actor-group">Actor group</h2>
+	<p>The actor manages an <a href="/actors/actor-groups/">actor group</a>. Each actor is in one of the following states:</p>
+	<ul>
+		<li>An <i>active</i> actor intends to read messages every now and then, even if it is not available all the time.</li>
+		<li>An <i>idle</i> actor still belongs to the group, but is not active any more.</li>
+		<li>A <i>revoked</i> actor was part of the group in the past, but thrown out. Messages signed by this actor are not trusted any more.</li>
+	</ul>
+	<p>The difference between <i>active</i> and <i>idle</i> actors is on their intention rather than their actual behavior. An active actor may become idle at any time, and vice versa.</p>
+	<p>Actors are revoked when their keys have been exposed (e.g. device loss), or potentially exposed. If it turns out that the key was not lost, a revoked actor may become active or idle again.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		actor.setActive()
+		actor.setIdle()
+		actor.setRevoked()
+		actor.isActive()
+		actor.isIdle()
+		actor.isRevoked()
+	</pre></div>
+	<div class="hscroll api javascript"><pre>TODO</pre></div>
+	<div class="hscroll api perl"><pre>TODO</pre></div>
+
+	<div class="hscroll box java"><pre>
+		ActorInGroup a = actor.actorInGroup.get(actorHash);
+		if (a == null) {
+			// Not part of the group
+			return;
+		}
+
+		// Set the state
+		a.setActive();
+		a.setIdle();
+		a.setRevoked();
+
+		// Obtain the state
+		a.isActive()
+		a.isIdle()
+		a.isRevoked()
+
+		// Messaging store
+		a.store()
+
+		// Selector in the data tree
+		a.selector
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		TODO
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		TODO
+	</pre></div>
+
+	<p>To join a new actor to the group, the new actor <em>and</em> an active actor of the group may call:</p>
+	<div class="hscroll box java"><pre>ActorInGroup a = actor.join(accountWithKey);</pre></div>
+	<div class="hscroll box javascript"><pre>TODO</pre></div>
+	<div class="hscroll box perl"><pre>TODO</pre></div>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>boolean contains = actor.contains(actorHash);</pre></div>
+	<div class="hscroll api javascript"><pre>var contains = actor.contains(actorHash);</pre></div>
+	<div class="hscroll api perl"><pre>my $contains = $actor-&gt;actor($actorHash);</pre></div>
+	<p>Returns true if the actor belongs to this actor group, i.e. if there is an active or idle account with that hash.</p>
+
+	<h2 id="private-data">Private data</h2>
+	<p>Private data is stored as a data tree, and accessible through the <i>root</i> selector, e.g.:</p>
+	<div class="hscroll box java"><pre>Selector emailSelector = actor.root.child(BC.email);</pre></div>
+	<div class="hscroll box javascript"><pre>var emailSelector = actor.root.childAsText('email');</pre></div>
+	<div class="hscroll box perl"><pre>my $emailSelector = actor-&gt;root-&gt;child('email');</pre></div>
+	<p>See the <a href="/api/selector/">selector</a> documentation for details on how to read and modify data in a data tree.</p>
+
+	<div class="space"></div>
+	<div class="hscroll box java"><pre>actor.readPrivateData();</pre></div>
+	<div class="hscroll box javascript"><pre>actor.readPrivateData();</pre></div>
+	<div class="hscroll box perl"><pre>$actor-&gt;readPrivateData();</pre></div>
+	<p>Reads the private data by listing the private box, and merging any unmerged information.</p>
+	<p>Usually, this should be called once after actor creation. If multiple instances of the application are running at the same time, this may be called regularly to merge information stored by other instances.</p>
+
+	<div class="space"></div>
+	<div class="hscroll box java"><pre>actor.savePrivateData();</pre></div>
+	<div class="hscroll box javascript"><pre>actor.savePrivateData();</pre></div>
+	<div class="hscroll box perl"><pre>$actor-&gt;savePrivateData();</pre></div>
+	<p>Manually saves the private data if there are changes. This is not necessary when <a href="#instance-creation">auto-saving</a> is enabled.</p>
+	<p>Note that this only saves the main data tree. Sub data trees must be saved independently.</p>
+
+	<h2 id="synchronization">Synchronization</h2>
+	<p>Whenever the private data is saved, the actor sends (updates) a message to all active actors of the group.</p>
+
+	<h2 id="receive-message">Receiving messages</h2>
+	<p>Message reading is invoked through one of the following calls:</p>
+	<div class="hscroll box java"><pre>
+		actor.readInQueue();
+		actor.readActiveInQueues();
+		actor.readIdleInQueues();
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		actor.readInQueue();
+		actor.readActiveInQueues();
+		actor.readIdleInQueues();
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		$actor-&gt;readInQueue();
+		$actor-&gt;readActiveInQueues();
+		$actor-&gt;readIdleInQueues();
+	</pre></div>
+	<p>The first call reads the actor's own message box on the messaging store. This should be invoked regularly to process messages.</p>
+	<p>The second call reads the messages of all active actors of the group. It thereby "steals" messages of other actors that are addressed to the actor group rather than the actor itself.</p>
+	<p>The third call reads the messages of all idle actors of the group.</p>
+
+	<p>Whenever the actor receives a regular message, it calls <i>onMessage</i>:</p>
+	<div class="hscroll box java"><pre>
+		// In the delegate
+		void onMessage() {
+			// Process the message
+		}
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		actor.onMessage = function() {
+			// Process the message
+		}
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		# In the delegate
+		sub onMessage {
+			my ($) = @_;
+			# Process the message
+		}
+	</pre></div>
+	<p><a href="#message-requests">Replies</a> are stored in the private data, and not delivered through the delegate.</p>
+
+	<h2 id="send-message">Sending messages</h2>
+	<p>Messages are sent through message channels.</p>
+	<div class="hscroll box java"><pre>
+		MessageChannel messageChannel = actor.createMessageChannel(recipient, validity, delegate);
+
+		class Delegate implements MessageChannel.Delegate {
+			public void onMessageChannelSent(@NonNull Source messageReference) { ... }
+			public void onMessageChannelStoreError(@NonNull Store store, @NonNull String error) { ... }
+		}
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		var messageChannel = actor.createMessageChannel(recipient, validity);
+
+		messageChannel.onSent = function(messageReference) { ... };
+		messageChannel.onStoreError = function(store, error) { ... };
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		my $messageChannel = $actor-&gt;createMessageChannel($recipient, $validity);
+	</pre></div>
+	<p>Creates a <a href="/api/message-channel/">message channel</a> with a random label (16 bytes). This is primarily used to send single messages.</p>
+	<p><i>Recipient</i> may be an <a href="/api/actor-group/">actor group</a>, or any other <a href="/api/recipient/">recipient instance</a>.</p>
+	<p><i>Validity</i> indicates how long the message is kept alive, i.e. how much time the recipient has to retrieve it.</p>
+
+	<div class="space"></div>
+	<div class="hscroll box java"><pre>
+		MessageChannel messageChannel = actor.openMessageChannel(label, recipient, validity, delegate);
+	</pre></div>
+	<div class="hscroll box javascript"><pre>
+		var messageChannel = actor.openMessageChannel(label, recipient, validity, delegate);
+	</pre></div>
+	<div class="hscroll box perl"><pre>
+		my $messageChannel = $actor-&gt;openMessageChannel($label, $recipient, $validity, $delegate);
+	</pre></div>
+	<p>Opens the message channel <i>label</i>.</p>
+
+	<p>When sending a message, the actor attaches the message content to the <i>/sent messages</i> subtree, and keeps it for a given amount of time.</p>
+	<p>To join a group, a new actor sends a message to an active actor of the group. The active actor then decides whether or not to accept and include the new actor. The application can define whether or not a </p>
+
+	<h2 id="accounts">Data tree</h2>
+	<p>The data tree managed by the actor has the following structure:</p>
+	<div class="hscroll box"><pre>root
+  actor group
+    94a683ee…5e    // hash and store
+      active       // 'y' for active, unset for idle
+      revoked      // 'y' for revoked
+	</pre></div>
+
+	<div class="java">
+		<h2>Threading</h2>
+		<p class="java">Actor instances must always be accessed from the main thread.</p>
+	</div>
+
+	<h2>See also</h2>
+	<div class="menu">
+		<div><a href="/api/save-private-data/">Saving private data</a></div>
+		<div><a href="/api/send-message/">Sending a message</a></div>
+		<div><a href="/api/announce/">Announcing public data</a></div>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+#! /usr/bin/perl
+use strict;
+use warnings;
+use ViereckFilter;
+
+# List local files
+opendir(D, '.');
+my @existing = readdir D;
+closedir D;
+
+my %old;
+for my $item (@existing) {
+	next if $item =~ /^\./;
+	next if ! -d $item;
+	$old{$item} = 1;
+}
+
+# List command files
+my $folder = '../../client/perl/Condensation/CLI/Commands';
+opendir(D, $folder);
+my @files = readdir D;
+closedir D;
+
+my %usedFolderNames;
+for my $file (sort @files) {
+	next if $file !~ /^(.*).pm$/;
+	&process($1);
+}
+
+# Display old files that can be deleted
+delete $old{'template'};
+exit(0) if ! scalar keys %old;
+print "\n";
+print 'The following help chapters do not exist any more:', "\n";
+for my $item (sort keys %old) {
+	print 'rm -r ', $item, "\n";
+}
+
+sub process($fileTitle) {
+	# Read the pm file
+	open(F, '<', $folder.'/'.$fileTitle.'.pm');
+	local $/;
+	my $content = <F>;
+	close F;
+
+	# Extract information
+	return if $content =~ /^# HTML IGNORE$/m;
+
+	print $fileTitle, "\n";
+	$content =~ /^# HTML TITLE (.*)$/m || return &error($fileTitle, ' has no HTML TITLE');
+	my $htmlTitle = $1;
+	$htmlTitle =~ s/'/\\'/g;
+	$content =~ /^# HTML FOLDER NAME (.*)$/m || return &error($fileTitle, ' has no HTML FOLDER NAME');
+	my $htmlFolderName = $1;
+	delete $old{$htmlFolderName};
+	return &error($fileTitle, ' uses the same help folder "', $htmlFolderName, '" name as ', $usedFolderNames{$htmlFolderName}) if $usedFolderNames{$htmlFolderName};
+	$usedFolderNames{$htmlFolderName} = $fileTitle;
+
+	$content =~ /\nsub help\(\$o, \$cmd\) \{(.*?\n)\}\n/s || return &error($fileTitle, ' has no help text');
+	my $help = $1;
+	$help =~ s/my \$ui.*?;//g;
+
+	# Generate the main help text
+	my $ui = eval 'my $ui = HtmlUI->new; my $cmd = {}; '.$help.' return $ui;' // return &error('Error: ', $@);
+
+	# Write the HTML file
+	mkdir $htmlFolderName;
+	open(F, '>', $htmlFolderName.'/index.build.html');
+	print F <<EOM;
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::$fileTitle. Do not edit the content here. -->
+<? title = '$htmlTitle'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+EOM
+
+	print F @$ui:text;
+	print F <<EOM;
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="$htmlFolderName.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="$htmlFolderName.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>
+EOM
+	close F;
+
+	# Read the svg file
+	open(F, '<', $folder.'/'.$fileTitle.'.svg');
+	my $svg = <F>;
+	close F;
+
+	# Clean the SVG
+	$svg =~ s/\s+(inkscape:|sodipodi:).*?=".*?"//sg;
+	$svg =~ s/\s+xmlns:(inkscape|sodipodi|rdf|cc|dc|svg)=".*?"//sg;
+	$svg =~ s/\s+id="(path|rect|svg|defs|layer)\d+"//sg;
+	$svg =~ s/;?-inkscape-[^;"]*:[^;"]*//sg;
+	$svg =~ s/<!--.*?-->\n?//sg;
+	$svg =~ s/\s*<sodipodi:namedview\s[^>]*\/>//s;
+	$svg =~ s/\s*<metadata\s.*?<\/metadata>//s;
+	$svg =~ s/\s*<defs\s*\/>//sg;
+	$svg =~ s/\s+>/>/sg;
+	$svg =~ s/\s+\/>/ \/>/sg;
+
+	# Remove all code
+	$svg =~ s/<desc\s(.*?)<\/desc>//g;
+	$svg =~ s/<title\s(.*?)<\/title>//g;
+
+	# Find width and height
+	my $box = {left => 0, top => 0, right => 0, bottom => 0};
+	$svg =~ s/(<rect\s.*?>)/&svgAddRect($box, $1)/seg;
+	$svg =~ s/(<svg\s.*?>)/&svgSetDimensions($box, $1)/seg;
+
+	# Write the new SVG file
+	open(F, '>', $htmlFolderName.'/'.$htmlFolderName.'.svg');
+	print F $svg;
+	close F;
+}
+
+sub svgAddRect($box, $tag) {
+	$tag =~ /\sx="(\d+)"/ || return $tag;
+	my $x = $1;
+	$tag =~ /\sy="(\d+)"/ || return $tag;
+	my $y = $1;
+	$tag =~ /\swidth="(\d+)"/ || return $tag;
+	my $width = $1;
+	$tag =~ /\sheight="(\d+)"/ || return $tag;
+	my $height = $1;
+
+	my $right = $x + $width;
+	my $bottom = $y + $height;
+
+	$box:left = $x if $box:left > $x;
+	$box:top = $y if $box:top > $y;
+	$box:right = $right if $box:right < $right;
+	$box:bottom = $bottom if $box:bottom < $bottom;
+
+	return $tag;
+}
+
+sub svgSetDimensions($box, $tag) {
+	my $width = $box:right + 20;
+	my $height = $box:bottom + 20;
+	$tag =~ s/\swidth="\d*"/ width="$width"/g;
+	$tag =~ s/\sheight="\d*"/ height="$height"/g;
+	return $tag;
+}
+
+sub error {
+	print @_, "\n";
+}
+
+package HtmlUI;
+
+sub new { bless {indent => 0, pre => 0, text => [], chapter => ''} }
+
+sub chapter($o) {
+	$o:chapter = join '', @_;
+}
+
+sub space($o) {
+	$o->stopPre;
+}
+
+sub title($o) {
+	$o->stopPre;
+	push @$o:text, '<h3>', @_, '</h3>', "\n";
+}
+
+sub p($o) {
+	$o->stopPre;
+	push @$o:text, '<p>', @_, '</p>', "\n";
+}
+
+sub line($o) {
+	my $text = join('', @_);
+	if ($o:indent || $text =~ /^cn\s+.*$/) {
+		$o->nextPreLine;
+		push @$o:text, $text;
+	} elsif ($text =~ /^\s+(.*)$/) {
+		my $text = $1;
+		$o->nextPreLine;
+		push @$o:text, $text;
+	} else {
+		$o->stopPre;
+		push @$o:text, '<p>', $text, '</p>', "\n";
+	}
+}
+
+sub command($o) {
+	my $text = join('', @_);
+	$text =~ s/([A-Z]+\*?)/<span class="im">$1<\/span>/g;
+	$o->nextPreLine;
+	push @$o:text, $text;
+}
+
+sub underlined($o) {
+	return '<i>'.join('', @_).'</i>';
+}
+
+sub blue($o) {
+	return '<i>'.join('', @_).'</i>';
+}
+
+sub bold($o) {
+	return '<b>'.join('', @_).'</b>';
+}
+
+sub a($o, $href; @text) {
+	my $text = scalar @_ ? join('', @_) : $href;
+	return '<a href="'.$href.'">'.$text.'</a>';
+}
+
+sub pushIndent($o) {
+	$o:indent += 1;
+}
+
+sub popIndent($o) {
+	$o->stopPre;
+	$o:indent -= 1;
+}
+
+sub nextPreLine($o) {
+	push @$o:text, $o:pre ? "\n" : '<div class="hscroll box"><pre>';
+	$o:pre = 1;
+}
+
+sub stopPre($o) {
+	return if ! $o:pre;
+	push @$o:text, '</pre></div>', "\n";
+	$o:pre = 0;
+}

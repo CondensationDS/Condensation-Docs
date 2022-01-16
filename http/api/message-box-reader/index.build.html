@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<? title = 'Message reader'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A message box reader reads messages from one or more message boxes, and passes them to a delegate for further processing.</p>
+
+	<h2>Instance creation</h2>
+	<div class="hscroll wide api java"><pre>MessageBoxReader messageBoxReader = new MessageBoxReader(keyPair, accountWithKey);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var messageBoxReader = new cn.MessageBoxReader(keyPair, accountWithKey);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $messageBoxReader = CN::MessageBoxReader-&gt;new($keyPair, $accountWithKey, $delegate);</pre></div>
+	<p>Creates a message reader for reading messages addressed to the key pair.</p>
+	<p class="todo">Perl uses structural delegates, i.e. the delegate is defined when creating the structure. Since it is single-threaded, the program flow is defined by the control flow. The Java implementation uses operation delegates. The delegate is passed with an asynchronous operation (e.g. read). The control flow returns immediately, and the program logic flow continues in one or more of the delegate functions.</p>
+
+	<h2>Reading messages</h2>
+	<div class="hscroll wide api java"><pre>messageBoxReader.read(delegate);</pre></div>
+	<div class="hscroll wide api javascript"><pre>messageBoxReader.read(accountWithKey);</pre></div>
+	<div class="hscroll wide api perl"><pre>$messageBoxReader-&gt;read($accountWithKey);</pre></div>
+	<p>Starts reading the message box of <i>account with key</i>, unless a read operation for that account is already ongoing.</p>
+	<p>A read operation first <a href="/api/store/#list">lists</a> the message box. If listing fails, <i>onInQueueListFailed</i> is called on the delegate, and the read operation stops immediately.</p>
+	<p>The reader then processes each message. Up to approximately 4 messages are processed in parallel.</p>
+	<p>For each message, the envelope is retrieved from the store and parsed. If the envelope is complete, <i>onInQueueVerifyStore</i> is called on the delegate to resolve the sender's store. If the delegate returns <i class="java javascript">null</i><i class="perl">undef</i>, the message is treated as <i>invalid</i>.</p>
+	<p>Otherwise, the sender's public key is retrieved from the store, the signature is verified, the AES key decrypted, and the content retrieved. </p>
+	<p>Once everything is ready <i>onInQueueMessage</i> is called for further processing.</p>
+
+
+	<p>When a read operation starts,  on the delegate, indicating the store. Similarly, <i>onInQueueReadingStarts</i> is called when the </p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>boolean isReading = messageBoxReader.isReading(store);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var isReading = messageBoxReader.isReading(store);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $isReading = $messageBoxReader-&gt;isReading($store);</pre></div>
+	<p>Indicates whether a read operation for the indicated store is ongoing.</p>
+
+	<h2 id="delegate">Implementing a delegate</h2>
+	<div class="hscroll wide api java"><pre>
+		@Override
+		public boolean onInQueueVerifyStore(HashReference source, Record envelope, String storeUrl) {
+			// Allow HTTP stores
+			return storeUrl.startsWith("http://") || storeUrl.startsWith("https://");
+		}
+
+		@Override
+		void onInQueueMessage(ReceivedMessage message) {
+			// Process the message, and call one of the following
+			message.processed();
+			message.remove();
+			message.failed(error);
+			message.postpone(Duration.MINUTE * 10);
+		}
+
+		@Override
+		void onInQueueMessageInvalid(HashReference source, String reason) {
+			// An invalid message was found. Such messages are deleted.
+			// This could be shown on the user interface, or logged.
+		}
+
+		@Override
+		void onInQueueMessageFailed(HashReference source, String error) {
+			// A message could not be retrieved due to a store error.
+			// Such messages are put on hold, and will be tried later.
+			// This could be shown on the user interface, or logged.
+		}
+
+		@Override
+		void onInQueueListFailed(AccountWithKey accountWithKey, String error) {
+			// Listing failed. This could be shown on the user interface.
+		}
+
+		@Override
+		void onInQueueReadingDone(AccountWithKey accountWithKey) {
+			// All messages have been read. This could be shown on the user interface.
+		}
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+	</pre></div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

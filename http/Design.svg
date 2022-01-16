@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1200"
+   height="1600"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Design.svg">
+  <defs
+     id="defs4">
+    <marker
+       style="overflow:visible"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="arrow000000">
+      <path
+         id="path2"
+         d="M -6,3 2,0 -6,-3 -5,0 Z"
+         style="fill:#000000"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-459.09573"
+     inkscape:cy="847.8738"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#faf9e6"
+       id="background"
+       width="1200"
+       height="1371"
+       x="0"
+       y="76"
+       inkscape:label="#rect4186" />
+    <rect
+       style="fill:#6bc55f;fill-opacity:1"
+       id="rect4218"
+       width="1200"
+       height="40"
+       x="0"
+       y="80" />
+    <rect
+       y="80"
+       x="165"
+       height="40"
+       width="95"
+       id="rect4554"
+       style="fill:#39812f;fill-opacity:1" />
+    <rect
+       style="fill:#333333"
+       id="header"
+       width="1200"
+       height="80"
+       x="0"
+       y="0"
+       inkscape:label="#rect4210" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:20px"
+       x="99"
+       y="496"
+       id="text4143"><tspan
+         sodipodi:role="line"
+         id="tspan4145"
+         x="99"
+         y="496">Condensation combines data storage and</tspan><tspan
+         sodipodi:role="line"
+         x="99"
+         y="516"
+         id="tspan4147">communication (sharing) all in one <tspan
+   style="-inkscape-font-specification:'Source Sans Pro Bold';font-weight:bold"
+   id="tspan4155">efficient</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="99"
+         y="536"
+         id="tspan4149"><tspan
+   style="-inkscape-font-specification:'Source Sans Pro Bold';font-weight:bold"
+   id="tspan4272">protocol</tspan>. It replaces <tspan
+   style="fill:#3f8de5;fill-opacity:1"
+   id="tspan4610">your document</tspan> folder,</tspan><tspan
+         sodipodi:role="line"
+         x="99"
+         y="556"
+         id="tspan4151">your e-mail, and your messenger. Plus, it's</tspan><tspan
+         sodipodi:role="line"
+         x="99"
+         y="576"
+         id="tspan4282">an excellent candidate for backup, archives,</tspan><tspan
+         sodipodi:role="line"
+         x="99"
+         y="596"
+         id="tspan4153">content distribution, and streaming.</tspan></text>
+    <text
+       id="text4236"
+       y="107"
+       x="100"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         id="tspan4238"
+         y="107"
+         x="100"
+         sodipodi:role="line">Stores</tspan></text>
+    <rect
+       y="1405"
+       x="0"
+       height="195"
+       width="1200"
+       id="footer"
+       style="fill:#ebe7ad"
+       inkscape:label="#rect4234" />
+    <rect
+       style="fill:#000000;opacity:0.03"
+       id="rect4244"
+       width="400"
+       height="145"
+       x="90"
+       y="647" />
+    <rect
+       y="805"
+       x="96"
+       height="145"
+       width="80"
+       id="gray"
+       style="fill:#333333"
+       inkscape:label="#rect4246" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro Bold';fill:#ffffff;font-family:'Source Sans Pro';font-size:25px;font-weight:bold"
+       x="100"
+       y="59"
+       id="text4258"><tspan
+         sodipodi:role="line"
+         x="100"
+         y="59"
+         id="tspan4260">Condensation</tspan></text>
+    <text
+       id="text4262"
+       y="59"
+       x="260"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         id="tspan4264"
+         y="59"
+         x="260"
+         sodipodi:role="line">Data System</tspan></text>
+    <rect
+       style="fill:#ffffff"
+       id="white"
+       width="80"
+       height="145"
+       x="180"
+       y="805"
+       inkscape:label="#rect4286" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px"
+       x="178"
+       y="107"
+       id="text4560"><tspan
+         sodipodi:role="line"
+         x="178"
+         y="107"
+         id="tspan4562">Selected</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px"
+       x="560"
+       y="59"
+       id="text4564"><tspan
+         sodipodi:role="line"
+         x="560"
+         y="59"
+         id="tspan4566">Specifications</tspan></text>
+    <rect
+       style="fill:#3f8de5;fill-opacity:1"
+       id="rect4572"
+       width="110"
+       height="30"
+       x="421"
+       y="38"
+       rx="15" />
+    <text
+       id="text4568"
+       y="59"
+       x="440"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         id="tspan4570"
+         y="59"
+         x="440"
+         sodipodi:role="line">Concepts</tspan></text>
+    <path
+       sodipodi:nodetypes="cccccccc"
+       style="fill:#000000"
+       d="M 62.5,96.5 57,102 h 2 v 5 h 7 v -5 h 2 z"
+       id="path4495"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="94"
+       y="1093"
+       id="text4143"><tspan
+         sodipodi:role="line"
+         x="94"
+         y="1093"
+         id="tspan4153">Source Sans Pro 18px</tspan></text>
+    <rect
+       y="1027"
+       x="855"
+       height="40"
+       width="80"
+       id="footer-9"
+       style="fill:#ebe7ad"
+       inkscape:label="#rect4234" />
+    <rect
+       y="1027"
+       x="263"
+       height="40"
+       width="80"
+       id="gray-1"
+       style="fill:#bbbbbb"
+       inkscape:label="#rect4246" />
+    <rect
+       style="fill:#ffffff"
+       id="white-2"
+       width="80"
+       height="40"
+       x="347"
+       y="1027"
+       inkscape:label="#rect4286" />
+    <text
+       id="text4248"
+       y="1093"
+       x="294"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         id="tspan4250"
+         y="1093"
+         x="294"
+         sodipodi:role="line">Source Sans Pro 13px</tspan></text>
+    <path
+       id="path5371"
+       style="fill:#bbbbbb;fill-rule:evenodd"
+       d="m 569,1076 5,5 5,-5 v 18 l -5,5 -5,-5 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       id="path5321"
+       style="fill:#bbbbbb;fill-rule:evenodd"
+       d="m 625,1093 -5,-5 5,-5 h -18 l -5,5 5,5 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       d="m 542,1093 5,-5 -5,-5 h 18 l 5,5 -5,5 z"
+       style="fill:#bbbbbb;fill-rule:evenodd"
+       id="path5425" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       d="m 589,1099 5,-5 5,5 v -18 l -5,-5 -5,5 z"
+       style="fill:#bbbbbb;fill-rule:evenodd"
+       id="path5443" />
+    <path
+       style="fill:#ff0000"
+       d="m 530.00001,1082 -2,2 3,3 -3,3 2,2 3,-3 3,3 2,-2 -3,-3 3,-3 -2,-2 -3,3 z"
+       id="rect3001"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccc" />
+    <path
+       style="stroke:#000000;stroke-width:1px;marker-end:url(#arrow000000)"
+       d="m 484.00001,1086.5 h 29"
+       id="path3990"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       inkscape:label="#rect4246"
+       style="fill:#333333"
+       id="rect4578"
+       width="80"
+       height="40"
+       x="179"
+       y="1027" />
+    <rect
+       y="1027"
+       x="95"
+       height="40"
+       width="80"
+       id="rect4580"
+       style="fill:#000000"
+       inkscape:label="#rect4246" />
+    <rect
+       inkscape:label="#rect4242"
+       y="1027"
+       x="599"
+       height="40"
+       width="80"
+       id="rect855"
+       style="fill:#e5473f;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4630"
+       style="fill:#c5231b;fill-opacity:1"
+       id="rect857"
+       width="24"
+       height="40"
+       x="599"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4632"
+       y="1027"
+       x="599"
+       height="40"
+       width="9"
+       id="rect859"
+       style="fill:#9b1b15;fill-opacity:1" />
+    <rect
+       style="fill:#e5473f;fill-opacity:1"
+       id="rect867"
+       width="80"
+       height="40"
+       x="338"
+       y="894"
+       inkscape:label="#rect4242" />
+    <rect
+       inkscape:label="#rect4240"
+       style="fill:#e5b83f;fill-opacity:1"
+       id="rect869"
+       width="80"
+       height="40"
+       x="378.00006"
+       y="854" />
+    <rect
+       inkscape:label="#rect4646"
+       y="813.99988"
+       x="378.00006"
+       height="40"
+       width="80"
+       id="rect873"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4628"
+       style="fill:#3f8de5;fill-opacity:1"
+       id="rect875"
+       width="80"
+       height="40"
+       x="298.00006"
+       y="813.99988" />
+    <rect
+       inkscape:label="#rect4214"
+       y="854"
+       x="298.00006"
+       height="40"
+       width="80"
+       id="rect877"
+       style="fill:#9549db;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4628"
+       style="fill:#3f8de5;fill-opacity:1"
+       id="rect881"
+       width="80"
+       height="40"
+       x="767"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4642"
+       y="1027"
+       x="767"
+       height="40"
+       width="24"
+       id="rect883"
+       style="fill:#1b6bc5;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4644"
+       style="fill:#15549b;fill-opacity:1"
+       id="rect885"
+       width="9"
+       height="40"
+       x="767"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4646"
+       y="1027"
+       x="431"
+       height="40"
+       width="80"
+       id="rect887"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4648"
+       style="fill:#48a43c;fill-opacity:1"
+       id="rect889"
+       width="24"
+       height="40"
+       x="431"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4650"
+       y="1027"
+       x="431"
+       height="40"
+       width="9"
+       id="rect891"
+       style="fill:#39812f;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4240"
+       style="fill:#e5b83f"
+       id="rect895"
+       width="80"
+       height="40"
+       x="515"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4550"
+       y="1027"
+       x="515"
+       height="40"
+       width="24"
+       id="rect897"
+       style="fill:#c5971b" />
+    <rect
+       inkscape:label="#rect4552"
+       style="fill:#9b7715"
+       id="rect899"
+       width="9"
+       height="40"
+       x="515"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4214"
+       y="1027"
+       x="683"
+       height="40"
+       width="80"
+       id="rect901"
+       style="fill:#9549db;fill-opacity:1" />
+    <rect
+       inkscape:label="#rect4638"
+       style="fill:#7325bb;fill-opacity:1"
+       id="rect903"
+       width="24"
+       height="40"
+       x="683"
+       y="1027" />
+    <rect
+       inkscape:label="#rect4640"
+       y="1027"
+       x="683"
+       height="40"
+       width="9"
+       id="rect905"
+       style="fill:#5a1d93;fill-opacity:1" />
+  </g>
+</svg>

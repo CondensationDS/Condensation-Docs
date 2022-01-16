@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="580"
+   height="250"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="MessageEnvelope.svg">
+  <defs
+     id="defs3876">
+    <marker
+       id="arrow000000"
+       refX="0"
+       refY="0"
+       orient="auto"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:#000000"
+         d="M -6,2.5 2,0 -6,-2.5 -5,0 Z"
+         id="path2" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-124.753"
+     inkscape:cy="174.115"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-global="false"
+     inkscape:measure-start="0,0"
+     inkscape:measure-end="0,0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1556"
+       d="m 415,144 c -97.47587,0 -144.8778,5.8778 -215,76"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 2;stroke-dashoffset:0;marker-end:url(#arrow000000)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 2;stroke-dashoffset:0;marker-end:url(#arrow000000)"
+       d="m 415,140 c -260.12689,0 -279.12429,7.29535 -378,81"
+       id="path1558"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       y="40"
+       x="0"
+       height="30"
+       width="30"
+       id="rect5792"
+       style="fill:#3f8de5" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="m 15,136 v 16"
+       id="path5794"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="translate(-60,100)"
+       id="g5884">
+      <rect
+         style="fill:#6bc55f"
+         id="rect5876"
+         width="30"
+         height="30"
+         x="60"
+         y="0" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:2"
+         d="m 60,0 c 15.070552,15.07055 11.064875,15 15,15 3.935125,0 0.02178,-0.0218 15,-15"
+         id="path5878"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="czc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px"
+         d="M 62,28 70,15"
+         id="path5880"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path5882"
+         d="M 88,28 80,15"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path5888"
+       d="M 15,76 V 92"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#3f8de5"
+       id="rect5890"
+       width="30"
+       height="30"
+       x="160"
+       y="40" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5892"
+       d="m 175,136 v 16"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       sodipodi:nodetypes="cc" />
+    <rect
+       y="160"
+       x="160"
+       height="30"
+       width="30"
+       id="rect5962"
+       style="fill:#6bc55f" />
+    <g
+       id="g5982"
+       transform="translate(100,100)">
+      <rect
+         y="0"
+         x="60"
+         height="30"
+         width="30"
+         id="rect5974"
+         style="fill:#6bc55f" />
+      <path
+         sodipodi:nodetypes="czc"
+         inkscape:connector-curvature="0"
+         id="path5976"
+         d="m 60,0 c 15.070552,15.07055 11.064875,15 15,15 3.935125,0 0.02178,-0.0218 15,-15"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:2" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path5978"
+         d="M 62,28 70,15"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px"
+         d="M 88,28 80,15"
+         id="path5980"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="M 175,76 V 92"
+       id="path5986"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="40"
+       y="61"
+       id="text5990"><tspan
+         sodipodi:role="line"
+         id="tspan5988"
+         x="40"
+         y="61">Private box</tspan></text>
+    <text
+       id="text5994"
+       y="61"
+       x="200"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         y="61"
+         x="200"
+         id="tspan5992"
+         sodipodi:role="line">Public box</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       x="200"
+       y="181"
+       id="text5998"><tspan
+         sodipodi:role="line"
+         id="tspan5996"
+         x="200"
+         y="181">Card</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       d="m 175,196 v 16"
+       id="path6000"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#6bc55f"
+       id="rect6002"
+       width="30"
+       height="30"
+       x="160"
+       y="220" />
+    <text
+       id="text6016"
+       y="241"
+       x="200"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         y="241"
+         x="200"
+         id="tspan6014"
+         sodipodi:role="line">Public key</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="40"
+       y="241"
+       id="text6030"><tspan
+         sodipodi:role="line"
+         id="tspan6028"
+         x="40"
+         y="241">Message data</tspan></text>
+    <rect
+       y="40"
+       x="380"
+       height="30"
+       width="30"
+       id="rect6060"
+       style="fill:#3f8de5" />
+    <g
+       transform="translate(320,100)"
+       id="g6070">
+      <rect
+         style="fill:#6bc55f"
+         id="rect6062"
+         width="30"
+         height="30"
+         x="60"
+         y="0" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:2"
+         d="m 60,0 c 15.070552,15.07055 11.064875,15 15,15 3.935125,0 0.02178,-0.0218 15,-15"
+         id="path6064"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="czc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px"
+         d="M 62,28 70,15"
+         id="path6066"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path6068"
+         d="M 88,28 80,15"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-opacity:0.5;stroke-width:1px" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path6072"
+       d="M 395,76 V 92"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="420"
+       y="61"
+       id="text6076"><tspan
+         sodipodi:role="line"
+         id="tspan6074"
+         x="420"
+         y="61">Message box</tspan></text>
+    <text
+       id="text6080"
+       y="121"
+       x="420"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px"
+       xml:space="preserve"><tspan
+         y="121"
+         x="420"
+         id="tspan6078"
+         sodipodi:role="line">Message envelope</tspan></text>
+    <text
+       id="text6084"
+       y="21"
+       x="380"
+       style="-inkscape-font-specification:'Source Sans Pro Bold';fill:#000000;font-family:'Source Sans Pro';font-size:18px;font-weight:bold"
+       xml:space="preserve"><tspan
+         y="21"
+         x="380"
+         id="tspan6082"
+         sodipodi:role="line">Recipient's account</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro Bold';fill:#000000;font-family:'Source Sans Pro';font-size:18px;font-weight:bold"
+       x="0"
+       y="21"
+       id="text6088"><tspan
+         sodipodi:role="line"
+         id="tspan6086"
+         x="0"
+         y="21">Sender's account (and store)</tspan></text>
+    <text
+       id="text1061"
+       y="181"
+       x="15"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="181"
+         x="15"
+         id="tspan1059"
+         sodipodi:role="line">...</tspan></text>
+    <g
+       id="g1085"
+       transform="translate(-40,270)">
+      <rect
+         style="fill:#6bc55f"
+         id="rect1075"
+         width="30"
+         height="30"
+         x="40"
+         y="-50" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         style="fill:#ffffff;opacity:0.25"
+         d="M 60,-50 45,-20 H 40 L 55,-50 Z"
+         id="path1077"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         style="fill:#ffffff;opacity:0.25"
+         d="M 70,-50 55,-20 H 50 L 65,-50 Z"
+         id="path1079"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#ffffff;opacity:0.25"
+         d="m 70,-40 -10,20 h 5 l 5,-10 z"
+         id="path1081"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#ffffff;opacity:0.25"
+         d="m 45,-50 -5,10 v 10 l 10,-20 z"
+         id="path1083"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path1087"
+       d="m 15,196 v 16"
+       style="fill:none;marker-end:url(#arrow000000);stroke:#000000;stroke-linecap:butt;stroke-width:1px"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#6bc55f"
+       id="rect876"
+       width="15"
+       height="15"
+       x="420"
+       y="134" />
+    <text
+       id="text880"
+       y="147"
+       x="440"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         y="147"
+         x="440"
+         id="tspan878"
+         sodipodi:role="line">Content object</tspan></text>
+  </g>
+</svg>

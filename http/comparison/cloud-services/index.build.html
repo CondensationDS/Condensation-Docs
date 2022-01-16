@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<? title = 'Condensation vs. cloud services'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Cloud storage is ubiquitous, and has a lot of practical advantages. Users have access to their data anywhere, at any time, and on all their devices. Condensation offers all these advantages, too, but uses a different model.</p>
+
+	<h2>Common cloud model</h2>
+	<p>Common cloud storage services encrypt the data for transmission, but decrypt it on the server. Data transformation such as indexing is carried out on the server, and index queries require a connection to the server:</p>
+	<p><? svgFile('CloudModel.svg') ?></p>
+	<p>Data sharing is implemented using access rights management on the server.</p>
+	<p>Note that some cloud storage services re-encrypt the data on their storage systems. This offers some security benefits to the provider, but does not substantially increase data security for the user.</p>
+
+	<h2>Condensation model</h2>
+	<p>Condensation relies on end-to-end encryption:</p>
+	<p><? svgFile('CondensationModel.svg') ?></p>
+	<p>The server is used for storage only. It does not possess the encryption keys, and therefore cannot decrypt the data.</p>
+	<p>Data transformations are carried out on the client, and the result (e.g., the index) is end-to-end encrypted and stored just like any other data. As a side effect, index queries can be performed locally.</p>
+	<p>Data sharing is implemented through a message passing scheme. The sender thereby encrypts the data using the public key of the receiver rather than his own public key.</p>
+	<p>Similarly, data can be sent to (trusted) remote services for processing.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::Select. Do not edit the content here. -->
+<? title = 'Select'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn select</pre></div>
+<p>Shows the current selection.</p>
+<div class="hscroll box"><pre>cn select <span class="im">KEYPAIR</span></pre></div>
+<p>Selects KEYPAIR on this terminal. Some commands will use this key pair by default.</p>
+<div class="hscroll box"><pre>cn unselect key pair</pre></div>
+<p>Removes the key pair selection.</p>
+<div class="hscroll box"><pre>cn select <span class="im">STORE</span></pre></div>
+<p>Selects STORE on this terminal. Some commands will use this store by default.</p>
+<div class="hscroll box"><pre>cn unselect store</pre></div>
+<p>Removes the store selection.</p>
+<div class="hscroll box"><pre>cn select <span class="im">ACTOR</span></pre></div>
+<p>Selects ACTOR on this terminal. Some commands will use this store by default.</p>
+<div class="hscroll box"><pre>cn unselect actor</pre></div>
+<p>Removes the actor selection.</p>
+<div class="hscroll box"><pre>cn unselect</pre></div>
+<p>Removes any selection.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="select.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="select.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="180"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="ModifySignature.svg">
+  <defs
+     id="defs3876" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-404.36064"
+     inkscape:cy="335.20968"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3759"
+     inkscape:window-height="2131"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       y="36"
+       x="210"
+       height="28"
+       width="168"
+       id="rect3025"
+       style="opacity:0.1;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       x="294"
+       y="56"
+       id="text3015"><tspan
+         sodipodi:role="line"
+         id="tspan3017"
+         x="294"
+         y="56">Condensation-Date</tspan></text>
+    <rect
+       style="opacity:0.1;fill:#000000"
+       id="rect3034"
+       width="28"
+       height="28"
+       x="380"
+       y="36" />
+    <text
+       id="text3036"
+       y="56"
+       x="394"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#c5231b"
+       xml:space="preserve"><tspan
+         y="56"
+         x="394"
+         id="tspan3038"
+         sodipodi:role="line">0</tspan></text>
+    <rect
+       y="36"
+       x="490"
+       height="28"
+       width="28"
+       id="rect3046"
+       style="opacity:0.1;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#c5231b"
+       x="504"
+       y="56"
+       id="text3048"><tspan
+         sodipodi:role="line"
+         id="tspan3050"
+         x="504"
+         y="56">0</tspan></text>
+    <text
+       id="text3078"
+       y="14"
+       x="449"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;opacity:0.5;fill:#000000"
+       xml:space="preserve"><tspan
+         y="14"
+         x="449"
+         sodipodi:role="line"
+         id="tspan3086">POST</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="0"
+       y="56"
+       id="text3088"><tspan
+         sodipodi:role="line"
+         id="tspan3090"
+         x="0"
+         y="56"><tspan
+   style="fill:#48a43c"
+   id="tspan3184">Hash to sign</tspan> ⇐ <tspan
+   style="fill:#7325bb"
+   id="tspan3182">SHA-256 of</tspan></tspan></text>
+    <path
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt"
+       d="M 294,18 V 33"
+       id="path3106"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt"
+       d="M 449,18 V 33"
+       id="path3108"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       y="36"
+       x="520"
+       height="28"
+       width="78"
+       id="rect3124"
+       style="opacity:0.1;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       x="559"
+       y="56"
+       id="text3126"><tspan
+         sodipodi:role="line"
+         id="tspan3128"
+         x="559"
+         y="56">Host</tspan></text>
+    <rect
+       y="36"
+       x="600"
+       height="28"
+       width="78"
+       id="rect3136"
+       style="opacity:0.1;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       x="639"
+       y="56"
+       id="text3138"><tspan
+         sodipodi:role="line"
+         id="tspan3140"
+         x="639"
+         y="56">Path</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;line-height:1;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;opacity:0.5;fill:#000000"
+       x="559"
+       y="99"
+       id="text3164"><tspan
+         sodipodi:role="line"
+         x="559"
+         y="99"
+         id="tspan3170">condensation.io</tspan><tspan
+         sodipodi:role="line"
+         x="559"
+         y="112"
+         id="tspan3168">localhost:8080</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;opacity:0.5;fill:#000000"
+       x="639"
+       y="99"
+       id="text3172"><tspan
+         sodipodi:role="line"
+         x="639"
+         y="99"
+         id="tspan3178">/accounts</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3190"
+       d="M 639,87 V 67"
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt" />
+    <text
+       id="text3206"
+       y="142"
+       x="0"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         y="142"
+         x="0"
+         id="tspan3208"
+         sodipodi:role="line"><tspan
+           id="tspan3210"
+           style="fill:#48a43c">Key <tspan
+   style="fill:#000000"
+   id="tspan3216">⇐</tspan><tspan
+   style="fill:#7325bb"
+   id="tspan3214"> Private key of </tspan>Condensation-Actor</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;opacity:0.5;fill:#000000"
+       x="504"
+       y="14"
+       id="text3232"><tspan
+         sodipodi:role="line"
+         id="tspan3234"
+         x="504"
+         y="14">Byte 0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="0"
+       y="168"
+       id="text3240"><tspan
+         sodipodi:role="line"
+         id="tspan3242"
+         x="0"
+         y="168"><tspan
+           style="fill:#48a43c"
+           id="tspan3244">Condensation-Signature <tspan
+   id="tspan3246"
+   style="fill:#000000">⇐</tspan><tspan
+   id="tspan3248"
+   style="fill:#7325bb"> RSA/PSS signature of </tspan>Hash to sign <tspan
+   id="tspan3250"
+   style="fill:#7325bb">using</tspan> Key</tspan></tspan></text>
+    <rect
+       style="opacity:0.1;fill:#000000"
+       id="rect3062"
+       width="28"
+       height="28"
+       x="680"
+       y="36" />
+    <text
+       id="text3064"
+       y="56"
+       x="694"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#c5231b"
+       xml:space="preserve"><tspan
+         y="56"
+         x="694"
+         id="tspan3066"
+         sodipodi:role="line">0</tspan></text>
+    <rect
+       y="36"
+       x="710"
+       height="28"
+       width="88"
+       id="rect3068"
+       style="opacity:0.1;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       x="754"
+       y="56"
+       id="text3070"><tspan
+         sodipodi:role="line"
+         id="tspan3072"
+         x="754"
+         y="56">Post data</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3083"
+       d="M 504,18 V 33"
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3085"
+       d="M 559,89 V 67"
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt" />
+    <rect
+       style="opacity:0.1;fill:#000000"
+       id="rect3087"
+       width="78"
+       height="28"
+       x="410"
+       y="36" />
+    <text
+       id="text3089"
+       y="56"
+       x="449"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       xml:space="preserve"><tspan
+         y="56"
+         x="449"
+         id="tspan3091"
+         sodipodi:role="line">Method</tspan></text>
+    <text
+       id="text4217"
+       y="14"
+       x="294"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;opacity:0.5;fill:#000000"
+       xml:space="preserve"><tspan
+         y="14"
+         x="294"
+         sodipodi:role="line"
+         id="tspan4197"> 2013-12-11T16:04:22.000Z</tspan></text>
+  </g>
+</svg>

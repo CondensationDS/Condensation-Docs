@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<? title = 'Entrusted actors'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>An actor may entrust other actors. Entrustees have read access to the private data and messages of the actor at any point in time.</p>
+	<p>Entrusted actors are used when data should remain accessible, but does not need to be actively shared.</p>
+	<p>An employee may entrust his company, for example. Under normal circumstances, the company does not need to access an employees data directly. Instead, the employee should share with peers or partners whatever is needed through messages. However, there are cases where this does not work. If an employee unexpectedly quits or dies, for example, his data may need to be accessed directly.</p>
+	<p>For similar reasons, a user may want to entrust a close friend.</p>
+	<p>In addition, users collaborating on the same project may entrust a third party organization, such as a notary, who could access the data upon presentation of a search warrant.</p>
+
+	<h2>Private data</h2>
+	<p>When writing a new version of the private data, the actor adds all entrustees as recipients on the envelope. They are not explicitly notified of the change, but can list the actor's private box and decrypt the data at any time.</p>
+
+	<h2>Messages</h2>
+	<p>On message envelopes, entrustees are added as additional recipients, but the message is not placed into their message boxes.</p>
+	<p>The sender should add both its own entrustees as well as the entrustees of the recipients, which are listed on their <a href="/actors/public-card/">public cards</a>.</p>
+
+	<h2>Recovery</h2>
+	<p>When necessary, the entrustee accesses the actor's account, and decrypts the private data and message envelopes with its own key.</p>
+
+	<h2>Offline keys and air-gapped recovery</h2>
+	<p>Private keys of entrusted accounts can be stored offline until the data needs to be accessed. If incidents are rare, the private key may be stored on a piece of paper and/or memory stick in a vault, for example.</p>
+	<p>Data can later be recovered on an offline (<a href="https://en.wikipedia.org/wiki/Air_gap_%28networking%29">air-gapped</a>) system as follows:</p>
+	<div class="hscroll indent"><? svgFile('OfflineDecryption.svg') ?></div>
+	<ol>
+		<li>Set up a temporary offline system. This system only needs a subset of Condensation, namely a <a href="/serialization/record/">record</a> parser and serializer, an <a href="/serialization/object/">object</a> parser and serializer, as well as RSA encryption and decryption.</li>
+		<li>Copy the original envelope onto the offline system.</li>
+		<li>Create a new actor, and copy its public key onto the offline system.</li>
+		<li>Transfer the private key from the vault onto the offline system.</li>
+		<li>On the offline system, decrypt the AES key from the original envelope, and re-encrypt it for the new actor. The rest of the envelope remains as-is.</li>
+		<li>Retrieve the new envelope.</li>
+		<li>Destroy the offline system.</li>
+		<li>Let the new actor sign the new envelope, and attach it to its private box.</li>
+	</ol>
+	<p>The data itself does not need to be transferred to the offline system.</p>
+	<p>The offline system may be as simple as a microcontroller. For this very specific application, no full-blown operating system is needed.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

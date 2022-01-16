@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<? title = 'HTTP/PHP/files'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>A <a href="/stores/http/">Condensation HTTP store</a> for any PHP-enabled web server. Accounts and objects are stored on the <a href="/stores/folder/">file system</a>. A simple admin interface allows to view and remove accounts, and run garbage collection.</p>
+
+	<h2>Download</h2>
+	<p>2016-05-13 &ndash; <a href="2016-05-13-condensation-store-php-files.zip">condensation-store-php-files.zip</a></p>
+
+	<h2>Notes</h2>
+	<p>Copy the scripts into onto your web server, and configure the store folder in <i>configuration.inc.php</i>.</p>
+	<p>The package contains two main scripts:</p>
+	<ul>
+		<li><i>store.php</i> with the actual store implementation</li>
+		<li><i>admin.php</i> with an admin interface</li>
+	</ul>
+	<p>Make sure that the admin interface is <i>not</i> accessible to the public.</p>
+	<p>Configure your webserver such that all URLs starting with</p>
+	<pre style="margin-left:20px">http://your-server.com/path/store.php/...</pre>
+	<p>are passed to store.php. Similarly, all</p>
+	<pre style="margin-left:20px">http://your-server.com/path/admin.php/...</pre>
+	<p>URLs should be handled by admin.php. Many web servers are configured like that already.</p>
+	<p>The scripts require following server variables:</p>
+	<table class="text">
+		<tr>
+			<td>REQUEST_METHOD</td>
+			<td>HTTP request method with uppercase letters, e.g. GET</td>
+		</tr>
+		<tr>
+			<td>REQUEST_URI</td>
+			<td>the full path, e.g. /path/to/admin.php/accounts/</td>
+		</tr>
+		<tr>
+			<td>PATH_INFO</td>
+			<td>(optional) the sub path, e.g. /accounts/</td>
+		</tr>
+	</table>
+	<p>If the PATH_INFO variable is not available, the sub path is derived from the request URI. If you are passing different variables to your PHP script, adapt the code in <i>utilities.inc.php</i> accordingly.</p>
+
+	<h2>Signatures</h2>
+	<p>The store currently does not verify signatures.</p>
+
+	<h2>Store URL</h2>
+	<p>The store URL to be passed to Condensation is:</p>
+	<pre style="margin-left:20px">http://your-server.com/path/store.php</pre>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

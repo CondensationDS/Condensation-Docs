@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<? title = 'In-memory store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('In-Memory Store');
+	</script>
+
+	<p>A store that keeps small amount of objects and accounts in memory. It is often used as a temporary store before objects are copied onto a permanent store.</p>
+
+	<h2 id="new">Instance creation</h2>
+	<div class="hscroll api java"><pre>InMemoryStore inMemoryStore = InMemoryStore.create();</pre></div>
+	<div class="hscroll api javascript"><pre>var inMemoryStore = cn.createInMemoryStore();</pre></div>
+	<div class="hscroll api perl"><pre>my $inMemoryStore = CN::InMemoryStore-&gt;create;</pre></div>
+	<p>Create a new in-memory store. The ID is set to "inMemoryStore:" followed by a random sequence.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>InMemoryStore inMemoryStore = new InMemoryStore(id);</pre></div>
+	<div class="hscroll api javascript"><pre>var inMemoryStore = new cn.InMemoryStore(id);</pre></div>
+	<div class="hscroll api perl"><pre>my $inMemoryStore = CN::InMemoryStore-&gt;new($id);</pre></div>
+	<p>Instantiates an in-memory store with a specific ID.</p>
+
+	<h2 id="store-access">Store behavior</h2>
+	<p>The store maintains a list of accounts, and list of objects in memory. All <a href="/api/store/#store-interface">store request</a> are handled through these lists.</p>
+
+	<h2 id="synchronous-store-access">Synchronous store access</h2>
+	<p>Objects and accounts can be accessed synchronously. The interface is slightly different from the standard store interface.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>CondensationObject object = inMemoryStore.get(hash);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var object = inMemoryStore.get(hash);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $object = $inMemoryStore-&gt;get($hash);</pre></div>
+	<p>Retrieves an object. If the object does not exist, <i class="java javascript">null</i><i class="perl">undef</i> is returned.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>boolean booked = inMemoryStore.book(hash);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var booked = inMemoryStore.book(hash);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $booked = $inMemoryStore-&gt;book($hash);</pre></div>
+	<p>Books an object, and returns whether the object exists on the store.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>inMemoryStore.put(hash, object);</pre></div>
+	<div class="hscroll wide api javascript"><pre>inMemoryStore.put(hash, object);</pre></div>
+	<div class="hscroll wide api perl"><pre>$inMemoryStore-&gt;put($hash, $object);</pre></div>
+	<p>Adds an object to the store.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>ArrayList&lt;Hash&gt; hashes = inMemoryStore.list(accountHash, boxLabel);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var hashes = inMemoryStore.list(accountHash, boxLabel);</pre></div>
+	<div class="hscroll wide api perl"><pre>var $hashes = $inMemoryStore-&gt;list($accountHash, $boxLabel);</pre></div>
+	<p>Lists a box. Unless an invalid box label is provided, the operation always succeeds.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>boolean success = inMemoryStore.add(accountHash, boxLabel, hash);</pre></div>
+	<div class="hscroll wide api javascript"><pre>var success = inMemoryStore.add(accountHash, boxLabel, hash);</pre></div>
+	<div class="hscroll wide api perl"><pre>my $success = $inMemoryStore-&gt;add($accountHash, $boxLabel, $hash);</pre></div>
+	<p>Adds a hash to a box. The operation always succeeds unless an invalid box label is provided.</p>
+
+	<div class="space"></div>
+	<div class="hscroll wide api java"><pre>inMemoryStore.remove(accountHash, boxLabel, hash);</pre></div>
+	<div class="hscroll wide api javascript"><pre>inMemoryStore.remove(accountHash, boxLabel, hash);</pre></div>
+	<div class="hscroll wide api perl"><pre>$inMemoryStore-&gt;remove($accountHash, $boxLabel, $hash);</pre></div>
+	<p>Removes a hash from a box.</p>
+
+	<h2 id="garbage-collection">Garbage collection</h2>
+	<div class="hscroll wide api java"><pre>inMemoryStore.collectGarbage(System.currentTimeMillis() - 3600 * 1000);</pre></div>
+	<div class="hscroll wide api javascript"><pre>inMemoryStore.collectGarbage(new Date().getTime() - 3600 * 1000);</pre></div>
+	<div class="hscroll wide api perl"><pre>$inMemoryStore-&gt;collectGarbage((time() - 3600) * 1000);</pre></div>
+	<p>Removes unused objects and empty accounts. All objects reachable from a box, as well as all objects that have been put or booked after the given limit time are kept in the store, while other objects are removed. Empty accounts are removed as well.</p>
+	<p>Note that this runs synchronously on the calling thread.</p>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

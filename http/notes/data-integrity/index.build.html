@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<? title = 'Data integrity'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>Object <a href="/serialization/tree/">trees</a> are <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle hash trees</a>: each <a href="/serialization/object/">object</a> includes the <a href="https://en.wikipedia.org/wiki/SHA-256">SHA-256</a> hashes of all children.</p>
+	<p>The integrity of such trees can be checked by verifying the SHA-256 hash of all objects, usually starting with the root object. This is often done automatically, after loading objects from a store, but can also be done manually.</p>
+	<p>Hence, the integrity of a whole tree can be verified knowing only the hash of the root object (tree hash). Conversely, modifying any data in the tree will <a href="/notes/hash-collisions/">almost certainly</a> change its root hash.</p>
+
+	<h2>Manual integrity check</h2>
+	<p>An object's integrity can be checked using command line tools like <i>curl</i>, <i>wget</i>, <i>shasum</i>, <i>sha256sum</i>, or <i>openssl sha256</i>:</p>
+	<div class="hscroll box wide">
+		<pre>&gt&gt&gt <b>curl</b> http://condensation.io/objects/<span style="color: #e5473f">b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</span> &gt; object&nbsp;&nbsp;
+...
+&gt&gt&gt <b>shasum</b> -a 256 object
+<span style="color: #9549db">b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</span> object</pre>
+	</div>
+	<p>If the SHA-256 sum (red) matches the object hash (violet), the object is valid.</p>
+	<p>To verify a whole tree, repeat the above procedure for all objects of the tree.</p>
+
+	<h2>Periodic integrity checks</h2>
+	<p>A store may asynchronously check the integrity of the user's data &ndash; e.g. as part of garbage collection &ndash; and notify the user about data loss if necessary.</p>
+
+	<h2>Error causes</h2>
+	<p>A wrong object hash could have one of the following causes:</p>
+	<ul>
+		<li>Storage error: the object bytes read from the storage system are not the same as those written earlier.</li>
+		<li>Transmission error: the object bytes received are not the same as those sent.</li>
+		<li>Malicious modification: an attacker has modified objects on the storage system or during transmission.</li>
+	</ul>
+	<p>To thwart attacks, the whole subtree below a faulty object must be considered faulty, and discarded.</p>
+
+	<h2>Security considerations</h2>
+	<p>The SHA-256 algorithm is believed to have a collision resistance of about 248 bits against attacks, and a false positive rate of 2<sup>‒256</sup> with random errors.</p>
+	<p>Root hashes are stored in <a href="/actors/envelope/">envelopes</a>, and signed. RSA 2048 signatures provide about 120 to 150 bits of security.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

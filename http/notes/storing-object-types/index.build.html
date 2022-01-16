@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<? title = 'Storing object types'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">mature</span></h1>
+
+	<p>On file systems, file name extensions are used to define the type of a file. In addition, many file formats write a <a href="https://en.wikipedia.org/wiki/File_format#Magic_number">magic number</a> somewhere close to the beginning of the file, allowing them to be recognized by reading the first few bytes.</p>
+
+	<p>Condensation does not store any type along with an object. Type information is supposed to be stored (implicitly or explicitly) in the parent object.</p>
+
+	<p>Since objects are encrypted, it would not make a lot of sense to store type information with the object itself, because:</p>
+	<ul>
+		<li>Leaving the object type unencrypted may leak information about the content.</li>
+		<li>Encrypting the object type would make it accessible through the parent object (which contains the encryption key) only. Hence, type information can be stored in the parent object as well.</li>
+	</ul>
+
+	<p>The type of root objects, i.e. objects with an envelope as parent, is given by the box type:</p>
+	<ul>
+		<li>The <i>message box</i> always contains <a href="/actors/envelope/">envelopes</a> referencing a message <a href="/serialization/record/">record</a>. Message records must implicitly or explicitly specify the message type.</li>
+		<li>The content of the <i>private box</i> is appplication specific. Since this box is always used by the same application, there is no need to store explicit type information.</li>
+		<li>The <i>public box</i> always contains an envelope referencing a <a href="/actors/public-card/">public card</a>.</li>
+	</ul>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<? title = 'Actors'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<h2 id="public-card">Announcing the public card</h2>
+	<p>On each account, an actor publishes and updates public information:</p>
+	<div class="hscroll indent"><? svgFile('PublicCard.svg') ?></div>
+	<p>The <a href="/actors/public-card/">public card</a> links the actor's public key. This allows others to send messages to this actor, or verify signatures of messages received from this actor.</p>
+	<p>The card also lists <a href="#actor-groups">actor group</a> members, and the <a href="#entrusted-actors">keys it entrusts</a>.</p>
+	<p>In addition, the public card may contain other public information. A person may publish their name and profession &mdash; just like they would do on a business card &mdash; and a shop may link a tree with their product list.</p>
+	<p>An actor may update this information at any time by creating a new public card, and removing the old one.</p>
+
+	<h2 id="send-message">Sending a message</h2>
+	<p>To send a message, an actor (sender) prepares a message tree with the desired content:</p>
+	<div class="hscroll indent"><? svgFile('MessageTree.svg') ?></div>
+	<p>The envelope is then submitted to the recipient's message box, while the rest of the tree is uploaded onto a publicly accessible store of the sender:</p>
+	<div class="hscroll indent"><? svgFile('MessageSubmission.svg') ?></div>
+	<p>To prevent the message data from being <a href="/stores/store/#garbage-collection">garbage collected</a>, it is attached to the sender's private data for some time, e.g. through a <a href="/actor-with-data-tree/sent-list">sent list</a>.</p>
+
+	<h2 id="update-message">Updating a message</h2>
+	<p>The sender, or any recipient may remove a message from the message box. To share some data, for example, a sender may post a first message, and replace it whenever the data changes:</p>
+	<div class="hscroll indent"><? svgFile('MessageUpdate.svg') ?></div>
+	<p>The actual data is transferred only when the recipient reads the message.</p>
+
+	<h2 id="read-messages">Reading messages</h2>
+	<p>An actor reads messages by listing its message box(es), and processing message by message.</p>
+	<p>For each message, the actor first downloads the envelope from its own store, verifies the signature and the indicated store, and decrypts the AES key. If anything goes wrong, the message is silently discarded. Depending on the application, an actor may allow messages from known senders or known stores only.</p>
+	<p>The actor then downloads the actual message object(s) from the sender's store, and <a href="/forward-moving-data/forward-moving/">merges</a> the received information into his private data. Once the private data has been saved, the message is removed from the message box.</p>
+
+	<h2 id="private-data">Private data</h2>
+	<p>An actor's private data is an encrypted tree of <a href="/forward-moving-data/forward-moving/">forward-moving data</a>, such as a <a href="/api/datatree/">data tree</a>, attached to the private box:</p>
+	<div class="hscroll indent"><? svgFile('PrivateData.svg') ?></div>
+	<p>Sender and receiver on the envelope are the same.</p>
+	<p>To modify that data (e.g. while processing messages <b>U</b> and <b>V</b>), the actor merges (⊗) all information, constructs a new tree, and adds it to the private box:</p>
+	<div class="hscroll indent"><? svgFile('PrivateDataMerging.svg') ?></div>
+	<p>There are now two versions of the data: the previous version <b>A</b>, and the new version <b>B</b>. Merging them would yield the new version:</p>
+	<p style="text-align: center">A ⊗ B = B <span style="margin: 0 20px">and</span> A ⊗ B ⊗ U ⊗ V = B</p>
+	<p>Hence, version <b>A</b> and the messages <b>U</b> and <b>V</b> can be removed:</p>
+	<div class="hscroll indent"><? svgFile('PrivateDataRemoving.svg') ?></div>
+
+	<h2 id="entrusted-actors">Entrusted actors</h2>
+	<p>An actor may <a href="/actors/entrusted-actors/">entrust</a> other actors. Entrusted actors have full read access to all data of the actor. This is achieved by adding the entrusted actor as recipient to all envelopes. Entrusted accounts are published on the public card.</p>
+
+	<h2 id="actor-groups">Actor groups</h2>
+	<p>Actors may <a href="/actors/actor-groups/#join">join</a> to form a <a href="/actors/actor-groups/">group</a>. Within such a group, actors unconditionally share their private data, and can read each other's messages. A lonely actor can be regarded as a group with one actor.</p>
+	<p>Every actor of the group announces the other group members on this public card, and encrypts its private data for all members. Actors usually first read their own private data and messages, and then merge the private data and messages of other groups members.</p>
+	<p>When sending a message to a group, the actor reads all public cards (<a href="/actors/actor-group/#discovery">actor group discovery</a>), encrypts the message for all groups members, and posts it on the message box of the most recent account.</p>
+	<p>With actor groups, a user can use the same data on multiple devices. Each device uses its own RSA key pair and accounts, potentially on different stores.</p>
+	<p>In addition, actor groups may rotate their keys regularly by creating and adding a new actor (key pair), and removing an existing one.</p>
+
+	<h2 id="synchronization">Synchronization</h2>
+	<p>Actors often use two stores:</p>
+	<ul>
+		<li>A highly available and fast <b>local</b> store on the device they are running.</li>
+		<li>A slower and less reliable <b>remote</b> store to exchange messages other actors, and back up the private data.</li>
+	</ul>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

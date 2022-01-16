@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<? title = 'Store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Store');
+	</script>
+
+	<p>An abstract <a href="/stores/store/">Condensation store</a>.</p>
+	<p>The ID is a string unique to the store, often loosely describing it, e.g.:</p>
+	<div class="hscroll indent"><pre>Object Cache
+  Hash Verification Store
+    https://condensation.io
+  file:///srv/store</pre></div>
+	<p>However, it should be treated as an opaque string, and not be interpreted or parsed. Two store instances with the same ID are interchangeable.</p>
+
+	<div class="java">
+		<p>In the Java implementation, all store requests are non-blocking. You are passing a <i>done</i> handler to the request, and one of its functions will be invoked when the request has been executed.</p>
+	</div>
+
+	<div class="javascript">
+		<p>In the JavaScript implementation, all store requests are non-blocking. The request function returns a <i>done</i> object, and one of its functions will be invoked when the request has been executed.</p>
+	</div>
+
+	<div class="perl">
+		<p>In the Perl implementation, all store requests are blocking. That means, the function waits until the request has been executed, and returns the result.</p>
+	</div>
+
+	<h2 id="instance-creation">Instance creation</h2>
+	<p>Every store implementation provides its own constructors.</p>
+
+	<h2 id="store-interface">Store requests</h2>
+
+	<h3 id="get">Get</h3>
+	<div class="hscroll api java"><pre>
+		store.get(hash, keyPair, done);
+
+		class GetDone implements Store.GetDone {
+			public void onGetDone(@NonNull CondensationObject object) { ... }
+			public void onGetNotFound() { ... }
+			public void onGetFailed(@NonNull String error) { ... }
+		}
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var done = store.get(hash, keyPair);
+
+		done.onDone = function(object) { ... };
+		done.onNotFound = function() { ... };
+		done.onFailed = function(error) { ... };
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my ($object, $error) = $store-&gt;get($hash, $keyPair);
+
+		if (defined $error) {
+			# request failed
+		} elsif (defined $object) {
+			# found
+		} else {
+			# not found
+		}
+	</pre></div>
+	<p>Retrieves the desired object from the store.</p>
+	<p>Under normal conditions, the received object matches the requested hash. Failure to do so points to data corruption or tampering, and should be treated as an unexpected error that requires investigation by an IT specialist.</p>
+	<p>Unless specified otherwise, stores do not verify the hash of the retrieved object. Use a <a href="/api/store/hash-verification/">hash verification store</a> where this <a href="/notes/hash-verification/">makes sense</a>.</p>
+	<p>The <i>key pair</i> is used to sign the request in case the store requires authentication. If the request fails, a technical error message is returned.</p>
+
+	<h3 id="put">Put</h3>
+	<div class="hscroll api java"><pre>
+		store.put(hash, object, keyPair, done);
+
+		class PutDone implements Store.PutDone {
+			public void onPutDone() { ... }
+			public void onPutFailed(@NonNull String error) { ... }
+		}
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var done = store.put(hash, object, keyPair);
+
+		done.onDone = function() { ... };
+		done.onFailed = function(error) { ... };
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $error = $store-&gt;put($hash, $object, $keyPair);
+
+		if (defined $error) {
+			# request failed
+		} else {
+			# done
+		}
+	</pre></div>
+	<p>Uploads an object onto the store.</p>
+	<p>The hash must match the object. The <i>key pair</i> is used to sign the request in case the store requires authentication. If the request fails, a technical error message is returned.</p>
+
+	<h3 id="book">Book</h3>
+	<div class="hscroll api java"><pre>
+		store.book(hash, keyPair, done);
+
+		class BookDone implements Store.BookDone {
+			public void onBookDone() { ... }
+			public void onBookNotFound() { ... }
+			public void onBookFailed(@NonNull String error) { ... }
+		}
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var done = store.book(hash, keyPair);
+
+		done.onDone = function() { ... };
+		done.onNotFound = function() { ... };
+		done.onFailed = function(error) { ... };
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my ($booked, $error) = $store-&gt;book($hash, $keyPair);
+
+		if (defined $error) {
+			# request failed
+		} elsif ($booked) {
+			# booked
+		} else {
+			# not found (and therefore not booked)
+		}
+	</pre></div>
+	<p>Books the object on the store, and returns whether booking succeeded.</p>
+	<p>The <i>key pair</i> is used to sign the request in case the store requires authentication. If the request fails, a technical error message is returned.</p>
+
+	<h3 id="list">List</h3>
+	<div class="hscroll api java"><pre>
+		store.list(accountHash, boxLabel, keyPair, done);
+
+		class ListDone implements Store.ListDone {
+			public void onListDone(@NonNull Iterable&lt;Hash&gt; hashes) { ... }
+			public void onListFailed(@NonNull String error) { ... }
+		}
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var done = store.list(accountHash, boxLabel, keyPair);
+
+		done.onDone = function(hashes) { ... };
+		done.onFailed = function(error) { ... };
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my ($hashes, $error) = $store-&gt;list($accountHash, $boxLabel, $keyPair);
+
+		if (defined $error) {
+			# request failed
+		} else {
+			for my $hash (@$hashes) { ... }
+		}
+	</pre></div>
+	<p>Lists the corresponding box on the store.</p>
+	<p>The returned hash list may contain duplicates. The <i>key pair</i> is used to sign the request in case the store requires authentication. If the request fails, a technical error message is returned.</p>
+
+	<h3 id="modify">Modify</h3>
+	<div class="hscroll api java"><pre>
+		store.modify(boxAdditions, boxRemovals, keyPair, done);
+
+		class ModifyDone implements Store.ModifyDone {
+			public void onModifyDone() { ... }
+			public void onModifyFailed(@NonNull String error) { ... }
+		}
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var done = store.modify(boxAdditions, boxRemovals, keyPair);
+
+		done.onDone = function() { ... };
+		done.onFailed = function(error) { ... };
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $error = $store-&gt;modify($boxAdditions, $boxRemovals, $keyPair);
+
+		if (defined $error) {
+			# request failed
+		} else {
+			# done
+		}
+	</pre></div>
+	<p>Modifies boxes on the store.</p>
+	<p>The <i>key pair</i> is used to sign the request in case the store requires authentication. If the request fails, a technical error message is returned.</p>
+
+	<div class="java">
+		<h2>Threading</h2>
+		<p class="java">Stores must always be accessed from the main thread. If necessary, they will offload work onto different threads.</p>
+	</div>
+
+	<h2 id="implementations">Implementations</h2>
+	<table class="text">
+		<tr>
+			<th>Store</th>
+			<th>Availability</th>
+		</tr>
+		<tr>
+			<td><a href="/api/store/http/">HTTP store</a></td>
+			<td>All platforms</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/in-memory/">In-memory store</a></td>
+			<td>All platforms</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/hash-verification/">Hash verification store</a></td>
+			<td>All platforms</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/get-from-any/">Get from any store</a></td>
+			<td>All platforms</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/folder/">Folder store</a></td>
+			<td>Java, Perl</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/ftp/">FTP store</a></td>
+			<td>Perl</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/sftp/">SFTP store</a></td>
+			<td>Perl</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/object-cache/">Object cache</a></td>
+			<td>Perl, Java/Android</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/split/">Split store</a></td>
+			<td>Perl</td>
+		</tr>
+		<tr>
+			<td><a href="/api/store/log/">Log store</a></td>
+			<td>Perl</td>
+		</tr>
+	</table>
+
+	<h2 id="implemention-hints">Implementing a store</h2>
+	<p>A minimal store implementation must provide the above store access functions.</p>
+	<p>The constructor should be lightweight, since store instances are created frequently, and sometimes without actually accessing the store. In most cases, it should just set URL and ID, and perhaps a few other fields. It should not connect to a server, for instance, or carry out other work. A store instance can also be created if the store is temporarily or permanently not available.</p>
+	<p>On multi-threaded platforms, the store access functions are always called from the main thread, but may obviously carry out their work on separate threads. The done handlers must be called on the main thread.</p>
+	<p>Since many store instances may be created for the same store, they should avoid keeping internal state. If necessary, state should be managed globally. Stores accessing the network typically manage a connection pool, for example, which ultimately carries out the requests. With this approach, a store instance is merely a lightweight interface to the connection pool:</p>
+	<div class="hscroll"><? svgFile('ConnectionPool.svg') ?></div>
+	<p>A store implementation may offer additional functions, such as garbage collection or account administration. Such functions are available when the store is instantiated directly, and not through <a href="#new">an URL</a>.</p>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

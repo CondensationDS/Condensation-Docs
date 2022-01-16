@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<? title = 'Data recovery'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>When losing an actor (e.g. through a lost device), its own private data a priori lost as well. There are two safety nets, however: <i>actor groups</i> and <i>entrusted actors</i>.</p>
+
+	<h2>Seamless recovery through actor groups</h2>
+	<p>An actor is usually part of an <a href="/actors/actor-group/">actor group</a>. All actors within the same group share and synchronize their private data.</p>
+	<p>If at least one <a href="/actors/actor-group/#status">active</a> actor remains in the group, this actor will have a (nearly) complete copy of the private data. Recovery is seamless: if the device is replaced, a new actor is created on the new device, and <a href="/actors/actor-group/#add-member">added to the group</a>.</p>
+	<p>Using a <a href="/actors/key-management/#backup-actor">backup actor</a> will greatly increase the probability that an active actor remains in the group.</p>
+
+	<h2>Recovery through an entrusted actor</h2>
+	<p>An actor may <a href="/actors/entrusted-actors/">entrust</a> another actor (e.g. a close friend, or a notary) with the data. The entrusted actor can decrypt the actor's private data to recover it.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

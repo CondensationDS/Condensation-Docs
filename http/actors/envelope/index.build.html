@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<? title = 'Envelope'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+	<script src="../../syntax-links.js"></script>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2020, 05); ?>
+	<h1><? title ?></h1>
+
+	<p>Envelopes are used to sign and encrypt data. They are serialized as <a href="/serialization/record/">records</a>, stored as <a href="/serialization/object/">objects</a>, and placed into <a href="/stores/store/#accounts">boxes</a>. Each box thereby uses a slightly different envelope structure.</p>
+
+	<p>The order of the nodes in the record structure does not matter.</p>
+
+	<h2 id="private">Private box envelopes</h2>
+
+	<p>A <a href="/stores/store/#accounts">private box</a> envelope has the following record structure:</p>
+	<div class="hscroll box">
+		<pre>content
+  <span class="comment">empty</span> # <span class="im">content hash</span>
+encrypted for
+  <span class="op">first 24 bytes of</span> <span class="im">A's hash</span>
+    <span class="op">RSA/OAEP</span>(<span class="im">AES key</span>, <span class="im">A's public key</span>)
+  <span class="op">first 24 bytes of</span> <span class="im">B's hash</span>
+    <span class="op">RSA/OAEP</span>(<span class="im">AES key</span>, <span class="im">B's public key</span>)
+  …
+signature
+  <span class="op">RSA/PSS</span>(<span class="im">content hash</span>, <span class="im">owner's private key</span>)</pre>
+	</div>
+
+	<p>The <i>content hash</i> points to the content object (and the tree it spans). This object is encrypted with the <i>AES key</i> (32 bytes), and resides on the same store as the envelope.</p>
+
+	<p>The <i>encrypted for</i> section lists the actors entitled to access the content. This typically includes the <i>sender</i> &mdash; the actor writing the data &mdash; and the actors it entrusts. Actor hashes are <a href="/notes/hash-shortening/">shortened to 24 bytes</a>. The RSA-encrypted AES keys are encoded as unsigned big-endian integers.</p>
+
+	<p>The <i>signature</i> signs the content, and is encoded as unsigned big-endian integer.</p>
+
+	<h2 id="public">Public box envelopes</h2>
+
+	<p>A <a href="/stores/store/#accounts">public box</a> envelope follows the same structure, but omits the <i>encrypted for</i> section:</p>
+	<div class="hscroll box">
+		<pre>content
+  <span class="comment">empty</span> # <span class="im">content hash</span>
+signature
+  <span class="op">RSA/PSS</span>(<span class="im">content hash</span>, <span class="im">owner's private key</span>)</pre>
+	</div>
+
+	<p>The <i>content hash</i> points to the <a href="/actors/public-card/">public card</a>, which must reside on the same store.</p>
+
+	<h2 id="message">Message envelopes</h2>
+
+	<p>A message envelope in a <a href="/stores/store/#accounts">message box</a> has the following structure:</p>
+	<div class="hscroll box">
+		<pre>content
+  <span class="im">content</span>
+encrypted for
+  <span class="op">first 24 bytes of</span> <span class="im">A's hash</span>
+    <span class="op">RSA/OAEP</span>(<span class="im">AES key</span>, <span class="im">A's public key</span>)
+  <span class="op">first 24 bytes of</span> <span class="im">B's hash</span>
+    <span class="op">RSA/OAEP</span>(<span class="im">AES key</span>, <span class="im">B's public key</span>)
+  …
+expires <span class="comment">(optional)</span>
+  <span class="im">expiration date</span>
+updated by <span class="comment">(optional)</span>
+  <span class="op">first 24 bytes of</span> <span class="im">S's hash</span>
+  <span class="op">first 24 bytes of</span> <span class="im">T's hash</span>
+  …
+signature
+  <span class="op">RSA/PSS</span>(<span class="op">SHA256</span>(<span class="im">content</span>), <span class="im">sender's private key</span>)</pre>
+	</div>
+
+	<p>where</p>
+	<div class="hscroll box">
+		<pre><span class="im">content</span> = <span class="op">AES256CTR</span>(<span class="im">content object bytes</span>, <span class="im">AES key</span>, 0)</pre>
+	</div>
+
+	<p>The envelope embeds a small <i>content object</i>. Its bytes (not just the <a href="/serialization/object/">data</a> part) are encrypted using <a href="/notes/cryptography/">AES 256 in CTR mode</a>. The CTR counter starts at 0, and is incremented by 1 for each AES block (16 bytes).</p>
+
+	<p>The <i>encrypted for</i> section lists actors entitled to access the content. This typically includes the recipients, and the actors they entrust. Actor hashes are <a href="/notes/hash-shortening/">shortened to 24 bytes</a>. The RSA-encrypted AES keys are encoded as unsigned big-endian integers.</p>
+
+	<p>If an <i>expiration <a href="/serialization/record/#date">date</a></i> is specified, the store may remove the message once it has expired.</p>
+
+	<p>The <i>updated by</i> section lists actors entitled to remove the message from the message box &mdash; usually for the purpose of updating it. This typically includes the sender.</p>
+
+	<p>The <i>signature</i> signs the encrypted content object, and is encoded as unsigned big-endian integer.</p>
+
+	<p>The total envelope size must not exceed 16 KiB.</p>
+
+	<h3>Content object</h3>
+	<p>The content object has the following structure:</p>
+
+	<div class="hscroll box">
+		<pre>store
+  <span class="im">sender store URL</span>
+sender
+  <span class="comment">empty</span> # <span class="im">sender hash</span>
+<em>message content</em></pre>
+	</div>
+
+	<p><i>Sender store URL</i> and <i>sender hash</i> point to the sender's public key, which is used to verify the envelope's signature. The remainder is used for message content, and application-specific.</p>
+
+	<p>The content object should not exceed 1 KiB. It typically contains the message type, some metadata, and <a href="/serialization/record/#linking-objects">links</a> to the actual message data on the sender's store. To make sure that such data remains available until the message expires, the sender links it through his private box:</p>
+	<div class="hscroll"><? svgFile('MessageEnvelope.svg') ?></div>
+
+	<p>Small messages may be fully included in the content object.</p>
+
+	<h2 id="stream">Stream envelopes <span class="maturity">draft</span></h2>
+	<p>A stream envelope in a <a href="/stores/store/#accounts">message box</a> has the following structure:</p>
+	<div class="hscroll box">
+		<pre>content
+  <span class="im">content</span>
+ctr
+  <span class="im">ctr</span>
+head
+  <span class="comment">empty</span> # <span class="im">head message hash</span>
+mac
+  <span class="op">AES256CTR</span>(<span class="im">content hash</span>, <span class="im">AES key</span>, <span class="im">ctr</span>)</pre>
+	</div>
+
+	<p>whereby <i>content</i> and <i>content hash</i> are calculated as follows:</p>
+	<div class="hscroll box">
+		<pre><span class="im">content</span> = <span class="op">AES256CTR</span>(<span class="im">content object bytes</span>, <span class="im">AES key</span>, <span class="im">ctr</span> + 2)
+<span class="im">content hash</span> = <span class="op">SHA256</span>(<span class="im">content</span>)</pre>
+	</div>
+
+	<p>The <i>head</i> points to a <a href="#message">message envelope</a> sent earlier. The <i>AES key</i> from the head envelope is reused for the stream envelope.</p>
+
+	<p>Every envelope uses a small part of the CTR range from 0 to 2<sup>128</sup> - 1:</p>
+	<ul>
+		<li>The head envelope uses the range starting at 0, and requires one count for every 16 bytes of the content object.</li>
+		<li>A stream envelope uses the range starting at <i>ctr</i>, and requires 2 counts for the MAC, and one additional count for every 16 bytes of the content object.</li>
+	</ul>
+	<p>Ranges must be <a href="/notes/streams/#ctr-ranges">non-overlapping</a>.</p>
+
+	<p>The <i>mac</i> protects the content object from being altered. This is <a href="https://en.wikipedia.org/wiki/Non-repudiation#In_security">not a signature</a>, however: any recipient of the head message may produce valid MACs.</p>
+
+	<p>The <i>expires</i> and <i>updated by</i> section on the head envelope are valid for all stream envelopes.</p>
+
+	<p>Recipients must keep a reference to the head envelope for as long as they wish to receive the stream. Once the head envelope vanishes, stores may refuse new stream envelopes, since they reference a head envelope that does not exist (any more) on the store.</p>
+
+</div>
+
+<script>
+	syntaxLinksAll();
+</script>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="580"
+   height="170"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Structure.svg">
+  <defs
+     id="defs3876">
+    <marker
+       id="arrow000000"
+       refX="0"
+       refY="0"
+       orient="auto"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:#000000"
+         d="M -6,2.5 2,0 -6,-2.5 -5,0 Z"
+         id="path2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="arrow000000-3">
+      <path
+         id="path956"
+         d="M -6,3 2,0 -6,-3 -5,0 Z"
+         style="fill:#000000"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="96.747"
+     inkscape:cy="215.115"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:nodetypes="cssc"
+       inkscape:connector-curvature="0"
+       id="path1556"
+       d="m 560,51 c 20,0 20,20 0,20 H 20 C 0,71 0,51 20,51"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:1, 2;stroke-dashoffset:0" />
+    <rect
+       y="28"
+       x="20"
+       height="22"
+       width="10"
+       id="rect5792"
+       style="fill:#e5473f;fill-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       x="20"
+       y="15"
+       id="text5990"><tspan
+         sodipodi:role="line"
+         id="tspan5988"
+         x="20"
+         y="15">0</tspan></text>
+    <text
+       id="text5994"
+       y="105"
+       x="48"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         y="105"
+         x="48"
+         id="tspan5992"
+         sodipodi:role="line">Active checkpoint</tspan></text>
+    <rect
+       id="rect1047"
+       width="440"
+       height="2"
+       x="20"
+       y="50" />
+    <rect
+       style="fill:#e5473f;fill-opacity:1"
+       id="rect1049"
+       width="10"
+       height="22"
+       x="120"
+       y="28" />
+    <rect
+       y="28"
+       x="220"
+       height="22"
+       width="10"
+       id="rect1051"
+       style="fill:#e5473f;fill-opacity:1" />
+    <rect
+       style="fill:#bbbbbb;fill-opacity:1"
+       id="rect1053"
+       width="10"
+       height="22"
+       x="320"
+       y="28" />
+    <rect
+       y="32"
+       x="132"
+       height="18"
+       width="20"
+       id="rect1057"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <rect
+       style="fill:#6bc55f;fill-opacity:1"
+       id="rect1059"
+       width="20"
+       height="18"
+       x="232"
+       y="32" />
+    <path
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 461,25 -4,14 5,4 -5,16"
+       id="path1063"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path1065"
+       d="m 467,25 -4,14 5,4 -5,16"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <rect
+       y="50"
+       x="466"
+       height="2"
+       width="100"
+       id="rect1067" />
+    <rect
+       y="32"
+       x="32"
+       height="18"
+       width="16"
+       id="rect1069"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <rect
+       style="fill:#6bc55f;fill-opacity:1"
+       id="rect1071"
+       width="10"
+       height="18"
+       x="50"
+       y="32" />
+    <rect
+       style="fill:#6bc55f;fill-opacity:1;stroke-width:0.96609181"
+       id="rect1073"
+       width="28"
+       height="18"
+       x="154"
+       y="32" />
+    <rect
+       y="32"
+       x="184"
+       height="18"
+       width="14"
+       id="rect1076"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <rect
+       style="fill:#6bc55f;fill-opacity:1"
+       id="rect1078"
+       width="14"
+       height="18"
+       x="200"
+       y="32" />
+    <rect
+       y="32"
+       x="216"
+       height="18"
+       width="2"
+       id="rect1080"
+       style="fill:#e5b83f;fill-opacity:1" />
+    <rect
+       style="fill:#6bc55f;fill-opacity:1"
+       id="rect1082"
+       width="14"
+       height="18"
+       x="254"
+       y="32" />
+    <rect
+       y="28"
+       x="420"
+       height="22"
+       width="10"
+       id="rect1084"
+       style="fill:#bbbbbb;fill-opacity:1" />
+    <rect
+       style="fill:#bbbbbb;fill-opacity:1"
+       id="rect1086"
+       width="10"
+       height="22"
+       x="520"
+       y="28" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       x="328"
+       y="105"
+       id="text1098"><tspan
+         sodipodi:role="line"
+         id="tspan1096"
+         x="328"
+         y="105">Object</tspan></text>
+    <text
+       id="text1102"
+       y="135"
+       x="48"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         y="135"
+         x="48"
+         id="tspan1100"
+         sodipodi:role="line">Inactive checkpoint</tspan></text>
+    <rect
+       y="90"
+       x="20"
+       height="18"
+       width="18"
+       id="rect1104"
+       style="fill:#e5473f;fill-opacity:1" />
+    <rect
+       style="fill:#bbbbbb;fill-opacity:1"
+       id="rect1106"
+       width="18"
+       height="18"
+       x="20"
+       y="120" />
+    <rect
+       y="90"
+       x="300"
+       height="18"
+       width="18"
+       id="rect1112"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <text
+       id="text1120"
+       y="15"
+       x="220"
+       style="font-size:13px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;text-anchor:middle;fill:#000000"
+       xml:space="preserve"><tspan
+         y="15"
+         x="221.30762"
+         id="tspan1118"
+         sodipodi:role="line">N * checkpoint interval </tspan></text>
+    <path
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#6bc55f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 20.5,19 v 5"
+       id="path1122"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1124"
+       d="m 220.5,19 v 5"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#6bc55f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <text
+       id="text1128"
+       y="135"
+       x="328"
+       style="font-size:18px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';fill:#000000"
+       xml:space="preserve"><tspan
+         y="135"
+         x="328"
+         id="tspan1126"
+         sodipodi:role="line">Spacer</tspan></text>
+    <rect
+       style="fill:#e5b83f;fill-opacity:1"
+       id="rect1130"
+       width="18"
+       height="18"
+       x="300"
+       y="120" />
+    <rect
+       y="32"
+       x="62"
+       height="18"
+       width="16"
+       id="rect1132"
+       style="fill:#6bc55f;fill-opacity:1" />
+    <rect
+       y="32"
+       x="80"
+       height="18"
+       width="28"
+       id="rect1140"
+       style="fill:#6bc55f;fill-opacity:1;stroke-width:0.96609181" />
+    <rect
+       style="fill:#e5b83f;fill-opacity:1"
+       id="rect1142"
+       width="8"
+       height="18"
+       x="110"
+       y="32" />
+  </g>
+</svg>

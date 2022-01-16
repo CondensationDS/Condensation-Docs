@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<? title = 'Condensation HTTP Tutorial'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft, to be verified when demo is ready</span></h1>
+
+	<p>A Condensation store keeps objects and accounts (with boxes). For this tutorial, we have set up a simple HTTP Condensation store on demo.condensation.io. The store accepts requests from anybody, i.e. there is no authentication in place. We however empty the store on a regular basis, and accept objects up to a few hundred kilobytes only.</p>
+	<p>For this tutorial, we are using <a href="https://curl.org">CURL</a> to make HTTP requests. CURL is readily available for many Linux distributions, as well as Windows and Mac OS X.</p>
+
+	<h2>Retrieving and verifying objects</h2>
+	<p>You can retrieve an object if you know its hash. The demo store contains the following object, for instance:</p>
+	<pre style="width:900px"><b>&gt;&gt;</b> curl http://demo.condensation.io/objects/50eac7e651858c78d5e5a615b8db5e28a21afda3c8b16e7516227cc677bf4c6d &gt; demo-object</pre>
+	<p>To verify the object's integrity, calculate its SHA-256 sum, and compare it to its hash:</p>
+	<pre><b>&gt;&gt;</b> sha256sum demo-object
+50eac7e651858c78d5e5a615b8db5e28a21afda3c8b16e7516227cc677bf4c6d</pre>
+	<p>If the hash does not match, you should discard the object. Wrong hashes indicate storage or transmission errors, or (malicious) attempts to modify your data.</p>
+
+	<h2>Anatomy of an object</h2>
+	<p>An object consists of a header with references to other objects, followed by some arbitrary data. The header always starts with 4 bytes indicating the number of references, followed by that many 32-byte references (hashes).</p>
+	<p>When displaying the content of an object in a simple text editor (or using <i>cat</i>), the header will look like garbage. To display it in human-readable form, you can type:</p>
+	<pre><b>&gt;&gt;</b> hexdump -C demo-object
+<span style="color:#2c5ba0">00 00 00 01</span> <span style="color:#5aa02c">80 b5 7a 45   8e da 10 67 6b e8 1f b7
+1d f5 5d ad 34 87 67 df   68 c2 b6 fa 8b ef de a2
+d1 84 cc 70</span> ...</pre>
+	<p>The first 4 bytes (highlighted in blue) denote the number of references as big-endian integer, while the green bytes are the hash.</p>
+
+	<h2>Creating and storing objects</h2>
+	<p>The following command creates a simple object with no references and some text:</p>
+	<pre><b>&gt;&gt;</b> echo -ne '\0\0\0\0This is a test object.' &gt; our-object</pre>
+	<p>The four zeros (\0) at the beginning are the object's header, while the rest is the object's data. To store that object, we simply POST it onto the objects URL:</p>
+	<pre><b>&gt;&gt;</b> curl -X POST \
+	--data-binary @our-object \
+	-H 'Content-Type: application/condensation-object' \
+	http://demo.condensation.io/objects</pre>
+	<p>Note the content type that we've specified here. Some Condensation servers ignore that (i.e., accept anything), but some servers check this header.</p>
+
+	<h2>Listing a box</h2>
+	<p>Besides objects, a Condensation store keeps track of boxes. Each account contains multiple boxes, each of which contains a set of references (hashes) to objects. To show these references, make a GET request on the box:</p>
+	<pre style="width:900px"><b>&gt;&gt;</b> curl http://demo.condensation.io/accounts/8ba95d09d38c54ef304ea0ef4bd411fbfae9c6226448ca5ca447651b84a8bfa1/public
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</pre>
+	<p>We are listing the public box of the demo account here, which contains only one reference.</p>
+
+	<h2>Reading an identity</h2>
+	<p>To get the corresponding object, type:</p>
+	<pre style="width:900px"><b>&gt;&gt;</b> curl http://demo.condensation.io/object/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</pre>
+	<p>This object is an envelope with a reference to the content, and an RSA 2048 signature. Let's skip signature verification, and get to the content:</p>
+	<pre style="width:900px"><b>&gt;&gt;</b> curl http://demo.condensation.io/object/???</pre>
+	<p>This is the public information of the demo account. Besides the name (Alice) and e-mail address, it contains references to two public keys. This means that Alice uses Condensation on two devices, and would like us to encrypt messages to her with these two keys.</p>
+
+	<h2>Modifying a box</h2>
+	<p>Boxes are modified using POST requests. Prepare a text file <i>hashes</i> with the following content:</p>
+	<pre>+f46cd16a2dcdc0d4173148d2d88f966322bde725369d4a1ef7fe6985931a5066
+-728738e652433d4d24c98ad266c042a95acd50bcc489e972856b2b862a01c1ea
+-8f4844add4c28c29e1de5972570f7cf31528405bcc226791a8c0a87157abb6aa</pre>
+	<p>A line starting with a '+' sign will add a reference, while a line with a '-' sign at the beginning will (suggest to) remove a reference. Then submit this file to Alice's message box:</p>
+	<pre style="width:900px"><b>&gt;&gt;</b> curl -X POST \
+	--data-binary @hashes \
+	-H 'Content-Type: application/condensation-object-url-list-changes' \
+	http://demo.condensation.io/accounts/8ba95d09d38c54ef304ea0ef4bd411fbfae9c6226448ca5ca447651b84a8bfa1/messages</pre>
+	<p>The server simply acknowledges this with a success (or error) message. If you now list that box, you should see the newly added hash.</p>
+
+	<!--
+	--- OLD BELOW HERE ---
+	<h2>Creating an account</h2>
+	<p>To create an account, you generate a key pair (public and private key), and submit the public key to the system administrator. He will create the initial account, and attach your public key to it.</p>
+	<p>Assume that the system administrator has created the account forest-storage.org/ca51fd7915 for you. Note that account names are often just random sequences to protect your privacy.</p>
+
+	<h2>Attaching an object to the private box</h2>
+	<div style="float:right"><? svgFile('AttachingOneObject.svg') ?></div>
+	<p>To store an object onto your private box, upload it:</p>
+	<pre><a href="/tutorials/http/">PUT</a> /objects/bf60...3a30</pre>
+	<p>and then transition the private box to point to this object:</p>
+	<pre><a href="/tutorials/http/">PUT</a> /ca51fd7915<br>If-Match: e3b0...b855<br><br>bf60...3a30</pre>
+	<p>Note that e3b0...b855 is the hash of the empty object that was attached before.</p>
+
+	<h2>Attaching a derived tree</h2>
+	<div style="float:right"><? svgFile('AttachingSmallTree.svg') ?></div>
+	<p>Let us now attach a small tree with three objects.</p>
+	<p>TBD - but make something interactive, using a small JavaScript interface that does the signing.</p> -->
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

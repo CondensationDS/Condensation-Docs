@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300"
+   height="120"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="Box.svg">
+  <defs
+     id="defs3876" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="418.56582"
+     inkscape:cy="67.984"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg3874"
+     showgrid="false"
+     inkscape:window-width="1868"
+     inkscape:window-height="2125"
+     inkscape:window-x="1960"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#3f8de5;fill-opacity:1;stroke:none;stroke-width:2"
+       id="rect3012"
+       width="70"
+       height="120"
+       x="0"
+       y="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:20px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="10"
+       y="21"
+       id="text886"><tspan
+         style="font-size:18px;text-align:start;text-anchor:start"
+         sodipodi:role="line"
+         x="10"
+         y="21"
+         id="tspan888">Hash</tspan><tspan
+         style="font-size:18px;text-align:start;text-anchor:start"
+         sodipodi:role="line"
+         x="10"
+         y="41.5"
+         id="tspan892">Hash</tspan><tspan
+         style="font-size:18px;text-align:start;text-anchor:start"
+         sodipodi:role="line"
+         x="10"
+         y="63"
+         id="tspan890">...</tspan></text>
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 60,36.5 H 80"
+     id="path4866"
+     inkscape:connector-curvature="0" />
+  <rect
+     y="29"
+     x="135"
+     height="15"
+     width="50"
+     id="rect5065"
+     style="fill:#6bc55f;fill-opacity:1;stroke:none" />
+  <rect
+     style="fill:#48a43c;fill-opacity:1;stroke:none"
+     id="rect5067"
+     width="30"
+     height="15"
+     x="105"
+     y="29" />
+  <rect
+     style="fill:#6bc55f;fill-opacity:1;stroke:none"
+     id="rect5075"
+     width="30"
+     height="15"
+     x="133"
+     y="69" />
+  <rect
+     y="69"
+     x="118"
+     height="15"
+     width="15"
+     id="rect5077"
+     style="fill:#39812f;fill-opacity:1;stroke:none" />
+  <rect
+     y="69"
+     x="212.99997"
+     height="15"
+     width="87"
+     id="rect5089"
+     style="fill:#6bc55f;fill-opacity:1;stroke:none" />
+  <rect
+     style="fill:#39812f;fill-opacity:1;stroke:none"
+     id="rect5091"
+     width="15"
+     height="15"
+     x="197.99997"
+     y="69" />
+  <path
+     sodipodi:nodetypes="cc"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 111.99998,46.00002 c 0,14.9194 -46.151153,30 3,30"
+     id="path5105"
+     inkscape:connector-curvature="0" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path5107"
+     d="m 126.99998,46.00002 c 0,11.5922 25.33285,9.0652 33.18228,16.0246 6.17498,5.4748 8.73564,13.9754 34.81772,13.9754"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     sodipodi:nodetypes="csc" />
+  <rect
+     style="fill:#39812f;fill-opacity:1;stroke:none"
+     id="rect4176"
+     width="15"
+     height="15"
+     x="90"
+     y="29" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1062"
+     d="M 60,16.5 H 80"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <rect
+     y="9"
+     x="205"
+     height="15"
+     width="50"
+     id="rect1066"
+     style="fill:#6bc55f;fill-opacity:1;stroke:none" />
+  <rect
+     style="fill:#39812f;fill-opacity:1;stroke:none"
+     id="rect1068"
+     width="15"
+     height="15"
+     x="190"
+     y="9" />
+  <rect
+     style="fill:#6bc55f;fill-opacity:1;stroke:none"
+     id="rect1070"
+     width="30"
+     height="15"
+     x="120"
+     y="9" />
+  <rect
+     y="9"
+     x="105"
+     height="15"
+     width="15"
+     id="rect1072"
+     style="fill:#48a43c;fill-opacity:1;stroke:none" />
+  <rect
+     y="9"
+     x="90"
+     height="15"
+     width="15"
+     id="rect1074"
+     style="fill:#39812f;fill-opacity:1;stroke:none" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 160,16.5 h 20"
+     id="path1076"
+     inkscape:connector-curvature="0" />
+</svg>

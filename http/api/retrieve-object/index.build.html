@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<? title = 'Retrieving an object'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<h2>Retrieving an unencrypted object</h2>
+	<p>Use the store's <a href="/api/store/#get">get</a> function to retrieve an object.</p>
+
+	<h2>Retrieving an encrypted object</h2>
+	<div class="hscroll wide api java"><pre>
+		GetAndDecrypt.Done done = new GetAndDecrypt.Done() {
+			void onGetAndDecryptDone(@NonNull CondensationObject object) {
+				// The object was found and decrypted
+			}
+
+			void onGetAndDecryptInvalid(@NonNull String reason) {
+				// The object was not found
+			}
+
+			void onGetAndDecryptFailed(@NonNull String error) {
+				// The store reported an error
+			}
+		};
+
+		new GetAndDecrypt(reference, store, keyPair, done);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var done = keyPair.getAndDecrypt(reference, store);
+
+		done.onDone = function(object) {
+			// The object was found and decrypted
+		};
+
+		done.onInvalid = function(reason) {
+			// The object was not found
+		};
+
+		done.onFailed = function(error) {
+			// The store reported an error
+		};
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my ($object, $invalidReason, $storeError) = $keyPair-&gt;getAndDecrypt($reference, $store);
+
+		if (defined $storeError) {
+			# The store reported an error
+		} elsif (defined $invalidReason) {
+			# The object was not found
+		} else {
+			# The object was found and decrypted
+		}
+	</pre></div>
+	<p><a href="/api/store/#get">Retrieves</a> an object from a store and decrypts it.</p>
+	<p>If the store reported an error, the operation fails with that error. It may succeed when called again at a later time.</p>
+	<p>If the object is not found, the operation fails as invalid.</p>
+
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

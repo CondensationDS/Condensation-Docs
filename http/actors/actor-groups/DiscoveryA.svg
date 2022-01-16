@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="220"
+   id="svg3874"
+   version="1.1"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="DiscoveryA.svg">
+  <defs
+     id="defs3876">
+<marker id="arrowB5a1d93" refX="0" refY="0" orient="auto" style="overflow:visible">
+  <path inkscape:connector-curvature="0" style="fill:#5a1d93" d="M -4,2 2,0 -4,-2 -3,0 Z" />
+</marker>
+<marker id="arrowBe5b83f" refX="0" refY="0" orient="auto" style="overflow:visible">
+  <path inkscape:connector-curvature="0" style="fill:#e5b83f" d="M -4,2 2,0 -4,-2 -3,0 Z" />
+</marker>
+</defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-1106.0647"
+     inkscape:cy="-251"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3747"
+     inkscape:window-height="2125"
+     inkscape:window-x="81"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:lockguides="false" />
+  <metadata
+     id="metadata3879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:1;text-align:start;text-anchor:start"
+       x="210"
+       y="50"
+       id="text1016"><tspan
+         sodipodi:role="line"
+         id="tspan1014"
+         x="210"
+         y="50">Reading the public card of <tspan
+   id="tspan1122"
+   style="font-weight:600">A</tspan>.</tspan><tspan
+         sodipodi:role="line"
+         x="210"
+         y="68"
+         id="tspan1026"><tspan
+   id="tspan1126"
+   style="font-weight:600">B</tspan> and <tspan
+   id="tspan1124"
+   style="font-weight:600">C</tspan> are potential members.</tspan></text>
+    <text
+       id="text1020"
+       y="160"
+       x="210"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#000000;font-family:'Source Sans Pro';font-size:18px;line-height:1;text-align:start;text-anchor:start"
+       xml:space="preserve"><tspan
+         y="160"
+         x="210"
+         sodipodi:role="line"
+         id="tspan1028">Reading the public card of <tspan
+   id="tspan1120"
+   style="font-weight:600">B</tspan>.</tspan><tspan
+         y="178"
+         x="210"
+         sodipodi:role="line"
+         id="tspan1110"><tspan
+   id="tspan1118"
+   style="font-weight:600">B</tspan> is a member.</tspan><tspan
+         y="196"
+         x="210"
+         sodipodi:role="line"
+         id="tspan1877"><tspan
+   style="-inkscape-font-specification:'Source Sans Pro Semi-Bold';font-family:'Source Sans Pro';font-stretch:normal;font-style:normal;font-variant:normal;font-weight:600"
+   id="tspan1879">C</tspan> is a potential idle member.</tspan></text>
+    <path
+       style="fill:none;marker-end:url(#arrowB5a1d93);stroke:#5a1d93;stroke-width:2"
+       d="m 35.5,86 h 96"
+       id="path1139-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path851"
+       d="M 26,66 66,26"
+       style="fill:none;marker-end:url(#arrowB5a1d93);stroke:#5a1d93;stroke-width:2" />
+    <circle
+       style="fill:#5a1d93"
+       id="circle1668-3"
+       cx="15"
+       cy="85"
+       r="15" />
+    <circle
+       r="15"
+       cy="15"
+       cx="85"
+       id="circle1670-6"
+       style="fill:#5a1d93;fill-opacity:0.50196078" />
+    <circle
+       style="fill:#5a1d93;fill-opacity:0.50196078"
+       id="circle1674-0"
+       cx="155"
+       cy="85"
+       r="15" />
+    <text
+       id="text958"
+       y="90"
+       x="15"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="90"
+         x="15"
+         id="tspan956"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="85"
+       y="20"
+       id="text978"><tspan
+         sodipodi:role="line"
+         id="tspan976"
+         x="85"
+         y="20">B</tspan></text>
+    <text
+       id="text982"
+       y="90"
+       x="155"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="90"
+         x="155"
+         id="tspan980"
+         sodipodi:role="line">C</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1652"
+       d="M 74,154 34,194"
+       style="fill:none;marker-end:url(#arrowB5a1d93);stroke:#5a1d93;stroke-width:2" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1654"
+       d="m 35.5,206 h 96"
+       style="fill:none;marker-end:url(#arrowB5a1d93);stroke:#5a1d93;stroke-width:2" />
+    <path
+       style="fill:none;marker-end:url(#arrowB5a1d93);stroke:#5a1d93;stroke-width:2"
+       d="M 26,186 66,146"
+       id="path1656"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;marker-end:url(#arrowBe5b83f);stroke:#e5b83f;stroke-width:2"
+       d="m 96,154 40,40"
+       id="path1658"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <circle
+       r="15"
+       cy="205"
+       cx="15"
+       id="circle1662"
+       style="fill:#5a1d93" />
+    <circle
+       style="fill:#5a1d93"
+       id="circle1665"
+       cx="85"
+       cy="135"
+       r="15" />
+    <circle
+       r="15"
+       cy="205"
+       cx="155"
+       id="circle1667"
+       style="fill:#e5b83f;fill-opacity:0.50196078" />
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="15"
+       y="210"
+       id="text1671"><tspan
+         sodipodi:role="line"
+         id="tspan1669"
+         x="15"
+         y="210">A</tspan></text>
+    <text
+       id="text1675"
+       y="140"
+       x="85"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       xml:space="preserve"><tspan
+         y="140"
+         x="85"
+         id="tspan1673"
+         sodipodi:role="line">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="-inkscape-font-specification:'Source Sans Pro';fill:#ffffff;font-family:'Source Sans Pro';font-size:18px;text-align:center;text-anchor:middle"
+       x="155"
+       y="210"
+       id="text1679"><tspan
+         sodipodi:role="line"
+         id="tspan1677"
+         x="155"
+         y="210">C</tspan></text>
+  </g>
+</svg>

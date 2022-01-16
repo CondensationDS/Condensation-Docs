@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<? title = 'Actor hash shortening'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2019, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>On <a href="/actors/envelope/">envelopes</a>, actor hashes are shortened to 24 bytes (192 bits) to prevent actor hash scavenging.</p>
+
+	<p>A bot could try to discover large amounts of actor hashes by repeating the following procedure:</p>
+	<ol>
+		<li>List the messages of a known actor.</li>
+		<li>Read all envelopes, and scan them for actor hashes.</li>
+	</ol>
+	<p>Step <i>1</i> is possible on stores with a lenient box listing policy, where any actor can list any box. Step <i>2</i> would be possible if full actor hashes were mentioned on the envelopes.</p>
+
+	<p>By shortening actor hashes to 24 bytes, the above cycle is interrupted.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

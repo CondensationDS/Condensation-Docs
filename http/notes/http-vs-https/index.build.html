@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<? title = 'HTTP vs. HTTPS'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<? verified(2022, 01); ?>
+	<h1><? title ?></h1>
+
+	<p>A Condensation store is often accessed via plain HTTP or its encrypted counterpart HTTPS.</p>
+
+	<p>Since all Condensation data is end-to-end encrypted, using HTTPS only has a small impact on security:</p>
+	<table class="text">
+		<tr>
+			<th></th>
+			<th>HTTP</th>
+			<th>HTTPS</th>
+		</tr>
+		<tr>
+			<td>Exposed data</td>
+			<td>No</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Exposed request and response headers</td>
+			<td>On network and server</td>
+			<td>On server only</td>
+		</tr>
+		<tr>
+			<td>Exposed access pattern</td>
+			<td>Yes</td>
+			<td>Yes</td>
+		</tr>
+	</table>
+
+	<p>Using HTTPS hides the request and response headers from an observer in the network. Using plain HTTP, these headers can be observed by any router.</p>
+	<p>Request and response headers primarily reveal which objects and accounts are being accessed. This may allow an attacker to guess which accounts are sharing data with each other (working together, communicating with each other).</p>
+	<p>Headers may also reveal what operating system, web browser or Condensation version a user is using. Some of this information may leak through HTTPS as well, but is certainly more difficult and less reliable to obtain.</p>
+	<p>From this perspective, using HTTPS is desirable.</p>
+	<p>However, request and response headers are in any case available on the store server, and accessible by their system administrators. Hence, if a user does not trust the store server more than the network in between, using HTTPS is pointless.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

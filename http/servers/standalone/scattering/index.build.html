@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<? title = 'Scattering'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation Servers</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p class="todo">While the scattering code itself is ready, this feature has never been implemented. It may actually be a bit too CPU-heavy, unless hardware support is available (GPUs?). Classical 2/3 RAIDs using XOR are computationally much lighter.</p>
+	<p class="todo">The main advantage of scattering is its flexibility: one can set up a 13/17 system, for instance. And then remove one strip and continue with a 13/16 system. And then add two more strips, and end up with a 13/18 system.</p>
+	<p class="todo">When splitting into 13 pieces, scattering requires per byte: 12 XORs, 3 * 13 lookups in a table with 256 elements, plus a few additions. The lookups could be combined into a single lookup within a table of 65536 elements.</p>
+
+	<p>When storing objects on a single hard disk drive, the risk of loosing those objects (roughly) corresponds to the probability of a <a href="https://en.wikipedia.org/wiki/Hard_disk_drive_failure">hard disk failure</a>, which is in the order of a <a href="https://en.wikipedia.org/wiki/Annualized_failure_rate">few percent per year</a>. Condensation provides two ways to increase redundancy: object scattering and pull backups. Obviously, classic methods such as RAID can be used as well.</p>
+
+	<p>With object scattering, objects are split (scattered) into several pieces, which are stored on different disks. Each piece contains a little bit more information than strictly necessary (redundancy), so that the original object can be reconstruced even if some pieces get lost.</p>
+
+	<p>Object scattering is usually done at the server or datacenter level, and transparent to the user.</p>
+
+	<h2>Deterministic M-by-N scattering</h2>
+
+	<p>In a closed system (i.e. a system that is fully under your control) with M hard disks, M pieces are crafted and stored on one hard disk each. Each piece contains 1/Nth of the information of the original object, and no piece is more important than the others. If the scatter matrix used to generate the pieces is chosen wisely, any N out of M pieces can be used to reconstruct the original object.</p>
+	<p>The choice of M and N affects redundancy and space efficiency. In most cases, N = M - 1 is a good choice, as it protects against one hard disk failing at a time and offers high space efficiency. For increased redundancy, N = M - 2 or N = M - 3 may be used.</p>
+
+	<p>Note the resemblance to <a href="https://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_5">RAID 5</a>. Their purpose is the same, but while RAID works at block level, scattering intervenes at object level. In addition, scattering is more flexible and can be configured to handle multiple disk failing at the same time.</p>
+
+	<h2>Probabilistic any-by-N scattering</h2>
+
+	<p>Scattering may also be used in a distributed way by crafting any number of random pieces with 1/Nth of the information each, and distributing them in the network. If N pieces are put together, the original object can be reconstructed with a probability of about 96%. If N + 1 pieces are available, the reconstruction probability increases to &gt; 99.8%.</p>
+
+	<h2>Classic RAID systems</h2>
+
+	<p>Although scattering combines all the benefits of a RAID system with increased flexibility, a good hardware RAID will be faster than (software-based) scattering. RAID systems are transparent to the Condensation server.</p>
+
+	<p>Note that software RAID or logical volumes (LVM) do not add any benefits to Condensation, but may negatively affect performance. Condensation handles multiple disk with ease.</p>
+</div>
+
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

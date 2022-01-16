@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<!-- This file has been auto-generated from CN::Commands::Announce. Do not edit the content here. -->
+<? title = 'Announce'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+<div class="hscroll box"><pre>cn announce</pre></div>
+<p>Announces yourself on your accounts.</p>
+<div class="hscroll box"><pre>cn announce <span class="im">KEYPAIR</span> on <span class="im">STORE</span>
+… with (active|idle|revoked|entrusted) <span class="im">ACCOUNT*</span>
+… with (active|idle|revoked|entrusted) <span class="im">ACTOR*</span> on <span class="im">STORE</span>
+… without <span class="im">ACTOR*</span>
+… with … and … and … but without …</pre></div>
+<p>Updates the public card of the indicated key pair on the indicated store. The indicated accounts are added or removed from the actor group on the card.</p>
+<p>If no card exists, a minimalistic card is created.</p>
+<p>Use this with care, as the generated card may not be compliant with the card produced by the actor.</p>
+
+	<h2>Syntax</h2>
+	<div style="background:white; box-shadow:0 1px 3px rgba(0, 0, 0, 0.1); margin:8px -20px 0 -20px">
+		<div style="overflow: auto; white-space: nowrap"><img src="announce.svg" style="vertical-align:middle"></div>
+		<div style="font-size:13px; border-top:1px solid #eee; padding:4px 16px 6px 16px; margin:0 4px"><a href="announce.svg" target="_blank">Open</a></div>
+	</div>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<? title = 'Objects, Accounts, and Stores'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<p>Condensation is a complete data system. It can</p>
+	<ul>
+		<li><b>store and retrieve</b> data like a database or a file system,</li>
+		<li><b>send</b> data to other users or devices like messengers,</li>
+		<li>and <b>share and synchronize</b> data like cloud services.</li>
+	</ul>
+	<p>Condensation thereby follows a distributed <a href="https://en.wikipedia.org/wiki/Actor_model">actor-message-passing</a> approach, and encrypts all data end-to-end.</p>
+
+	<h2 id="objects">Objects</h2>
+	<p>With Condensation, data is stored as trees of objects. An <a href="/serialization/object/">object</a> consists of a list of hashes pointing to other objects, and a sequence of bytes:</p>
+	<div class="hscroll indent"><? svgFile('ObjectContent.svg') ?></div>
+	<p><i>H</i> denotes the number of hashes preceding the data. [TODO: talk about objects pointed to rather than hashes in the list] The data part often holds a <a href="/serialization/record/">record</a>, and is usually encrypted.</p>
+	<p>Objects are identified by their SHA-256 hash (32 bytes):</p>
+	<div class="hscroll indent"><? svgFile('Hash.svg') ?></div>
+	<p>Objects are inherently <a href="/notes/mutability/">immutable</a>. Changing an object's content yields a different hash, and therefore makes it a different object.</p>
+
+	<h2 id="trees">Trees</h2>
+	<p>Through the hash list, an object may span a <a href="/serialization/tree/">tree</a>:</p>
+	<div class="hscroll indent"><? svgFile('ObjectTree.svg') ?></div>
+	<p>Trees can be arbitrarily large, and may form <a href="/serialization/tree/#blockchain">blockchains</a>, binary search trees, or other data structures.</p>
+	<p>Naturally, the object hash also serves as identifier for the tree it spans.</p>
+
+	<h2>Modifying data</h2>
+	<p>Since trees are immutable, they cannot be modified directly. To modify data, a new tree is derived from the current tree:</p>
+	<div class="hscroll indent"><? svgFile('TreeModification.svg') ?></div>
+	<p>If the tree is structured wisely, a large part of the old tree's data can be reused in the new tree. This yields efficient data modification, and efficient versioning.</p>
+	<p>Several modifications can be applied at the same time, leading to the equivalent of a database <a href="/notes/transactions/">transaction</a>.</p>
+
+	<h2 id="accounts">Accounts</h2>
+	<p>Remembering a tree hash is enough to refer to an arbitrary amount of data. Hence &ndash; besides storing objects &ndash; an actor (user) just needs to manage a few hashes to store, publish, and share data. For that, each actor owns an account with three boxes. Each box keeps a set of hashes:</p>
+	<div class="hscroll indent"><? svgFile('Account.svg') ?></div>
+	<ul>
+		<li>The <b>public box</b> points to the actor's <a href="/actors/public-card/">public information</a>. It should contain a single hash.</li>
+		<li>The <b>private box</b> points to the actor's <a href="/actors/private-data/">private data</a>, and should contain a single hash as well.</li>
+		<li>The <b>message box</b> collects <a href="/actors/message/">messages</a> sent by other <a href="/actors/">actors</a>, and may contain an arbitrary number of hashes.</li>
+	</ul>
+	<p>In contrast to objects and trees, boxes are mutable. Hashes can be added and removed.</p>
+
+	<h2 id="stores">Stores</h2>
+	<p>Objects and accounts are kept on a <a href="/stores/store/">Condensation store</a>:</p>
+	<div class="hscroll"><? svgFile('Store.svg') ?></div>
+	<p>The objects make up the bulk of the data, and are organized as hash table. The account list has a slightly more sophisticated structure, but only deals with 32-byte hashes.</p>
+	<p>A Condensation store can be accessed through <a href="/stores/store/">5 functions</a>:</p>
+	<ul>
+		<li>get an object</li>
+		<li>put an object</li>
+		<li>list a box</li>
+		<li>add a hash (or envelope) to a box</li>
+		<li>remove a hash from a box</li>
+	</ul>
+	<p>The store may be running on top of a raw disk, a file system, a database, or a large scale storage system.</p>
+
+	<h2 id="keys">RSA keys</h2>
+	<p>Condensation uses end-to-end encryption. Public data is signed, while private data and messages are are encrypted and signed by the actor producing that data.</p>
+	<p>For that, each actor generates a RSA 2048 <a href="/actors/key-pair/">key pair</a>:</p>
+	<div class="hscroll indent"><? svgFile('KeyPair.svg') ?></div>
+	<p>While the <a href="/actors/key-pair/#private-key">private key</a> is kept in a safe place on the device, the <a href="/actors/key-pair/#public-key">public key</a> is serialized as object and uploaded onto all stores the actor uses. The hash of the public key object serves as <a href="/notes/identity-spoofing/">unique identifier</a> of the actor and its accounts.</p>
+
+	<h2 id="object-encryption">Object encryption</h2>
+	<p>Condensation objects may be symmetrically encrypted as follows:</p>
+	<div class="hscroll indent"><? svgFile('EncryptedObject.svg') ?></div>
+	<p>The data section is thereby encrypted using <a href="/notes/cryptography/">AES 256</a> in CTR mode with a random 256-bit key. The CTR counter starts at 0, and is incremented by 1 for each AES block (16 bytes). The last block may be truncated.</p>
+	<p>The hash list remains unencrypted, so that stores can determine which objects are in use.</p>
+
+	<h2 id="tree-encryption">Tree encryption and signing</h2>
+	<p>Trees are encrypted and signed as follows:</p>
+	<div class="hscroll"><? svgFile('EncryptedTree.svg') ?></div>
+	<p>The <b>root object</b> is an <a href="/actors/envelope/">envelope</a> with a content hash and a corresponding AES key encrypted for each recipient actor. In addition, envelopes contain the sender's signature of the content hash, and &ndash; if the content is located elsewhere &ndash; a store URL.</p>
+	<p>All <b>objects below the root</b> store the AES keys of their children within the encrypted data part.</p>
+	<p>Hence, any recipient can parse the envelope, verify its signature, decrypt the AES key of the content object, and then work its way down to read the whole tree.</p>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

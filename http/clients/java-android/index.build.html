@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<? title = 'Java for Android'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?> <span class="maturity">draft</span></h1>
+
+	<p>This is a multi-threaded implementation useful for Android apps. Data accesses are handled synchronously on the main thread, while store access operations are handled by a threadpool.</p>
+
+	<h2>Download</h2>
+	<p>Not published yet &ndash; stay tuned. If you'd like get an early version, <a href="mailto:info@condensation.io">drop us an e-mail</a>.</p>
+
+	<h2>Available stores</h2>
+	<ul>
+		<li>HTTP</li>
+		<li>Folder object store with in-memory account store</li>
+	</ul>
+
+	<h2>Special features</h2>
+	<ul>
+		<li>A caching store is available, which stores all data locally into a folder store, and automatically synchronizes this data with a remote HTTP store if this store is reachable. This allows to seamlessly work in "offline" mode.</li>
+	</ul>
+
+	<h2>Limitations</h2>
+	<ul>
+		<li>The maximum object size is approximately 2 GiB, since the implementation uses regular Java byte arrays to handle them internally.</li>
+		<li>As a consequence, the maximum size of a record node byte sequence is approximately 2 GiB as well.</li>
+		<li>The default signed integer serialization functions (<i>ByteSegment.integerFromBytes</i> and <i>ByteSegment.integerFromBytes</i>) use Java's signed <i>long</i> type, and therefore work up to 63 significant bits.</li>
+		<li>The default unsigned integer serialization functions (<i>ByteSegment.bytesFromUnsigned</i> and <i>ByteSegment.unsignedFromBytes</i>) use Java's signed <i>long</i> type, but interpret it as unsigned value. Hence, the value is negative if the 64th bit is set.</li>
+	</ul>
+</div>
+
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

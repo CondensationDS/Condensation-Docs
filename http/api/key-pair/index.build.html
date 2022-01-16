@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<? title = 'Key pair'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../CommonHeader.inc.html') ?>
+<? include('../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('Key Pair').openField('public key');
+	</script>
+
+	<p>A key pair consists of a private and a public key, and constitutes an actor. Along with a <a href="/api/store/">store</a>, a key pair enables storing private data, publishing public data, and sending messages to other actors. For most applications, the <a href="/api/actor-with-data-tree/">actor with data tree</a> implementation is sufficient.</p>
+
+	<h2 id="generate">Generating a key pair</h2>
+	<div class="hscroll api java"><pre>KeyPair keyPair = KeyPair.generate();</pre></div>
+	<div class="hscroll api javascript"><pre>var keyPair = cn.generateKeyPair();</pre></div>
+	<div class="hscroll api perl"><pre>my $keyPair = CN::KeyPair-&gt;generate;</pre></div>
+	<p>Generates a new key pair and returns the corresponding <i>KeyPair</i> instance with an empty account list.</p>
+
+	<div class="java javascript">
+		<div class="space"></div>
+		<div class="hscroll api java"><pre>
+			GenerateKeyPair.Done done = new GenerateKeyPair.Done() {
+				void onKeyPairGenerated(KeyPair keyPair) {
+					...
+				}
+			};
+
+			new GenerateKeyPair(done);
+		</pre></div>
+		<div class="hscroll api javascript"><pre>var done = cn.generateKeyPairAsync();
+done.onDone = function(keyPair) { ... };</pre></div>
+		<p><a href="/api/threading/">Asynchronously</a> generates an new key pair and calls <i class="java">onKeyPairGenerated</i><i class="javascript">onDone</i> with the new <i>keyPair</i> on the main thread when ready.</p>
+	</div>
+
+	<h2 id="new">Creating a key pair instance</h2>
+	<div class="hscroll api java"><pre>KeyPair keyPair = new KeyPair(publicKey, rsaPrivateKey);</pre></div>
+	<div class="hscroll api javascript"><pre>var keyPair = new KeyPair(publicKey, rsaPrivateKey);</pre></div>
+	<div class="hscroll api perl"><pre>my $keyPair = CN::KeyPair-&gt;new($publicKey, $rsaPrivateKey);</pre></div>
+	<p>Creates an instance given a public key and the corresponding private key.</p>
+
+	<h2 id="serialization">Serialization</h2>
+	<div class="hscroll api java"><pre>
+		Record record = keyPair.toRecord();
+		String hexString = keyPair.toHex();
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var record = keyPair.toRecord();
+		var hexString = keyPair.toHex();
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $record = $keyPair-&gt;toRecord;
+		my $hexString = $keyPair-&gt;toHex;
+	</pre></div>
+	<p>Serializes the public key object and the private key parameters into a (hex-encoded) record with the following structure:</p>
+	<div class="hscroll box">
+		<pre>e
+  <span class="im">public exponent</span>
+p
+  <span class="im">prime 1</span>
+q
+  <span class="im">prime 2</span>
+public key object
+  <span class="im">public key object</span></pre>
+    </div>
+    <p><i>e</i>, <i>p</i> and <i>q</i> are the RSA coefficients of the private key. The <i>public key object</i> holds the corresponding <a href="/actors/key-pair/#public-key">public key</a>. Its hash is the actor's identifier.</p>
+
+	<div class="space"></div>
+	<div class="hscroll api java"><pre>
+		KeyPair keyPair = KeyPair.from(record);
+		KeyPair keyPair = KeyPair.fromHex(hexString);
+	</pre></div>
+	<div class="hscroll api javascript"><pre>
+		var keyPair = cn.keyPairFromRecord(record);
+		var keyPair = cn.keyPairFromHex(hexString);
+	</pre></div>
+	<div class="hscroll api perl"><pre>
+		my $keyPair = CN::KeyPair-&gt;fromRecord($record);
+		my $keyPair = CN::KeyPair-&gt;fromHex($hexString);
+	</pre></div>
+	<p>Creates an instance from a (hex-encoded) record.</p>
+
+	<div class="space"></div>
+	<p><i>toRecord</i> / <i>fromRecord</i> should be preferred over <i>toHex</i> / <i>fromHex</i>. The hex-string format should only be used if the storage medium cannot handle binary data, e.g. an INI-file, JSON-encoded data, or a sheet of paper.</p>
+
+	<h2 id="cryptographic-operations">Cryptographic operations</h2>
+	<div class="hscroll wide api java"><pre>
+		Bytes encryptedBytes = keyPair.publicKey.encrypt(plainBytes);
+		byte[] plainBytes = keyPair.decrypt(encryptedBytes);
+		Bytes signatureBytes = keyPair.sign(digestBytes);
+		Bytes signatureBytes = keyPair.sign(hash);
+		boolean ok = keyPair.publicKey.verify(digestBytes, signatureBytes);
+		boolean ok = keyPair.publicKey.verify(hash, signatureBytes);
+	</pre></div>
+	<div class="hscroll wide api javascript"><pre>
+		var encryptedBytes = keyPair.publicKey.encrypt(plainBytes);
+		var plainBytes = keyPair.decrypt(encryptedBytes);
+		var signatureBytes = keyPair.sign(digestBytes);
+		var signatureBytes = keyPair.signHash(hash);
+		var ok = keyPair.publicKey.verifyHash(hash, signatureBytes);
+	</pre></div>
+	<div class="hscroll wide api perl"><pre>
+		my $encryptedBytes = $keyPair-&gt;publicKey-&gt;encrypt($plainBytes);
+		my $plainBytes = $keyPair-&gt;decrypt($encryptedBytes);
+		my $signatureBytes = $keyPair-&gt;sign($digestBytes);
+		my $signatureBytes = $keyPair-&gt;signHash($hash);
+		my $ok = $keyPair-&gt;publicKey-&gt;verifyHash($hash, $signatureBytes);
+	</pre></div>
+	<p>Uses the key pair to encrypt and decrypt digests, as well as sign hashes and verify signatures.</p>
+	<p>You rarely need these operations directly, as functions for <a href="/api/create-envelope/">creating</a> and <a href="/api/open-envelope/">opening envelopes</a> are available.</p>
+
+	<h2>See also</h2>
+	<div class="menu">
+		<div><a href="/api/save-private-data/">Saving private data</a></div>
+		<div><a href="/api/send-message/">Sending a message</a></div>
+		<div><a href="/api/announce/">Announcing public data</a></div>
+	</div>
+</div>
+
+<script src="../platforms.js"></script>
+<? include('../../CommonFooter.inc.html') ?>
+
+</body>
+</html>

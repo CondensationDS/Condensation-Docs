@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<? title = 'FTP store'; ?>
+
+<html lang="en">
+<head>
+	<? include('../../../CommonHtmlHeader.inc.html') ?>
+	<title><? title ?> — Condensation API</title>
+</head>
+
+<body>
+
+<? include('../../../CommonHeader.inc.html') ?>
+<? include('../../Level1.inc.html') ?>
+
+<div class="main">
+	<h1><? title ?></h1>
+
+	<div class="hscroll whiteBox" id="structure"></div>
+	<script src="../../structureExplorer.js"></script>
+	<script>
+		structureExplorer.show('FTP Store');
+	</script>
+
+	<div class="perl">
+		<p>Accesses a <a href="/stores/folder/">folder store</a> over FTP.</p>
+
+		<h2 id="new">Instance creation</h2>
+		<div class="hscroll api perl"><pre>my $ftpStore = CN::FTPStore-&gt;forUrl($url);</pre></div>
+		<p>Instantiates a FTP store for a <i>url</i> of the form:</p>
+		<div class="hscroll indent"><pre>ftp://HOST<span style="opacity: 0.3">:PORT</span>/PATH/TO/STORE</pre></div>
+		<p>The port is optional, and defaults to 21.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my $ftpStore = CN::FTPStore-&gt;new($endPoint, $folder);</pre></div>
+		<p>Instantiates a FTP store. <i>End point</i> is the hostname or IP address to connect to, and <i>folder</i> denotes the path to the store folder on that server.</p>
+
+		<h2 id="store-access">Store behavior</h2>
+		<p>A FTP connection is opened with the first request, and all <a href="/api/store/#store-interface">store requests</a> are handled through that connection.</p>
+		<p>A store request typically results in several FTP requests, involving several round trip times (RTTs). Hence, FTP stores are not particularly efficient.</p>
+
+
+		<h2 id="administration">Administration</h2>
+		<div class="hscroll api perl"><pre>my @accountHashes = $ftpStore-&gt;accounts;</pre></div>
+		<p>Returns the list of accounts. Each account is a hash.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my $ok = $ftpStore-&gt;addAccount($accountHash);</pre></div>
+		<p>Adds an account by creating its account and (empty) box folders.</p>
+
+		<div class="space"></div>
+		<div class="hscroll api perl"><pre>my $ok = $ftpStore-&gt;removeAccount($accountHash);</pre></div>
+		<p>Removes an account and deletes its boxes.</p>
+		<p>Removal is done in two steps: the account folder is first renamed to ".deleted-RANDOMSEQUENCE", and then removed. If removal fails, an obsolete ".deleted-RANDOMSEQUENCE" folder will remain, which can safely be removed manually by an administrator.</p>
+	</div>
+
+	<div class="java javascript">
+		<p>The FTP store is currently only implemented in Perl.</p>
+	</div>
+
+	<h2 id="server">See also</h2>
+	<p><a href="/servers/ftp-minimal/">Minimalistic FTP Server</a></p>
+</div>
+
+<script src="../../platforms.js"></script>
+<? include('../../../CommonFooter.inc.html') ?>
+
+</body>
+</html>
