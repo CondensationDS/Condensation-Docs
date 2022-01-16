@@ -1,0 +1,3 @@
+#! /bin/sh
+
+rsync -avL --timeout 10 --delete --exclude '*.inc*' --exclude '*.lib*' --exclude '*.build*' --exclude '*.orig' --exclude 'deploy*' --exclude scratch . lou@lou.condensation.io:/srv/lou.condensation.io/http
